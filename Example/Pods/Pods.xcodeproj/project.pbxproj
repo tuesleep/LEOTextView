@@ -102,6 +102,7 @@
 		AEBA7273A59F2B043A31661C1CB1604C /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = DF2222E8FBB530585806C76F120D22AB /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B1825287DE872A038A4A44623EA54C1B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA3A806920B5D6DC56ED011270DE1F /* Configuration.swift */; };
 		B43EDBC7DA15A429006C67B63D45ACFD /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E685779B53865FBDF4197A9CE4D9FD1 /* ThrowError.swift */; };
+		B958ABE81CD1F32100590EB9 /* CKIndentString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B958ABE71CD1F32100590EB9 /* CKIndentString.swift */; };
 		B9D2E426B5CA226D60A78A71FA289D4C /* AsyncMatcherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F5BE94693475F841CEEC329FF19A11 /* AsyncMatcherWrapper.swift */; };
 		BBE10615F3CD16FAF02BBD3D42B6D246 /* World+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60104C3BBC45FA4AE08E62653BA6F961 /* World+DSL.swift */; };
 		BD3997E3EB6AC4F0A30B96C9D0A1A44D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314A3FCD26DD7E0EFB73C86C7A085AE6 /* UIKit.framework */; };
@@ -319,6 +320,7 @@
 		B4F2569FC59B67E76E570E93D89731EB /* NSString+QCKSelectorName.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+QCKSelectorName.h"; path = "Sources/Quick/NSString+QCKSelectorName.h"; sourceTree = "<group>"; };
 		B5CA51A537B8A1D62516D4D49038B2EA /* Example.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Example.swift; path = Sources/Quick/Example.swift; sourceTree = "<group>"; };
 		B6203A309895700207A684C456765291 /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
+		B958ABE71CD1F32100590EB9 /* CKIndentString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKIndentString.swift; sourceTree = "<group>"; };
 		B9D6AF1AB45E76B352DD93ACE676230A /* BeNil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeNil.swift; path = Sources/Nimble/Matchers/BeNil.swift; sourceTree = "<group>"; };
 		BAEE0AA407B501B27CD879CF8E608E81 /* World+DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "World+DSL.h"; path = "Sources/Quick/DSL/World+DSL.h"; sourceTree = "<group>"; };
 		BDC4C06A00F57A3332BFBC63C0DA3F1E /* ExceptionCapture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExceptionCapture.swift; path = Sources/Nimble/Utils/ExceptionCapture.swift; sourceTree = "<group>"; };
@@ -709,6 +711,14 @@
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
+		B958ABE61CD1F15E00590EB9 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				B958ABE71CD1F32100590EB9 /* CKIndentString.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		C18B5E22FEC50E2230E2586305705250 /* Pods-CKTextViewComponent_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +788,7 @@
 		F0CE547D43C88377D0019B1A32481E52 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B958ABE61CD1F15E00590EB9 /* List */,
 				DD6D39513ED2AAB065D2D0EC19ED93F3 /* ReplaceMe.swift */,
 			);
 			path = Classes;
@@ -1087,6 +1098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CB6230F0DF7154F686268B6778646B9 /* CKTextViewComponent-dummy.m in Sources */,
+				B958ABE81CD1F32100590EB9 /* CKIndentString.swift in Sources */,
 				4E8B968A8FBF17E735069BAC21FA9817 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
