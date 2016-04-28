@@ -1,0 +1,6 @@
+framework module CKTextViewComponent {
+  umbrella header "CKTextViewComponent-umbrella.h"
+
+  export *
+  module * { export * }
+}
