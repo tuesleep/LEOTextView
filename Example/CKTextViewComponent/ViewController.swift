@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
+        
+        ckTextView?.text = "Hello World"
+        
+        ckTextView?.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 200, height: 100)))
     }
 
     override func didReceiveMemoryWarning() {

@@ -56,16 +56,16 @@ public class CKTextView: UITextView, UITextViewDelegate {
     // MARK: UITextViewDelegate
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if (currentOrgaizeString == nil) {
-            currentOrgaizeString = CKOrganizeString(string: "", indent: 0)
-            currentOrgaizeString?.headTextType = .Text
-        }
-        
-        currentOrgaizeString?.mutableString.appendString(text)
-        
-        if CKTextChecker.isReturn(text) {
-            
-        }
+//        if (currentOrgaizeString == nil) {
+//            currentOrgaizeString = CKOrganizeString(string: "", indent: 0)
+//            currentOrgaizeString?.headTextType = .Text
+//        }
+//        
+//        currentOrgaizeString?.mutableString.appendString(text)
+//        
+//        if CKTextChecker.isReturn(text) {
+//            
+//        }
         
         return true
     }

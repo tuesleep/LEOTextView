@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00FEFB3BBD699B30D889A0750F07D919 /* CKTextViewComponent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF8AD248C30ABED8BB9F9EC2CEB5CAB /* CKTextViewComponent-dummy.m */; };
 		045C32F6034668C71A361C229AC63792 /* Pods-CKTextViewComponent_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA385BD8481136AE22CCAAF47B00D68 /* Pods-CKTextViewComponent_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		144F441BA30ECC07E76957D645D4FBB8 /* Pods-CKTextViewComponent_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCCC1B70CB40D1CD5B519F508206B08 /* Pods-CKTextViewComponent_Tests-dummy.m */; };
-		177BA6EC34B2C30583693802E39C9D63 /* CKTextViewComponent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AB642EA963A7592F1F67F0E0AF499E /* CKTextViewComponent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329B1053DC6E5B6E247C95ACD5723155 /* CKTextViewComponent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF8AD248C30ABED8BB9F9EC2CEB5CAB /* CKTextViewComponent-dummy.m */; };
 		34D7456E2953732634E708A2A3C154CA /* Pods-CKTextViewComponent_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 348CAD59313262386DCE3E5BF76F7E80 /* Pods-CKTextViewComponent_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5F589890D329E384B9A0CBF4A0FB1CBB /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2953E5A83DC0B14F374D8D691524D0 /* CKTextView.swift */; };
+		496FF1767DC7D4448BF9EB0E399B2CB9 /* CKTextChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A548835018C303933C2BE8C84BADD3 /* CKTextChecker.swift */; };
 		772E2F31D490A46E2A33A75C5F7B3666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		B0F79FFAF94CAE1DFD2B01F2E74936C4 /* CKTextViewComponent.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 80D0B9092264A5FCDB8E5067279EEA4F /* CKTextViewComponent.bundle */; };
-		B9EC2BB21CD34BCF00F89FBD /* CKTextChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EC2BB11CD34BCF00F89FBD /* CKTextChecker.swift */; };
-		BB6A6475591AAF5DC211CACFCF0069A1 /* CKOrganizeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353D91E7236CA51EA5169EBAE621620 /* CKOrganizeString.swift */; };
-		C09F28862C5B3CEF0104B9BC0E0719E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		B9A6C4B071750859411EF93B7EC24601 /* CKTextViewComponent.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 80D0B9092264A5FCDB8E5067279EEA4F /* CKTextViewComponent.bundle */; };
+		D1B73F5586C8038132B44F321A704AAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		D1F0D963BF718EC3B6052E571C1FE8D7 /* CKTextViewComponent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AB642EA963A7592F1F67F0E0AF499E /* CKTextViewComponent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0B30C7FEB2454C25221979A624D68A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		EC9EBF6D747F5A18D15CC15F69181C74 /* Pods-CKTextViewComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0129B384C46B783AF693902864494918 /* Pods-CKTextViewComponent_Example-dummy.m */; };
+		F0ED818C0804A536CB6C11DACC18D967 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97DDF108AC386EED5002E55A5B51A3F /* CKTextView.swift */; };
+		F8013FDE30AB03DAA0FF71D95AA37798 /* CKOrganizeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97D355EA8AA9D876B1E5D39373F4E3 /* CKOrganizeString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,21 +27,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6138124DE58B7ADA098DE304C87F8291;
+			remoteGlobalIDString = BB005CFC4C23309A6048B98081B6803F;
 			remoteInfo = CKTextViewComponent;
 		};
 		31B252C4A13E5CBDC2126F231D4A8801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6138124DE58B7ADA098DE304C87F8291;
+			remoteGlobalIDString = BB005CFC4C23309A6048B98081B6803F;
 			remoteInfo = CKTextViewComponent;
 		};
-		CCF9D8D5B7764C2ACD3E4DAE84054194 /* PBXContainerItemProxy */ = {
+		9B818EDA1C1353EB46604455FFF7AE96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C3AC0CD972A695D6E1B31EB5017C8BD5;
+			remoteGlobalIDString = 652145479301A46DC1E9DE19D81EC468;
 			remoteInfo = "CKTextViewComponent-CKTextViewComponent";
 		};
 /* End PBXContainerItemProxy section */
@@ -54,25 +54,25 @@
 		3529068234BC80860106F13A15AE1B40 /* CKTextViewComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKTextViewComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		56284472804106051243253C6D8DE3D7 /* Pods-CKTextViewComponent_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextViewComponent_Tests.modulemap"; sourceTree = "<group>"; };
-		5B2953E5A83DC0B14F374D8D691524D0 /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
 		5BA385BD8481136AE22CCAAF47B00D68 /* Pods-CKTextViewComponent_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextViewComponent_Example-umbrella.h"; sourceTree = "<group>"; };
-		6353D91E7236CA51EA5169EBAE621620 /* CKOrganizeString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKOrganizeString.swift; sourceTree = "<group>"; };
 		64AB642EA963A7592F1F67F0E0AF499E /* CKTextViewComponent-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextViewComponent-umbrella.h"; sourceTree = "<group>"; };
 		6EF1A7368CC66DC765A4145F9CBB865E /* Pods-CKTextViewComponent_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextViewComponent_Example-resources.sh"; sourceTree = "<group>"; };
 		6FC43B98B6CF15E6DA12B7956B982F54 /* Pods-CKTextViewComponent_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextViewComponent_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CKTextViewComponent.xcconfig; sourceTree = "<group>"; };
 		6FF1E0F7980AAA050E488EE280E20F63 /* Pods-CKTextViewComponent_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextViewComponent_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B876490F21BC831F103D96E6FBE6D5A /* Pods_CKTextViewComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextViewComponent_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F97D355EA8AA9D876B1E5D39373F4E3 /* CKOrganizeString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKOrganizeString.swift; sourceTree = "<group>"; };
 		80D0B9092264A5FCDB8E5067279EEA4F /* CKTextViewComponent.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CKTextViewComponent.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EDA1FC90D750ECF4938E0240BA6B51 /* Pods-CKTextViewComponent_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CKTextViewComponent_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8A93B2BF4EE893A4B73BC1CC230932FA /* ResourceBundle-CKTextViewComponent-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CKTextViewComponent-Info.plist"; sourceTree = "<group>"; };
 		92020AD0CCA9854365D6D4A64B32E545 /* Pods-CKTextViewComponent_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextViewComponent_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A548835018C303933C2BE8C84BADD3 /* CKTextChecker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextChecker.swift; sourceTree = "<group>"; };
 		9EF8AD248C30ABED8BB9F9EC2CEB5CAB /* CKTextViewComponent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CKTextViewComponent-dummy.m"; sourceTree = "<group>"; };
 		A56F355B6E8E5EA3AB49AB3723218B84 /* Pods-CKTextViewComponent_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextViewComponent_Example-frameworks.sh"; sourceTree = "<group>"; };
 		A81CFBC66BCAAF3A05550C71F2FEB155 /* Pods-CKTextViewComponent_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextViewComponent_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A9769358472FCF60640AFBAD592FE6EF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9EC2BB11CD34BCF00F89FBD /* CKTextChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextChecker.swift; sourceTree = "<group>"; };
+		C97DDF108AC386EED5002E55A5B51A3F /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
 		CB0C0A6E3E4B9DE97CE6DC506B19AD62 /* CKTextViewComponent-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextViewComponent-prefix.pch"; sourceTree = "<group>"; };
 		CD70169F5A36D7405E67A8C3B2899FCF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDD4AD50B6285D4565C8F4DCEFA3D889 /* Pods-CKTextViewComponent_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextViewComponent_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -94,14 +94,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3410B4B334766EE4415EA3EE712A685D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C09F28862C5B3CEF0104B9BC0E0719E3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		526DE31B11F9815110ED74D7F4DAC2B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,7 +102,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4CE2D9999E90BD322682DEE7E94D217 /* Frameworks */ = {
+		7C72FFE52B4FEF3DB6190B34B63DB2CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1B73F5586C8038132B44F321A704AAE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBC92C4637B6781612094205EC8A896A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -141,6 +141,14 @@
 				3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		42F83BE139DBC607C531F8B99DFEB2E8 /* CKTextViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				FF51B8338E4B62B767117582C2F56B30 /* Classes */,
+			);
+			path = CKTextViewComponent;
 			sourceTree = "<group>";
 		};
 		5E4C17C45D36BA5CA9FB9F0052105D50 /* Products */ = {
@@ -191,16 +199,6 @@
 			path = "Target Support Files/Pods-CKTextViewComponent_Example";
 			sourceTree = "<group>";
 		};
-		C24964425F03D81234B8762C1F5E4067 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				6353D91E7236CA51EA5169EBAE621620 /* CKOrganizeString.swift */,
-				5B2953E5A83DC0B14F374D8D691524D0 /* CKTextView.swift */,
-				B9EC2BB11CD34BCF00F89FBD /* CKTextChecker.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		CB21AD7117D957343F3B628E0F7044B4 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,19 +229,11 @@
 		EA72C8F406DE1675C0CCFF7FE046E709 /* CKTextViewComponent */ = {
 			isa = PBXGroup;
 			children = (
-				F20B2BE636D9959489AD84880E613C62 /* CKTextViewComponent */,
+				42F83BE139DBC607C531F8B99DFEB2E8 /* CKTextViewComponent */,
 				04B653803989FF888EFDF555DC9621E7 /* Support Files */,
 			);
 			name = CKTextViewComponent;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		F20B2BE636D9959489AD84880E613C62 /* CKTextViewComponent */ = {
-			isa = PBXGroup;
-			children = (
-				C24964425F03D81234B8762C1F5E4067 /* Classes */,
-			);
-			path = CKTextViewComponent;
 			sourceTree = "<group>";
 		};
 		F3970872136D36CD6776856BB226BE96 /* Development Pods */ = {
@@ -252,6 +242,16 @@
 				EA72C8F406DE1675C0CCFF7FE046E709 /* CKTextViewComponent */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		FF51B8338E4B62B767117582C2F56B30 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7F97D355EA8AA9D876B1E5D39373F4E3 /* CKOrganizeString.swift */,
+				93A548835018C303933C2BE8C84BADD3 /* CKTextChecker.swift */,
+				C97DDF108AC386EED5002E55A5B51A3F /* CKTextView.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,35 +273,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3104C7C014A2C085FA512514B2A3E08 /* Headers */ = {
+		9AEF84A397C1778B8C066890BC1CF985 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177BA6EC34B2C30583693802E39C9D63 /* CKTextViewComponent-umbrella.h in Headers */,
+				D1F0D963BF718EC3B6052E571C1FE8D7 /* CKTextViewComponent-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6138124DE58B7ADA098DE304C87F8291 /* CKTextViewComponent */ = {
+		652145479301A46DC1E9DE19D81EC468 /* CKTextViewComponent-CKTextViewComponent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53226C6A5C15F0E370838E639F742938 /* Build configuration list for PBXNativeTarget "CKTextViewComponent" */;
+			buildConfigurationList = 04E2CE739A8EC8E1BC4E834ED0900D44 /* Build configuration list for PBXNativeTarget "CKTextViewComponent-CKTextViewComponent" */;
 			buildPhases = (
-				0820D30F8C4E54313166C6A42E3735EF /* Sources */,
-				3410B4B334766EE4415EA3EE712A685D /* Frameworks */,
-				39709EAE43385C3823D4B7CB0596665F /* Resources */,
-				A3104C7C014A2C085FA512514B2A3E08 /* Headers */,
+				BC50F82F9739A226BC3FBBFD65D7D502 /* Sources */,
+				CBC92C4637B6781612094205EC8A896A /* Frameworks */,
+				4E88D181D6CB25483E64A6C396AD5DAF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1C95B887502725807C3E402482C132D3 /* PBXTargetDependency */,
 			);
-			name = CKTextViewComponent;
-			productName = CKTextViewComponent;
-			productReference = 3529068234BC80860106F13A15AE1B40 /* CKTextViewComponent.framework */;
-			productType = "com.apple.product-type.framework";
+			name = "CKTextViewComponent-CKTextViewComponent";
+			productName = "CKTextViewComponent-CKTextViewComponent";
+			productReference = 80D0B9092264A5FCDB8E5067279EEA4F /* CKTextViewComponent.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		AFE22EA668CD04A38C96E3A3108C636E /* Pods-CKTextViewComponent_Tests */ = {
 			isa = PBXNativeTarget;
@@ -321,22 +319,24 @@
 			productReference = 7B876490F21BC831F103D96E6FBE6D5A /* Pods_CKTextViewComponent_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C3AC0CD972A695D6E1B31EB5017C8BD5 /* CKTextViewComponent-CKTextViewComponent */ = {
+		BB005CFC4C23309A6048B98081B6803F /* CKTextViewComponent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D178C9A48C6F4C2514392316D02B1B7 /* Build configuration list for PBXNativeTarget "CKTextViewComponent-CKTextViewComponent" */;
+			buildConfigurationList = 7F7BBF8ECA917F43D2BC8B8B413AA0E3 /* Build configuration list for PBXNativeTarget "CKTextViewComponent" */;
 			buildPhases = (
-				CD8AF248AA2FED025F6C8FC00DC085C6 /* Sources */,
-				E4CE2D9999E90BD322682DEE7E94D217 /* Frameworks */,
-				2D2FAC3BC6545B19E3D2522681B092DC /* Resources */,
+				94B307DE44698ED5E27CF640A71CBF5C /* Sources */,
+				7C72FFE52B4FEF3DB6190B34B63DB2CF /* Frameworks */,
+				E59F8C9EB90548E1AA70A4BB7ED5C9B1 /* Resources */,
+				9AEF84A397C1778B8C066890BC1CF985 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BC0FABB81292093EB4F328AD8D1C73A6 /* PBXTargetDependency */,
 			);
-			name = "CKTextViewComponent-CKTextViewComponent";
-			productName = "CKTextViewComponent-CKTextViewComponent";
-			productReference = 80D0B9092264A5FCDB8E5067279EEA4F /* CKTextViewComponent.bundle */;
-			productType = "com.apple.product-type.bundle";
+			name = CKTextViewComponent;
+			productName = CKTextViewComponent;
+			productReference = 3529068234BC80860106F13A15AE1B40 /* CKTextViewComponent.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		EE8EB706460820EF6D71875C5EB2327D /* Pods-CKTextViewComponent_Example */ = {
 			isa = PBXNativeTarget;
@@ -377,8 +377,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6138124DE58B7ADA098DE304C87F8291 /* CKTextViewComponent */,
-				C3AC0CD972A695D6E1B31EB5017C8BD5 /* CKTextViewComponent-CKTextViewComponent */,
+				BB005CFC4C23309A6048B98081B6803F /* CKTextViewComponent */,
+				652145479301A46DC1E9DE19D81EC468 /* CKTextViewComponent-CKTextViewComponent */,
 				EE8EB706460820EF6D71875C5EB2327D /* Pods-CKTextViewComponent_Example */,
 				AFE22EA668CD04A38C96E3A3108C636E /* Pods-CKTextViewComponent_Tests */,
 			);
@@ -386,36 +386,36 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2D2FAC3BC6545B19E3D2522681B092DC /* Resources */ = {
+		4E88D181D6CB25483E64A6C396AD5DAF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39709EAE43385C3823D4B7CB0596665F /* Resources */ = {
+		E59F8C9EB90548E1AA70A4BB7ED5C9B1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0F79FFAF94CAE1DFD2B01F2E74936C4 /* CKTextViewComponent.bundle in Resources */,
+				B9A6C4B071750859411EF93B7EC24601 /* CKTextViewComponent.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0820D30F8C4E54313166C6A42E3735EF /* Sources */ = {
+		94B307DE44698ED5E27CF640A71CBF5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB6A6475591AAF5DC211CACFCF0069A1 /* CKOrganizeString.swift in Sources */,
-				5F589890D329E384B9A0CBF4A0FB1CBB /* CKTextView.swift in Sources */,
-				B9EC2BB21CD34BCF00F89FBD /* CKTextChecker.swift in Sources */,
-				00FEFB3BBD699B30D889A0750F07D919 /* CKTextViewComponent-dummy.m in Sources */,
+				F8013FDE30AB03DAA0FF71D95AA37798 /* CKOrganizeString.swift in Sources */,
+				496FF1767DC7D4448BF9EB0E399B2CB9 /* CKTextChecker.swift in Sources */,
+				F0ED818C0804A536CB6C11DACC18D967 /* CKTextView.swift in Sources */,
+				329B1053DC6E5B6E247C95ACD5723155 /* CKTextViewComponent-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD8AF248AA2FED025F6C8FC00DC085C6 /* Sources */ = {
+		BC50F82F9739A226BC3FBBFD65D7D502 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -441,34 +441,34 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1C95B887502725807C3E402482C132D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CKTextViewComponent-CKTextViewComponent";
-			target = C3AC0CD972A695D6E1B31EB5017C8BD5 /* CKTextViewComponent-CKTextViewComponent */;
-			targetProxy = CCF9D8D5B7764C2ACD3E4DAE84054194 /* PBXContainerItemProxy */;
-		};
 		54526522010AB576277C76B42D5867B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextViewComponent;
-			target = 6138124DE58B7ADA098DE304C87F8291 /* CKTextViewComponent */;
+			target = BB005CFC4C23309A6048B98081B6803F /* CKTextViewComponent */;
 			targetProxy = 31B252C4A13E5CBDC2126F231D4A8801 /* PBXContainerItemProxy */;
+		};
+		BC0FABB81292093EB4F328AD8D1C73A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CKTextViewComponent-CKTextViewComponent";
+			target = 652145479301A46DC1E9DE19D81EC468 /* CKTextViewComponent-CKTextViewComponent */;
+			targetProxy = 9B818EDA1C1353EB46604455FFF7AE96 /* PBXContainerItemProxy */;
 		};
 		C871B0D8DA7D9A8009ECA193196425F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextViewComponent;
-			target = 6138124DE58B7ADA098DE304C87F8291 /* CKTextViewComponent */;
+			target = BB005CFC4C23309A6048B98081B6803F /* CKTextViewComponent */;
 			targetProxy = 201D7C246B28C8647A962791B04573E5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1AF6FD680D377777ABCA25DCED45EBB7 /* Release */ = {
+		046860C86DD2900667306B9F32639449 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -481,15 +481,32 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CKTextViewComponent/CKTextViewComponent.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = CKTextViewComponent;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
+		};
+		0C8CD03292C412B5F5D74C2F48F07686 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/ResourceBundle-CKTextViewComponent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = CKTextViewComponent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
 		};
 		372FF5048FF42C3A7A18B70A30D785C1 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -525,22 +542,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		38BF3ABB2AC14480729D41853B1F3E67 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/ResourceBundle-CKTextViewComponent-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CKTextViewComponent;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -584,6 +585,51 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
+		};
+		7833AB9DDAF91670303F402DD3CBBA65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CKTextViewComponent/CKTextViewComponent-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CKTextViewComponent/CKTextViewComponent.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CKTextViewComponent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9A1AA9D2710F4615DFC564FAA12514E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/ResourceBundle-CKTextViewComponent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = CKTextViewComponent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
 		};
 		B526625C62C662088B612A9CA6BA9E23 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -652,22 +698,6 @@
 			};
 			name = Release;
 		};
-		C95E33D791B2D909BE5A9E69F1B0040A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/ResourceBundle-CKTextViewComponent-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CKTextViewComponent;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		E3CBEA8EE2440CB1A0EA9EBC4B9AC373 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6FF1E0F7980AAA050E488EE280E20F63 /* Pods-CKTextViewComponent_Tests.debug.xcconfig */;
@@ -735,39 +765,18 @@
 			};
 			name = Release;
 		};
-		FC748FC7D34A655EBA94D10389A4E969 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FD7DC47BE5B95BFFF83CA35422CD938 /* CKTextViewComponent.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CKTextViewComponent/CKTextViewComponent-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CKTextViewComponent/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CKTextViewComponent/CKTextViewComponent.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CKTextViewComponent;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04E2CE739A8EC8E1BC4E834ED0900D44 /* Build configuration list for PBXNativeTarget "CKTextViewComponent-CKTextViewComponent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C8CD03292C412B5F5D74C2F48F07686 /* Debug */,
+				9A1AA9D2710F4615DFC564FAA12514E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -777,20 +786,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53226C6A5C15F0E370838E639F742938 /* Build configuration list for PBXNativeTarget "CKTextViewComponent" */ = {
+		7F7BBF8ECA917F43D2BC8B8B413AA0E3 /* Build configuration list for PBXNativeTarget "CKTextViewComponent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FC748FC7D34A655EBA94D10389A4E969 /* Debug */,
-				1AF6FD680D377777ABCA25DCED45EBB7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8D178C9A48C6F4C2514392316D02B1B7 /* Build configuration list for PBXNativeTarget "CKTextViewComponent-CKTextViewComponent" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C95E33D791B2D909BE5A9E69F1B0040A /* Debug */,
-				38BF3ABB2AC14480729D41853B1F3E67 /* Release */,
+				046860C86DD2900667306B9F32639449 /* Debug */,
+				7833AB9DDAF91670303F402DD3CBBA65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
