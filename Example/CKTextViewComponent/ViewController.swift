@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import CKTextViewComponent
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let ckTextView = CKTextView()
+        ckTextView.frame = self.view.bounds
+        
+        self.view.addSubview(ckTextView)
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -4,7 +4,7 @@
   "summary": "A CKTextViewComponent.",
   "description": "Want to build a component that like UITextView and iPhone 'Notes' app.",
   "homepage": "https://github.com/chanricle/CKTextViewComponent",
-  "license": "Apache",
+  "license": "MIT",
   "authors": {
     "Chanricle King": "chanricle@icloud.com"
   },
@@ -15,10 +15,11 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "CKTextViewComponent/Classes/**/*",
+  "source_files": "CKTextViewComponent/Classes/*",
   "resource_bundles": {
     "CKTextViewComponent": [
       "CKTextViewComponent/Assets/*.png"
     ]
-  }
+  },
+  "public_header_files": "Pod/Classes/**/*.h"
 }

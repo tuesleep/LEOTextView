@@ -1,8 +1,8 @@
 //
-//  CKIndentString.swift
+//  CKOrganizeString.swift
 //  Pods
 //
-//  Created by Chanricle King on 4/28/16.
+//  Created by Chanricle King on 4/29/16.
 //
 //
 
@@ -12,10 +12,9 @@ enum HeadTextType {
     case Text, Number, Point
 }
 
-class CKIndentString: NSAttributedString
-{
+class CKOrganizeString: NSAttributedString {
     // Mark left to indent text type.
-    let headTextType: HeadTextType = .Text
+    var headTextType: HeadTextType = .Text
     
     init(string: String!, indent: CGFloat)
     {
@@ -32,4 +31,5 @@ class CKIndentString: NSAttributedString
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
 }
