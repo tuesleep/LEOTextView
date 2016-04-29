@@ -12,7 +12,7 @@ enum HeadTextType {
     case Text, Number, Point
 }
 
-class CKOrganizeString: NSAttributedString {
+class CKOrganizeString: NSMutableAttributedString {
     // Mark left to indent text type.
     var headTextType: HeadTextType = .Text
     

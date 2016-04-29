@@ -11,21 +11,31 @@ import CKTextViewComponent
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
+    
+    weak var ckTextView: CKTextView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        ckTextView = CKTextView()
         
-        let ckTextView = CKTextView()
-        ckTextView.frame = self.view.bounds
-        
-        self.view.addSubview(ckTextView)
-        
+        ckTextView!.frame = self.containerView.bounds
+        self.containerView.addSubview(ckTextView!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func DrawTextButtonAction(sender: AnyObject) {
+        ckTextView?.drawText()
+    }
+    
 
 }
 

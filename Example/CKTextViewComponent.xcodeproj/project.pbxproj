@@ -12,7 +12,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8DF2C0BFF77E497A26E2434C /* Pods_CKTextViewComponent_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D266C450BF306C08A5334794 /* Pods_CKTextViewComponent_Example.framework */; };
 		A43A7D12F3EDEC8492A4AC0E /* Pods_CKTextViewComponent_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E11C1D10573C603FE8302DD /* Pods_CKTextViewComponent_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* CKTextViewComponent_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CKTextViewComponent_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7E11C1D10573C603FE8302DD /* Pods_CKTextViewComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextViewComponent_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842742526C8F975914ED3943 /* Pods-CKTextViewComponent_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CKTextViewComponent_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CKTextViewComponent_Example/Pods-CKTextViewComponent_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8FEB2D4D56E9D095D6AD8E5E /* Pods-CKTextViewComponent_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CKTextViewComponent_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CKTextViewComponent_Example/Pods-CKTextViewComponent_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -368,7 +365,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
