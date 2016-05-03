@@ -69,5 +69,13 @@ public class CKTextView: UITextView, UITextViewDelegate {
         
         return true
     }
+    
+    public func textViewDidChangeSelection(textView: UITextView) {
+        
+    }
+    
+    public override func paste(sender: AnyObject?) {
+        print("textview paste invoke.")
+    }
 
 }

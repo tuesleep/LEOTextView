@@ -26,11 +26,19 @@ class ViewController: UIViewController {
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
         
-        ckTextView?.text = "Hello World"
+        ckTextView?.text = "Hello World\nSecond"
         
-        ckTextView?.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 200, height: 100)))
+        let numberBezierPath = UIBezierPath(rect: CGRect(x: 4, y: 8, width: 12, height: 10))
+        let numberLabel = UILabel(frame: numberBezierPath.bounds)
+        numberLabel.text = "1. "
+        numberLabel.font = UIFont.systemFontOfSize(12)
+        
+        // Append label and exclusion bezier path.
+        ckTextView?.addSubview(numberLabel)
+        ckTextView?.textContainer.exclusionPaths.append(numberBezierPath)
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,6 +46,16 @@ class ViewController: UIViewController {
     
     @IBAction func DrawTextButtonAction(sender: AnyObject) {
         ckTextView?.drawText()
+        
+        let pasteboard = UIPasteboard.generalPasteboard()
+        
+        for item in pasteboard.pasteboardTypes() {
+            let itemData = pasteboard.dataForPasteboardType(item)
+            
+            print(itemData)
+        }
+        
+        
     }
     
 
