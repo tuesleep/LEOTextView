@@ -1,10 +1,11 @@
 use_frameworks!
 
-target 'CKTextViewComponent_Example' do
-  pod 'CKTextViewComponent', :path => '../'
+target 'CKTextView_Example' do
+  pod 'CKTextView', :path => '../'
 end
 
-target 'CKTextViewComponent_Tests' do
-  pod 'CKTextViewComponent', :path => '../'
+target 'CKTextView_Tests' do
+  pod 'CKTextView', :path => '../'
+
   
 end

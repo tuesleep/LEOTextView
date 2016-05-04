@@ -1,0 +1,19 @@
+{
+  "name": "CKTextView",
+  "version": "0.1.0",
+  "summary": "A TextView with some capacity.",
+  "description": "Want to build a component that like UITextView and iPhone 'Notes' app.",
+  "homepage": "https://github.com/chanricle/CKTextView",
+  "license": "MIT",
+  "authors": {
+    "Chanricle King": "chanricle@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/chanricle/CKTextView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CKTextView/Classes/**/*"
+}
