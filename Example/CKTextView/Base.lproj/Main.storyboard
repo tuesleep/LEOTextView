@@ -8,7 +8,7 @@
         <!--CKTextView-->
         <scene sceneID="i60-0g-n4N">
             <objects>
-                <viewController id="vZU-EL-1Tn" customClass="ViewController" customModule="CKTextViewComponent_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vZU-EL-1Tn" customClass="ViewController" customModule="CKTextView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="86c-Wu-HXc"/>
                         <viewControllerLayoutGuide type="bottom" id="RIQ-n3-vB4"/>

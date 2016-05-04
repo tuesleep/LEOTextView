@@ -10,11 +10,6 @@ import UIKit
 
 public class CKTextView: UITextView, UITextViewDelegate {
 
-    let organizeStrings: Array<CKOrganizeString> = []
-    
-    // Current time receive text
-    var currentOrgaizeString: CKOrganizeString?
-    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         initialized()
@@ -32,46 +27,38 @@ public class CKTextView: UITextView, UITextViewDelegate {
     
     public func drawText()
     {
-//        var currentTextY: CGFloat;
         
-        for attributedString in organizeStrings
-        {
-            let stringSize = attributedString.size()
-            
-            print(stringSize)
-            
-            switch attributedString.headTextType
-            {
-            case .Text:
-                break
-            case .Number:
-                break
-            case .Point:
-                break
-            }
-            
-        }
+    }
+    
+    func drawNumberLabelWithRect(rect: CGRect, number: Int)
+    {
+        let numberBezierPath = UIBezierPath(rect: rect)
+        let numberLabel = UILabel(frame: numberBezierPath.bounds)
+        numberLabel.text = "\(number). "
+        numberLabel.font = UIFont.systemFontOfSize(rect.size.height)
+        
+        // Append label and exclusion bezier path.
+        self.addSubview(numberLabel)
+        self.textContainer.exclusionPaths.append(numberBezierPath)
     }
     
     // MARK: UITextViewDelegate
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-//        if (currentOrgaizeString == nil) {
-//            currentOrgaizeString = CKOrganizeString(string: "", indent: 0)
-//            currentOrgaizeString?.headTextType = .Text
-//        }
-//        
-//        currentOrgaizeString?.mutableString.appendString(text)
-//        
-//        if CKTextChecker.isReturn(text) {
-//            
-//        }
         
         return true
     }
     
     public func textViewDidChangeSelection(textView: UITextView) {
         
+    }
+    
+    public func textViewDidChange(textView: UITextView)
+    {
+        let cursorLocation = textView.selectedRange.location;
+        print("cursor location: \(cursorLocation)")
+        
+        print("text height: \(CKTextUtil.textHeightForTextView(textView))")
     }
     
     public override func paste(sender: AnyObject?) {

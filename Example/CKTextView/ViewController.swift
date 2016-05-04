@@ -20,22 +20,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         ckTextView = CKTextView()
         
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
         
-        ckTextView?.text = "Hello World\nSecond"
-        
-        let numberBezierPath = UIBezierPath(rect: CGRect(x: 4, y: 8, width: 12, height: 10))
-        let numberLabel = UILabel(frame: numberBezierPath.bounds)
-        numberLabel.text = "1. "
-        numberLabel.font = UIFont.systemFontOfSize(12)
-        
-        // Append label and exclusion bezier path.
-        ckTextView?.addSubview(numberLabel)
-        ckTextView?.textContainer.exclusionPaths.append(numberBezierPath)
+        ckTextView?.text = "Hello World"
         
     }
     

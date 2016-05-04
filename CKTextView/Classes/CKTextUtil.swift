@@ -1,5 +1,5 @@
 //
-//  CKTextChecker.swift
+//  CKTextUtil.swift
 //  Pods
 //
 //  Created by Chanricle King on 4/29/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CKTextChecker: NSObject {
+class CKTextUtil: NSObject {
     class func isReturn(replacementText: String!) -> Bool
     {
         if replacementText == "\n" {
@@ -18,5 +18,9 @@ class CKTextChecker: NSObject {
         }
     }
     
-    
+    class func textHeightForTextView(textView: UITextView) -> CGFloat
+    {
+        let textHeight = textView.layoutManager.usedRectForTextContainer(textView.textContainer).height
+        return textHeight
+    }
 }
