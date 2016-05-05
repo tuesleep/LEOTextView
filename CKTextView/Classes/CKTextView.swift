@@ -64,6 +64,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
+        print("----------------------")
+        
         let cursorLocation = textView.selectedRange.location
         print("cursor location: \(cursorLocation)")
         
@@ -72,6 +74,19 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let firstCharInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
         
         print("cursor first in line: \(firstCharInLine)")
+        
+        print("cursor rect: \(CKTextUtil.cursorPointInTextView(textView))")
+        
+        
+        let extraLineFragmentUsedRect = textView.layoutManager.extraLineFragmentUsedRect
+        print("extraLineFragmentRect: \(extraLineFragmentUsedRect)")
+        
+        
+        
+        if CKTextUtil.isListKeywordInvokeWithLocation(cursorLocation, type: ListKeywordType.NumberedList, textView: textView)
+        {
+            
+        }
     }
     
     public override func paste(sender: AnyObject?) {

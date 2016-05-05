@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum ListKeywordType {
+    case NumberedList
+}
+
 class CKTextUtil: NSObject {
     class func isReturn(replacementText: String!) -> Bool
     {
@@ -20,7 +24,7 @@ class CKTextUtil: NSObject {
     
     class func isFirstLocationInLineWithLocation(location: Int, textView: UITextView) -> Bool
     {
-        if location == 0 {
+        if location <= 0 {
             return true
         }
         
@@ -28,7 +32,6 @@ class CKTextUtil: NSObject {
         
         let range: Range = Range(start: textString.startIndex.advancedBy(location - 1), end: textString.startIndex.advancedBy(location))
         let keyChar = textView.text.substringWithRange(range)
-        print("keyChar: \(keyChar)")
         
         if keyChar == "\n" {
             return true
@@ -37,9 +40,38 @@ class CKTextUtil: NSObject {
         }
     }
     
+    class func isListKeywordInvokeWithLocation(location: Int, type: ListKeywordType, textView: UITextView) -> Bool
+    {
+        let textString = textView.text
+        
+        switch type {
+        case .NumberedList:
+            if location >= 3 && CKTextUtil.isFirstLocationInLineWithLocation(location - 3, textView: textView) {
+                let range: Range = Range(start: textString.startIndex.advancedBy(location - 3), end: textString.startIndex.advancedBy(location))
+                let keyChar = textView.text.substringWithRange(range)
+                
+                if keyChar == "1. " {
+                    return true
+                }
+            }
+            
+            break
+        }
+        
+        return false
+    }
+    
     class func textHeightForTextView(textView: UITextView) -> CGFloat
     {
         let textHeight = textView.layoutManager.usedRectForTextContainer(textView.textContainer).height
         return textHeight
     }
+    
+    class func cursorPointInTextView(textView: UITextView) -> CGPoint
+    {
+        return textView.caretRectForPosition(textView.selectedTextRange!.start).origin
+    }
+    
+    
+    
 }

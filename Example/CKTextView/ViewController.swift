@@ -30,7 +30,9 @@ class ViewController: UIViewController {
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
         
-        ckTextView?.text = "Hello World"
+        ckTextView?.text = "1. Hello World"
+        
+        ckTextView?.layoutManager.ensureGlyphsForGlyphRange(NSMakeRange(0, 3))
         
     }
     
