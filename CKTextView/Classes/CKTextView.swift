@@ -30,8 +30,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         setupNotificationCenterObservers()
         
-        // TEST: bg color
-        self.backgroundColor = UIColor.lightGrayColor()
     }
     
     // MARK: setups
@@ -70,6 +68,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         print("cursor location: \(cursorLocation)")
         
         print("text height: \(CKTextUtil.textHeightForTextView(textView))")
+        
+        let firstCharInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
+        
+        print("cursor first in line: \(firstCharInLine)")
     }
     
     public override func paste(sender: AnyObject?) {
