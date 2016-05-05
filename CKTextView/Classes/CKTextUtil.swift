@@ -13,9 +13,17 @@ enum ListKeywordType {
 }
 
 class CKTextUtil: NSObject {
-    class func isReturn(replacementText: String!) -> Bool
+    class func isReturn(text: String) -> Bool
     {
-        if replacementText == "\n" {
+        if text == "\n" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    class func isBackspace(text: String) -> Bool {
+        if text == "" {
             return true
         } else {
             return false

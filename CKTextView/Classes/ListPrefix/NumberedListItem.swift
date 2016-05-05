@@ -9,16 +9,23 @@
 import UIKit
 
 class NumberedListItem: NSObject {
-    var frame: CGRect!
-    var number: Int!
-    var charLocation: Int!
+    // if a string too long, text must line break. May have two Y!
+    var keyYSet: Set<CGFloat> = []
+    var label: UILabel!
+    var bezierPath: UIBezierPath!
     
-    init(frame: CGRect, number: Int, charLocation: Int)
+    var number: Int!
+    
+    var prevItem: NumberedListItem?
+    var nextItem: NumberedListItem?
+    
+    init(keyY: CGFloat, label: UILabel, bezierPath: UIBezierPath, number: Int)
     {
         super.init()
         
-        self.frame = frame
+        self.keyYSet.insert(keyY)
+        self.label = label
+        self.bezierPath = bezierPath
         self.number = number
     }
-    
 }
