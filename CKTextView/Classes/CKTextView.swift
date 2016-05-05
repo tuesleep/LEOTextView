@@ -8,7 +8,8 @@
 
 import UIKit
 
-public class CKTextView: UITextView, UITextViewDelegate {
+public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
+    var bottomToolbar: UIToolbar!
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -23,11 +24,21 @@ public class CKTextView: UITextView, UITextViewDelegate {
     func initialized()
     {
         self.delegate = self
+        
+        // Bottom toolbar height 30.
+        self.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        setupNotificationCenterObservers()
+        
+        // TEST: bg color
+        self.backgroundColor = UIColor.lightGrayColor()
     }
     
-    public func drawText()
+    // MARK: setups
+    
+    func setupNotificationCenterObservers()
     {
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
     }
     
     func drawNumberLabelWithRect(rect: CGRect, number: Int)
@@ -55,14 +66,28 @@ public class CKTextView: UITextView, UITextViewDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
-        let cursorLocation = textView.selectedRange.location;
+        let cursorLocation = textView.selectedRange.location
         print("cursor location: \(cursorLocation)")
         
         print("text height: \(CKTextUtil.textHeightForTextView(textView))")
     }
     
     public override func paste(sender: AnyObject?) {
-        print("textview paste invoke.")
+        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
     }
 
+    // MARK: BarButtonItem action
+    
+    func listButtonAction(sender: UIBarButtonItem)
+    {
+        print("listButtonAction")
+    }
+    
+    // MARK: KVO
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        
+    }
+    
 }

@@ -18,10 +18,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         ckTextView = CKTextView()
+        ckTextView?.font = UIFont.init(name: "Helvetica", size: 17)
         
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
@@ -35,20 +39,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func DrawTextButtonAction(sender: AnyObject) {
-        ckTextView?.drawText()
-        
-        let pasteboard = UIPasteboard.generalPasteboard()
-        
-        for item in pasteboard.pasteboardTypes() {
-            let itemData = pasteboard.dataForPasteboardType(item)
-            
-            print(itemData)
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition({ (context) in
+            self.ckTextView?.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+            }) { (context) in
+                
         }
-        
-        
     }
     
+    
+    @IBAction func styleButtonAction(sender: UIBarButtonItem) {
+        
+    }
     
 }
 

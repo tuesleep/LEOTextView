@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iQS-7p-nq3">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -31,15 +30,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CKTextView" id="U8T-2L-iFT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="FjT-jX-5SJ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eBT-Dq-pbN">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="DrawText"/>
-                                <connections>
-                                    <action selector="DrawTextButtonAction:" destination="vZU-EL-1Tn" eventType="touchUpInside" id="son-43-dU1"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Style" id="fDs-de-3Xz">
+                            <connections>
+                                <action selector="styleButtonAction:" destination="vZU-EL-1Tn" id="DxT-ez-i3J"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
