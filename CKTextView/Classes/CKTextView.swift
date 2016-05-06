@@ -41,8 +41,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         self.delegate = self
         
-        self.textContainer.lineBreakMode = .ByClipping
-        
         setupNotificationCenterObservers()
         
     }
@@ -58,8 +56,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         self.font ?? UIFont.systemFontSize()
         
-        let fontSize = self.font!.pointSize
-        var width = fontSize + 10
+        let lineHeight = self.font!.lineHeight
+        var width = lineHeight + 10
         
         // Woo.. too big
         if number >= 100 {
@@ -69,12 +67,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         let x: CGFloat = 0
         let lineFragmentPadding = self.textContainer.lineFragmentPadding
-        let height = fontSize - lineFragmentPadding
-        let size = CGSize(width: width, height: height)
+        let size = CGSize(width: width, height: lineHeight)
         
         let numberBezierPath = UIBezierPath(rect: CGRect(origin: CGPoint(x: x, y: y), size: size))
         
-        let numberLabel = UILabel(frame: CGRect(origin: CGPoint(x: x, y: y + lineFragmentPadding / 2), size: CGSize(width: width, height: fontSize)))
+//        let numberLabel = UILabel(frame: CGRect(origin: CGPoint(x: x, y: y + lineFragmentPadding / 2), size: CGSize(width: width, height: fontSize)))
+        let numberLabel = UILabel(frame: numberBezierPath.bounds)
+        numberLabel.backgroundColor = UIColor.lightGrayColor()
         numberLabel.text = "\(number)."
         numberLabel.font = font
         
@@ -165,11 +164,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         // Update cursor point.
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         
-        print("----------- Status Log -----------")
+//        print("----------- Status Log -----------")
 //        print("cursor location: \(cursorLocation)")
 //        print("text height: \(CKTextUtil.textHeightForTextView(textView))")
 //        print("cursor point: \(cursorPoint)")
-//        print("cursor first in line: \(firstCharInLine)")
 //        print("")
         
         // Keyword input will convert to List style.
@@ -188,13 +186,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             willReturnTouch = false
             
             if currentCursorType == CursorType.Numbered {
-                let item = listPrefixContainerMap[prevCursorY!]
-                
-                let newItem = drawNumberLabelWithY(cursorPoint.y, number: item!.number + 1)
-                
-                // Handle prev, next relationships.
-                item?.nextItem = newItem
-                newItem.prevItem = item
+                if CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView) {
+                    
+                } else {
+                    let item = listPrefixContainerMap[prevCursorY!]
+                    
+                    let newItem = drawNumberLabelWithY(cursorPoint.y, number: item!.number + 1)
+                    
+                    // Handle prev, next relationships.
+                    item?.nextItem = newItem
+                    newItem.prevItem = item
+                }
             }
         }
         // Handle backspace operate.
@@ -231,11 +233,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 listPrefixContainerMap.removeValueForKey(value)
             }
             
-            // TODO: Test
-            if willDeletedString == "\n" {
-                self.text = self.text.stringByAppendingString("\n")
-            }
-            
             // reload
             changeCurrentCursorPointIfNeeded(cursorPoint)
         }
@@ -243,9 +240,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: Copy & Paste
     
-    public override func paste(sender: AnyObject?) {
-        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
-    }
+//    public override func paste(sender: AnyObject?) {
+//        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
+//    }
 
     // MARK: BarButtonItem action
     
