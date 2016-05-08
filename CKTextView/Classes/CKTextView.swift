@@ -25,6 +25,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var willChangeText: Bool = false
     var willDeletedString: String?
     
+    var isFirstLocationInLine: Bool = false
+    
     var listPrefixContainerMap: Dictionary<CGFloat, NumberedListItem> = [:]
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -45,18 +47,23 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
     }
     
-    // MARK: setups
+    // MARK: Setups
     
     func setupNotificationCenterObservers()
     {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
     }
     
+    // MARK: Drawing
+    
     func drawNumberLabelWithY(y: CGFloat, number: Int) -> NumberedListItem
     {
         self.font ?? UIFont.systemFontSize()
         
+        let lineFragmentPadding = self.textContainer.lineFragmentPadding
         let lineHeight = self.font!.lineHeight
+        
+        let height = lineHeight - lineFragmentPadding * 2
         var width = lineHeight + 10
         
         // Woo.. too big
@@ -66,13 +73,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         let x: CGFloat = 0
-        let lineFragmentPadding = self.textContainer.lineFragmentPadding
-        let size = CGSize(width: width, height: lineHeight)
+        let size = CGSize(width: width, height: height)
         
         let numberBezierPath = UIBezierPath(rect: CGRect(origin: CGPoint(x: x, y: y), size: size))
         
-//        let numberLabel = UILabel(frame: CGRect(origin: CGPoint(x: x, y: y + lineFragmentPadding / 2), size: CGSize(width: width, height: fontSize)))
-        let numberLabel = UILabel(frame: numberBezierPath.bounds)
+        let numberLabel = UILabel(frame: CGRect(origin: numberBezierPath.bounds.origin, size: CGSize(width: width, height: lineHeight)))
         numberLabel.backgroundColor = UIColor.lightGrayColor()
         numberLabel.text = "\(number)."
         numberLabel.font = font
@@ -91,6 +96,26 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         listPrefixContainerMap[y] = numberedListItem
         
         return numberedListItem
+    }
+    
+    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint)
+    {
+        if let item = listPrefixContainerMap[y]
+        {
+            item.label.removeFromSuperview()
+            
+            if let index = self.textContainer.exclusionPaths.indexOf(item.bezierPath)
+            {
+                self.textContainer.exclusionPaths.removeAtIndex(index)
+            }
+            
+            for (index, value) in item.keyYSet.enumerate() {
+                listPrefixContainerMap.removeValueForKey(value)
+            }
+            
+            // reload
+            changeCurrentCursorPointIfNeeded(cursorPoint)
+        }
     }
     
     // MARK: Change even
@@ -130,7 +155,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: UITextViewDelegate
     
-    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        let cursorLocation = textView.selectedRange.location
+        isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
+        
         if CKTextUtil.isReturn(text) {
             willReturnTouch = true
         }
@@ -152,17 +181,18 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         willChangeText = true
         
+        print("shouldChangeTextInRange")
+        
         return true
     }
 
     public func textViewDidChange(textView: UITextView)
     {
+        guard currentCursorPoint != nil else { return }
+        
         willChangeText = false
         
         let cursorLocation = textView.selectedRange.location
-        
-        // Update cursor point.
-        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         
 //        print("----------- Status Log -----------")
 //        print("cursor location: \(cursorLocation)")
@@ -176,7 +206,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             let clearRange = Range(start: textView.text.endIndex.advancedBy(-3), end: textView.text.endIndex)
             textView.text.replaceRange(clearRange, with: "")
             
-            drawNumberLabelWithY(cursorPoint.y, number: 1)
+            drawNumberLabelWithY(currentCursorPoint!.y, number: 1)
             
             currentCursorType = CursorType.Numbered
         }
@@ -191,7 +221,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 } else {
                     let item = listPrefixContainerMap[prevCursorY!]
                     
-                    let newItem = drawNumberLabelWithY(cursorPoint.y, number: item!.number + 1)
+                    let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1)
                     
                     // Handle prev, next relationships.
                     item?.nextItem = newItem
@@ -207,35 +237,19 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             guard willDeletedString != nil && willDeletedString!.containsString("\n") else { return }
             guard prevCursorY != nil else { return }
             
-            deleteListPrefixWithY(prevCursorY!, cursorPoint: cursorPoint)
+            deleteListPrefixWithY(prevCursorY!, cursorPoint: currentCursorPoint!)
             
             willDeletedString = nil
         }
+        
+        print("textViewDidChange")
     }
     
     public func textViewDidChangeSelection(textView: UITextView) {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         changeCurrentCursorPointIfNeeded(cursorPoint)
-    }
-    
-    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint)
-    {
-        if let item = listPrefixContainerMap[y] {
         
-            item.label.removeFromSuperview()
-            
-            if let index = self.textContainer.exclusionPaths.indexOf(item.bezierPath)
-            {
-                self.textContainer.exclusionPaths.removeAtIndex(index)
-            }
-            
-            for (index, value) in item.keyYSet.enumerate() {
-                listPrefixContainerMap.removeValueForKey(value)
-            }
-            
-            // reload
-            changeCurrentCursorPointIfNeeded(cursorPoint)
-        }
+        print("textViewDidChangeSelection")
     }
     
     // MARK: Copy & Paste
