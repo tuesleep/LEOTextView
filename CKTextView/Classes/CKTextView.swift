@@ -158,10 +158,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         let cursorLocation = textView.selectedRange.location
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        
         isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
         
         if CKTextUtil.isReturn(text) {
             willReturnTouch = true
+            
+            isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
+        
+            if (currentCursorType == CursorType.Numbered) && isFirstLocationInLine
+            {
+                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint)
+                return false
+            }
         }
         if CKTextUtil.isBackspace(text) {
             willBackspaceTouch = true
@@ -170,7 +180,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if cursorLocation == 0 {
                 // If delete first character.
-                let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
                 deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint)
                 
             } else {
@@ -189,8 +198,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public func textViewDidChange(textView: UITextView)
     {
         guard currentCursorPoint != nil else { return }
-        
-        willChangeText = false
         
         let cursorLocation = textView.selectedRange.location
         
@@ -213,26 +220,19 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
         // Handle return operate.
         if willReturnTouch {
-            willReturnTouch = false
-            
             if currentCursorType == CursorType.Numbered {
-                if CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView) {
-                    
-                } else {
-                    let item = listPrefixContainerMap[prevCursorY!]
-                    
-                    let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1)
-                    
-                    // Handle prev, next relationships.
-                    item?.nextItem = newItem
-                    newItem.prevItem = item
-                }
+                let item = listPrefixContainerMap[prevCursorY!]
+                let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1)
+                
+                // Handle prev, next relationships.
+                item?.nextItem = newItem
+                newItem.prevItem = item
             }
+            
+            willReturnTouch = false
         }
         // Handle backspace operate.
         if willBackspaceTouch {
-            willBackspaceTouch = false
-            
             // Delete list prefix
             guard willDeletedString != nil && willDeletedString!.containsString("\n") else { return }
             guard prevCursorY != nil else { return }
@@ -240,7 +240,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             deleteListPrefixWithY(prevCursorY!, cursorPoint: currentCursorPoint!)
             
             willDeletedString = nil
+            willBackspaceTouch = false
         }
+        
+        willChangeText = false
         
         print("textViewDidChange")
     }
