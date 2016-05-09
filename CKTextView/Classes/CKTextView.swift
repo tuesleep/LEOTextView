@@ -8,14 +8,10 @@
 
 import UIKit
 
-enum CursorType {
-    case Numbered
-}
-
 public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // Record current cursor point, to choose operations.
     var currentCursorPoint: CGPoint?
-    var currentCursorType: CursorType?
+    var currentCursorType: ListType = .None
     
     var prevCursorPoint: CGPoint?
     var prevCursorY: CGFloat?
@@ -63,7 +59,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let lineFragmentPadding = self.textContainer.lineFragmentPadding
         let lineHeight = self.font!.lineHeight
         
-        let height = lineHeight - lineFragmentPadding * 2
+        // FIXME: Maybe Height not full made line wrong indent
+        let height = CGFloat(2) //lineHeight - lineFragmentPadding * 2
         var width = lineHeight + 10
         
         // Woo.. too big
@@ -72,13 +69,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             width += CGFloat(numberCount - 2) * CGFloat(10)
         }
         
-        let x: CGFloat = 0
+        let x: CGFloat = 8
         let size = CGSize(width: width, height: height)
         
         let numberBezierPath = UIBezierPath(rect: CGRect(origin: CGPoint(x: x, y: y), size: size))
         
         let numberLabel = UILabel(frame: CGRect(origin: numberBezierPath.bounds.origin, size: CGSize(width: width, height: lineHeight)))
-        numberLabel.backgroundColor = UIColor.lightGrayColor()
         numberLabel.text = "\(number)."
         numberLabel.font = font
         
@@ -132,7 +128,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Text not change, only normal cursor moving..
             if !willChangeText || willBackspaceTouch {
-                currentCursorType = listPrefixContainerMap[cursorPoint.y] == nil ? nil : CursorType.Numbered
+                currentCursorType = listPrefixContainerMap[cursorPoint.y] == nil ? ListType.None : ListType.Numbered
                 return
             }
             
@@ -167,9 +163,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
         
-            if (currentCursorType == CursorType.Numbered) && isFirstLocationInLine
+            if (currentCursorType == ListType.Numbered) && isFirstLocationInLine
             {
                 deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint)
+                currentCursorType = .Text
+                willReturnTouch = false
+                
                 return false
             }
         }
@@ -215,13 +214,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             drawNumberLabelWithY(currentCursorPoint!.y, number: 1)
             
-            currentCursorType = CursorType.Numbered
+            currentCursorType = ListType.Numbered
         }
     
         // Handle return operate.
         if willReturnTouch {
-            if currentCursorType == CursorType.Numbered {
+            if currentCursorType == ListType.Numbered {
                 let item = listPrefixContainerMap[prevCursorY!]
+                // Draw new item.
                 let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1)
                 
                 // Handle prev, next relationships.

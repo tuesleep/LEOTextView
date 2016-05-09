@@ -8,16 +8,10 @@
 
 import UIKit
 
-class NumberedListItem: NSObject {
-    // if a string too long, text must line break. May have two Y!
-    var keyYSet: Set<CGFloat> = []
+class NumberedListItem: BaseListItem {
+    
     var label: UILabel!
-    var bezierPath: UIBezierPath!
-    
     var number: Int!
-    
-    var prevItem: NumberedListItem?
-    var nextItem: NumberedListItem?
     
     init(keyY: CGFloat, label: UILabel, bezierPath: UIBezierPath, number: Int)
     {
@@ -28,4 +22,18 @@ class NumberedListItem: NSObject {
         self.bezierPath = bezierPath
         self.number = number
     }
+    
+    override func listType() -> ListType {
+        return ListType.Numbered
+    }
+    
+    override func unLinkPrevItem() {
+        super.unLinkPrevItem()
+    }
+    
+    override func unLinkNextItem() {
+        super.unLinkNextItem()
+    }
+    
+    
 }
