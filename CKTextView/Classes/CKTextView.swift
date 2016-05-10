@@ -51,42 +51,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     // MARK: Drawing
-    
-    func drawNumberLabelWithY(y: CGFloat, number: Int) -> NumberedListItem
+
+    func drawNumberLabelWithY(y: CGFloat, number: Int, prevItem: NumberedListItem?) -> NumberedListItem
     {
-        self.font ?? UIFont.systemFontSize()
-        
-        let lineFragmentPadding = self.textContainer.lineFragmentPadding
-        let lineHeight = self.font!.lineHeight
-        
-        // FIXME: Maybe Height not full made line wrong indent
-        let height = CGFloat(2) //lineHeight - lineFragmentPadding * 2
-        var width = lineHeight + 10
-        
-        // Woo.. too big
-        if number >= 100 {
-            let numberCount = "\(number)".characters.count
-            width += CGFloat(numberCount - 2) * CGFloat(10)
-        }
-        
-        let x: CGFloat = 8
-        let size = CGSize(width: width, height: height)
-        
-        let numberBezierPath = UIBezierPath(rect: CGRect(origin: CGPoint(x: x, y: y), size: size))
-        
-        let numberLabel = UILabel(frame: CGRect(origin: numberBezierPath.bounds.origin, size: CGSize(width: width, height: lineHeight)))
-        numberLabel.text = "\(number)."
-        numberLabel.font = font
-        
-        if number < 10 {
-            numberLabel.text = "  \(number)."
-        }
-        
-        // Append label and exclusion bezier path.
-        self.addSubview(numberLabel)
-        self.textContainer.exclusionPaths.append(numberBezierPath)
-        
-        let numberedListItem = NumberedListItem(keyY: y, label: numberLabel, bezierPath: numberBezierPath, number: number)
+        let numberedListItem = NumberedListItem(keyY: y, number: number, ckTextView: self, listInfoStore: prevItem?.listInfoStore)
         
         // Save to container
         listPrefixContainerMap[y] = numberedListItem
@@ -96,15 +64,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint)
     {
+        print("Will delete by Y: \(y)")
+        
         if let item = listPrefixContainerMap[y]
         {
-            item.label.removeFromSuperview()
+            item.destory(self)
             
-            if let index = self.textContainer.exclusionPaths.indexOf(item.bezierPath)
-            {
-                self.textContainer.exclusionPaths.removeAtIndex(index)
-            }
-            
+            // Clear self container.
             for (index, value) in item.keyYSet.enumerate() {
                 listPrefixContainerMap.removeValueForKey(value)
             }
@@ -126,15 +92,18 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         if prevCursorPoint!.y != cursorPoint.y {
             prevCursorY = prevCursorPoint!.y
             
-            // Text not change, only normal cursor moving..
+            guard !willReturnTouch else { return }
+            
+            // Text not change, only normal cursor moving.. Or backspace touched.
             if !willChangeText || willBackspaceTouch {
-                currentCursorType = listPrefixContainerMap[cursorPoint.y] == nil ? ListType.None : ListType.Numbered
+                currentCursorType = listPrefixContainerMap[cursorPoint.y] == nil ? ListType.Text : ListType.Numbered
+                
                 return
             }
             
             // Text changed, something happend.
             // Handle too long string typed.. add moreline bezierPath space fill. and set key to container.
-            if !willReturnTouch && !willBackspaceTouch {
+            if !willBackspaceTouch {
                 if let item = listPrefixContainerMap[prevCursorY!]
                 {
                     // key Y of New line add to container.
@@ -189,13 +158,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         willChangeText = true
         
-        print("shouldChangeTextInRange")
-        
         return true
     }
 
     public func textViewDidChange(textView: UITextView)
     {
+        print(currentCursorType)
+        
         guard currentCursorPoint != nil else { return }
         
         let cursorLocation = textView.selectedRange.location
@@ -212,7 +181,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             let clearRange = Range(start: textView.text.endIndex.advancedBy(-3), end: textView.text.endIndex)
             textView.text.replaceRange(clearRange, with: "")
             
-            drawNumberLabelWithY(currentCursorPoint!.y, number: 1)
+            drawNumberLabelWithY(currentCursorPoint!.y, number: 1, prevItem: nil)
             
             currentCursorType = ListType.Numbered
         }
@@ -222,7 +191,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             if currentCursorType == ListType.Numbered {
                 let item = listPrefixContainerMap[prevCursorY!]
                 // Draw new item.
-                let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1)
+                let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1, prevItem: item)
                 
                 // Handle prev, next relationships.
                 item?.nextItem = newItem
@@ -244,15 +213,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         willChangeText = false
-        
-        print("textViewDidChange")
     }
     
     public func textViewDidChangeSelection(textView: UITextView) {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         changeCurrentCursorPointIfNeeded(cursorPoint)
-        
-        print("textViewDidChangeSelection")
     }
     
     // MARK: Copy & Paste

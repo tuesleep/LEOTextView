@@ -10,30 +10,77 @@ import UIKit
 
 class NumberedListItem: BaseListItem {
     
-    var label: UILabel!
+    var label: UILabel?
     var number: Int!
-    
-    init(keyY: CGFloat, label: UILabel, bezierPath: UIBezierPath, number: Int)
-    {
-        super.init()
-        
-        self.keyYSet.insert(keyY)
-        self.label = label
-        self.bezierPath = bezierPath
-        self.number = number
-    }
     
     override func listType() -> ListType {
         return ListType.Numbered
     }
     
-    override func unLinkPrevItem() {
-        super.unLinkPrevItem()
+    required init(keyY: CGFloat, number: Int, ckTextView: CKTextView, listInfoStore: BaseListInfoStore?)
+    {
+        super.init()
+        
+        self.keyYSet.insert(keyY)
+        self.number = number
+        
+        // create number
+        setupNumberLabel(keyY, ckTextView: ckTextView)
+        
+        if listInfoStore == nil {
+            setupListInfoStore(keyY, ckTextView: ckTextView)
+        } else {
+            self.listInfoStore = listInfoStore
+            self.listInfoStore?.listEndByY = keyY
+        }
+        
+        // First fill or fill after change endY.
+        self.listInfoStore?.fillBezierPath(ckTextView)
     }
     
-    override func unLinkNextItem() {
-        super.unLinkNextItem()
+    override func destory(ckTextView: CKTextView) {
+        super.destory(ckTextView)
+        
+        label?.removeFromSuperview()
+        
+        if self.prevItem == nil {
+            self.listInfoStore?.clearBezierPath(ckTextView)
+        }
+        // TODO: When middle ordered number destory, devide it two list.
     }
     
+    // MARK: setups
     
+    private func setupNumberLabel(keyY: CGFloat, ckTextView: CKTextView)
+    {
+        ckTextView.font ?? UIFont.systemFontSize()
+        
+        let lineHeight = ckTextView.font!.lineHeight
+        
+        let height = lineHeight
+        var width = lineHeight + 10
+        
+        // Woo.. too big
+        if number >= 100 {
+            let numberCount = "\(number)".characters.count
+            width += CGFloat(numberCount - 2) * CGFloat(10)
+        }
+        
+        let numberBezierPath = UIBezierPath(rect: CGRect(x: 8, y: keyY, width: width, height: height))
+        
+        label = UILabel(frame: CGRect(origin: numberBezierPath.bounds.origin, size: CGSize(width: width, height: lineHeight)))
+        label!.text = "\(number)."
+        label!.font = ckTextView.font!
+        
+        if number < 10 {
+            label!.text = "  \(number)."
+        }
+        
+        // Append label to textView.
+        ckTextView.addSubview(label!)
+    }
+    
+    private func setupListInfoStore(keyY: CGFloat, ckTextView: CKTextView) {
+        listInfoStore = BaseListInfoStore(listStartByY: keyY, listEndByY: keyY)
+    }
 }

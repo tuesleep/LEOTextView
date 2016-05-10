@@ -14,11 +14,10 @@ enum ListType {
 
 class BaseListItem: NSObject
 {
+    var listInfoStore: BaseListInfoStore?
+    
     // if a string too long, text must line break. May have two Y!
     var keyYSet: Set<CGFloat> = []
-    
-    // used for excluding the specified text area
-    var bezierPath: UIBezierPath!
     
     // List link support.
     var prevItem: NumberedListItem?
@@ -26,6 +25,10 @@ class BaseListItem: NSObject
     
     func listType() -> ListType {
         return ListType.None
+    }
+    
+    func destory(ckTextView: CKTextView) {
+        
     }
     
     func unLinkPrevItem()
@@ -43,5 +46,4 @@ class BaseListItem: NSObject
             nextItem = nil
         }
     }
-    
 }
