@@ -39,6 +39,8 @@ class NumberedListItem: BaseListItem {
         self.listInfoStore?.fillBezierPath(ckTextView)
     }
     
+    // MARK: Override
+    
     override func destory(ckTextView: CKTextView, byBackspace: Bool) {
         super.destory(ckTextView, byBackspace: byBackspace)
         
@@ -46,6 +48,8 @@ class NumberedListItem: BaseListItem {
         
         
     }
+    
+    // TODO: Override link and unlink method.
     
     // MARK: setups
     
