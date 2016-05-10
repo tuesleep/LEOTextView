@@ -11,7 +11,7 @@ import UIKit
 public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // Record current cursor point, to choose operations.
     var currentCursorPoint: CGPoint?
-    var currentCursorType: ListType = .None
+    var currentCursorType: ListType = .Text
     
     var prevCursorPoint: CGPoint?
     var prevCursorY: CGFloat?
@@ -96,7 +96,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Text not change, only normal cursor moving.. Or backspace touched.
             if !willChangeText || willBackspaceTouch {
-                currentCursorType = listPrefixContainerMap[cursorPoint.y] == nil ? ListType.Text : ListType.Numbered
+                let item = listPrefixContainerMap[cursorPoint.y]
+                
+                currentCursorType = item == nil ? ListType.Text : item!.listType()
                 
                 return
             }
@@ -132,7 +134,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
         
-            if (currentCursorType == ListType.Numbered) && isFirstLocationInLine
+            if (currentCursorType != ListType.Text) && isFirstLocationInLine
             {
                 deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
                 currentCursorType = .Text
@@ -186,7 +188,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
         // Handle return operate.
         if willReturnTouch {
-            if currentCursorType == ListType.Numbered {
+            if currentCursorType != ListType.Text {
                 let item = listPrefixContainerMap[prevCursorY!]
                 // Draw new item.
                 let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1, prevItem: item)

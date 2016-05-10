@@ -9,7 +9,7 @@
 import UIKit
 
 enum ListType {
-    case None, Text, Numbered
+    case Text, Numbered
 }
 
 class BaseListItem: NSObject
@@ -26,7 +26,7 @@ class BaseListItem: NSObject
     var nextItem: NumberedListItem?
     
     func listType() -> ListType {
-        return ListType.None
+        return ListType.Text
     }
     
     /// Usually override this method to perform additional things about destory.
