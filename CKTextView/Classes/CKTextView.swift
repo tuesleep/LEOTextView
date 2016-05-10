@@ -62,13 +62,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return numberedListItem
     }
     
-    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint)
+    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint, byBackspace: Bool)
     {
         print("Will delete by Y: \(y)")
         
         if let item = listPrefixContainerMap[y]
         {
-            item.destory(self)
+            item.destory(self, byBackspace: byBackspace)
             
             // Clear self container.
             for (index, value) in item.keyYSet.enumerate() {
@@ -134,7 +134,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
             if (currentCursorType == ListType.Numbered) && isFirstLocationInLine
             {
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint)
+                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
                 currentCursorType = .Text
                 willReturnTouch = false
                 
@@ -148,7 +148,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if cursorLocation == 0 {
                 // If delete first character.
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint)
+                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
                 
             } else {
                 let deleteRange = Range(start: textView.text.startIndex.advancedBy(range.location), end: textView.text.startIndex.advancedBy(range.location + range.length))
@@ -163,8 +163,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
 
     public func textViewDidChange(textView: UITextView)
     {
-        print(currentCursorType)
-        
         guard currentCursorPoint != nil else { return }
         
         let cursorLocation = textView.selectedRange.location
@@ -206,7 +204,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             guard willDeletedString != nil && willDeletedString!.containsString("\n") else { return }
             guard prevCursorY != nil else { return }
             
-            deleteListPrefixWithY(prevCursorY!, cursorPoint: currentCursorPoint!)
+            deleteListPrefixWithY(prevCursorY!, cursorPoint: currentCursorPoint!, byBackspace: true)
             
             willDeletedString = nil
             willBackspaceTouch = false

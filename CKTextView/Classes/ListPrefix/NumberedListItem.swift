@@ -21,6 +21,7 @@ class NumberedListItem: BaseListItem {
     {
         super.init()
         
+        self.firstKeyY = keyY
         self.keyYSet.insert(keyY)
         self.number = number
         
@@ -31,22 +32,19 @@ class NumberedListItem: BaseListItem {
             setupListInfoStore(keyY, ckTextView: ckTextView)
         } else {
             self.listInfoStore = listInfoStore
-            self.listInfoStore?.listEndByY = keyY
+            self.listInfoStore!.listEndByY = keyY
         }
         
         // First fill or fill after change endY.
         self.listInfoStore?.fillBezierPath(ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView) {
-        super.destory(ckTextView)
+    override func destory(ckTextView: CKTextView, byBackspace: Bool) {
+        super.destory(ckTextView, byBackspace: byBackspace)
         
         label?.removeFromSuperview()
         
-        if self.prevItem == nil {
-            self.listInfoStore?.clearBezierPath(ckTextView)
-        }
-        // TODO: When middle ordered number destory, devide it two list.
+        
     }
     
     // MARK: setups

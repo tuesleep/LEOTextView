@@ -16,6 +16,8 @@ class BaseListItem: NSObject
 {
     var listInfoStore: BaseListInfoStore?
     
+    var firstKeyY: CGFloat?
+    
     // if a string too long, text must line break. May have two Y!
     var keyYSet: Set<CGFloat> = []
     
@@ -27,23 +29,52 @@ class BaseListItem: NSObject
         return ListType.None
     }
     
-    func destory(ckTextView: CKTextView) {
-        
+    /// Usually override this method to perform additional things about destory.
+    ///
+    /// Must call super in your implementation.
+    func destory(ckTextView: CKTextView, byBackspace: Bool) {
+        // Backspace destory this item.
+        if byBackspace {
+            if prevItem == nil {
+                // Oh, I am first item of list.
+                if nextItem != nil {
+                    // Next item exist, it become first item of list.
+                    nextItem!.unLinkPrevItem()
+                } else {
+                    // Not next item, destory BezierPath.
+                    self.listInfoStore?.clearBezierPath(ckTextView)
+                }
+            } else {
+                if nextItem != nil {
+                    prevItem!.linkNextItem(nextItem!)
+                }
+                
+                prevItem!.unLinkNextItem()
+            }
+        } else {
+            // Destory by other way, no link operate.
+            prevItem?.unLinkNextItem()
+            nextItem?.unLinkPrevItem()
+        }
     }
     
     func unLinkPrevItem()
     {
-        if prevItem != nil {
-            prevItem!.unLinkNextItem()
-            prevItem = nil
-        }
+        
     }
     
     func unLinkNextItem()
     {
-        if nextItem != nil {
-            nextItem!.unLinkPrevItem()
-            nextItem = nil
-        }
+        
+    }
+    
+    func linkPrevItem(item: BaseListItem)
+    {
+        
+    }
+    
+    func linkNextItem(item: BaseListItem)
+    {
+        
     }
 }
