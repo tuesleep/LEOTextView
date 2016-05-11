@@ -22,12 +22,19 @@ class CKTextUtil: NSObject {
         }
     }
     
-    class func isBackspace(text: String) -> Bool {
+    class func isBackspace(text: String) -> Bool
+    {
         if text == "" {
             return true
         } else {
             return false
         }
+    }
+    
+    class func clearTextByRange(range: NSRange, textView: UITextView)
+    {
+        let clearRange = Range(start: textView.text.startIndex.advancedBy(range.location), end: textView.text.startIndex.advancedBy(range.location + range.length))
+        textView.text.replaceRange(clearRange, with: "")
     }
     
     class func isFirstLocationInLineWithLocation(location: Int, textView: UITextView) -> Bool
@@ -48,25 +55,34 @@ class CKTextUtil: NSObject {
         }
     }
     
-    class func isListKeywordInvokeWithLocation(location: Int, type: ListKeywordType, textView: UITextView) -> Bool
+    class func typeForListKeywordWithLocation(location: Int, textView: UITextView) -> ListType
     {
-        let textString = textView.text
+        let checkArray = [("1. ", 3, ListType.Numbered), ("* ", 2, ListType.Bulleted)]
         
-        switch type {
-        case .NumberedList:
-            if location >= 3 && CKTextUtil.isFirstLocationInLineWithLocation(location - 3, textView: textView) {
-                let range: Range = Range(start: textString.startIndex.advancedBy(location - 3), end: textString.startIndex.advancedBy(location))
-                let keyChar = textView.text.substringWithRange(range)
-                
-                if keyChar == "1. " {
-                    return true
-                }
-            }
+        for (index, value) in checkArray.enumerate() {
+            let keyword = value.0
+            let length = value.1
+            let listType = value.2
             
-            break
+            let keyChars = self.keyCharsWithLocation(location, textView: textView, length: length)
+            
+            if keyChars == keyword {
+                return listType
+            }
         }
         
-        return false
+        return ListType.Text
+    }
+    
+    private class func keyCharsWithLocation(location: Int, textView: UITextView, length: Int) -> String
+    {
+        guard location >= length && CKTextUtil.isFirstLocationInLineWithLocation(location - length, textView: textView) else { return "" }
+        
+        let textString = textView.text
+        let range: Range = Range(start: textString.startIndex.advancedBy(location - length), end: textString.startIndex.advancedBy(location))
+        let keyChars = textView.text.substringWithRange(range)
+        
+        return keyChars
     }
     
     class func textHeightForTextView(textView: UITextView) -> CGFloat

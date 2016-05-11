@@ -9,7 +9,7 @@
 import UIKit
 
 enum ListType {
-    case Text, Numbered
+    case Text, Numbered, Bulleted
 }
 
 class BaseListItem: NSObject
@@ -23,8 +23,8 @@ class BaseListItem: NSObject
     var keyYSet: Set<CGFloat> = []
     
     // List link support.
-    var prevItem: NumberedListItem?
-    var nextItem: NumberedListItem?
+    var prevItem: BaseListItem?
+    var nextItem: BaseListItem?
     
     // MARK: - Subclass need override
     

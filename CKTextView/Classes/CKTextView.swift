@@ -163,23 +163,32 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         let cursorLocation = textView.selectedRange.location
         
-//        print("----------- Status Log -----------")
-//        print("cursor location: \(cursorLocation)")
-//        print("text height: \(CKTextUtil.textHeightForTextView(textView))")
-//        print("cursor point: \(cursorPoint)")
-//        print("")
+        print("cursorLocation: \(cursorLocation)")
         
         // Keyword input will convert to List style.
-        if CKTextUtil.isListKeywordInvokeWithLocation(cursorLocation, type: ListKeywordType.NumberedList, textView: textView)
-        {
-            let clearRange = Range(start: textView.text.endIndex.advancedBy(-3), end: textView.text.endIndex)
-            textView.text.replaceRange(clearRange, with: "")
+        switch CKTextUtil.typeForListKeywordWithLocation(cursorLocation, textView: textView) {
+        case .Numbered:
+            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 3, 3), textView: textView)
             
             let numberedListItem = NumberedListItem(keyY: currentCursorPoint!.y, number: 1, ckTextView: self, listInfoStore: nil)
             
             // Save to container
             saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
+            
+            break
+        case .Bulleted:
+            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
+            
+            let bulletedListItem = BulletedListItem(keyY: currentCursorPoint!.y, ckTextView: self, listInfoStore: nil)
+            
+            // Save to container
+            saveToPrefixContainerWithItem(bulletedListItem)
+            currentCursorType = ListType.Bulleted
+            
+            break
+        case .Text:
+            break
         }
     
         // Handle return operate.

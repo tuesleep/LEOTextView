@@ -45,7 +45,5 @@ class BaseListInfoStore: NSObject {
         bezierPath = UIBezierPath(rect: rect)
         
         ckTextView.textContainer.exclusionPaths.append(bezierPath!)
-        
-        print("list start with \(listStartByY) to \(listEndByY)")
     }
 }

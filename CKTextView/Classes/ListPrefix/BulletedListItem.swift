@@ -1,33 +1,29 @@
 //
-//  NumberedListItem.swift
+//  BulletedListItem.swift
 //  Pods
 //
-//  Created by Chanricle King on 5/5/16.
+//  Created by Chanricle King on 5/11/16.
 //
 //
 
 import UIKit
 
-class NumberedListItem: BaseListItem {
-    
+class BulletedListItem: BaseListItem {
     var label: UILabel?
-    var number: Int!
     
     override func listType() -> ListType {
-        return ListType.Numbered
+        return ListType.Bulleted
     }
     
-    required init(keyY: CGFloat, number: Int, ckTextView: CKTextView, listInfoStore: BaseListInfoStore?)
+    required init(keyY: CGFloat, ckTextView: CKTextView, listInfoStore: BaseListInfoStore?)
     {
         super.init()
         
         self.firstKeyY = keyY
         self.keyYSet.insert(keyY)
-
-        self.number = number
         
         // create number
-        setupNumberLabel(keyY, ckTextView: ckTextView)
+        setupLabel(keyY, ckTextView: ckTextView)
         
         if listInfoStore == nil {
             self.listInfoStore = BaseListInfoStore(listStartByY: keyY, listEndByY: keyY)
@@ -43,7 +39,7 @@ class NumberedListItem: BaseListItem {
     // MARK: Override
     
     override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
-        let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
+        let nextItem = BulletedListItem(keyY: y, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
         nextItem.prevItem = self
         
         return nextItem
@@ -57,7 +53,7 @@ class NumberedListItem: BaseListItem {
     
     // MARK: setups
     
-    private func setupNumberLabel(keyY: CGFloat, ckTextView: CKTextView)
+    private func setupLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
         ckTextView.font ?? UIFont.systemFontSize()
         
@@ -66,21 +62,12 @@ class NumberedListItem: BaseListItem {
         let height = lineHeight
         var width = lineHeight + 10
         
-        // Woo.. too big
-        if number >= 100 {
-            let numberCount = "\(number)".characters.count
-            width += CGFloat(numberCount - 2) * CGFloat(10)
-        }
-        
         label = UILabel(frame: CGRect(x: 8, y: keyY, width: width, height: lineHeight))
-        label!.text = "\(number)."
+        label!.text = "  ●"
         label!.font = ckTextView.font!
-        
-        if number < 10 {
-            label!.text = "  \(number)."
-        }
         
         // Append label to textView.
         ckTextView.addSubview(label!)
     }
+    
 }
