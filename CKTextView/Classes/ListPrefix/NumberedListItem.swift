@@ -22,6 +22,7 @@ class NumberedListItem: BaseListItem {
         super.init()
         
         self.firstKeyY = keyY
+        
         self.keyYSet.insert(keyY)
         self.number = number
         
@@ -41,15 +42,17 @@ class NumberedListItem: BaseListItem {
     
     // MARK: Override
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool) {
-        super.destory(ckTextView, byBackspace: byBackspace)
+    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+        let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
+        nextItem.prevItem = self
         
-        label?.removeFromSuperview()
+        return nextItem
     }
     
-    // TODO: Override link and unlink method.
-    override func unLinkPrevItem() {
-        <#code#>
+    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+        
+        label?.removeFromSuperview()
     }
     
     // MARK: setups

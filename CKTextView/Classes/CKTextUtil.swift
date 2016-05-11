@@ -78,6 +78,7 @@ class CKTextUtil: NSObject {
     class func cursorPointInTextView(textView: UITextView) -> CGPoint
     {
         return textView.caretRectForPosition(textView.selectedTextRange!.start).origin
+        
     }
     
     

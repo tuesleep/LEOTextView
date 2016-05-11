@@ -16,6 +16,7 @@ class BaseListItem: NSObject
 {
     var listInfoStore: BaseListInfoStore?
     
+    // First key mark line head point Y
     var firstKeyY: CGFloat?
     
     // if a string too long, text must line break. May have two Y!
@@ -25,59 +26,28 @@ class BaseListItem: NSObject
     var prevItem: NumberedListItem?
     var nextItem: NumberedListItem?
     
+    // MARK: - Subclass need override
+    
     /// Must override this method
     func listType() -> ListType {
         return ListType.Text
     }
     
+    /// Must override this method
+    func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+        return BaseListItem()
+    }
+    
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.
-    func destory(ckTextView: CKTextView, byBackspace: Bool) {
+    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         // Backspace destory this item.
         if byBackspace {
-            if prevItem == nil {
-                // Oh, I am first item of list.
-                if nextItem != nil {
-                    // Next item exist, it become first item of list.
-                    nextItem!.unLinkPrevItem()
-                } else {
-                    // Not next item, destory BezierPath.
-                    self.listInfoStore?.clearBezierPath(ckTextView)
-                }
-            } else {
-                if nextItem != nil {
-                    prevItem!.linkNextItem(nextItem!)
-                }
-            }
+            
         } else {
-            // Destory by other way, no link operate.
-            prevItem?.unLinkNextItem()
-            nextItem?.unLinkPrevItem()
+            // divide list by this Y
+            
         }
-    }
-    
-    /// Must override this method
-    func unLinkPrevItem()
-    {
-        
-    }
-    
-    /// Must override this method
-    func unLinkNextItem()
-    {
-        
-    }
-    
-    /// Must override this method
-    func linkPrevItem(item: BaseListItem)
-    {
-        
-    }
-    
-    /// Must override this method
-    func linkNextItem(item: BaseListItem)
-    {
-        
     }
 }

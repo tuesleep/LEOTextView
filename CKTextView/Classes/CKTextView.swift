@@ -23,7 +23,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     var isFirstLocationInLine: Bool = false
     
-    var listPrefixContainerMap: Dictionary<CGFloat, NumberedListItem> = [:]
+    // Save Y and ListItem relationship.
+    var listPrefixContainerMap: Dictionary<CGFloat, BaseListItem> = [:]
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -50,25 +51,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
     }
     
-    // MARK: Drawing
-
-    func drawNumberLabelWithY(y: CGFloat, number: Int, prevItem: NumberedListItem?) -> NumberedListItem
-    {
-        let numberedListItem = NumberedListItem(keyY: y, number: number, ckTextView: self, listInfoStore: prevItem?.listInfoStore)
-        
-        // Save to container
-        listPrefixContainerMap[y] = numberedListItem
-        
-        return numberedListItem
-    }
-    
     func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint, byBackspace: Bool)
     {
         print("Will delete by Y: \(y)")
         
         if let item = listPrefixContainerMap[y]
         {
-            item.destory(self, byBackspace: byBackspace)
+            item.destory(self, byBackspace: byBackspace, withY: y)
             
             // Clear self container.
             for (index, value) in item.keyYSet.enumerate() {
@@ -81,6 +70,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     // MARK: Change even
+    
+    func saveToPrefixContainerWithItem(item: BaseListItem) {
+        for (index, value) in item.keyYSet.enumerate() {
+            listPrefixContainerMap[value] = item
+        }
+    }
     
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
     {
@@ -110,8 +105,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 {
                     // key Y of New line add to container.
                     item.keyYSet.insert(cursorPoint.y)
-                    listPrefixContainerMap[cursorPoint.y] = item
-                    
+                    saveToPrefixContainerWithItem(item)
                     // TODO: change BeizerPathRect, more height
                 }
             }
@@ -181,21 +175,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             let clearRange = Range(start: textView.text.endIndex.advancedBy(-3), end: textView.text.endIndex)
             textView.text.replaceRange(clearRange, with: "")
             
-            drawNumberLabelWithY(currentCursorPoint!.y, number: 1, prevItem: nil)
+            let numberedListItem = NumberedListItem(keyY: currentCursorPoint!.y, number: 1, ckTextView: self, listInfoStore: nil)
             
+            // Save to container
+            saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
         }
     
         // Handle return operate.
         if willReturnTouch {
             if currentCursorType != ListType.Text {
-                let item = listPrefixContainerMap[prevCursorY!]
-                // Draw new item.
-                let newItem = drawNumberLabelWithY(currentCursorPoint!.y, number: item!.number + 1, prevItem: item)
-                
-                // Handle prev, next relationships.
-                item?.nextItem = newItem
-                newItem.prevItem = item
+                if let item = listPrefixContainerMap[prevCursorY!] {
+                    let nextItem = item.createNextItemWithY(currentCursorPoint!.y, ckTextView: self)
+                    saveToPrefixContainerWithItem(nextItem)
+                }
             }
             
             willReturnTouch = false
