@@ -45,11 +45,12 @@ class NumberedListItem: BaseListItem {
         super.destory(ckTextView, byBackspace: byBackspace)
         
         label?.removeFromSuperview()
-        
-        
     }
     
     // TODO: Override link and unlink method.
+    override func unLinkPrevItem() {
+        <#code#>
+    }
     
     // MARK: setups
     

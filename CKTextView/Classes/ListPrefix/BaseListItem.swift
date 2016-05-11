@@ -25,6 +25,7 @@ class BaseListItem: NSObject
     var prevItem: NumberedListItem?
     var nextItem: NumberedListItem?
     
+    /// Must override this method
     func listType() -> ListType {
         return ListType.Text
     }
@@ -48,8 +49,6 @@ class BaseListItem: NSObject
                 if nextItem != nil {
                     prevItem!.linkNextItem(nextItem!)
                 }
-                
-                prevItem!.unLinkNextItem()
             }
         } else {
             // Destory by other way, no link operate.
@@ -58,21 +57,25 @@ class BaseListItem: NSObject
         }
     }
     
+    /// Must override this method
     func unLinkPrevItem()
     {
         
     }
     
+    /// Must override this method
     func unLinkNextItem()
     {
         
     }
     
+    /// Must override this method
     func linkPrevItem(item: BaseListItem)
     {
         
     }
     
+    /// Must override this method
     func linkNextItem(item: BaseListItem)
     {
         
