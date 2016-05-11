@@ -165,26 +165,32 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         print("cursorLocation: \(cursorLocation)")
         
+        let keyY = currentCursorPoint!.y
+        
         // Keyword input will convert to List style.
         switch CKTextUtil.typeForListKeywordWithLocation(cursorLocation, textView: textView) {
         case .Numbered:
             CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 3, 3), textView: textView)
             
-            let numberedListItem = NumberedListItem(keyY: currentCursorPoint!.y, number: 1, ckTextView: self, listInfoStore: nil)
+            let numberedListItem = NumberedListItem(keyY: keyY, number: 1, ckTextView: self, listInfoStore: nil)
             
             // Save to container
             saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
             
+            textView.selectedRange = NSMakeRange(cursorLocation - 3, 0)
+            
             break
         case .Bulleted:
             CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
             
-            let bulletedListItem = BulletedListItem(keyY: currentCursorPoint!.y, ckTextView: self, listInfoStore: nil)
+            let bulletedListItem = BulletedListItem(keyY: keyY, ckTextView: self, listInfoStore: nil)
             
             // Save to container
             saveToPrefixContainerWithItem(bulletedListItem)
             currentCursorType = ListType.Bulleted
+            
+            textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
             
             break
         case .Text:
