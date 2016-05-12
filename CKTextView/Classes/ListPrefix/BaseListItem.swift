@@ -66,13 +66,16 @@ class BaseListItem: NSObject
                     
                     resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 } else {
-                    resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                    // Prev item and next item all nil, self is a deleting item of last
+                    firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 }
                 
             } else {
                 // Link prev item with next item.
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
+                } else {
+                    self.prevItem?.nextItem = nil
                 }
                 
                 firstItem = firstItem.prevItem!

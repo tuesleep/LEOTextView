@@ -43,6 +43,9 @@ class BaseListInfoStore: NSObject {
         let rect = CGRect(origin: origin, size: size)
         
         bezierPath = UIBezierPath(rect: rect)
+        bezierPath?.lineWidth = 1
+    
+        bezierPath?.stroke()
         
         print("fill bezierPath with rect: \(rect)")
         
