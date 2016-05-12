@@ -61,7 +61,11 @@ class BaseListItem: NSObject
                 firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 
                 if firstItem.nextItem != nil {
+                    firstItem.nextItem?.firstKeyY = firstItem.firstKeyY
                     firstItem = firstItem.nextItem!
+                    
+                    resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                } else {
                     resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 }
                 
@@ -70,6 +74,8 @@ class BaseListItem: NSObject
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
                 }
+                
+                firstItem = firstItem.prevItem!
                 
                 while firstItem.prevItem != nil {
                     firstItem = firstItem.prevItem!
@@ -117,7 +123,7 @@ class BaseListItem: NSObject
         var item = firstItem.nextItem
         
         if item == nil {
-            firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight)
+            firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight) - lineHeight
             firstItem.listInfoStore!.fillBezierPath(ckTextView)
             
         } else {
@@ -137,7 +143,7 @@ class BaseListItem: NSObject
                 // Handle last item.
                 if item!.nextItem == nil {
                     // set list end Y
-                    item!.listInfoStore!.listEndByY = item!.endYWithLineHeight(lineHeight)
+                    item!.listInfoStore!.listEndByY = item!.endYWithLineHeight(lineHeight) - lineHeight
                     item!.listInfoStore!.fillBezierPath(ckTextView)
                 }
                 
