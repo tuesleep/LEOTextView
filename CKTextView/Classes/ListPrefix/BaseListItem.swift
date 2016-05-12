@@ -17,7 +17,7 @@ class BaseListItem: NSObject
     var listInfoStore: BaseListInfoStore?
     
     // First key mark line head point Y
-    var firstKeyY: CGFloat?
+    var firstKeyY: CGFloat!
     
     // if a string too long, text must line break. May have two Y!
     var keyYSet: Set<CGFloat> = []
@@ -44,6 +44,22 @@ class BaseListItem: NSObject
     func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         // Backspace destory this item.
         if byBackspace {
+            let lineHeight = ckTextView.font!.lineHeight
+            var item = self.nextItem
+            var moveY = y
+            
+            while item != nil {
+                item!.firstKeyY = moveY
+                
+                let newKeyYSet = item!.keyYSet.map({ (value) -> CGFloat in
+                    let thatY = moveY
+                    moveY += lineHeight
+                    return thatY
+                })
+                // TODO: handle new array to set
+                
+                item = item!.nextItem
+            }
             
         } else {
             // divide list by this Y

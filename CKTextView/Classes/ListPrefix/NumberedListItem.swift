@@ -46,6 +46,9 @@ class NumberedListItem: BaseListItem {
         let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
         nextItem.prevItem = self
         
+        self.listInfoStore!.listEndByY = y
+        self.listInfoStore!.fillBezierPath(ckTextView)
+        
         return nextItem
     }
     

@@ -196,8 +196,8 @@
 		B936C7E91CDAD03E008CB7AE /* ListPrefix */ = {
 			isa = PBXGroup;
 			children = (
-				B90235AC1CE07FE000B093D7 /* BaseListItem.swift */,
 				B9BB9D2E1CE1BBFD003068CD /* BaseListInfoStore.swift */,
+				B90235AC1CE07FE000B093D7 /* BaseListItem.swift */,
 				B936C7EA1CDAD05E008CB7AE /* NumberedListItem.swift */,
 				B9B593561CE38E4C00CF318D /* BulletedListItem.swift */,
 			);

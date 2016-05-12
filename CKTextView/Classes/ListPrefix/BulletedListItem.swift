@@ -42,6 +42,9 @@ class BulletedListItem: BaseListItem {
         let nextItem = BulletedListItem(keyY: y, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
         nextItem.prevItem = self
         
+        self.listInfoStore!.listEndByY = y
+        self.listInfoStore!.fillBezierPath(ckTextView)
+        
         return nextItem
     }
     
