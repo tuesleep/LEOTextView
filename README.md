@@ -9,6 +9,8 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+![textview](https://github.com/chanricle/CKTextView/blob/master/textview.gif?raw=true)
+
 ## Requirements
 
 ## Installation
