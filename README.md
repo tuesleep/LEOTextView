@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 [![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 
+> NOTE: This project still developing.. 
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
