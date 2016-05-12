@@ -44,6 +44,8 @@ class BaseListInfoStore: NSObject {
         
         bezierPath = UIBezierPath(rect: rect)
         
+        print("fill bezierPath with rect: \(rect)")
+        
         ckTextView.textContainer.exclusionPaths.append(bezierPath!)
     }
 }

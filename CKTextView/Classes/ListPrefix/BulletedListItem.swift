@@ -23,7 +23,7 @@ class BulletedListItem: BaseListItem {
         self.keyYSet.insert(keyY)
         
         // create number
-        setupLabel(keyY, ckTextView: ckTextView)
+        setupBulletLabel(keyY, ckTextView: ckTextView)
         
         if listInfoStore == nil {
             self.listInfoStore = BaseListInfoStore(listStartByY: keyY, listEndByY: keyY)
@@ -40,12 +40,19 @@ class BulletedListItem: BaseListItem {
     
     override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
         let nextItem = BulletedListItem(keyY: y, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
+        self.nextItem = nextItem
         nextItem.prevItem = self
         
         self.listInfoStore!.listEndByY = y
         self.listInfoStore!.fillBezierPath(ckTextView)
         
         return nextItem
+    }
+    
+    override func reDrawGlyph(ckTextView: CKTextView) {
+        label?.removeFromSuperview()
+        
+        setupBulletLabel(firstKeyY, ckTextView: ckTextView)
     }
     
     override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
@@ -56,7 +63,7 @@ class BulletedListItem: BaseListItem {
     
     // MARK: setups
     
-    private func setupLabel(keyY: CGFloat, ckTextView: CKTextView)
+    private func setupBulletLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
         ckTextView.font ?? UIFont.systemFontSize()
         

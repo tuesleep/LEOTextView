@@ -26,6 +26,10 @@ class BaseListItem: NSObject
     var prevItem: BaseListItem?
     var nextItem: BaseListItem?
     
+    func endYWithLineHeight(lineHeight: CGFloat) -> CGFloat {
+        return firstKeyY + CGFloat(keyYSet.count) * lineHeight
+    }
+    
     // MARK: - Subclass need override
     
     /// Must override this method
@@ -38,32 +42,109 @@ class BaseListItem: NSObject
         return BaseListItem()
     }
     
+    /// Must override this method
+    func reDrawGlyph(ckTextView: CKTextView) {
+        
+    }
+    
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.
     func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         // Backspace destory this item.
         if byBackspace {
-            let lineHeight = ckTextView.font!.lineHeight
-            var item = self.nextItem
-            var moveY = y
+            // handle first item delete
+            var firstItem = self
             
-            while item != nil {
-                item!.firstKeyY = moveY
+            // delete first item of list, this item's next item become a first item.
+            if firstItem.prevItem == nil {
+                firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 
-                let newKeyYSet = item!.keyYSet.map({ (value) -> CGFloat in
-                    let thatY = moveY
-                    moveY += lineHeight
-                    return thatY
-                })
-                // TODO: handle new array to set
+                if firstItem.nextItem != nil {
+                    firstItem = firstItem.nextItem!
+                    resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                }
                 
-                item = item!.nextItem
+            } else {
+                // Link prev item with next item.
+                if self.nextItem != nil {
+                    self.prevItem?.nextItem = self.nextItem
+                }
+                
+                while firstItem.prevItem != nil {
+                    firstItem = firstItem.prevItem!
+                }
+                resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
             }
             
         } else {
             // divide list by this Y
+            var firstItems: Array<BaseListItem> = []
             
+            if self.prevItem != nil {
+                self.prevItem?.nextItem = nil
+                var firstItem = self.prevItem!
+                
+                while firstItem.prevItem != nil {
+                    firstItem = firstItem.prevItem!
+                }
+                firstItems.append(firstItem)
+            }
+            
+            if self.nextItem != nil {
+                self.nextItem?.prevItem = nil
+                var firstItem = self.nextItem!
+                
+                firstItem.firstKeyY = y
+                
+                firstItems.append(firstItem)
+            }
+            
+            self.listInfoStore?.clearBezierPath(ckTextView)
+            
+            for item in firstItems {
+                resetAllItemYWithFirstItem(item, ckTextView: ckTextView)
+            }
         }
     }
+    
+    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) {
+        let lineHeight = ckTextView.font!.lineHeight
+        
+        firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
+        
+        var moveY = firstItem.endYWithLineHeight(lineHeight)
+        var item = firstItem.nextItem
+        
+        if item == nil {
+            firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight)
+            firstItem.listInfoStore!.fillBezierPath(ckTextView)
+            
+        } else {
+            while item != nil {
+                item!.firstKeyY = moveY
+                
+                let newKeyYArray = item!.keyYSet.map({ (value) -> CGFloat in
+                    let thatY = moveY
+                    moveY += lineHeight
+                    return thatY
+                })
+                item!.keyYSet = Set(newKeyYArray)
+                item!.reDrawGlyph(ckTextView)
+                
+                moveY = item!.endYWithLineHeight(lineHeight)
+                
+                // Handle last item.
+                if item!.nextItem == nil {
+                    // set list end Y
+                    item!.listInfoStore!.listEndByY = item!.endYWithLineHeight(lineHeight)
+                    item!.listInfoStore!.fillBezierPath(ckTextView)
+                }
+                
+                // Go next
+                item = item!.nextItem
+            }
+        }
+    }
+    
 }
