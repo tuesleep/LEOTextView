@@ -23,14 +23,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-## Installation
+Xcode 7.3
 
-CKTextView is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Swift 2.2
 
-```ruby
-pod "CKTextView"
-```
+## Installation now unavailable
 
 ## Author
 
