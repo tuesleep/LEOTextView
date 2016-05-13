@@ -7,6 +7,14 @@
 
 > NOTE: This project still developing.. 
 
+## WANT FEATURES
+
+* *Numbered List*
+* *Bulleted List*
+* *Checkbox List*
+* Undo and redo control 
+* Attributed text support
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
