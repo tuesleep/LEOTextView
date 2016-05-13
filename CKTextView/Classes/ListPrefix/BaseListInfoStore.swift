@@ -13,6 +13,7 @@ class BaseListInfoStore: NSObject {
     ///
     /// All item of list used one Bezier path to excluding text area.
     var bezierPath: UIBezierPath?
+    var backgroundViewWithBezierMadeReadable: UIView?
     
     var listStartByY: CGFloat!
     var listEndByY: CGFloat!
@@ -29,6 +30,9 @@ class BaseListInfoStore: NSObject {
             }
             
             bezierPath = nil
+            
+            backgroundViewWithBezierMadeReadable?.removeFromSuperview()
+            backgroundViewWithBezierMadeReadable = nil
         }
     }
     
@@ -36,19 +40,21 @@ class BaseListInfoStore: NSObject {
     func fillBezierPath(ckTextView: CKTextView) {
         let lineHeight = ckTextView.font!.lineHeight
         
-        clearBezierPath(ckTextView)
-        
         let origin = CGPoint(x: 0, y: listStartByY)
-        let size = CGSize(width: lineHeight + 10, height: listEndByY - listStartByY + 0.1)
+        let size = CGSize(width: lineHeight + 10, height: listEndByY - listStartByY + lineHeight)
         let rect = CGRect(origin: origin, size: size)
         
-        bezierPath = UIBezierPath(rect: rect)
-        bezierPath?.lineWidth = 1
-    
-        bezierPath?.stroke()
+        let newBezierPath = UIBezierPath(rect: rect)
         
         print("fill bezierPath with rect: \(rect)")
         
-        ckTextView.textContainer.exclusionPaths.append(bezierPath!)
+        ckTextView.textContainer.exclusionPaths.append(newBezierPath)
+        
+        clearBezierPath(ckTextView)
+        bezierPath = newBezierPath
+        
+        backgroundViewWithBezierMadeReadable = UIView(frame: rect)
+        backgroundViewWithBezierMadeReadable?.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+        ckTextView.addSubview(backgroundViewWithBezierMadeReadable!)
     }
 }
