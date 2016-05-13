@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031308C994F548D9022AB957BC9B9494 /* CKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */; };
+		0540A951E6F3EE83B4234201D741BCBF /* CKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */; };
 		065B945489DE1E514509166DF88BC7DF /* Pods-CKTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD842A4DC76BBC109990C4BD84434B4 /* Pods-CKTextView_Tests-dummy.m */; };
-		0E29922D69A7C503BC4CDB390B025DC5 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B469027C1CFBB1D0585DC3275ECF6 /* CKTextView.swift */; };
-		15BA3A838C7EF0A2550C02A6E521B064 /* CKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E5E2737B44DCABAAE6D57DD41A577CF /* CKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461B61F74BCE538F8E7C0427638D00C /* CKTextUtil.swift */; };
+		0DB38609E61B8711962466906F721C0A /* BaseListInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */; };
+		256ABFE913675C0E0D7BF5527EDCBF58 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */; };
+		3DE0F289AE3F352A73A82808327ADD4F /* BulletedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */; };
+		4A94A5A0D903F47901A33A378242A364 /* NumberedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */; };
 		54D5F1D00D3553AA44F1BF1B9F8D4E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		68B936916C30CC1EA86F7265D9D850E0 /* BaseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */; };
+		7BC0A8E3EAD178198D69AAD269C37330 /* CKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C2F1F3B00CA0BDDFA5B49BD0D66166 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		8EAB17AABA2D779830056CAD6DA3BA0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		97DE039907839F8E3F3DE3D532E93AA0 /* Pods-CKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B57D07FCECF3809172C68666408D1CEE /* CKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */; };
 		B59F1B8978864464BB983CE112DDAC8D /* Pods-CKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */; };
-		B90235AD1CE07FE000B093D7 /* BaseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90235AC1CE07FE000B093D7 /* BaseListItem.swift */; };
-		B936C7EB1CDAD05E008CB7AE /* NumberedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936C7EA1CDAD05E008CB7AE /* NumberedListItem.swift */; };
-		B9B593571CE38E4C00CF318D /* BulletedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B593561CE38E4C00CF318D /* BulletedListItem.swift */; };
-		B9BB9D2F1CE1BBFD003068CD /* BaseListInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB9D2E1CE1BBFD003068CD /* BaseListInfoStore.swift */; };
+		C9E4CE9A53BF7DCB2C935C3AB11C20AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		EF61969E5CC8CED4974A5F453D23530F /* Pods-CKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -29,14 +29,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 08BA7D970E3E509AE2169DA284578692;
+			remoteGlobalIDString = 9BE86CDA6FBF0119F6C4A614EB7D938E;
 			remoteInfo = CKTextView;
 		};
 		7A78D222BD4B99311782220043C9367D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 08BA7D970E3E509AE2169DA284578692;
+			remoteGlobalIDString = 9BE86CDA6FBF0119F6C4A614EB7D938E;
 			remoteInfo = CKTextView;
 		};
 /* End PBXContainerItemProxy section */
@@ -45,11 +45,12 @@
 		000D32E5046B2C4736BEECF10EFB5780 /* Pods-CKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
 		0275138769CDFA056585EBFB8AEB7516 /* Pods-CKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		08A7B519483D0AA0101E177E5D75B289 /* Pods-CKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		0B5B469027C1CFBB1D0585DC3275ECF6 /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
+		0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
 		1045C02ED313F067DA3FAC329B662287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2461B61F74BCE538F8E7C0427638D00C /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
 		27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-umbrella.h"; sourceTree = "<group>"; };
+		2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListInfoStore.swift; sourceTree = "<group>"; };
 		357A965EBAFD0699CDC03E105B81288A /* Pods-CKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		426893A46F52338647CA878B3726FF2B /* Pods-CKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		52A5BF58D78B05A81ACAD11F1338F1B5 /* Pods_CKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,11 +59,13 @@
 		6AFC61BAB57E2B919E143F5FAB3F519B /* Pods-CKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CKTextView-dummy.m"; sourceTree = "<group>"; };
 		7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CKTextView_Example-dummy.m"; sourceTree = "<group>"; };
+		8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberedListItem.swift; sourceTree = "<group>"; };
 		87513B13D59EC6A3AAD87E7387850943 /* Pods-CKTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Example.modulemap"; sourceTree = "<group>"; };
 		8809846A689D8A644D47DAB7795DFA3C /* Pods-CKTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8EF1868FE4C673DBB4B8FC0D7516C708 /* Pods-CKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
 		9015B195CD82A7428F76127366FB3580 /* Pods_CKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BulletedListItem.swift; sourceTree = "<group>"; };
 		9CB118D228A1FE17A0BF839369744181 /* Pods-CKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9E517AEEFC34E5C689C0910E84802D35 /* Pods-CKTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Example-resources.sh"; sourceTree = "<group>"; };
 		9F60E16DBACF140DF7DFBDCCE38FC944 /* Pods-CKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,30 +75,26 @@
 		B0020800453787ECDA846694C78E396D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
 		B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CKTextView.xcconfig; sourceTree = "<group>"; };
 		B43A0C9ADF0A2B61D67E490CE751A11E /* Pods-CKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Tests.modulemap"; sourceTree = "<group>"; };
-		B90235AC1CE07FE000B093D7 /* BaseListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
-		B936C7EA1CDAD05E008CB7AE /* NumberedListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberedListItem.swift; sourceTree = "<group>"; };
-		B96E56D21CDA261600C992EC /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		B9B593561CE38E4C00CF318D /* BulletedListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletedListItem.swift; sourceTree = "<group>"; };
-		B9BB9D2E1CE1BBFD003068CD /* BaseListInfoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListInfoStore.swift; sourceTree = "<group>"; };
+		C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
 		D52164F0626674D96A3440ABEA255A5E /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
 		DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
 		FAD842A4DC76BBC109990C4BD84434B4 /* Pods-CKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0C0AB8DC820F54EED1BDD0A522B0DFA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9E4CE9A53BF7DCB2C935C3AB11C20AA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5E91697FDEBA2988FD33DD386BC12A78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				54D5F1D00D3553AA44F1BF1B9F8D4E2D /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		668F438662321186F3E4C0A64E109FBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8EAB17AABA2D779830056CAD6DA3BA0C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,17 +117,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		312A02EE2E480AAADAABCC311B96AE7A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B91F43701CE579F400208619 /* Action */,
-				B936C7E91CDAD03E008CB7AE /* ListPrefix */,
-				2461B61F74BCE538F8E7C0427638D00C /* CKTextUtil.swift */,
-				0B5B469027C1CFBB1D0585DC3275ECF6 /* CKTextView.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		362A7FCE5190E933B946EA148682B3A0 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +128,7 @@
 		4E300419BB39549D94335EF827FBD52E /* CKTextView */ = {
 			isa = PBXGroup;
 			children = (
-				B96E56D11CDA261600C992EC /* Assets */,
-				312A02EE2E480AAADAABCC311B96AE7A /* Classes */,
+				86E7B3FE45C0E05EEE8C6DBE72E9550A /* Classes */,
 			);
 			path = CKTextView;
 			sourceTree = "<group>";
@@ -155,6 +142,17 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		5EFEF6B8459561B799FDBF86E5891864 /* ListPrefix */ = {
+			isa = PBXGroup;
+			children = (
+				2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */,
+				C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */,
+				94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */,
+				8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */,
+			);
+			path = ListPrefix;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +162,16 @@
 				BD8E2C431BCA4552E4DBD04937C1E182 /* Products */,
 				51D06E78AD6860432CCC4C4EAB2241B7 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		86E7B3FE45C0E05EEE8C6DBE72E9550A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */,
+				0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */,
+				5EFEF6B8459561B799FDBF86E5891864 /* ListPrefix */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		8F4E0645B86CBF537C789E2BA2B56484 /* CKTextView */ = {
@@ -192,32 +200,6 @@
 			);
 			name = "Pods-CKTextView_Tests";
 			path = "Target Support Files/Pods-CKTextView_Tests";
-			sourceTree = "<group>";
-		};
-		B91F43701CE579F400208619 /* Action */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Action;
-			sourceTree = "<group>";
-		};
-		B936C7E91CDAD03E008CB7AE /* ListPrefix */ = {
-			isa = PBXGroup;
-			children = (
-				B9BB9D2E1CE1BBFD003068CD /* BaseListInfoStore.swift */,
-				B90235AC1CE07FE000B093D7 /* BaseListItem.swift */,
-				B936C7EA1CDAD05E008CB7AE /* NumberedListItem.swift */,
-				B9B593561CE38E4C00CF318D /* BulletedListItem.swift */,
-			);
-			path = ListPrefix;
-			sourceTree = "<group>";
-		};
-		B96E56D11CDA261600C992EC /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				B96E56D21CDA261600C992EC /* .gitkeep */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -281,6 +263,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61D0D0E943C0D313C0673CC1C7AB09AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BC0A8E3EAD178198D69AAD269C37330 /* CKTextView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6592CB244B8E7C7A5F27948E8F647B0F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,24 +279,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2A9A0A09B9878E9A8DF530659F5C083 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15BA3A838C7EF0A2550C02A6E521B064 /* CKTextView-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		08BA7D970E3E509AE2169DA284578692 /* CKTextView */ = {
+		9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D76E2C83382C1825176E837A071BF15 /* Build configuration list for PBXNativeTarget "CKTextView" */;
+			buildConfigurationList = 75FD4DDDDEA4157E8B296F8C2884B93A /* Build configuration list for PBXNativeTarget "CKTextView" */;
 			buildPhases = (
-				380C29E1447A8877CECD5048EF6DE78F /* Sources */,
-				668F438662321186F3E4C0A64E109FBC /* Frameworks */,
-				D2A9A0A09B9878E9A8DF530659F5C083 /* Headers */,
+				49491CB6BD76EDFC296A43BFAD902D71 /* Sources */,
+				0C0AB8DC820F54EED1BDD0A522B0DFA6 /* Frameworks */,
+				61D0D0E943C0D313C0673CC1C7AB09AA /* Headers */,
 			);
 			buildRules = (
 			);
@@ -374,7 +356,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				08BA7D970E3E509AE2169DA284578692 /* CKTextView */,
+				9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */,
 				E4C707F93E3754D22785E33CE1111F40 /* Pods-CKTextView_Example */,
 				ADB09C98456D627748695F551309EE41 /* Pods-CKTextView_Tests */,
 			);
@@ -382,17 +364,17 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		380C29E1447A8877CECD5048EF6DE78F /* Sources */ = {
+		49491CB6BD76EDFC296A43BFAD902D71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9BB9D2F1CE1BBFD003068CD /* BaseListInfoStore.swift in Sources */,
-				B90235AD1CE07FE000B093D7 /* BaseListItem.swift in Sources */,
-				B9B593571CE38E4C00CF318D /* BulletedListItem.swift in Sources */,
-				1E5E2737B44DCABAAE6D57DD41A577CF /* CKTextUtil.swift in Sources */,
-				B57D07FCECF3809172C68666408D1CEE /* CKTextView-dummy.m in Sources */,
-				B936C7EB1CDAD05E008CB7AE /* NumberedListItem.swift in Sources */,
-				0E29922D69A7C503BC4CDB390B025DC5 /* CKTextView.swift in Sources */,
+				0DB38609E61B8711962466906F721C0A /* BaseListInfoStore.swift in Sources */,
+				68B936916C30CC1EA86F7265D9D850E0 /* BaseListItem.swift in Sources */,
+				3DE0F289AE3F352A73A82808327ADD4F /* BulletedListItem.swift in Sources */,
+				0540A951E6F3EE83B4234201D741BCBF /* CKTextUtil.swift in Sources */,
+				031308C994F548D9022AB957BC9B9494 /* CKTextView-dummy.m in Sources */,
+				256ABFE913675C0E0D7BF5527EDCBF58 /* CKTextView.swift in Sources */,
+				4A94A5A0D903F47901A33A378242A364 /* NumberedListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,181 +400,19 @@
 		86CCDA81E3F7282921173683997805B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextView;
-			target = 08BA7D970E3E509AE2169DA284578692 /* CKTextView */;
+			target = 9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */;
 			targetProxy = 5E21FC59C87B736BF096EF30E55B2AAA /* PBXContainerItemProxy */;
 		};
 		DAAB96B48FAF25E3957D2988E26EF878 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextView;
-			target = 08BA7D970E3E509AE2169DA284578692 /* CKTextView */;
+			target = 9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */;
 			targetProxy = 7A78D222BD4B99311782220043C9367D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0501020F4955C3C3690D7989DBECFEAB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = CKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		07FE368CFE56AA9C5E937322E794AF70 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0F7D087E22831D1EC9A29A98DE24C349 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8809846A689D8A644D47DAB7795DFA3C /* Pods-CKTextView_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Example/Pods-CKTextView_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CKTextView_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		372FF5048FF42C3A7A18B70A30D785C1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		63FC5226CC88AECCE08A511B985319FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F60E16DBACF140DF7DFBDCCE38FC944 /* Pods-CKTextView_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Tests/Pods-CKTextView_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CKTextView_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		70F0378D63DE3D2DCC739550669BD46A /* Debug */ = {
+		2CE16AC72762C01C5DC595053F1F2EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -626,14 +446,43 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		9315812EA2DFFB71CFFAAC9CD7BE4942 /* Debug */ = {
+		4188D3619D43CCAEE16169A411EFC1DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		43E7BDF119984CB2720E1B83939D2008 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 08A7B519483D0AA0101E177E5D75B289 /* Pods-CKTextView_Tests.debug.xcconfig */;
 			buildSettings = {
@@ -648,7 +497,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Tests/Pods-CKTextView_Tests.modulemap";
@@ -667,7 +516,103 @@
 			};
 			name = Debug;
 		};
-		AD486C5C400A4EE431E378312E7D85DA /* Debug */ = {
+		50D60D79221787DC208110807890DBF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8809846A689D8A644D47DAB7795DFA3C /* Pods-CKTextView_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Example/Pods-CKTextView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CKTextView_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		536A93928E6FA7EE7B2354A4B5107A5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6E0430C7FCEB8B3CC9AAB80B29D05AAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F60E16DBACF140DF7DFBDCCE38FC944 /* Pods-CKTextView_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Tests/Pods-CKTextView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CKTextView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C62C98BB6943BD451236B056C9965533 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0275138769CDFA056585EBFB8AEB7516 /* Pods-CKTextView_Example.debug.xcconfig */;
 			buildSettings = {
@@ -682,7 +627,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-CKTextView_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CKTextView_Example/Pods-CKTextView_Example.modulemap";
@@ -701,14 +646,60 @@
 			};
 			name = Debug;
 		};
+		C6544A1F1139551CE6C6C9B43404CFA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				70F0378D63DE3D2DCC739550669BD46A /* Debug */,
-				372FF5048FF42C3A7A18B70A30D785C1 /* Release */,
+				2CE16AC72762C01C5DC595053F1F2EF4 /* Debug */,
+				C6544A1F1139551CE6C6C9B43404CFA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75FD4DDDDEA4157E8B296F8C2884B93A /* Build configuration list for PBXNativeTarget "CKTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536A93928E6FA7EE7B2354A4B5107A5F /* Debug */,
+				4188D3619D43CCAEE16169A411EFC1DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -716,17 +707,8 @@
 		8786A77BE1DECEBED41DCA887A493472 /* Build configuration list for PBXNativeTarget "Pods-CKTextView_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9315812EA2DFFB71CFFAAC9CD7BE4942 /* Debug */,
-				63FC5226CC88AECCE08A511B985319FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8D76E2C83382C1825176E837A071BF15 /* Build configuration list for PBXNativeTarget "CKTextView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				07FE368CFE56AA9C5E937322E794AF70 /* Debug */,
-				0501020F4955C3C3690D7989DBECFEAB /* Release */,
+				43E7BDF119984CB2720E1B83939D2008 /* Debug */,
+				6E0430C7FCEB8B3CC9AAB80B29D05AAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -734,8 +716,8 @@
 		C634FC5B74DF5C84A3D67DF8937FE7FD /* Build configuration list for PBXNativeTarget "Pods-CKTextView_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD486C5C400A4EE431E378312E7D85DA /* Debug */,
-				0F7D087E22831D1EC9A29A98DE24C349 /* Release */,
+				C62C98BB6943BD451236B056C9965533 /* Debug */,
+				50D60D79221787DC208110807890DBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

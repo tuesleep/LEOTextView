@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'CKTextView_Example' do
   pod 'CKTextView', :path => '../'
+  
 end
 
 target 'CKTextView_Tests' do

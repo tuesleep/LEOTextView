@@ -30,8 +30,6 @@ class ViewController: UIViewController {
         ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
         
-        ckTextView?.layoutManager.ensureGlyphsForGlyphRange(NSMakeRange(0, 3))
-        
     }
     
     override func didReceiveMemoryWarning() {

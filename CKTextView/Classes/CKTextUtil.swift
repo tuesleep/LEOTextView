@@ -97,6 +97,4 @@ class CKTextUtil: NSObject {
         
     }
     
-    
-    
 }

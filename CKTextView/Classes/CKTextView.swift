@@ -25,7 +25,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // Save Y and ListItem relationship.
     var listPrefixContainerMap: Dictionary<CGFloat, BaseListItem> = [:]
-
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         initialized()
@@ -252,5 +252,4 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
         }
     }
-    
 }
