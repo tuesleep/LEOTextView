@@ -13,6 +13,15 @@ enum ListKeywordType {
 }
 
 class CKTextUtil: NSObject {
+    class func isSpace(text: String) -> Bool
+    {
+        if text == " " {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     class func isReturn(text: String) -> Bool
     {
         if text == "\n" {
@@ -57,7 +66,7 @@ class CKTextUtil: NSObject {
     
     class func typeForListKeywordWithLocation(location: Int, textView: UITextView) -> ListType
     {
-        let checkArray = [("1. ", 3, ListType.Numbered), ("* ", 2, ListType.Bulleted)]
+        let checkArray = [("1.", 2, ListType.Numbered), ("*", 1, ListType.Bulleted)]
         
         for (index, value) in checkArray.enumerate() {
             let keyword = value.0

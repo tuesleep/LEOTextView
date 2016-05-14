@@ -31,9 +31,6 @@ class BulletedListItem: BaseListItem {
             self.listInfoStore = listInfoStore
             self.listInfoStore!.listEndByY = keyY
         }
-        
-        // First fill or fill after change endY.
-        self.listInfoStore?.fillBezierPath(ckTextView)
     }
     
     // MARK: Override

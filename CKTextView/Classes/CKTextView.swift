@@ -14,17 +14,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var currentCursorType: ListType = .Text
     
     var prevCursorPoint: CGPoint?
-    var prevCursorY: CGFloat?
     
     var willReturnTouch: Bool = false
     var willBackspaceTouch: Bool = false
     var willChangeText: Bool = false
-    var willDeletedString: String?
-    
-    var isFirstLocationInLine: Bool = false
     
     // Save Y and ListItem relationship.
-    var listPrefixContainerMap: Dictionary<CGFloat, BaseListItem> = [:]
+    var listPrefixContainerMap: Dictionary<String, BaseListItem> = [:]
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -44,7 +40,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
     }
     
-    // MARK: Setups
+    func saveToListPrefixContainerY(y: CGFloat, item: BaseListItem)
+    {
+        listPrefixContainerMap[String(y)] = item
+    }
+    
+    func itemFromListPrefixContainerWithY(y:CGFloat) -> BaseListItem?
+    {
+        return listPrefixContainerMap[String(y)]
+    }
+    
+    // MARK: - Setups
     
     func setupNotificationCenterObservers()
     {
@@ -55,13 +61,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         print("Will delete by Y: \(y)")
         
-        if let item = listPrefixContainerMap[y]
+        if let item = itemFromListPrefixContainerWithY(y)
         {
             item.destory(self, byBackspace: byBackspace, withY: y)
             
             // Clear self container.
             for (index, value) in item.keyYSet.enumerate() {
-                listPrefixContainerMap.removeValueForKey(value)
+                listPrefixContainerMap.removeValueForKey(String(value))
             }
             
             // reload
@@ -69,12 +75,130 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
-    // MARK: Change even
+    // MARK: - Change even
     
     func saveToPrefixContainerWithItem(item: BaseListItem) {
         for (index, value) in item.keyYSet.enumerate() {
-            listPrefixContainerMap[value] = item
+            listPrefixContainerMap[String(value)] = item
         }
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        willChangeText = true
+        
+        if CKTextUtil.isSpace(text) {
+            return handleSpaceEvent(textView)
+        } else if CKTextUtil.isReturn(text) {
+            willReturnTouch = true
+            return handleReturnEvent(textView)
+        } else if CKTextUtil.isBackspace(text) {
+            willBackspaceTouch = true
+            return handleBackspaceEvent(textView)
+        }
+        
+        return true
+    }
+
+    public func textViewDidChangeSelection(textView: UITextView) {
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        changeCurrentCursorPointIfNeeded(cursorPoint)
+    }
+    
+    public func textViewDidChange(textView: UITextView)
+    {
+        willChangeText = false
+        willReturnTouch = false
+        willBackspaceTouch = false
+    }
+    
+    // MARK: - Event Handler
+    
+    func handleSpaceEvent(textView: UITextView) -> Bool
+    {
+        let cursorLocation = textView.selectedRange.location
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        
+        // Keyword input will convert to List style.
+        switch CKTextUtil.typeForListKeywordWithLocation(cursorLocation, textView: textView) {
+        case .Numbered:
+            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
+            
+            let numberedListItem = NumberedListItem(keyY: cursorPoint.y, number: 1, ckTextView: self, listInfoStore: nil)
+            
+            numberedListItem.listInfoStore?.fillBezierPath(self)
+            
+            // Save to container
+            saveToPrefixContainerWithItem(numberedListItem)
+            currentCursorType = ListType.Numbered
+            
+            //textView.selectedRange = NSMakeRange(cursorLocation - 3, 0)
+            
+            break
+        case .Bulleted:
+            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 1, 1), textView: textView)
+            
+            let bulletedListItem = BulletedListItem(keyY: cursorPoint.y, ckTextView: self, listInfoStore: nil)
+            
+            bulletedListItem.listInfoStore?.fillBezierPath(self)
+            
+            // Save to container
+            saveToPrefixContainerWithItem(bulletedListItem)
+            currentCursorType = ListType.Bulleted
+            
+            //textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
+            
+            break
+        case .Text:
+            break
+        }
+        
+        return false
+    }
+    
+    func handleReturnEvent(textView: UITextView) -> Bool
+    {
+        let cursorLocation = textView.selectedRange.location
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        let lineHeight = textView.font!.lineHeight
+        
+        let isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
+        
+        if currentCursorType != ListType.Text
+        {
+            if isFirstLocationInLine {
+                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
+                currentCursorType = .Text
+                willReturnTouch = false
+                
+                return false
+            } else {
+                if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
+                    let nextItem = item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
+                    saveToPrefixContainerWithItem(nextItem)
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    func handleBackspaceEvent(textView: UITextView) -> Bool
+    {
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        
+        if currentCursorType != ListType.Text {
+            let cursorLocation = textView.selectedRange.location
+            
+            if cursorLocation == 0 {
+                // If delete first character.
+                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
+            }
+        }
+        
+        return true
     }
     
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
@@ -85,13 +209,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard prevCursorPoint != nil else { return }
         
         if prevCursorPoint!.y != cursorPoint.y {
-            prevCursorY = prevCursorPoint!.y
-            
             guard !willReturnTouch else { return }
             
             // Text not change, only normal cursor moving.. Or backspace touched.
             if !willChangeText || willBackspaceTouch {
-                let item = listPrefixContainerMap[cursorPoint.y]
+                let item = itemFromListPrefixContainerWithY(cursorPoint.y)
                 
                 currentCursorType = item == nil ? ListType.Text : item!.listType()
                 
@@ -101,7 +223,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Text changed, something happend.
             // Handle too long string typed.. add moreline bezierPath space fill. and set key to container.
             if !willBackspaceTouch {
-                if let item = listPrefixContainerMap[prevCursorY!]
+                if let item = itemFromListPrefixContainerWithY(prevCursorPoint!.y)
                 {
                     // key Y of New line add to container.
                     item.keyYSet.insert(cursorPoint.y)
@@ -110,138 +232,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 }
             }
             
-            print("cursorY changed to: \(currentCursorPoint?.y), prev cursorY: \(prevCursorY)")
+            print("cursorY changed to: \(currentCursorPoint?.y), prev cursorY: \(prevCursorPoint!.y)")
         }
     }
     
-    // MARK: UITextViewDelegate
-    
-    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
-    {
-        let cursorLocation = textView.selectedRange.location
-        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
-        
-        isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
-        
-        if CKTextUtil.isReturn(text) {
-            willReturnTouch = true
-            
-            isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
-        
-            if (currentCursorType != ListType.Text) && isFirstLocationInLine
-            {
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
-                currentCursorType = .Text
-                willReturnTouch = false
-                
-                return false
-            }
-        }
-        if CKTextUtil.isBackspace(text) {
-            willBackspaceTouch = true
-            
-            let cursorLocation = textView.selectedRange.location
-            
-            if cursorLocation == 0 {
-                // If delete first character.
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
-                
-            } else {
-                let deleteRange = Range(start: textView.text.startIndex.advancedBy(range.location), end: textView.text.startIndex.advancedBy(range.location + range.length))
-                willDeletedString = textView.text.substringWithRange(deleteRange)
-            }
-        }
-        
-        willChangeText = true
-        
-        return true
-    }
-
-    public func textViewDidChange(textView: UITextView)
-    {
-        guard currentCursorPoint != nil else { return }
-        
-        let cursorLocation = textView.selectedRange.location
-        
-        print("cursorLocation: \(cursorLocation)")
-        
-        let keyY = currentCursorPoint!.y
-        
-        // Keyword input will convert to List style.
-        switch CKTextUtil.typeForListKeywordWithLocation(cursorLocation, textView: textView) {
-        case .Numbered:
-            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 3, 3), textView: textView)
-            
-            let numberedListItem = NumberedListItem(keyY: keyY, number: 1, ckTextView: self, listInfoStore: nil)
-            
-            // Save to container
-            saveToPrefixContainerWithItem(numberedListItem)
-            currentCursorType = ListType.Numbered
-            
-            textView.selectedRange = NSMakeRange(cursorLocation - 3, 0)
-            
-            break
-        case .Bulleted:
-            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
-            
-            let bulletedListItem = BulletedListItem(keyY: keyY, ckTextView: self, listInfoStore: nil)
-            
-            // Save to container
-            saveToPrefixContainerWithItem(bulletedListItem)
-            currentCursorType = ListType.Bulleted
-            
-            textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
-            
-            break
-        case .Text:
-            break
-        }
-    
-        // Handle return operate.
-        if willReturnTouch {
-            if currentCursorType != ListType.Text {
-                if let item = listPrefixContainerMap[prevCursorY!] {
-                    let nextItem = item.createNextItemWithY(currentCursorPoint!.y, ckTextView: self)
-                    saveToPrefixContainerWithItem(nextItem)
-                }
-            }
-            
-            willReturnTouch = false
-        }
-        // Handle backspace operate.
-        if willBackspaceTouch {
-            // Delete list prefix
-            guard willDeletedString != nil && willDeletedString!.containsString("\n") else { return }
-            guard prevCursorY != nil else { return }
-            
-            deleteListPrefixWithY(prevCursorY!, cursorPoint: currentCursorPoint!, byBackspace: true)
-            
-            willDeletedString = nil
-            willBackspaceTouch = false
-        }
-        
-        willChangeText = false
-    }
-    
-    public func textViewDidChangeSelection(textView: UITextView) {
-        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
-        changeCurrentCursorPointIfNeeded(cursorPoint)
-    }
-    
-    // MARK: Copy & Paste
+    // MARK: - Copy & Paste
     
 //    public override func paste(sender: AnyObject?) {
 //        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
 //    }
-
-    // MARK: BarButtonItem action
     
-    func listButtonAction(sender: UIBarButtonItem)
-    {
-        print("listButtonAction")
-    }
-    
-    // MARK: KVO
+    // MARK: - KVO
     
     func keyboardWillShow(notification: NSNotification)
     {
