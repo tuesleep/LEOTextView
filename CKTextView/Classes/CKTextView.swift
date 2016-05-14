@@ -103,8 +103,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
 
     public func textViewDidChangeSelection(textView: UITextView) {
-        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
-        changeCurrentCursorPointIfNeeded(cursorPoint)
+//        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+//        changeCurrentCursorPointIfNeeded(cursorPoint)
     }
     
     public func textViewDidChange(textView: UITextView)
@@ -134,9 +134,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
             
-            //textView.selectedRange = NSMakeRange(cursorLocation - 3, 0)
+            return false
             
-            break
         case .Bulleted:
             CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 1, 1), textView: textView)
             
@@ -148,14 +147,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             saveToPrefixContainerWithItem(bulletedListItem)
             currentCursorType = ListType.Bulleted
             
-            //textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
-            
-            break
+            return false
         case .Text:
-            break
+            return true
         }
         
-        return false
+        return true
     }
     
     func handleReturnEvent(textView: UITextView) -> Bool
