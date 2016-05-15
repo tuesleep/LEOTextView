@@ -7,6 +7,8 @@
 
 > NOTE: This project still developing.. 
 
+Want to build a UITextView that have List feature, just look like 'Notes' app on the iPhone with iOS 9.
+
 ## WANT FEATURES
 
 * *Numbered List*
