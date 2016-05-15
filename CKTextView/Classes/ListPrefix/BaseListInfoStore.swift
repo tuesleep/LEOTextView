@@ -39,8 +39,10 @@ class BaseListInfoStore: NSObject {
         
         let lineHeight = ckTextView.font!.lineHeight
         
+        let width = Int(lineHeight) + 10
+        
         let origin = CGPoint(x: 0, y: listStartByY)
-        let size = CGSize(width: lineHeight + 10, height: listEndByY - listStartByY + 1)
+        let size = CGSize(width: CGFloat(width), height: listEndByY - listStartByY + 1)
         let rect = CGRect(origin: origin, size: size)
         
         bezierPath = UIBezierPath(rect: rect)

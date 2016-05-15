@@ -70,8 +70,9 @@ class BulletedListItem: BaseListItem {
         var width = lineHeight + 10
         
         label = UILabel(frame: CGRect(x: 8, y: keyY, width: width, height: lineHeight))
-        label!.text = "  ●"
         label!.font = ckTextView.font!
+        label?.textAlignment = .Center
+        label!.text = "●"
         
         // Append label to textView.
         ckTextView.addSubview(label!)

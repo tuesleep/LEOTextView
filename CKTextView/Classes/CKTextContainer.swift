@@ -13,8 +13,8 @@ class CKTextContainer: NSTextContainer {
     {
         let superReturnRect = super.lineFragmentRectForProposedRect(proposedRect, atIndex: characterIndex, writingDirection: baseWritingDirection, remainingRect: remainingRect)
         
+        print("lineFragmentRect: \(superReturnRect)")
+        
         return superReturnRect
     }
-    
-    
 }

@@ -202,7 +202,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         if currentCursorType != ListType.Text {
             let cursorLocation = textView.selectedRange.location
             
-            if cursorLocation == 0 {
+            let isFirstLocationInLine = CKTextUtil.isFirstLocationInLineWithLocation(cursorLocation, textView: textView)
+            
+            if isFirstLocationInLine {
                 // If delete first character.
                 deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
             }

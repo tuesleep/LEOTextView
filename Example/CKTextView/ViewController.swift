@@ -46,8 +46,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func styleButtonAction(sender: UIBarButtonItem) {
-        let bezierPath = UIBezierPath(rect: CGRect(x: 0, y: 80, width: 40, height: 200))
-        ckTextView?.textContainer.exclusionPaths.append(bezierPath)
+        
     }
     
 }
