@@ -103,8 +103,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
 
     public func textViewDidChangeSelection(textView: UITextView) {
-//        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
-//        changeCurrentCursorPointIfNeeded(cursorPoint)
+        let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
+        changeCurrentCursorPointIfNeeded(cursorPoint)
     }
     
     public func textViewDidChange(textView: UITextView)
