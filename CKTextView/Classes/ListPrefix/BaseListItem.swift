@@ -50,7 +50,10 @@ class BaseListItem: NSObject
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String>
+    {
+        var needClearYSet = Set<String>()
+        
         // Backspace destory this item.
         if byBackspace {
             // handle first item delete
@@ -61,19 +64,18 @@ class BaseListItem: NSObject
                 firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 
                 if firstItem.nextItem != nil {
-                    firstItem.nextItem?.firstKeyY = firstItem.firstKeyY
                     firstItem = firstItem.nextItem!
+                    // Clear prev item, now it's first item.
+                    firstItem.prevItem = nil
                     
                     resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
-                } else {
-                    // Prev item and next item all nil, self is a deleting item of last
-                    firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 }
                 
             } else {
                 // Link prev item with next item.
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
+                    self.nextItem?.prevItem = self.prevItem
                 } else {
                     self.prevItem?.nextItem = nil
                 }
@@ -87,6 +89,10 @@ class BaseListItem: NSObject
             }
             
         } else {
+            
+            // TODO: Debug
+            /*
+            
             // divide list by this Y
             var firstItems: Array<BaseListItem> = []
             
@@ -114,7 +120,10 @@ class BaseListItem: NSObject
             for item in firstItems {
                 resetAllItemYWithFirstItem(item, ckTextView: ckTextView)
             }
+             */
         }
+        
+        return needClearYSet
     }
     
     func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) {
