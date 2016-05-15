@@ -24,10 +24,9 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        ckTextView = CKTextView()
+        ckTextView = CKTextView.ck_textView(self.containerView.bounds)
         ckTextView?.font = UIFont.init(name: "Helvetica", size: 17)
         
-        ckTextView!.frame = self.containerView.bounds
         self.containerView.addSubview(ckTextView!)
         
     }

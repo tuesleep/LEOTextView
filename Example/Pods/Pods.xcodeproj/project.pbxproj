@@ -20,6 +20,7 @@
 		82C2F1F3B00CA0BDDFA5B49BD0D66166 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		97DE039907839F8E3F3DE3D532E93AA0 /* Pods-CKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B59F1B8978864464BB983CE112DDAC8D /* Pods-CKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */; };
+		B9E47CBB1CE8A32800901F97 /* CKTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */; };
 		C9E4CE9A53BF7DCB2C935C3AB11C20AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		EF61969E5CC8CED4974A5F453D23530F /* Pods-CKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		B0020800453787ECDA846694C78E396D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
 		B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CKTextView.xcconfig; sourceTree = "<group>"; };
 		B43A0C9ADF0A2B61D67E490CE751A11E /* Pods-CKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Tests.modulemap"; sourceTree = "<group>"; };
+		B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextContainer.swift; sourceTree = "<group>"; };
 		C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
 		D52164F0626674D96A3440ABEA255A5E /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
 		DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */,
 				0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */,
+				B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */,
 				5EFEF6B8459561B799FDBF86E5891864 /* ListPrefix */,
 			);
 			path = Classes;
@@ -374,6 +377,7 @@
 				0540A951E6F3EE83B4234201D741BCBF /* CKTextUtil.swift in Sources */,
 				031308C994F548D9022AB957BC9B9494 /* CKTextView-dummy.m in Sources */,
 				256ABFE913675C0E0D7BF5527EDCBF58 /* CKTextView.swift in Sources */,
+				B9E47CBB1CE8A32800901F97 /* CKTextContainer.swift in Sources */,
 				4A94A5A0D903F47901A33A378242A364 /* NumberedListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
