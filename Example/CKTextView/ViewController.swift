@@ -24,15 +24,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let ckTextContainer = CKTextContainer(size: CGSize(width: CGRectGetWidth(self.containerView.bounds), height: CGFloat.max))
-        
-        let layoutManager = NSLayoutManager()
-        layoutManager.addTextContainer(ckTextContainer)
-        
-        let textStorage = NSTextStorage()
-        textStorage.addLayoutManager(layoutManager)
-        
-        ckTextView = CKTextView(frame: self.containerView.bounds, textContainer: ckTextContainer)
+        ckTextView = CKTextView.ck_textView(self.containerView.bounds)
         ckTextView?.font = UIFont.init(name: "Helvetica", size: 17)
         
         self.containerView.addSubview(ckTextView!)

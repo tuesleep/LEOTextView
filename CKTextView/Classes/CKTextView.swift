@@ -22,11 +22,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // Save Y and ListItem relationship.
     var listPrefixContainerMap: Dictionary<String, BaseListItem> = [:]
     
-    public override func layoutSubviews() {
+    public class func ck_textView(frame: CGRect) -> CKTextView
+    {
+        let ckTextContainer = CKTextContainer(size: CGSize(width: CGRectGetWidth(frame), height: CGFloat.max))
         
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(ckTextContainer)
+        
+        let textStorage = NSTextStorage()
+        textStorage.addLayoutManager(layoutManager)
+        
+        return CKTextView(frame: frame, textContainer: ckTextContainer)
     }
     
-    override public init(frame: CGRect, textContainer: NSTextContainer?) {
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         initialized()
     }
