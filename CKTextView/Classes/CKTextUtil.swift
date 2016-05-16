@@ -40,9 +40,28 @@ class CKTextUtil: NSObject {
         }
     }
     
+    class func isEmptyLine(location:Int, textView: UITextView) -> Bool
+    {
+        let text = textView.text
+        
+        if text.endIndex == text.startIndex.advancedBy(location) {
+            // last char of text.
+            return true
+        }
+        
+        let nextCharRange = Range(text.startIndex.advancedBy(location) ..< text.startIndex.advancedBy(location + 1))
+        let keyChar = text.substringWithRange(nextCharRange)
+        
+        if keyChar == "\n" {
+            return true
+        }
+        
+        return false
+    }
+    
     class func clearTextByRange(range: NSRange, textView: UITextView)
     {
-        let clearRange = Range(start: textView.text.startIndex.advancedBy(range.location), end: textView.text.startIndex.advancedBy(range.location + range.length))
+        let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
         textView.text.replaceRange(clearRange, with: "")
     }
     
@@ -54,7 +73,7 @@ class CKTextUtil: NSObject {
         
         let textString = textView.text
         
-        let range: Range = Range(start: textString.startIndex.advancedBy(location - 1), end: textString.startIndex.advancedBy(location))
+        let range: Range = Range(textString.startIndex.advancedBy(location - 1) ..< textString.startIndex.advancedBy(location))
         let keyChar = textView.text.substringWithRange(range)
         
         if keyChar == "\n" {
@@ -68,7 +87,7 @@ class CKTextUtil: NSObject {
     {
         let checkArray = [("1.", 2, ListType.Numbered), ("*", 1, ListType.Bulleted)]
         
-        for (index, value) in checkArray.enumerate() {
+        for (_, value) in checkArray.enumerate() {
             let keyword = value.0
             let length = value.1
             let listType = value.2
@@ -88,7 +107,7 @@ class CKTextUtil: NSObject {
         guard location >= length && CKTextUtil.isFirstLocationInLineWithLocation(location - length, textView: textView) else { return "" }
         
         let textString = textView.text
-        let range: Range = Range(start: textString.startIndex.advancedBy(location - length), end: textString.startIndex.advancedBy(location))
+        let range: Range = Range(textString.startIndex.advancedBy(location - length) ..< textString.startIndex.advancedBy(location))
         let keyChars = textView.text.substringWithRange(range)
         
         return keyChars
