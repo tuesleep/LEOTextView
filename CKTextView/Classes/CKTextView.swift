@@ -70,17 +70,28 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
     }
     
-    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint, byBackspace: Bool)
+    /**
+        Do something about delete list item.
+     
+        - Returns: return bool value defined is delete first item of list.
+     */
+    func deleteListPrefixWithY(y: CGFloat, cursorPoint: CGPoint, byBackspace: Bool) -> Bool
     {
+        var isDeleteFirstItem = false
+        
         print("Will delete by Y: \(y)")
         
         if let item = itemFromListPrefixContainerWithY(y)
         {
+            isDeleteFirstItem = item.firstKeyY == item.listInfoStore!.listStartByY
+            
             item.destory(self, byBackspace: byBackspace, withY: y)
             
             // reload
             changeCurrentCursorPointIfNeeded(cursorPoint)
         }
+        
+        return isDeleteFirstItem
     }
     
     // MARK: - Change even
@@ -203,7 +214,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if isFirstLocationInLine {
                 // If delete first character.
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
+                let isDeleteFirstItem = deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
+                
+                if isDeleteFirstItem {
+                    // Do not delete prev '\n' char when first item deleting.
+                    return false
+                }
             }
         }
         

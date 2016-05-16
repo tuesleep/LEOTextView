@@ -86,6 +86,10 @@ class BaseListItem: NSObject
             // delete first item of list, this item's next item become a first item.
             if firstItem.prevItem == nil {
                 if firstItem.nextItem != nil {
+//                    firstItem.nextItem!.firstKeyY = firstItem.firstKeyY
+                    
+                    
+                    
                     firstItem = firstItem.nextItem!
                     // Clear prev item, now it's first item.
                     firstItem.prevItem = nil
