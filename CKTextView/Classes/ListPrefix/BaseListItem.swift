@@ -116,8 +116,6 @@ class BaseListItem: NSObject
             }
             
         } else {
-            
-            // TODO: Debug
             // divide list by this Y
             var firstItems: Array<BaseListItem> = []
             
@@ -134,18 +132,20 @@ class BaseListItem: NSObject
             if self.nextItem != nil {
                 self.nextItem?.prevItem = nil
                 var firstItem = self.nextItem!
-                
-                firstItem.firstKeyY = y
-                
                 firstItems.append(firstItem)
             }
             
-            self.listInfoStore?.clearBezierPath(ckTextView)
-            
             for item in firstItems {
+                item.listInfoStore?.clearBezierPath(ckTextView)
+                item.listInfoStore = BaseListInfoStore(listStartByY: 0, listEndByY: 0)
+                
                 resetAllItemYWithFirstItem(item, ckTextView: ckTextView)
             }
             
+            if firstItems.count == 0 {
+                // Handle last item destroy event.
+                self.listInfoStore?.clearBezierPath(ckTextView)
+            }
         }
     }
     
@@ -204,6 +204,8 @@ class BaseListItem: NSObject
             
         } else {
             while item != nil {
+                // sync listInfoStore object.
+                item!.listInfoStore = firstItem.listInfoStore
                 item!.firstKeyY = moveY
                 
                 let newKeyYArray = item!.keyYSet.map({ (value) -> CGFloat in

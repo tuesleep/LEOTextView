@@ -108,12 +108,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         willChangeText = true
         
-        if CKTextUtil.isSpace(text) {
+        if CKTextUtil.isSpace(text)
+        {
             return handleSpaceEvent(textView)
-        } else if CKTextUtil.isReturn(text) {
+        }
+        else if CKTextUtil.isReturn(text)
+        {
             willReturnTouch = true
             return handleReturnEvent(textView)
-        } else if CKTextUtil.isBackspace(text) {
+        }
+        else if CKTextUtil.isBackspace(text)
+        {
             willBackspaceTouch = true
             return handleBackspaceEvent(textView)
         }
@@ -154,6 +159,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Save to container
             saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
+            willChangeText = false
             
             return false
             
@@ -167,10 +173,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Save to container
             saveToPrefixContainerWithItem(bulletedListItem)
             currentCursorType = ListType.Bulleted
+            willChangeText = false
             
             return false
         case .Checkbox:
             // TODO: Checkbox need to be create.
+            willChangeText = false
+            
             return false
         case .Text:
             return true
@@ -195,6 +204,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
                     currentCursorType = .Text
                     willReturnTouch = false
+                    willChangeText = false
                     
                     return false
                 } else {
@@ -230,6 +240,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 if isDeleteFirstItem {
                     // Do not delete prev '\n' char when first item deleting.
+                    willChangeText = false
                     return false
                 }
             }
