@@ -74,11 +74,11 @@ class BaseListItem: NSObject
     /// Must call super in your implementation.
     /// 
     /// - Returns: A set of y that need to be delete.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat)
+    func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat)
     {
         clearContainerWithAllYSet(ckTextView)
         
-        // Backspace destory this item.
+        // Backspace destroy this item.
         if byBackspace {
             // handle first item delete
             var firstItem = self
@@ -86,16 +86,15 @@ class BaseListItem: NSObject
             // delete first item of list, this item's next item become a first item.
             if firstItem.prevItem == nil {
                 if firstItem.nextItem != nil {
-//                    firstItem.nextItem!.firstKeyY = firstItem.firstKeyY
-                    
-                    
-                    
                     firstItem = firstItem.nextItem!
                     // Clear prev item, now it's first item.
                     firstItem.prevItem = nil
+                    
+                    resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                } else {
+                    // List all item destroy.
+                    firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 }
-                
-                resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 
             } else {
                 // Link prev item with next item.
@@ -163,7 +162,7 @@ class BaseListItem: NSObject
         let minY = self.listInfoStore!.listStartByY
         
         while maxY >= minY {
-            needClearYSet.insert(String(Int(maxY)))
+            needClearYSet.insert(String(format: "%.1f", maxY))
             maxY = maxY - lineHeight
         }
         

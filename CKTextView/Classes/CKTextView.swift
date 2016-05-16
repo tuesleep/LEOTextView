@@ -55,12 +55,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func saveToListPrefixContainerY(y: CGFloat, item: BaseListItem)
     {
-        listPrefixContainerMap[String(y)] = item
+        listPrefixContainerMap[String(format: "%.1f", y)] = item
     }
     
     func itemFromListPrefixContainerWithY(y:CGFloat) -> BaseListItem?
     {
-        return listPrefixContainerMap[String(y)]
+        return listPrefixContainerMap[String(format: "%.1f", y)]
     }
     
     // MARK: - Setups
@@ -85,7 +85,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         {
             isDeleteFirstItem = item.firstKeyY == item.listInfoStore!.listStartByY
             
-            item.destory(self, byBackspace: byBackspace, withY: y)
+            item.destroy(self, byBackspace: byBackspace, withY: y)
             
             // reload
             changeCurrentCursorPointIfNeeded(cursorPoint)
@@ -97,8 +97,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // MARK: - Change even
     
     func saveToPrefixContainerWithItem(item: BaseListItem) {
-        for (_, value) in item.keyYSet.enumerate() {
-            listPrefixContainerMap[String(value)] = item
+        for (_, keyY) in item.keyYSet.enumerate() {
+            listPrefixContainerMap[String(format: "%.1f", keyY)] = item
         }
     }
     

@@ -46,8 +46,8 @@ class BulletedListItem: BaseListItem {
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+    override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
     }

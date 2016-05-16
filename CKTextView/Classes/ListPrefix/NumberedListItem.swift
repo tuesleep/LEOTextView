@@ -52,8 +52,8 @@ class NumberedListItem: BaseListItem {
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        let needClearYSet = super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+    override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        let needClearYSet = super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
     }
