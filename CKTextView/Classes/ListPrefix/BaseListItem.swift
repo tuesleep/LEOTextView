@@ -45,7 +45,7 @@ class BaseListItem: NSObject
         
         var firstItem = self;
         while firstItem.prevItem != nil {
-            firstItem = firstItem.prevItem as! BulletedListItem
+            firstItem = firstItem.prevItem!
         }
         
         clearContainerWithAllYSet(ckTextView)
@@ -65,7 +65,7 @@ class BaseListItem: NSObject
     }
     
     /// Must override this method
-    func reDrawGlyph(ckTextView: CKTextView) {
+    func reDrawGlyph(index: Int, ckTextView: CKTextView) {
         
     }
     
@@ -186,6 +186,11 @@ class BaseListItem: NSObject
         
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
+        var index = 0
+        
+        firstItem.reDrawGlyph(index, ckTextView: ckTextView)
+        index += 1
+        
         var moveY = firstItem.endYWithLineHeight(lineHeight)
         var item = firstItem.nextItem
         
@@ -206,7 +211,9 @@ class BaseListItem: NSObject
                     return thatY
                 })
                 item!.keyYSet = Set(newKeyYArray)
-                item!.reDrawGlyph(ckTextView)
+                
+                item!.reDrawGlyph(index, ckTextView: ckTextView)
+                index += 1
                 
                 ckTextView.saveToPrefixContainerWithItem(item!)
                 

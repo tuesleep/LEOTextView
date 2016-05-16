@@ -41,17 +41,13 @@ class NumberedListItem: BaseListItem {
     
     override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
         let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
-        self.nextItem = nextItem
-        nextItem.prevItem = self
-        
-        self.listInfoStore!.listEndByY = y
-        self.listInfoStore!.fillBezierPath(ckTextView)
-        
-
+        handleRelationWithNextItem(nextItem, ckTextView: ckTextView)
     }
     
-    override func reDrawGlyph(ckTextView: CKTextView) {
+    override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
         label?.removeFromSuperview()
+        
+        number = index + 1
         
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }

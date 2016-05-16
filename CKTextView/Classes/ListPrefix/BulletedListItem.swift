@@ -40,7 +40,7 @@ class BulletedListItem: BaseListItem {
         handleRelationWithNextItem(nextItem, ckTextView: ckTextView)
     }
     
-    override func reDrawGlyph(ckTextView: CKTextView) {
+    override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
         label?.removeFromSuperview()
         
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
