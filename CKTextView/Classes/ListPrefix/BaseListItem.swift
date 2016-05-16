@@ -52,10 +52,12 @@ class BaseListItem: NSObject
     /// Must call super in your implementation.
     /// 
     /// - Returns: A set of y that need to be delete.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<CGFloat>
+    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String>
     {
-        var needClearYSet = Set<CGFloat>()
-        var needSaveYSet = Set<CGFloat>()
+        let selfYSet = Set(self.keyYSet.map { String($0) })
+        
+        var needClearYSet = Set<String>()
+        var needSaveYSet = Set<String>()
         
         // Insert all Y of list to clearYSet.
         var maxY = self.listInfoStore!.listEndByY
@@ -63,7 +65,7 @@ class BaseListItem: NSObject
         let lineHeight = ckTextView.font!.lineHeight
         
         while maxY >= minY {
-            needClearYSet.insert(maxY)
+            needClearYSet.insert(String(Int(maxY)))
             maxY = maxY - lineHeight
         }
         
@@ -89,6 +91,8 @@ class BaseListItem: NSObject
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
                     self.nextItem?.prevItem = self.prevItem
+                    
+                    
                 } else {
                     self.prevItem?.nextItem = nil
                 }
@@ -137,7 +141,11 @@ class BaseListItem: NSObject
              */
         }
         
-        needClearYSet = needClearYSet.subtract(needSaveYSet)
+        if needSaveYSet.count == 0 {
+            needClearYSet = selfYSet
+        } else {
+            needClearYSet = needClearYSet.subtract(needSaveYSet)
+        }
         
         return needClearYSet
     }
@@ -147,12 +155,12 @@ class BaseListItem: NSObject
      
         - Returns: A set of y that is list type.
      */
-    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) -> Set<CGFloat> {
-        var needSaveYSet = Set<CGFloat>()
+    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) -> Set<String> {
+        var needSaveYSet = Set<String>()
         
         let lineHeight = ckTextView.font!.lineHeight
         
-        needSaveYSet.insert(firstItem.firstKeyY)
+        needSaveYSet.insert(String(Int(firstItem.firstKeyY)))
 
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
@@ -175,7 +183,9 @@ class BaseListItem: NSObject
                 item!.keyYSet = Set(newKeyYArray)
                 item!.reDrawGlyph(ckTextView)
                 
-                needSaveYSet = needSaveYSet.union(item!.keyYSet)
+                let keyYSetStringSet = Set(item!.keyYSet.map { String(Int($0)) })
+                
+                needSaveYSet = needSaveYSet.union(keyYSetStringSet)
                 
                 moveY = item!.endYWithLineHeight(lineHeight)
                 

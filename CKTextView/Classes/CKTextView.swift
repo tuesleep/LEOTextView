@@ -78,9 +78,15 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         {
             let needClearYSet = item.destory(self, byBackspace: byBackspace, withY: y)
             
+            print("That unluck y need to be remove: \(needClearYSet)")
+            
             // Clear self container.
             for (_, value) in needClearYSet.enumerate() {
-                listPrefixContainerMap.removeValueForKey(String(value))
+                if let item = listPrefixContainerMap[value] {
+                    
+                }
+                
+                listPrefixContainerMap.removeValueForKey(value)
             }
             
             // reload
@@ -118,6 +124,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public func textViewDidChangeSelection(textView: UITextView) {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         changeCurrentCursorPointIfNeeded(cursorPoint)
+        
+        print("Now! Cursor Type is: \(currentCursorType)")
     }
     
     public func textViewDidChange(textView: UITextView)
