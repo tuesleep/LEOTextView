@@ -118,8 +118,6 @@ class BaseListItem: NSObject
         } else {
             
             // TODO: Debug
-            /*
-            
             // divide list by this Y
             var firstItems: Array<BaseListItem> = []
             
@@ -147,7 +145,7 @@ class BaseListItem: NSObject
             for item in firstItems {
                 resetAllItemYWithFirstItem(item, ckTextView: ckTextView)
             }
-             */
+            
         }
     }
     

@@ -40,6 +40,25 @@ class CKTextUtil: NSObject {
         }
     }
     
+    class func isEmptyLine(location:Int, textView: UITextView) -> Bool
+    {
+        let text = textView.text
+        
+        if text.endIndex == text.startIndex.advancedBy(location) {
+            // last char of text.
+            return true
+        }
+        
+        let nextCharRange = Range(text.startIndex.advancedBy(location) ..< text.startIndex.advancedBy(location + 1))
+        let keyChar = text.substringWithRange(nextCharRange)
+        
+        if keyChar == "\n" {
+            return true
+        }
+        
+        return false
+    }
+    
     class func clearTextByRange(range: NSRange, textView: UITextView)
     {
         let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))

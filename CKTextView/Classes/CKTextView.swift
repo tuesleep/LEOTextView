@@ -188,11 +188,23 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         if currentCursorType != ListType.Text
         {
             if isFirstLocationInLine {
-                deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
-                currentCursorType = .Text
-                willReturnTouch = false
+                let isEmptyLine = CKTextUtil.isEmptyLine(cursorLocation, textView: textView)
                 
-                return false
+                if isEmptyLine {
+                    print("isEmptyLine")
+                    deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
+                    currentCursorType = .Text
+                    willReturnTouch = false
+                    
+                    return false
+                } else {
+                    print("Not empty line")
+                    
+                    if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
+                        item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
+                    }
+                }
+                
             } else {
                 if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
                     item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
