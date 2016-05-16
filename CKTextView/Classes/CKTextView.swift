@@ -106,24 +106,30 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
-        willChangeText = true
+        var isContinue = true
         
         if CKTextUtil.isSpace(text)
         {
-            return handleSpaceEvent(textView)
+            isContinue = handleSpaceEvent(textView)
         }
         else if CKTextUtil.isReturn(text)
         {
             willReturnTouch = true
-            return handleReturnEvent(textView)
+            isContinue = handleReturnEvent(textView)
         }
         else if CKTextUtil.isBackspace(text)
         {
             willBackspaceTouch = true
-            return handleBackspaceEvent(textView)
+            isContinue = handleBackspaceEvent(textView)
         }
         
-        return true
+        if isContinue {
+            willChangeText = true
+        } else {
+            willChangeText = false
+        }
+        
+        return isContinue
     }
 
     public func textViewDidChangeSelection(textView: UITextView) {
@@ -159,7 +165,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Save to container
             saveToPrefixContainerWithItem(numberedListItem)
             currentCursorType = ListType.Numbered
-            willChangeText = false
             
             return false
             
@@ -173,12 +178,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Save to container
             saveToPrefixContainerWithItem(bulletedListItem)
             currentCursorType = ListType.Bulleted
-            willChangeText = false
             
             return false
         case .Checkbox:
             // TODO: Checkbox need to be create.
-            willChangeText = false
             
             return false
         case .Text:
@@ -204,7 +207,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
                     currentCursorType = .Text
                     willReturnTouch = false
-                    willChangeText = false
                     
                     return false
                 } else {
@@ -240,7 +242,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 if isDeleteFirstItem {
                     // Do not delete prev '\n' char when first item deleting.
-                    willChangeText = false
                     return false
                 }
             }
