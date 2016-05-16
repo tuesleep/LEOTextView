@@ -30,6 +30,28 @@ class BaseListItem: NSObject
         return firstKeyY + CGFloat(keyYSet.count) * lineHeight
     }
     
+    /**
+        Handle right relation with next item and self.
+     */
+    func handleRelationWithNextItem(nextItem: BaseListItem, ckTextView: CKTextView) {
+        // Insert to queue.
+        if self.nextItem != nil {
+            self.nextItem!.prevItem = nextItem
+            nextItem.nextItem = self.nextItem
+        }
+        
+        self.nextItem = nextItem
+        nextItem.prevItem = self
+        
+        var firstItem = self;
+        while firstItem.prevItem != nil {
+            firstItem = firstItem.prevItem as! BulletedListItem
+        }
+        
+        clearContainerWithAllYSet(ckTextView)
+        resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+    }
+    
     // MARK: - Subclass need override
     
     /// Must override this method
@@ -38,8 +60,8 @@ class BaseListItem: NSObject
     }
     
     /// Must override this method
-    func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
-        return BaseListItem()
+    func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
+        
     }
     
     /// Must override this method
@@ -52,22 +74,9 @@ class BaseListItem: NSObject
     /// Must call super in your implementation.
     /// 
     /// - Returns: A set of y that need to be delete.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String>
+    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat)
     {
-        let selfYSet = Set(self.keyYSet.map { String($0) })
-        
-        var needClearYSet = Set<String>()
-        var needSaveYSet = Set<String>()
-        
-        // Insert all Y of list to clearYSet.
-        var maxY = self.listInfoStore!.listEndByY
-        let minY = self.listInfoStore!.listStartByY
-        let lineHeight = ckTextView.font!.lineHeight
-        
-        while maxY >= minY {
-            needClearYSet.insert(String(Int(maxY)))
-            maxY = maxY - lineHeight
-        }
+        clearContainerWithAllYSet(ckTextView)
         
         // Backspace destory this item.
         if byBackspace {
@@ -76,22 +85,19 @@ class BaseListItem: NSObject
             
             // delete first item of list, this item's next item become a first item.
             if firstItem.prevItem == nil {
-                firstItem.listInfoStore?.clearBezierPath(ckTextView)
-                
                 if firstItem.nextItem != nil {
                     firstItem = firstItem.nextItem!
                     // Clear prev item, now it's first item.
                     firstItem.prevItem = nil
-                    
-                    needSaveYSet = resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 }
+                
+                resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 
             } else {
                 // Link prev item with next item.
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
                     self.nextItem?.prevItem = self.prevItem
-                    
                     
                 } else {
                     self.prevItem?.nextItem = nil
@@ -103,7 +109,7 @@ class BaseListItem: NSObject
                     firstItem = firstItem.prevItem!
                 }
                 
-                needSaveYSet = resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
             }
             
         } else {
@@ -140,14 +146,34 @@ class BaseListItem: NSObject
             }
              */
         }
+    }
+    
+    // MARK: -
+    
+    func allYSet(lineHeight: CGFloat) -> Set<String>
+    {
+        var needClearYSet = Set<String>()
         
-        if needSaveYSet.count == 0 {
-            needClearYSet = selfYSet
-        } else {
-            needClearYSet = needClearYSet.subtract(needSaveYSet)
+        // Insert all Y of list to clearYSet.
+        var maxY = self.listInfoStore!.listEndByY
+        let minY = self.listInfoStore!.listStartByY
+        
+        while maxY >= minY {
+            needClearYSet.insert(String(Int(maxY)))
+            maxY = maxY - lineHeight
         }
         
         return needClearYSet
+    }
+    
+    func clearContainerWithAllYSet(ckTextView: CKTextView)
+    {
+        var needClearYSet = allYSet(ckTextView.font!.lineHeight)
+        
+        // Clear all old item Y relations.
+        for (_, keyY) in needClearYSet.enumerate() {
+            ckTextView.listPrefixContainerMap.removeValueForKey(keyY)
+        }
     }
     
     /**
@@ -155,17 +181,16 @@ class BaseListItem: NSObject
      
         - Returns: A set of y that is list type.
      */
-    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) -> Set<String> {
-        var needSaveYSet = Set<String>()
-        
+    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) {
         let lineHeight = ckTextView.font!.lineHeight
         
-        needSaveYSet.insert(String(Int(firstItem.firstKeyY)))
-
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
         var moveY = firstItem.endYWithLineHeight(lineHeight)
         var item = firstItem.nextItem
+        
+        // Save first item first.
+        ckTextView.saveToPrefixContainerWithItem(firstItem)
         
         if item == nil {
             firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight) - lineHeight
@@ -183,9 +208,7 @@ class BaseListItem: NSObject
                 item!.keyYSet = Set(newKeyYArray)
                 item!.reDrawGlyph(ckTextView)
                 
-                let keyYSetStringSet = Set(item!.keyYSet.map { String(Int($0)) })
-                
-                needSaveYSet = needSaveYSet.union(keyYSetStringSet)
+                ckTextView.saveToPrefixContainerWithItem(item!)
                 
                 moveY = item!.endYWithLineHeight(lineHeight)
                 
@@ -200,8 +223,6 @@ class BaseListItem: NSObject
                 item = item!.nextItem
             }
         }
-        
-        return needSaveYSet
     }
     
 }

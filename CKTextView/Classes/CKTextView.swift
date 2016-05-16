@@ -76,18 +76,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         if let item = itemFromListPrefixContainerWithY(y)
         {
-            let needClearYSet = item.destory(self, byBackspace: byBackspace, withY: y)
-            
-            print("That unluck y need to be remove: \(needClearYSet)")
-            
-            // Clear self container.
-            for (_, value) in needClearYSet.enumerate() {
-                if let item = listPrefixContainerMap[value] {
-                    
-                }
-                
-                listPrefixContainerMap.removeValueForKey(value)
-            }
+            item.destory(self, byBackspace: byBackspace, withY: y)
             
             // reload
             changeCurrentCursorPointIfNeeded(cursorPoint)
@@ -195,8 +184,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 return false
             } else {
                 if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
-                    let nextItem = item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
-                    saveToPrefixContainerWithItem(nextItem)
+                    item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                 }
             }
         }

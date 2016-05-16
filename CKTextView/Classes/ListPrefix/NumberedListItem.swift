@@ -39,7 +39,7 @@ class NumberedListItem: BaseListItem {
     
     // MARK: Override
     
-    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
         let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
         self.nextItem = nextItem
         nextItem.prevItem = self
@@ -47,7 +47,7 @@ class NumberedListItem: BaseListItem {
         self.listInfoStore!.listEndByY = y
         self.listInfoStore!.fillBezierPath(ckTextView)
         
-        return nextItem
+
     }
     
     override func reDrawGlyph(ckTextView: CKTextView) {
@@ -56,12 +56,10 @@ class NumberedListItem: BaseListItem {
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String> {
+    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         let needClearYSet = super.destory(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
-        
-        return needClearYSet
     }
     
     // MARK: setups

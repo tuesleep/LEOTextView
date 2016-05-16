@@ -35,15 +35,9 @@ class BulletedListItem: BaseListItem {
     
     // MARK: Override
     
-    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
         let nextItem = BulletedListItem(keyY: y, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
-        self.nextItem = nextItem
-        nextItem.prevItem = self
-        
-        self.listInfoStore!.listEndByY = y
-        self.listInfoStore!.fillBezierPath(ckTextView)
-        
-        return nextItem
+        handleRelationWithNextItem(nextItem, ckTextView: ckTextView)
     }
     
     override func reDrawGlyph(ckTextView: CKTextView) {
@@ -52,12 +46,10 @@ class BulletedListItem: BaseListItem {
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String> {
-        let needClearYSet = super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
-        
-        return needClearYSet
     }
     
     // MARK: setups
