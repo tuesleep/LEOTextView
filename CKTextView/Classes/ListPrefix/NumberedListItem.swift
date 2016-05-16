@@ -56,21 +56,19 @@ class NumberedListItem: BaseListItem {
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<CGFloat> {
+        let needClearYSet = super.destory(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
+        
+        return needClearYSet
     }
     
     // MARK: setups
     
     private func setupNumberLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
-        ckTextView.font ?? UIFont.systemFontSize()
-        
         let lineHeight = ckTextView.font!.lineHeight
-        
-        let height = lineHeight
         var width = lineHeight + 10
         
         // Woo.. too big

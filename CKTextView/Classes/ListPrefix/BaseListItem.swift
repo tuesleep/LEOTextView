@@ -9,7 +9,7 @@
 import UIKit
 
 enum ListType {
-    case Text, Numbered, Bulleted
+    case Text, Numbered, Bulleted, Checkbox
 }
 
 class BaseListItem: NSObject
@@ -50,9 +50,22 @@ class BaseListItem: NSObject
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<String>
+    /// 
+    /// - Returns: A set of y that need to be delete.
+    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<CGFloat>
     {
-        var needClearYSet = Set<String>()
+        var needClearYSet = Set<CGFloat>()
+        var needSaveYSet = Set<CGFloat>()
+        
+        // Insert all Y of list to clearYSet.
+        var maxY = self.listInfoStore!.listEndByY
+        let minY = self.listInfoStore!.listStartByY
+        let lineHeight = ckTextView.font!.lineHeight
+        
+        while maxY >= minY {
+            needClearYSet.insert(maxY)
+            maxY = maxY - lineHeight
+        }
         
         // Backspace destory this item.
         if byBackspace {
@@ -68,7 +81,7 @@ class BaseListItem: NSObject
                     // Clear prev item, now it's first item.
                     firstItem.prevItem = nil
                     
-                    resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                    needSaveYSet = resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 }
                 
             } else {
@@ -85,7 +98,8 @@ class BaseListItem: NSObject
                 while firstItem.prevItem != nil {
                     firstItem = firstItem.prevItem!
                 }
-                resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
+                
+                needSaveYSet = resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
             }
             
         } else {
@@ -123,12 +137,23 @@ class BaseListItem: NSObject
              */
         }
         
+        needClearYSet = needClearYSet.subtract(needSaveYSet)
+        
         return needClearYSet
     }
     
-    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) {
+    /**
+        Reset all item position in list.
+     
+        - Returns: A set of y that is list type.
+     */
+    func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) -> Set<CGFloat> {
+        var needSaveYSet = Set<CGFloat>()
+        
         let lineHeight = ckTextView.font!.lineHeight
         
+        needSaveYSet.insert(firstItem.firstKeyY)
+
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
         var moveY = firstItem.endYWithLineHeight(lineHeight)
@@ -150,6 +175,8 @@ class BaseListItem: NSObject
                 item!.keyYSet = Set(newKeyYArray)
                 item!.reDrawGlyph(ckTextView)
                 
+                needSaveYSet = needSaveYSet.union(item!.keyYSet)
+                
                 moveY = item!.endYWithLineHeight(lineHeight)
                 
                 // Handle last item.
@@ -163,6 +190,8 @@ class BaseListItem: NSObject
                 item = item!.nextItem
             }
         }
+        
+        return needSaveYSet
     }
     
 }

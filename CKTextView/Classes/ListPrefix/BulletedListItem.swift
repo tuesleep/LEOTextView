@@ -52,22 +52,20 @@ class BulletedListItem: BaseListItem {
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
+    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) -> Set<CGFloat> {
+        let needClearYSet = super.destory(ckTextView, byBackspace: byBackspace, withY: y)
         
         label?.removeFromSuperview()
+        
+        return needClearYSet
     }
     
     // MARK: setups
     
     private func setupBulletLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
-        ckTextView.font ?? UIFont.systemFontSize()
-        
         let lineHeight = ckTextView.font!.lineHeight
-        
-        let height = lineHeight
-        var width = lineHeight + 10
+        let width = lineHeight + 10
         
         label = UILabel(frame: CGRect(x: 8, y: keyY, width: width, height: lineHeight))
         label!.font = ckTextView.font!

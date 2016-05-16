@@ -76,10 +76,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         if let item = itemFromListPrefixContainerWithY(y)
         {
-            item.destory(self, byBackspace: byBackspace, withY: y)
+            let needClearYSet = item.destory(self, byBackspace: byBackspace, withY: y)
             
             // Clear self container.
-            for (index, value) in item.keyYSet.enumerate() {
+            for (_, value) in needClearYSet.enumerate() {
                 listPrefixContainerMap.removeValueForKey(String(value))
             }
             
@@ -91,7 +91,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // MARK: - Change even
     
     func saveToPrefixContainerWithItem(item: BaseListItem) {
-        for (index, value) in item.keyYSet.enumerate() {
+        for (_, value) in item.keyYSet.enumerate() {
             listPrefixContainerMap[String(value)] = item
         }
     }
@@ -161,11 +161,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             currentCursorType = ListType.Bulleted
             
             return false
+        case .Checkbox:
+            // TODO: Checkbox need to be create.
+            return false
         case .Text:
             return true
         }
-        
-        return true
     }
     
     func handleReturnEvent(textView: UITextView) -> Bool
