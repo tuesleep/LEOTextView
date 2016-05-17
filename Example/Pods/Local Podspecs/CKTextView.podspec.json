@@ -15,5 +15,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "CKTextView/Classes/**/*"
+  "source_files": "CKTextView/Classes/**/*",
+  "resource_bundles": {
+    "CKTextView": [
+      "CKTextView/Assets/*.png"
+    ]
+  }
 }

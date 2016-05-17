@@ -85,7 +85,7 @@ class CKTextUtil: NSObject {
     
     class func typeForListKeywordWithLocation(location: Int, textView: UITextView) -> ListType
     {
-        let checkArray = [("1.", 2, ListType.Numbered), ("*", 1, ListType.Bulleted)]
+        let checkArray = [("1.", 2, ListType.Numbered), ("*", 1, ListType.Bulleted), ("[]", 2, ListType.Checkbox)]
         
         for (_, value) in checkArray.enumerate() {
             let keyword = value.0
