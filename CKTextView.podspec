@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = "Want to build a component that like UITextView and iPhone 'Notes' app."
+  s.description      = "Want to build a UITextView that have List feature, just look like 'Notes' app on the iPhone with iOS 9."
 
   s.homepage         = "https://github.com/chanricle/CKTextView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"

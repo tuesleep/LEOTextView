@@ -3,6 +3,8 @@ use_frameworks!
 target 'CKTextView_Example' do
   pod 'CKTextView', :path => '../'
   
+  pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+  
 end
 
 target 'CKTextView_Tests' do

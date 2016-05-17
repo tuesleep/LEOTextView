@@ -64,6 +64,7 @@
 		0935B25A29AA3C2BD913799B38CFC1ED /* icon-checkbox-checked@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-checked@3x.png"; sourceTree = "<group>"; };
 		09A32C99234625244FA03F005FC822D4 /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
 		1045C02ED313F067DA3FAC329B662287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
 		15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
 		15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextContainer.swift; sourceTree = "<group>"; };
 		186E73DB4279E787D45FA980A3044E0D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
@@ -244,9 +245,18 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				77D5251CAB5A9A56DC8EBC0F5141478C /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */,
 				442C4B47AFB69CFC865C3246A825589E /* Products */,
 				51D06E78AD6860432CCC4C4EAB2241B7 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B45A511E96EE9D3B124726059E138C3F /* Pods-CKTextView_Tests */ = {
@@ -290,6 +300,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D2003680638A0B9FCE70EF25873F0EDB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +317,14 @@
 				3F1F80B53DE2666903CC76E99CDBA6ED /* ListPrefix */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */,
+			);
+			path = "Reveal-iOS-SDK";
 			sourceTree = "<group>";
 		};
 		F706630BAC33A383DA646B81F452FE5B /* Pods-CKTextView_Example */ = {
