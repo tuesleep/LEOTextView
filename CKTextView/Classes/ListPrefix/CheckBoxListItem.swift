@@ -58,9 +58,10 @@ class CheckBoxListItem: BaseListItem {
     private func setupCheckBoxButton(keyY: CGFloat, ckTextView: CKTextView)
     {
         let lineHeight = ckTextView.font!.lineHeight
-        let distance = lineHeight - 4
+        let distance = lineHeight
         
         button = UIButton(frame: CGRect(x: 12, y: keyY + 3, width: distance, height: distance))
+        button!.contentEdgeInsets = UIEdgeInsetsMake(2, 2, 2, 2)
         button!.addTarget(self, action: #selector(self.checkBoxButtonAction(_:)), forControlEvents: .TouchUpInside)
         
         changeCheckBoxButtonBg()
@@ -79,18 +80,16 @@ class CheckBoxListItem: BaseListItem {
     // MARK: -
     
     func changeCheckBoxButtonBg() {
-        let name = isChecked ? "icon-checkbox-checked.png" : "icon-checkbox-normal.png"
+        let name = isChecked ? "icon-checkbox-checked" : "icon-checkbox-normal"
         
-        let bundleURL = NSBundle.mainBundle().pathForResource("CKTextView", ofType: "bundle")
-        print("bundleURL: \(bundleURL)")
+        let bundle = NSBundle(forClass: CheckBoxListItem.self)
         
-        /*
-        if let bundleURL = NSBundle.mainBundle().pathForResource("CKTextView", ofType: "bundle") {
-            let bundle = NSBundle(path: bundleURL)
-            let backgroundImage = UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)
-            print("checkbox button bg image: \(backgroundImage)")
-            button!.setBackgroundImage(backgroundImage, forState: .Normal)
-        }
-         */
+        let url = bundle.URLForResource("CKTextView", withExtension: "bundle", subdirectory: "", localization: "")
+        
+        let selfBundle = NSBundle(URL: url!)
+        
+        let backgroundImage = UIImage(named: name, inBundle: selfBundle, compatibleWithTraitCollection: nil)
+        
+        button!.setBackgroundImage(backgroundImage, forState: .Normal)
     }
 }

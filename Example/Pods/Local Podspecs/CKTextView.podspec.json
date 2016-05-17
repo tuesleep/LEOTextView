@@ -2,7 +2,7 @@
   "name": "CKTextView",
   "version": "0.1.0",
   "summary": "A TextView with some capacity.",
-  "description": "Want to build a component that like UITextView and iPhone 'Notes' app.",
+  "description": "Want to build a UITextView that have List feature, just look like 'Notes' app on the iPhone with iOS 9.",
   "homepage": "https://github.com/chanricle/CKTextView",
   "license": "MIT",
   "authors": {
@@ -18,7 +18,7 @@
   "source_files": "CKTextView/Classes/**/*",
   "resource_bundles": {
     "CKTextView": [
-      "CKTextView/Assets/*.png"
+      "CKTextView/Assets/*.xcassets"
     ]
   }
 }

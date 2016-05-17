@@ -13,23 +13,18 @@
 		54D5F1D00D3553AA44F1BF1B9F8D4E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		5603744B913AF9988D123C281CAA2AEF /* BulletedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65857DBB0FE816EC0915D0CFEA5840 /* BulletedListItem.swift */; };
 		56699F5B6868246554ED76F8285F246E /* CKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3646C6A664CA9C8642787DD39FF8093 /* CKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C011DEAD37D61F798D90D4ECB6AAE97 /* icon-checkbox-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5F5BE6050270DEFF37D018786F044DF /* icon-checkbox-normal@2x.png */; };
 		6C6FBED0373604B24144300865E43F43 /* CKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA3F9AB7B55E30D06B79C0524483FA5 /* CKTextView-dummy.m */; };
-		805A8F9411F276077A0AF54A166EEC09 /* icon-checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2866AB50E74CB38181E145F197EFB25F /* icon-checkbox-checked.png */; };
 		82C2F1F3B00CA0BDDFA5B49BD0D66166 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		8F4DD69ADF03651147F2E5D8B78640B8 /* icon-checkbox-checked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0935B25A29AA3C2BD913799B38CFC1ED /* icon-checkbox-checked@3x.png */; };
 		8FB912FEB1911F5A4AB80396B53FFC92 /* CKTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */; };
 		9538D253A62849FC2ABBECB41084C831 /* CheckBoxListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECF68A53024A8167F579632C47AD922 /* CheckBoxListItem.swift */; };
 		97DE039907839F8E3F3DE3D532E93AA0 /* Pods-CKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98AFFF266F4B5F57D21B8D3169EE21EC /* BaseListInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45998E05CDCABC5AC8016187F801C45F /* BaseListInfoStore.swift */; };
-		A52C529F992D781F54CD00F985A44635 /* icon-checkbox-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 313F15A143671CDD566776CF068FDB84 /* icon-checkbox-normal.png */; };
 		B21DE67C72B51BED370F270FEB6D19A2 /* NumberedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA018764CC9BC655285EE4B24D7C340 /* NumberedListItem.swift */; };
-		B222C42D8536BDE7F34C1FF4A71B6548 /* icon-checkbox-normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8EA12E1D88C6D6DF43BB76616BC8C5 /* icon-checkbox-normal@3x.png */; };
 		B59F1B8978864464BB983CE112DDAC8D /* Pods-CKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */; };
 		B7E572B50CB39335ED12EA929BE14D41 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E17AF9F004BEF5F555220FCA63EA0 /* CKTextView.swift */; };
 		BA6D1D5FE509A17F316E751A6C57EDFF /* CKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */; };
+		E1DD49C89C3210206F8C47FC49E03953 /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */; };
 		EF61969E5CC8CED4974A5F453D23530F /* Pods-CKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F238C347C3E26F460A945ADC90F30FA1 /* icon-checkbox-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A28E80F3C0CE1B1E791773B6C4FEF59B /* icon-checkbox-checked@2x.png */; };
 		FA7CE4F6309FC5FFF491E3A7837E225A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,20 +56,17 @@
 		000D32E5046B2C4736BEECF10EFB5780 /* Pods-CKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
 		0275138769CDFA056585EBFB8AEB7516 /* Pods-CKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		08A7B519483D0AA0101E177E5D75B289 /* Pods-CKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		0935B25A29AA3C2BD913799B38CFC1ED /* icon-checkbox-checked@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-checked@3x.png"; sourceTree = "<group>"; };
 		09A32C99234625244FA03F005FC822D4 /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
+		0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		1045C02ED313F067DA3FAC329B662287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
 		15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
 		15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextContainer.swift; sourceTree = "<group>"; };
 		186E73DB4279E787D45FA980A3044E0D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
 		1ECF68A53024A8167F579632C47AD922 /* CheckBoxListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckBoxListItem.swift; sourceTree = "<group>"; };
-		2866AB50E74CB38181E145F197EFB25F /* icon-checkbox-checked.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-checked.png"; sourceTree = "<group>"; };
 		28729CC1F26C6DDDF0DB4A6C3190FECC /* Pods_CKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		313F15A143671CDD566776CF068FDB84 /* icon-checkbox-normal.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-normal.png"; sourceTree = "<group>"; };
 		357A965EBAFD0699CDC03E105B81288A /* Pods-CKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3F8EA12E1D88C6D6DF43BB76616BC8C5 /* icon-checkbox-normal@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-normal@3x.png"; sourceTree = "<group>"; };
 		426893A46F52338647CA878B3726FF2B /* Pods-CKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		45998E05CDCABC5AC8016187F801C45F /* BaseListInfoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListInfoStore.swift; sourceTree = "<group>"; };
 		5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -95,7 +87,6 @@
 		9F60E16DBACF140DF7DFBDCCE38FC944 /* Pods-CKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A020C8FA93FC123D153DFF174A870966 /* Pods-CKTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CKTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A1AD4162FE2A3D6A9FA3498E7912F5DF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A28E80F3C0CE1B1E791773B6C4FEF59B /* icon-checkbox-checked@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-checked@2x.png"; sourceTree = "<group>"; };
 		B43A0C9ADF0A2B61D67E490CE751A11E /* Pods-CKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Tests.modulemap"; sourceTree = "<group>"; };
 		B98CD4C8E90D15C2C110825B119D1851 /* BaseListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
 		C3646C6A664CA9C8642787DD39FF8093 /* CKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-umbrella.h"; sourceTree = "<group>"; };
@@ -104,7 +95,6 @@
 		CDF9274DECCA10AA451BD894FB4601CA /* ResourceBundle-CKTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CKTextView-Info.plist"; sourceTree = "<group>"; };
 		DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DBA018764CC9BC655285EE4B24D7C340 /* NumberedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberedListItem.swift; sourceTree = "<group>"; };
-		E5F5BE6050270DEFF37D018786F044DF /* icon-checkbox-normal@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "icon-checkbox-normal@2x.png"; sourceTree = "<group>"; };
 		FAD842A4DC76BBC109990C4BD84434B4 /* Pods-CKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00682310B7B6A5FEFF29F06D648AB4B5 /* CKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				1D0FD078F17AB2AA7998F246498CB8F0 /* Assets */,
+			);
+			path = CKTextView;
+			sourceTree = "<group>";
+		};
 		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,20 +152,15 @@
 		1628EA311D43BA304309483C15A09469 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6B4888813F1ACCDBE1DF48BC65B3CD75 /* CKTextView */,
+				00682310B7B6A5FEFF29F06D648AB4B5 /* CKTextView */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		29BF6FA43CB90C587169A5C6D8FE01BE /* Assets */ = {
+		1D0FD078F17AB2AA7998F246498CB8F0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				2866AB50E74CB38181E145F197EFB25F /* icon-checkbox-checked.png */,
-				A28E80F3C0CE1B1E791773B6C4FEF59B /* icon-checkbox-checked@2x.png */,
-				0935B25A29AA3C2BD913799B38CFC1ED /* icon-checkbox-checked@3x.png */,
-				313F15A143671CDD566776CF068FDB84 /* icon-checkbox-normal.png */,
-				E5F5BE6050270DEFF37D018786F044DF /* icon-checkbox-normal@2x.png */,
-				3F8EA12E1D88C6D6DF43BB76616BC8C5 /* icon-checkbox-normal@3x.png */,
+				0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -210,14 +203,6 @@
 				B45A511E96EE9D3B124726059E138C3F /* Pods-CKTextView_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		6B4888813F1ACCDBE1DF48BC65B3CD75 /* CKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				29BF6FA43CB90C587169A5C6D8FE01BE /* Assets */,
-			);
-			path = CKTextView;
 			sourceTree = "<group>";
 		};
 		6E380A70DB44A27DBA803377AFA69BE1 /* CKTextView */ = {
@@ -399,7 +384,7 @@
 			buildPhases = (
 				962A0999E55F132EA7B58F3FDCA4F4D1 /* Sources */,
 				CCFA5E977D26DD0B0EE57FEDF17DCD7D /* Frameworks */,
-				ACCD4902F9AD506759170A490F63BE8F /* Resources */,
+				B14995F8396794A94435D1CEB00E4D22 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -453,6 +438,9 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 			};
@@ -477,16 +465,11 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ACCD4902F9AD506759170A490F63BE8F /* Resources */ = {
+		B14995F8396794A94435D1CEB00E4D22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				805A8F9411F276077A0AF54A166EEC09 /* icon-checkbox-checked.png in Resources */,
-				F238C347C3E26F460A945ADC90F30FA1 /* icon-checkbox-checked@2x.png in Resources */,
-				8F4DD69ADF03651147F2E5D8B78640B8 /* icon-checkbox-checked@3x.png in Resources */,
-				A52C529F992D781F54CD00F985A44635 /* icon-checkbox-normal.png in Resources */,
-				6C011DEAD37D61F798D90D4ECB6AAE97 /* icon-checkbox-normal@2x.png in Resources */,
-				B222C42D8536BDE7F34C1FF4A71B6548 /* icon-checkbox-normal@3x.png in Resources */,
+				E1DD49C89C3210206F8C47FC49E03953 /* image.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
