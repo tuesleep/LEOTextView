@@ -14,8 +14,15 @@ class BaseListInfoStore: NSObject {
     /// All item of list used one Bezier path to excluding text area.
     var bezierPath: UIBezierPath?
     
-    var listStartByY: CGFloat!
+    var listStartByY: CGFloat! {
+        didSet {
+            listFirstKeyY = String(format: "%.1f", listStartByY)
+        }
+    }
     var listEndByY: CGFloat!
+    
+    // Defined key from container.
+    var listFirstKeyY: String!
     
     required init(listStartByY: CGFloat, listEndByY: CGFloat) {
         self.listStartByY = listStartByY

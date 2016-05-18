@@ -175,6 +175,9 @@ class BaseListItem: NSObject
     
     func clearContainerWithAllYSet(ckTextView: CKTextView)
     {
+        // Clear List info record.
+        ckTextView.listInfoStoreContainerMap.removeValueForKey(self.listInfoStore!.listFirstKeyY)
+        
         var needClearYSet = allYSet(ckTextView.font!.lineHeight)
         
         // Clear all old item Y relations.
@@ -193,6 +196,9 @@ class BaseListItem: NSObject
         
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
+        // Save new ListInfoStore to container.
+        ckTextView.saveToListInfoStoreContainer(firstItem.listInfoStore!)
+        
         var index = 0
         
         firstItem.reDrawGlyph(index, ckTextView: ckTextView)
@@ -202,7 +208,7 @@ class BaseListItem: NSObject
         var item = firstItem.nextItem
         
         // Save first item first.
-        ckTextView.saveToPrefixContainerWithItem(firstItem)
+        ckTextView.saveToListItemContainerWithItem(firstItem)
         
         if item == nil {
             firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight) - lineHeight
@@ -224,7 +230,7 @@ class BaseListItem: NSObject
                 item!.reDrawGlyph(index, ckTextView: ckTextView)
                 index += 1
                 
-                ckTextView.saveToPrefixContainerWithItem(item!)
+                ckTextView.saveToListItemContainerWithItem(item!)
                 
                 moveY = item!.endYWithLineHeight(lineHeight)
                 

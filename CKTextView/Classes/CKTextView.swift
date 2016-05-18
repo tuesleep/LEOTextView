@@ -58,14 +58,25 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: - Container getter & setter
     
-    func saveToListPrefixContainerY(y: CGFloat, item: BaseListItem)
-    {
-        listItemContainerMap[String(format: "%.1f", y)] = item
+    func saveToListItemContainerWithItem(item: BaseListItem) {
+        for (_, keyY) in item.keyYSet.enumerate() {
+            listItemContainerMap[String(format: "%.1f", keyY)] = item
+        }
     }
     
-    func itemFromListPrefixContainerWithY(y:CGFloat) -> BaseListItem?
+    func itemFromListItemContainerWithY(y:CGFloat) -> BaseListItem?
     {
         return listItemContainerMap[String(format: "%.1f", y)]
+    }
+    
+    func saveToListInfoStoreContainer(infoStore: BaseListInfoStore)
+    {
+        listInfoStoreContainerMap[infoStore.listFirstKeyY] = infoStore
+    }
+    
+    func infoStoreFromListInfoStoreContainerWithY(y: String) -> BaseListInfoStore?
+    {
+        return listInfoStoreContainerMap[String(format: "%.1f", y)]
     }
     
     // MARK: - Setups
@@ -86,7 +97,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         print("Will delete by Y: \(y)")
         
-        if let item = itemFromListPrefixContainerWithY(y)
+        if let item = itemFromListItemContainerWithY(y)
         {
             isDeleteFirstItem = item.firstKeyY == item.listInfoStore!.listStartByY
             
@@ -97,14 +108,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         return isDeleteFirstItem
-    }
-    
-    // MARK: - Change even
-    
-    func saveToPrefixContainerWithItem(item: BaseListItem) {
-        for (_, keyY) in item.keyYSet.enumerate() {
-            listItemContainerMap[String(format: "%.1f", keyY)] = item
-        }
     }
     
     // MARK: - UITextViewDelegate
@@ -168,7 +171,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             numberedListItem.listInfoStore?.fillBezierPath(self)
             
             // Save to container
-            saveToPrefixContainerWithItem(numberedListItem)
+            saveToListItemContainerWithItem(numberedListItem)
+            saveToListInfoStoreContainer(numberedListItem.listInfoStore!)
+            
             currentCursorType = ListType.Numbered
             
             return false
@@ -181,7 +186,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             bulletedListItem.listInfoStore?.fillBezierPath(self)
             
             // Save to container
-            saveToPrefixContainerWithItem(bulletedListItem)
+            saveToListItemContainerWithItem(bulletedListItem)
+            saveToListInfoStoreContainer(bulletedListItem.listInfoStore!)
+            
             currentCursorType = ListType.Bulleted
             
             return false
@@ -192,7 +199,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             checkBoxListItem.listInfoStore?.fillBezierPath(self)
             
-            saveToPrefixContainerWithItem(checkBoxListItem)
+            saveToListItemContainerWithItem(checkBoxListItem)
+            saveToListInfoStoreContainer(checkBoxListItem.listInfoStore!)
+            
             currentCursorType = ListType.Checkbox
             
             return false
@@ -224,13 +233,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 } else {
                     print("Not empty line")
                     
-                    if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
+                    if let item = itemFromListItemContainerWithY(cursorPoint.y) {
                         item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                     }
                 }
                 
             } else {
-                if let item = itemFromListPrefixContainerWithY(cursorPoint.y) {
+                if let item = itemFromListItemContainerWithY(cursorPoint.y) {
                     item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                 }
             }
@@ -274,7 +283,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Text not change, only normal cursor moving.. Or backspace touched.
             if !willChangeText || willBackspaceTouch {
-                let item = itemFromListPrefixContainerWithY(cursorPoint.y)
+                let item = itemFromListItemContainerWithY(cursorPoint.y)
                 
                 currentCursorType = item == nil ? ListType.Text : item!.listType()
                 
@@ -284,11 +293,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Text changed, something happend.
             // Handle too long string typed.. add moreline bezierPath space fill. and set key to container.
             if !willBackspaceTouch {
-                if let item = itemFromListPrefixContainerWithY(prevCursorPoint!.y)
+                if let item = itemFromListItemContainerWithY(prevCursorPoint!.y)
                 {
                     // key Y of New line add to container.
                     item.keyYSet.insert(cursorPoint.y)
-                    saveToPrefixContainerWithItem(item)
+                    saveToListItemContainerWithItem(item)
                     // TODO: change BeizerPathRect, more height
                 }
             }
