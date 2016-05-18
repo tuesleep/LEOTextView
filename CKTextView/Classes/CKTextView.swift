@@ -20,7 +20,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var willChangeText: Bool = false
     
     // Save Y and ListItem relationship.
-    var listPrefixContainerMap: Dictionary<String, BaseListItem> = [:]
+    var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
+    
+    // Save Y and InfoStore relationship.
+    var listInfoStoreContainerMap: Dictionary<String, BaseListInfoStore> = [:]
     
     public class func ck_textView(frame: CGRect) -> CKTextView
     {
@@ -53,14 +56,16 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
     }
     
+    // MARK: - Container getter & setter
+    
     func saveToListPrefixContainerY(y: CGFloat, item: BaseListItem)
     {
-        listPrefixContainerMap[String(format: "%.1f", y)] = item
+        listItemContainerMap[String(format: "%.1f", y)] = item
     }
     
     func itemFromListPrefixContainerWithY(y:CGFloat) -> BaseListItem?
     {
-        return listPrefixContainerMap[String(format: "%.1f", y)]
+        return listItemContainerMap[String(format: "%.1f", y)]
     }
     
     // MARK: - Setups
@@ -98,7 +103,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func saveToPrefixContainerWithItem(item: BaseListItem) {
         for (_, keyY) in item.keyYSet.enumerate() {
-            listPrefixContainerMap[String(format: "%.1f", keyY)] = item
+            listItemContainerMap[String(format: "%.1f", keyY)] = item
         }
     }
     

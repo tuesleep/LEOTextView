@@ -179,7 +179,7 @@ class BaseListItem: NSObject
         
         // Clear all old item Y relations.
         for (_, keyY) in needClearYSet.enumerate() {
-            ckTextView.listPrefixContainerMap.removeValueForKey(keyY)
+            ckTextView.listItemContainerMap.removeValueForKey(keyY)
         }
     }
     
