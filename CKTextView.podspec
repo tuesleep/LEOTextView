@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.source_files = 'CKTextView/Classes/**/*'
 
   s.resource_bundles = {
-    'CKTextView' => ['CKTextView/Assets/*.xcassets']
+    'CKTextView' => ['CKTextView/Assets/*.png']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

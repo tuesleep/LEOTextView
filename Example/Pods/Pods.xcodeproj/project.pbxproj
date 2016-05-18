@@ -23,7 +23,6 @@
 		B59F1B8978864464BB983CE112DDAC8D /* Pods-CKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */; };
 		B7E572B50CB39335ED12EA929BE14D41 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E17AF9F004BEF5F555220FCA63EA0 /* CKTextView.swift */; };
 		BA6D1D5FE509A17F316E751A6C57EDFF /* CKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */; };
-		E1DD49C89C3210206F8C47FC49E03953 /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */; };
 		EF61969E5CC8CED4974A5F453D23530F /* Pods-CKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA7CE4F6309FC5FFF491E3A7837E225A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		0275138769CDFA056585EBFB8AEB7516 /* Pods-CKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		08A7B519483D0AA0101E177E5D75B289 /* Pods-CKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		09A32C99234625244FA03F005FC822D4 /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
-		0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		1045C02ED313F067DA3FAC329B662287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
 		15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		1D0FD078F17AB2AA7998F246498CB8F0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				0A8B41905134EFE6DB92B7B166D07AE8 /* image.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -466,7 +463,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DD49C89C3210206F8C47FC49E03953 /* image.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
