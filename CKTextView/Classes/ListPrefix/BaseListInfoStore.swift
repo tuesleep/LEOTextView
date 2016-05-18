@@ -39,7 +39,7 @@ class BaseListInfoStore: NSObject {
         
         let lineHeight = ckTextView.font!.lineHeight
         
-        let width = Int(lineHeight) + 10
+        let width = Int(lineHeight) + Int(lineHeight - 8)
         
         let origin = CGPoint(x: 0, y: listStartByY)
         let size = CGSize(width: CGFloat(width), height: listEndByY - listStartByY + 1)

@@ -58,11 +58,14 @@ class CheckBoxListItem: BaseListItem {
     private func setupCheckBoxButton(keyY: CGFloat, ckTextView: CKTextView)
     {
         let lineHeight = ckTextView.font!.lineHeight
-        let distance = lineHeight
+        let height = lineHeight
+        let width = lineHeight + CGFloat(lineHeight - 8)
         
-        button = UIButton(frame: CGRect(x: 12, y: keyY, width: distance, height: distance))
+        button = UIButton(frame: CGRect(x: 8, y: keyY + 1, width: width, height: height))
         button!.addTarget(self, action: #selector(self.checkBoxButtonAction(_:)), forControlEvents: .TouchUpInside)
+        button!.titleLabel?.font = UIFont.systemFontOfSize(ckTextView.font!.pointSize + 5)
         button!.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        button?.contentHorizontalAlignment = .Center
         
         changeCheckBoxButtonBg()
         
