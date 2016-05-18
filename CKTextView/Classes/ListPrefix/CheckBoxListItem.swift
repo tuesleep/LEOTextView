@@ -83,13 +83,11 @@ class CheckBoxListItem: BaseListItem {
         let name = isChecked ? "icon-checkbox-checked" : "icon-checkbox-normal"
         
         let bundle = NSBundle(forClass: CheckBoxListItem.self)
-        
         let url = bundle.URLForResource("CKTextView", withExtension: "bundle", subdirectory: "", localization: "")
-        
         let selfBundle = NSBundle(URL: url!)
         
         let backgroundImage = UIImage(named: name, inBundle: selfBundle, compatibleWithTraitCollection: nil)
-        
+ 
         button!.setBackgroundImage(backgroundImage, forState: .Normal)
     }
 }
