@@ -16,7 +16,7 @@ class BaseListInfoStore: NSObject {
     
     var listStartByY: CGFloat! {
         didSet {
-            listFirstKeyY = String(format: "%.1f", listStartByY)
+            syncListFirstKeyY()
         }
     }
     var listEndByY: CGFloat!
@@ -25,8 +25,16 @@ class BaseListInfoStore: NSObject {
     var listFirstKeyY: String!
     
     required init(listStartByY: CGFloat, listEndByY: CGFloat) {
+        super.init()
+        
         self.listStartByY = listStartByY
         self.listEndByY = listEndByY
+        
+        syncListFirstKeyY()
+    }
+    
+    func syncListFirstKeyY() {
+        listFirstKeyY = String(format: "%.1f", listStartByY)
     }
     
     func clearBezierPath(ckTextView: CKTextView) {

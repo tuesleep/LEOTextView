@@ -176,7 +176,8 @@ class BaseListItem: NSObject
     func clearContainerWithAllYSet(ckTextView: CKTextView)
     {
         // Clear List info record.
-        ckTextView.listInfoStoreContainerMap.removeValueForKey(self.listInfoStore!.listFirstKeyY)
+        // FIXME: BUG
+//        ckTextView.listInfoStoreContainerMap.removeValueForKey(self.listInfoStore!.listFirstKeyY)
         
         var needClearYSet = allYSet(ckTextView.font!.lineHeight)
         

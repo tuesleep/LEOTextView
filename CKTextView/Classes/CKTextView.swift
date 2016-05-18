@@ -172,7 +172,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Save to container
             saveToListItemContainerWithItem(numberedListItem)
-            saveToListInfoStoreContainer(numberedListItem.listInfoStore!)
+//            saveToListInfoStoreContainer(numberedListItem.listInfoStore!)
             
             currentCursorType = ListType.Numbered
             
@@ -271,6 +271,28 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return true
     }
     
+    func handleLineChanged(y: CGFloat, changedLineCount: Int)
+    {
+        
+        /*
+        let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
+            if let numberY = NSNumberFormatter().numberFromString(keyY) {
+                let floatY = CGFloat(numberY)
+                
+                if floatY > y {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            
+            return true
+        }
+        
+        print("infoStores: \(infoStores)")
+ */
+    }
+    
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
     {
         prevCursorPoint = currentCursorPoint
@@ -279,6 +301,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard prevCursorPoint != nil else { return }
         
         if prevCursorPoint!.y != cursorPoint.y {
+            var changeLineCount = Int((cursorPoint.y - prevCursorPoint!.y) / self.font!.lineHeight)
+            if changeLineCount == 0 { changeLineCount = 1 }
+            
+            // Handle all list that after this y position.
+            handleLineChanged(prevCursorPoint!.y, changedLineCount: changeLineCount)
+            
             guard !willReturnTouch else { return }
             
             // Text not change, only normal cursor moving.. Or backspace touched.
