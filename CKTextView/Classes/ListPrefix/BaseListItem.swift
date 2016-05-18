@@ -155,13 +155,19 @@ class BaseListItem: NSObject
     {
         var needClearYSet = Set<String>()
         
-        // Insert all Y of list to clearYSet.
-        var maxY = self.listInfoStore!.listEndByY
-        let minY = self.listInfoStore!.listStartByY
+        var firstItem = self;
+        while firstItem.prevItem != nil {
+            firstItem = firstItem.prevItem!
+        }
         
-        while maxY >= minY {
-            needClearYSet.insert(String(format: "%.1f", maxY))
-            maxY = maxY - lineHeight
+        var item: BaseListItem? = firstItem
+        
+        while item != nil {
+            for (_, keyY) in item!.keyYSet.enumerate() {
+                needClearYSet.insert(String(format: "%.1f", keyY))
+            }
+            
+            item = item!.nextItem
         }
         
         return needClearYSet
