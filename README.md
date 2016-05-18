@@ -21,7 +21,7 @@ Want to build a UITextView that have List feature, just look like 'Notes' app on
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-![textview](https://github.com/chanricle/CKTextView/blob/master/textview.gif?raw=true)
+![textview](https://github.com/chanricle/CKTextView/blob/develop/textview.gif?raw=true)
 
 ## Requirements
 
