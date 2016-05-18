@@ -13,7 +13,7 @@ class CheckBoxListItem: BaseListItem {
     var isChecked = false
     
     override func listType() -> ListType {
-        return ListType.Bulleted
+        return ListType.Checkbox
     }
     
     required init(keyY: CGFloat, ckTextView: CKTextView, listInfoStore: BaseListInfoStore?)
