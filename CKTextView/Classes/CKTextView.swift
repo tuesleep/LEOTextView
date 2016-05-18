@@ -181,7 +181,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             return false
         case .Checkbox:
-            // TODO: Checkbox need to be create.
+            CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
+            
+            let checkBoxListItem = CheckBoxListItem(keyY: cursorPoint.y, ckTextView: self, listInfoStore: nil)
+            
+            checkBoxListItem.listInfoStore?.fillBezierPath(self)
+            
+            saveToPrefixContainerWithItem(checkBoxListItem)
+            currentCursorType = ListType.Checkbox
             
             return false
         case .Text:

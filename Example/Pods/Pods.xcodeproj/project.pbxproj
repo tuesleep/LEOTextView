@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		031308C994F548D9022AB957BC9B9494 /* CKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */; };
-		0540A951E6F3EE83B4234201D741BCBF /* CKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */; };
 		065B945489DE1E514509166DF88BC7DF /* Pods-CKTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD842A4DC76BBC109990C4BD84434B4 /* Pods-CKTextView_Tests-dummy.m */; };
-		0DB38609E61B8711962466906F721C0A /* BaseListInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */; };
-		256ABFE913675C0E0D7BF5527EDCBF58 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */; };
-		3DE0F289AE3F352A73A82808327ADD4F /* BulletedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */; };
-		4A94A5A0D903F47901A33A378242A364 /* NumberedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */; };
+		31C20B0C1262405888CE93FD8BECBC84 /* CKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */; };
+		4909FE490AFCB85C3A0F2EE727DB542D /* BaseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98CD4C8E90D15C2C110825B119D1851 /* BaseListItem.swift */; };
 		54D5F1D00D3553AA44F1BF1B9F8D4E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		68B936916C30CC1EA86F7265D9D850E0 /* BaseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */; };
-		7BC0A8E3EAD178198D69AAD269C37330 /* CKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5603744B913AF9988D123C281CAA2AEF /* BulletedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65857DBB0FE816EC0915D0CFEA5840 /* BulletedListItem.swift */; };
+		56699F5B6868246554ED76F8285F246E /* CKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3646C6A664CA9C8642787DD39FF8093 /* CKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C6FBED0373604B24144300865E43F43 /* CKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA3F9AB7B55E30D06B79C0524483FA5 /* CKTextView-dummy.m */; };
 		82C2F1F3B00CA0BDDFA5B49BD0D66166 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		8FB912FEB1911F5A4AB80396B53FFC92 /* CKTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */; };
+		9538D253A62849FC2ABBECB41084C831 /* CheckBoxListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECF68A53024A8167F579632C47AD922 /* CheckBoxListItem.swift */; };
 		97DE039907839F8E3F3DE3D532E93AA0 /* Pods-CKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98AFFF266F4B5F57D21B8D3169EE21EC /* BaseListInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45998E05CDCABC5AC8016187F801C45F /* BaseListInfoStore.swift */; };
+		B21DE67C72B51BED370F270FEB6D19A2 /* NumberedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA018764CC9BC655285EE4B24D7C340 /* NumberedListItem.swift */; };
 		B59F1B8978864464BB983CE112DDAC8D /* Pods-CKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */; };
-		B9E47CBB1CE8A32800901F97 /* CKTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */; };
-		C9E4CE9A53BF7DCB2C935C3AB11C20AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		B7E572B50CB39335ED12EA929BE14D41 /* CKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E17AF9F004BEF5F555220FCA63EA0 /* CKTextView.swift */; };
+		BA6D1D5FE509A17F316E751A6C57EDFF /* CKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */; };
 		EF61969E5CC8CED4974A5F453D23530F /* Pods-CKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA7CE4F6309FC5FFF491E3A7837E225A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,15 +32,22 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9BE86CDA6FBF0119F6C4A614EB7D938E;
+			remoteGlobalIDString = E99C6FCE13A1FF1A9D090BF2B3A82A3F;
 			remoteInfo = CKTextView;
 		};
 		7A78D222BD4B99311782220043C9367D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9BE86CDA6FBF0119F6C4A614EB7D938E;
+			remoteGlobalIDString = E99C6FCE13A1FF1A9D090BF2B3A82A3F;
 			remoteInfo = CKTextView;
+		};
+		8154D689F7E351980895AE1B9331BE85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AEC60FA7B71666BEC17FE2AEE628DF31;
+			remoteInfo = "CKTextView-CKTextView";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,57 +55,61 @@
 		000D32E5046B2C4736BEECF10EFB5780 /* Pods-CKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
 		0275138769CDFA056585EBFB8AEB7516 /* Pods-CKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		08A7B519483D0AA0101E177E5D75B289 /* Pods-CKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
+		09A32C99234625244FA03F005FC822D4 /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
 		1045C02ED313F067DA3FAC329B662287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-umbrella.h"; sourceTree = "<group>"; };
-		2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListInfoStore.swift; sourceTree = "<group>"; };
+		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
+		15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
+		15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextContainer.swift; sourceTree = "<group>"; };
+		186E73DB4279E787D45FA980A3044E0D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
+		1ECF68A53024A8167F579632C47AD922 /* CheckBoxListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckBoxListItem.swift; sourceTree = "<group>"; };
+		28729CC1F26C6DDDF0DB4A6C3190FECC /* Pods_CKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		357A965EBAFD0699CDC03E105B81288A /* Pods-CKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextUtil.swift; sourceTree = "<group>"; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		426893A46F52338647CA878B3726FF2B /* Pods-CKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		52A5BF58D78B05A81ACAD11F1338F1B5 /* Pods_CKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45998E05CDCABC5AC8016187F801C45F /* BaseListInfoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListInfoStore.swift; sourceTree = "<group>"; };
 		5342DA9055E543AAED6829ECDBC85012 /* Pods-CKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
-		5E8E1F2450336089EB01AA46C1283536 /* CKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5622A598EAAF886EDEEB89C09890D3C3 /* CKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69433EF2F24FD2C39662DDCD9DAB1238 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AFC61BAB57E2B919E143F5FAB3F519B /* Pods-CKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CKTextView-dummy.m"; sourceTree = "<group>"; };
+		6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CKTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		759E17AF9F004BEF5F555220FCA63EA0 /* CKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKTextView.swift; sourceTree = "<group>"; };
 		7EA9D3D28553E659A300B3938EC87394 /* Pods-CKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CKTextView_Example-dummy.m"; sourceTree = "<group>"; };
-		8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberedListItem.swift; sourceTree = "<group>"; };
+		82E4A02CBD5F351FE7DC2AE2785B9B51 /* Pods_CKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87513B13D59EC6A3AAD87E7387850943 /* Pods-CKTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Example.modulemap"; sourceTree = "<group>"; };
 		8809846A689D8A644D47DAB7795DFA3C /* Pods-CKTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CKTextView.xcconfig; sourceTree = "<group>"; };
 		8EF1868FE4C673DBB4B8FC0D7516C708 /* Pods-CKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
-		9015B195CD82A7428F76127366FB3580 /* Pods_CKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BulletedListItem.swift; sourceTree = "<group>"; };
 		9CB118D228A1FE17A0BF839369744181 /* Pods-CKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9E517AEEFC34E5C689C0910E84802D35 /* Pods-CKTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CKTextView_Example-resources.sh"; sourceTree = "<group>"; };
 		9F60E16DBACF140DF7DFBDCCE38FC944 /* Pods-CKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A020C8FA93FC123D153DFF174A870966 /* Pods-CKTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CKTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A1AD4162FE2A3D6A9FA3498E7912F5DF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A65A55AEF006E0A868D2C977A94D497D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0020800453787ECDA846694C78E396D /* CKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CKTextView.modulemap; sourceTree = "<group>"; };
-		B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CKTextView.xcconfig; sourceTree = "<group>"; };
 		B43A0C9ADF0A2B61D67E490CE751A11E /* Pods-CKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CKTextView_Tests.modulemap"; sourceTree = "<group>"; };
-		B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextContainer.swift; sourceTree = "<group>"; };
-		C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
-		D52164F0626674D96A3440ABEA255A5E /* CKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-prefix.pch"; sourceTree = "<group>"; };
+		B98CD4C8E90D15C2C110825B119D1851 /* BaseListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseListItem.swift; sourceTree = "<group>"; };
+		C3646C6A664CA9C8642787DD39FF8093 /* CKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CKTextView-umbrella.h"; sourceTree = "<group>"; };
+		CB65857DBB0FE816EC0915D0CFEA5840 /* BulletedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BulletedListItem.swift; sourceTree = "<group>"; };
+		CCA3F9AB7B55E30D06B79C0524483FA5 /* CKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CKTextView-dummy.m"; sourceTree = "<group>"; };
+		CDF9274DECCA10AA451BD894FB4601CA /* ResourceBundle-CKTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CKTextView-Info.plist"; sourceTree = "<group>"; };
 		DA651BCC4B0B95F6C0D19345DFE38F52 /* Pods-CKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
+		DBA018764CC9BC655285EE4B24D7C340 /* NumberedListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberedListItem.swift; sourceTree = "<group>"; };
 		FAD842A4DC76BBC109990C4BD84434B4 /* Pods-CKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0C0AB8DC820F54EED1BDD0A522B0DFA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9E4CE9A53BF7DCB2C935C3AB11C20AA /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5E91697FDEBA2988FD33DD386BC12A78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				54D5F1D00D3553AA44F1BF1B9F8D4E2D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69169457C5082A7F88198F821371B418 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7CE4F6309FC5FFF491E3A7837E225A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +121,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CCFA5E977D26DD0B0EE57FEDF17DCD7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00682310B7B6A5FEFF29F06D648AB4B5 /* CKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				1D0FD078F17AB2AA7998F246498CB8F0 /* Assets */,
+			);
+			path = CKTextView;
+			sourceTree = "<group>";
+		};
 		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,20 +147,50 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		362A7FCE5190E933B946EA148682B3A0 /* Development Pods */ = {
+		1628EA311D43BA304309483C15A09469 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8F4E0645B86CBF537C789E2BA2B56484 /* CKTextView */,
+				00682310B7B6A5FEFF29F06D648AB4B5 /* CKTextView */,
 			);
-			name = "Development Pods";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		4E300419BB39549D94335EF827FBD52E /* CKTextView */ = {
+		1D0FD078F17AB2AA7998F246498CB8F0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				86E7B3FE45C0E05EEE8C6DBE72E9550A /* Classes */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3CBCD929C78DAD891B7D76090E9A4658 /* CKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				D2003680638A0B9FCE70EF25873F0EDB /* Classes */,
 			);
 			path = CKTextView;
+			sourceTree = "<group>";
+		};
+		3F1F80B53DE2666903CC76E99CDBA6ED /* ListPrefix */ = {
+			isa = PBXGroup;
+			children = (
+				45998E05CDCABC5AC8016187F801C45F /* BaseListInfoStore.swift */,
+				B98CD4C8E90D15C2C110825B119D1851 /* BaseListItem.swift */,
+				CB65857DBB0FE816EC0915D0CFEA5840 /* BulletedListItem.swift */,
+				1ECF68A53024A8167F579632C47AD922 /* CheckBoxListItem.swift */,
+				DBA018764CC9BC655285EE4B24D7C340 /* NumberedListItem.swift */,
+			);
+			path = ListPrefix;
+			sourceTree = "<group>";
+		};
+		442C4B47AFB69CFC865C3246A825589E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */,
+				5622A598EAAF886EDEEB89C09890D3C3 /* CKTextView.framework */,
+				28729CC1F26C6DDDF0DB4A6C3190FECC /* Pods_CKTextView_Example.framework */,
+				82E4A02CBD5F351FE7DC2AE2785B9B51 /* Pods_CKTextView_Tests.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		51D06E78AD6860432CCC4C4EAB2241B7 /* Targets Support Files */ = {
@@ -144,47 +202,43 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		5EFEF6B8459561B799FDBF86E5891864 /* ListPrefix */ = {
+		6E380A70DB44A27DBA803377AFA69BE1 /* CKTextView */ = {
 			isa = PBXGroup;
 			children = (
-				2EDE7B1BC58DB404456D2F77DB6AE4E9 /* BaseListInfoStore.swift */,
-				C1742582E42DD3AACB51703D741E06D9 /* BaseListItem.swift */,
-				94A4B7C77D180A22B91C16787FC640B7 /* BulletedListItem.swift */,
-				8419B835A3F2EF9FB737E60B2268A6B3 /* NumberedListItem.swift */,
+				3CBCD929C78DAD891B7D76090E9A4658 /* CKTextView */,
+				1628EA311D43BA304309483C15A09469 /* Resources */,
+				BBC68BA80273000100E51D6F8B324422 /* Support Files */,
 			);
-			path = ListPrefix;
+			name = CKTextView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		77D5251CAB5A9A56DC8EBC0F5141478C /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E380A70DB44A27DBA803377AFA69BE1 /* CKTextView */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				362A7FCE5190E933B946EA148682B3A0 /* Development Pods */,
+				77D5251CAB5A9A56DC8EBC0F5141478C /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				BD8E2C431BCA4552E4DBD04937C1E182 /* Products */,
+				C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */,
+				442C4B47AFB69CFC865C3246A825589E /* Products */,
 				51D06E78AD6860432CCC4C4EAB2241B7 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		86E7B3FE45C0E05EEE8C6DBE72E9550A /* Classes */ = {
+		81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				35A116352A2395FD9DA818324194BE03 /* CKTextUtil.swift */,
-				0E448675BE81B9E49D3F1420B27EE477 /* CKTextView.swift */,
-				B9E47CBA1CE8A32800901F97 /* CKTextContainer.swift */,
-				5EFEF6B8459561B799FDBF86E5891864 /* ListPrefix */,
+				12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */,
 			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		8F4E0645B86CBF537C789E2BA2B56484 /* CKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				4E300419BB39549D94335EF827FBD52E /* CKTextView */,
-				F41CF055D1399FBE53BD026D0FD99A95 /* Support Files */,
-			);
-			name = CKTextView;
-			path = ../..;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B45A511E96EE9D3B124726059E138C3F /* Pods-CKTextView_Tests */ = {
@@ -205,6 +259,21 @@
 			path = "Target Support Files/Pods-CKTextView_Tests";
 			sourceTree = "<group>";
 		};
+		BBC68BA80273000100E51D6F8B324422 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				186E73DB4279E787D45FA980A3044E0D /* CKTextView.modulemap */,
+				8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */,
+				CCA3F9AB7B55E30D06B79C0524483FA5 /* CKTextView-dummy.m */,
+				09A32C99234625244FA03F005FC822D4 /* CKTextView-prefix.pch */,
+				C3646C6A664CA9C8642787DD39FF8093 /* CKTextView-umbrella.h */,
+				69433EF2F24FD2C39662DDCD9DAB1238 /* Info.plist */,
+				CDF9274DECCA10AA451BD894FB4601CA /* ResourceBundle-CKTextView-Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/CKTextView";
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,28 +282,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD8E2C431BCA4552E4DBD04937C1E182 /* Products */ = {
+		C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5E8E1F2450336089EB01AA46C1283536 /* CKTextView.framework */,
-				52A5BF58D78B05A81ACAD11F1338F1B5 /* Pods_CKTextView_Example.framework */,
-				9015B195CD82A7428F76127366FB3580 /* Pods_CKTextView_Tests.framework */,
+				D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */,
 			);
-			name = Products;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		F41CF055D1399FBE53BD026D0FD99A95 /* Support Files */ = {
+		D2003680638A0B9FCE70EF25873F0EDB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B0020800453787ECDA846694C78E396D /* CKTextView.modulemap */,
-				B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */,
-				6E388A9B32638294BE9D1F21C5F6DA2F /* CKTextView-dummy.m */,
-				D52164F0626674D96A3440ABEA255A5E /* CKTextView-prefix.pch */,
-				27DCA841B361E967488B2A16BD999DD4 /* CKTextView-umbrella.h */,
-				A65A55AEF006E0A868D2C977A94D497D /* Info.plist */,
+				15EDCBACD269C6D557F20260761F9FBF /* CKTextContainer.swift */,
+				15DDDAAA19110CFACAB30A19DA3A9D26 /* CKTextUtil.swift */,
+				759E17AF9F004BEF5F555220FCA63EA0 /* CKTextView.swift */,
+				3F1F80B53DE2666903CC76E99CDBA6ED /* ListPrefix */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/CKTextView";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */,
+			);
+			path = "Reveal-iOS-SDK";
 			sourceTree = "<group>";
 		};
 		F706630BAC33A383DA646B81F452FE5B /* Pods-CKTextView_Example */ = {
@@ -266,14 +338,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		61D0D0E943C0D313C0673CC1C7AB09AA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7BC0A8E3EAD178198D69AAD269C37330 /* CKTextView-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6592CB244B8E7C7A5F27948E8F647B0F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,26 +346,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E3190A970B31F66BEC7BA01E54040FA8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56699F5B6868246554ED76F8285F246E /* CKTextView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 75FD4DDDDEA4157E8B296F8C2884B93A /* Build configuration list for PBXNativeTarget "CKTextView" */;
-			buildPhases = (
-				49491CB6BD76EDFC296A43BFAD902D71 /* Sources */,
-				0C0AB8DC820F54EED1BDD0A522B0DFA6 /* Frameworks */,
-				61D0D0E943C0D313C0673CC1C7AB09AA /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CKTextView;
-			productName = CKTextView;
-			productReference = 5E8E1F2450336089EB01AA46C1283536 /* CKTextView.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		ADB09C98456D627748695F551309EE41 /* Pods-CKTextView_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8786A77BE1DECEBED41DCA887A493472 /* Build configuration list for PBXNativeTarget "Pods-CKTextView_Tests" */;
@@ -317,8 +372,25 @@
 			);
 			name = "Pods-CKTextView_Tests";
 			productName = "Pods-CKTextView_Tests";
-			productReference = 9015B195CD82A7428F76127366FB3580 /* Pods_CKTextView_Tests.framework */;
+			productReference = 82E4A02CBD5F351FE7DC2AE2785B9B51 /* Pods_CKTextView_Tests.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		AEC60FA7B71666BEC17FE2AEE628DF31 /* CKTextView-CKTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC620A0EED1B8B4E3E08873C098A331A /* Build configuration list for PBXNativeTarget "CKTextView-CKTextView" */;
+			buildPhases = (
+				962A0999E55F132EA7B58F3FDCA4F4D1 /* Sources */,
+				CCFA5E977D26DD0B0EE57FEDF17DCD7D /* Frameworks */,
+				B14995F8396794A94435D1CEB00E4D22 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CKTextView-CKTextView";
+			productName = "CKTextView-CKTextView";
+			productReference = 6DD40003A5346092A7062F0934763A5A /* CKTextView.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		E4C707F93E3754D22785E33CE1111F40 /* Pods-CKTextView_Example */ = {
 			isa = PBXNativeTarget;
@@ -335,7 +407,26 @@
 			);
 			name = "Pods-CKTextView_Example";
 			productName = "Pods-CKTextView_Example";
-			productReference = 52A5BF58D78B05A81ACAD11F1338F1B5 /* Pods_CKTextView_Example.framework */;
+			productReference = 28729CC1F26C6DDDF0DB4A6C3190FECC /* Pods_CKTextView_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E99C6FCE13A1FF1A9D090BF2B3A82A3F /* CKTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD968DDDB585EBDE727ADED0ACDDE610 /* Build configuration list for PBXNativeTarget "CKTextView" */;
+			buildPhases = (
+				CD0EC50B0E859DB40B4090CF266DD269 /* Sources */,
+				69169457C5082A7F88198F821371B418 /* Frameworks */,
+				E7E608DF249F64A0B326F23A24B7783F /* Resources */,
+				E3190A970B31F66BEC7BA01E54040FA8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				386AC406C6F74C546C24F0DA53D0D7CB /* PBXTargetDependency */,
+			);
+			name = CKTextView;
+			productName = CKTextView;
+			productReference = 5622A598EAAF886EDEEB89C09890D3C3 /* CKTextView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -345,7 +436,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -355,38 +446,49 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = BD8E2C431BCA4552E4DBD04937C1E182 /* Products */;
+			productRefGroup = 442C4B47AFB69CFC865C3246A825589E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */,
+				E99C6FCE13A1FF1A9D090BF2B3A82A3F /* CKTextView */,
+				AEC60FA7B71666BEC17FE2AEE628DF31 /* CKTextView-CKTextView */,
 				E4C707F93E3754D22785E33CE1111F40 /* Pods-CKTextView_Example */,
 				ADB09C98456D627748695F551309EE41 /* Pods-CKTextView_Tests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXSourcesBuildPhase section */
-		49491CB6BD76EDFC296A43BFAD902D71 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXResourcesBuildPhase section */
+		B14995F8396794A94435D1CEB00E4D22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DB38609E61B8711962466906F721C0A /* BaseListInfoStore.swift in Sources */,
-				68B936916C30CC1EA86F7265D9D850E0 /* BaseListItem.swift in Sources */,
-				3DE0F289AE3F352A73A82808327ADD4F /* BulletedListItem.swift in Sources */,
-				0540A951E6F3EE83B4234201D741BCBF /* CKTextUtil.swift in Sources */,
-				031308C994F548D9022AB957BC9B9494 /* CKTextView-dummy.m in Sources */,
-				256ABFE913675C0E0D7BF5527EDCBF58 /* CKTextView.swift in Sources */,
-				B9E47CBB1CE8A32800901F97 /* CKTextContainer.swift in Sources */,
-				4A94A5A0D903F47901A33A378242A364 /* NumberedListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7E608DF249F64A0B326F23A24B7783F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA6D1D5FE509A17F316E751A6C57EDFF /* CKTextView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		723F3761A71432DE2A8AFDA9EF0ADE5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				065B945489DE1E514509166DF88BC7DF /* Pods-CKTextView_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962A0999E55F132EA7B58F3FDCA4F4D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,24 +500,75 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD0EC50B0E859DB40B4090CF266DD269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AFFF266F4B5F57D21B8D3169EE21EC /* BaseListInfoStore.swift in Sources */,
+				4909FE490AFCB85C3A0F2EE727DB542D /* BaseListItem.swift in Sources */,
+				5603744B913AF9988D123C281CAA2AEF /* BulletedListItem.swift in Sources */,
+				9538D253A62849FC2ABBECB41084C831 /* CheckBoxListItem.swift in Sources */,
+				8FB912FEB1911F5A4AB80396B53FFC92 /* CKTextContainer.swift in Sources */,
+				31C20B0C1262405888CE93FD8BECBC84 /* CKTextUtil.swift in Sources */,
+				6C6FBED0373604B24144300865E43F43 /* CKTextView-dummy.m in Sources */,
+				B7E572B50CB39335ED12EA929BE14D41 /* CKTextView.swift in Sources */,
+				B21DE67C72B51BED370F270FEB6D19A2 /* NumberedListItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		386AC406C6F74C546C24F0DA53D0D7CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CKTextView-CKTextView";
+			target = AEC60FA7B71666BEC17FE2AEE628DF31 /* CKTextView-CKTextView */;
+			targetProxy = 8154D689F7E351980895AE1B9331BE85 /* PBXContainerItemProxy */;
+		};
 		86CCDA81E3F7282921173683997805B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextView;
-			target = 9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */;
+			target = E99C6FCE13A1FF1A9D090BF2B3A82A3F /* CKTextView */;
 			targetProxy = 5E21FC59C87B736BF096EF30E55B2AAA /* PBXContainerItemProxy */;
 		};
 		DAAB96B48FAF25E3957D2988E26EF878 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CKTextView;
-			target = 9BE86CDA6FBF0119F6C4A614EB7D938E /* CKTextView */;
+			target = E99C6FCE13A1FF1A9D090BF2B3A82A3F /* CKTextView */;
 			targetProxy = 7A78D222BD4B99311782220043C9367D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0D4A54E44C4D1ECFF069AD4C7AB18A26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		2CE16AC72762C01C5DC595053F1F2EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,13 +610,29 @@
 			};
 			name = Debug;
 		};
-		4188D3619D43CCAEE16169A411EFC1DC /* Release */ = {
+		3473BDE85B1442926DE8755002E0F3D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
+			baseConfigurationReference = 8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CKTextView/ResourceBundle-CKTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = CKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		36F631BAEDB376EE06D88D87D232DC05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -476,16 +645,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_BUNDLE_IDENTIFIER}";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = CKTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		43E7BDF119984CB2720E1B83939D2008 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -553,37 +722,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		536A93928E6FA7EE7B2354A4B5107A5F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B407700CF9334BC07914211302E1D587 /* CKTextView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CKTextView/CKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CKTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CKTextView/CKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_BUNDLE_IDENTIFIER}";
-				PRODUCT_NAME = CKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		6E0430C7FCEB8B3CC9AAB80B29D05AAA /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -689,6 +827,22 @@
 			};
 			name = Release;
 		};
+		FD40F4D87565D5AB44AB521455B56E58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8963C8AD34AC9BF3BA0E955E3812C2B0 /* CKTextView.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CKTextView/ResourceBundle-CKTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = CKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -697,15 +851,6 @@
 			buildConfigurations = (
 				2CE16AC72762C01C5DC595053F1F2EF4 /* Debug */,
 				C6544A1F1139551CE6C6C9B43404CFA3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		75FD4DDDDEA4157E8B296F8C2884B93A /* Build configuration list for PBXNativeTarget "CKTextView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				536A93928E6FA7EE7B2354A4B5107A5F /* Debug */,
-				4188D3619D43CCAEE16169A411EFC1DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -724,6 +869,24 @@
 			buildConfigurations = (
 				C62C98BB6943BD451236B056C9965533 /* Debug */,
 				50D60D79221787DC208110807890DBF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC620A0EED1B8B4E3E08873C098A331A /* Build configuration list for PBXNativeTarget "CKTextView-CKTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3473BDE85B1442926DE8755002E0F3D1 /* Debug */,
+				FD40F4D87565D5AB44AB521455B56E58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD968DDDB585EBDE727ADED0ACDDE610 /* Build configuration list for PBXNativeTarget "CKTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36F631BAEDB376EE06D88D87D232DC05 /* Debug */,
+				0D4A54E44C4D1ECFF069AD4C7AB18A26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
