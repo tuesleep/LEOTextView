@@ -176,8 +176,7 @@ class BaseListItem: NSObject
     func clearContainerWithAllYSet(ckTextView: CKTextView)
     {
         // Clear List info record.
-        // FIXME: BUG
-//        ckTextView.listInfoStoreContainerMap.removeValueForKey(self.listInfoStore!.listFirstKeyY)
+        ckTextView.removeInfoStoreFromContainerWithY(y: self.listInfoStore!.listFirstKeyY)
         
         var needClearYSet = allYSet(ckTextView.font!.lineHeight)
         
@@ -188,7 +187,7 @@ class BaseListItem: NSObject
     }
     
     /**
-        Reset all item position in list.
+        Reset all item position in list. Set the right firstKeyY of firstItem before call this method.
      
         - Returns: A set of y that is list type.
      */
@@ -197,8 +196,18 @@ class BaseListItem: NSObject
         
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
+        // reset firstItem keyYSets
+        let keySetCount = firstItem.keyYSet.count
+        var newKeyYSet = Set<CGFloat>()
+        for i in 0 ..< keySetCount {
+            newKeyYSet.insert(firstItem.firstKeyY + CGFloat(i) * firstItem.firstKeyY)
+        }
+        firstItem.keyYSet = newKeyYSet
+        
         // Save new ListInfoStore to container.
-        ckTextView.saveToListInfoStoreContainer(firstItem.listInfoStore!)
+        ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listFirstKeyY)
+        // Save first item first.
+        ckTextView.saveToListItemContainerWithItem(firstItem)
         
         var index = 0
         
@@ -207,9 +216,6 @@ class BaseListItem: NSObject
         
         var moveY = firstItem.endYWithLineHeight(lineHeight)
         var item = firstItem.nextItem
-        
-        // Save first item first.
-        ckTextView.saveToListItemContainerWithItem(firstItem)
         
         if item == nil {
             firstItem.listInfoStore!.listEndByY = firstItem.endYWithLineHeight(lineHeight) - lineHeight

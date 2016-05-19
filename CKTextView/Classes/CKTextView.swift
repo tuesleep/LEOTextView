@@ -23,7 +23,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
     
     // Save Y and InfoStore relationship.
-    var listInfoStoreContainerMap: Dictionary<String, BaseListInfoStore> = [:]
+    var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
     
     public class func ck_textView(frame: CGRect) -> CKTextView
     {
@@ -69,14 +69,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return listItemContainerMap[String(format: "%.1f", y)]
     }
     
-    func saveToListInfoStoreContainer(infoStore: BaseListInfoStore)
+    func saveToListInfoStoreContainerY(y keyY: String)
     {
-        listInfoStoreContainerMap[infoStore.listFirstKeyY] = infoStore
+        listInfoStoreContainerMap[keyY] = 0
     }
     
-    func infoStoreFromListInfoStoreContainerWithY(y: String) -> BaseListInfoStore?
+    func removeInfoStoreFromContainerWithY(y keyY: String)
     {
-        return listInfoStoreContainerMap[String(format: "%.1f", y)]
+        listInfoStoreContainerMap.removeValueForKey(keyY);
     }
     
     // MARK: - Setups
@@ -172,7 +172,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Save to container
             saveToListItemContainerWithItem(numberedListItem)
-//            saveToListInfoStoreContainer(numberedListItem.listInfoStore!)
+            saveToListInfoStoreContainerY(y: numberedListItem.listInfoStore!.listFirstKeyY)
             
             currentCursorType = ListType.Numbered
             
@@ -187,7 +187,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Save to container
             saveToListItemContainerWithItem(bulletedListItem)
-            saveToListInfoStoreContainer(bulletedListItem.listInfoStore!)
+            saveToListInfoStoreContainerY(y: bulletedListItem.listInfoStore!.listFirstKeyY)
             
             currentCursorType = ListType.Bulleted
             
@@ -200,7 +200,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             checkBoxListItem.listInfoStore?.fillBezierPath(self)
             
             saveToListItemContainerWithItem(checkBoxListItem)
-            saveToListInfoStoreContainer(checkBoxListItem.listInfoStore!)
+            saveToListInfoStoreContainerY(y: checkBoxListItem.listInfoStore!.listFirstKeyY)
             
             currentCursorType = ListType.Checkbox
             
@@ -273,8 +273,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleLineChanged(y: CGFloat, changedLineCount: Int)
     {
+        print("handleLineChanged y: \(y)")
         
-        /*
         let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
             if let numberY = NSNumberFormatter().numberFromString(keyY) {
                 let floatY = CGFloat(numberY)
@@ -289,8 +289,18 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             return true
         }
         
-        print("infoStores: \(infoStores)")
- */
+        print("filter infoStore count: \(infoStores.count)")
+        
+        for (firstKeyY, _) in infoStores {
+            guard let item = listItemContainerMap[firstKeyY] else { continue }
+            
+            item.clearContainerWithAllYSet(self)
+            
+            item.firstKeyY = item.firstKeyY + (self.font!.lineHeight * CGFloat(changedLineCount))
+            
+            item.resetAllItemYWithFirstItem(item, ckTextView: self)
+        }
+        
     }
     
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
@@ -305,7 +315,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             if changeLineCount == 0 { changeLineCount = 1 }
             
             // Handle all list that after this y position.
-            handleLineChanged(prevCursorPoint!.y, changedLineCount: changeLineCount)
+            if willChangeText {
+                handleLineChanged(prevCursorPoint!.y, changedLineCount: changeLineCount)
+            }
             
             guard !willReturnTouch else { return }
             
