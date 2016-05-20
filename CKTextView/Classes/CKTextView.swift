@@ -112,6 +112,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
+        CKTextUtil.checkChangedTextInfo(textView, shouldChangeTextInRange: range, replacementText: text)
+        
+        
         var isContinue = true
         
         if CKTextUtil.isSpace(text)

@@ -59,12 +59,6 @@ class CKTextUtil: NSObject {
         return false
     }
     
-    class func clearTextByRange(range: NSRange, textView: UITextView)
-    {
-        let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
-        textView.text.replaceRange(clearRange, with: "")
-    }
-    
     class func isFirstLocationInLineWithLocation(location: Int, textView: UITextView) -> Bool
     {
         if location <= 0 {
@@ -81,6 +75,26 @@ class CKTextUtil: NSObject {
         } else {
             return false
         }
+    }
+    
+    class func checkChangedTextInfo(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> ([String], Bool)
+    {
+        let lineHeight = textView.font!.lineHeight
+        var changedYArray: Array<String> = []
+        
+        let selectedRange = textView.selectedTextRange!
+        
+        print("selectedRange: \(selectedRange)")
+        
+//        textView.caretRectForPosition(textView.selectedTextRange!.start).origin
+        
+        return ([], false)
+    }
+    
+    class func clearTextByRange(range: NSRange, textView: UITextView)
+    {
+        let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
+        textView.text.replaceRange(clearRange, with: "")
     }
     
     class func typeForListKeywordWithLocation(location: Int, textView: UITextView) -> ListType
