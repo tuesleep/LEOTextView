@@ -95,8 +95,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         var isDeleteFirstItem = false
         
-        print("Will delete by Y: \(y)")
-        
         if let item = itemFromListItemContainerWithY(y)
         {
             isDeleteFirstItem = item.firstKeyY == item.listInfoStore!.listStartByY
@@ -228,15 +226,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 let isEmptyLine = CKTextUtil.isEmptyLine(cursorLocation, textView: textView)
                 
                 if isEmptyLine {
-                    print("isEmptyLine")
                     deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: false)
                     currentCursorType = .Text
                     willReturnTouch = false
                     
                     return false
                 } else {
-                    print("Not empty line")
-                    
                     if let item = itemFromListItemContainerWithY(cursorPoint.y) {
                         item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                     }
@@ -277,8 +272,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
-        print("handleLineChanged y: \(y)")
-        
         let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
             if let numberY = NSNumberFormatter().numberFromString(keyY) {
                 let floatY = CGFloat(numberY)
@@ -292,8 +285,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             return true
         }
-        
-        print("filter infoStore count: \(infoStores.count)")
         
         for (firstKeyY, _) in infoStores {
             guard let item = listItemContainerMap[firstKeyY] else { continue }
