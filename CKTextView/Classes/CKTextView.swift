@@ -129,6 +129,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         {
             willBackspaceTouch = true
             isContinue = handleBackspaceEvent(textView)
+            
+            if range.location == 0 && range.length == 0 {
+                isContinue = false
+            }
         }
         
         if isContinue {
@@ -311,10 +315,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard prevCursorPoint != nil else { return }
         
         if prevCursorPoint!.y != cursorPoint.y {
-            let moveValue = cursorPoint.y - prevCursorPoint!.y
+            
             
             // Handle all list that after this y position.
             if willChangeText {
+                let moveValue = cursorPoint.y - prevCursorPoint!.y
                 handleLineChanged(prevCursorPoint!.y, moveValue: moveValue)
             }
             
