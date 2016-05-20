@@ -144,14 +144,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         changeCurrentCursorPointIfNeeded(cursorPoint)
         
-        print("Now! Cursor Type is: \(currentCursorType)")
+        willChangeText = false
+        willReturnTouch = false
+        willBackspaceTouch = false
     }
     
     public func textViewDidChange(textView: UITextView)
     {
-        willChangeText = false
-        willReturnTouch = false
-        willBackspaceTouch = false
+        
     }
     
     // MARK: - Event Handler
@@ -271,7 +271,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return true
     }
     
-    func handleLineChanged(y: CGFloat, changedLineCount: Int)
+    func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
         print("handleLineChanged y: \(y)")
         
@@ -296,7 +296,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             item.clearContainerWithAllYSet(self)
             
-            item.firstKeyY = item.firstKeyY + (self.font!.lineHeight * CGFloat(changedLineCount))
+            item.firstKeyY = item.firstKeyY + moveValue
             
             item.resetAllItemYWithFirstItem(item, ckTextView: self)
         }
@@ -311,12 +311,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard prevCursorPoint != nil else { return }
         
         if prevCursorPoint!.y != cursorPoint.y {
-            var changeLineCount = Int((cursorPoint.y - prevCursorPoint!.y) / self.font!.lineHeight)
-            if changeLineCount == 0 { changeLineCount = 1 }
+            let moveValue = cursorPoint.y - prevCursorPoint!.y
             
             // Handle all list that after this y position.
             if willChangeText {
-                handleLineChanged(prevCursorPoint!.y, changedLineCount: changeLineCount)
+                handleLineChanged(prevCursorPoint!.y, moveValue: moveValue)
             }
             
             guard !willReturnTouch else { return }
