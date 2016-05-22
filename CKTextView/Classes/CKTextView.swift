@@ -181,6 +181,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             currentCursorType = ListType.Numbered
             
+            textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
+            
             return false
             
         case .Bulleted:
@@ -196,6 +198,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             currentCursorType = ListType.Bulleted
             
+            textView.selectedRange = NSMakeRange(cursorLocation - 1, 0)
+            
             return false
         case .Checkbox:
             CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
@@ -208,6 +212,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             saveToListInfoStoreContainerY(y: checkBoxListItem.listInfoStore!.listFirstKeyY)
             
             currentCursorType = ListType.Checkbox
+            
+            textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
             
             return false
         case .Text:
