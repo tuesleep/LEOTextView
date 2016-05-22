@@ -170,6 +170,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleSpaceEvent(textView: UITextView) -> Bool
     {
+        if currentCursorType != ListType.Text {
+            return true
+        }
+        
         let cursorLocation = textView.selectedRange.location
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         
