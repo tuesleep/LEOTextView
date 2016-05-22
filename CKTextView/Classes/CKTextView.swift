@@ -64,9 +64,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
-    func itemFromListItemContainerWithY(y:CGFloat) -> BaseListItem?
+    func itemFromListItemContainerWithY(y: CGFloat) -> BaseListItem?
     {
         return listItemContainerMap[String(format: "%.1f", y)]
+    }
+    
+    func itemFromListItemContainerWithKeyY(keyY: String) -> BaseListItem?
+    {
+        return listItemContainerMap[keyY]
     }
     
     func saveToListInfoStoreContainerY(y keyY: String)
@@ -152,6 +157,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
+        
+        print("cursor type: \(currentCursorType)")
     }
     
     public func textViewDidChange(textView: UITextView)
@@ -281,6 +288,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
+        handleListMergeWhenBackspace(y, moveValue: moveValue)
+        
         let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
             if let numberY = NSNumberFormatter().numberFromString(keyY) {
                 let floatY = CGFloat(numberY)
@@ -304,7 +313,37 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             item.resetAllItemYWithFirstItem(item, ckTextView: self)
         }
+    }
+    
+    func handleListMergeWhenBackspace(y: CGFloat, moveValue: CGFloat) {
+        // this line type must equal Text
+        if moveValue < 0 && itemFromListItemContainerWithY(y) == nil {
+            // By backspace, needs link same list if existed.
+            let prevY = y + moveValue
+            let nextY = y + self.font!.lineHeight
+            
+            guard let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY) else { return }
+            guard prevItem.listType() == nextItem.listType() else { return }
+            guard let firstItem = itemFromListItemContainerWithKeyY(prevItem.listInfoStore!.listFirstKeyY) else { return }
+            
+            removeInfoStoreFromContainerWithY(y: nextItem.listInfoStore!.listFirstKeyY)
+            
+            prevItem.nextItem = nextItem
+            nextItem.prevItem = prevItem
+            
+            nextItem.listInfoStore!.clearBezierPath(self)
+            
+            prevItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+        }
+    }
+    
+    func handleListMergeWhenLineTypeChanged(y: CGFloat) {
+        guard itemFromListItemContainerWithY(y) == nil else { return }
         
+        let prevY = y - self.font!.lineHeight
+        let nextY = y + self.font!.lineHeight
+        
+        // TODO: Merge two list that have same type when new list item create that have same type too.
     }
     
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
@@ -313,10 +352,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         currentCursorPoint = cursorPoint
         
         guard prevCursorPoint != nil else { return }
+     
+        print("cursorY changed to: \(currentCursorPoint?.y), prev cursorY: \(prevCursorPoint!.y)")
         
         if prevCursorPoint!.y != cursorPoint.y {
-            
-            
             // Handle all list that after this y position.
             if willChangeText {
                 let moveValue = cursorPoint.y - prevCursorPoint!.y
@@ -345,8 +384,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // TODO: change BeizerPathRect, more height
                 }
             }
-            
-            print("cursorY changed to: \(currentCursorPoint?.y), prev cursorY: \(prevCursorPoint!.y)")
         }
     }
     
