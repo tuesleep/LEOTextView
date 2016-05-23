@@ -70,11 +70,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return listItemContainerMap[String(Int(y))]
     }
     
-    func itemFromListItemContainerWithKeyY(keyY: CGFloat) -> BaseListItem?
-    {
-        return listItemContainerMap[String(Int(keyY))]
-    }
-    
     func saveToListInfoStoreContainerY(y keyY: CGFloat)
     {
         listInfoStoreContainerMap[String(Int(keyY))] = 0
@@ -162,6 +157,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         print("cursor type: \(currentCursorType)")
         print("list item container: \(listItemContainerMap)")
+        print("list info store container: \(listInfoStoreContainerMap)")
     }
     
     public func textViewDidChange(textView: UITextView)
@@ -197,6 +193,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
             
+            handleListMergeWhenLineTypeChanged(cursorPoint.y, item: numberedListItem)
+            
             return false
             
         case .Bulleted:
@@ -214,6 +212,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             textView.selectedRange = NSMakeRange(cursorLocation - 1, 0)
             
+            handleListMergeWhenLineTypeChanged(cursorPoint.y, item: bulletedListItem)
+            
             return false
         case .Checkbox:
             CKTextUtil.clearTextByRange(NSMakeRange(cursorLocation - 2, 2), textView: textView)
@@ -228,6 +228,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             currentCursorType = ListType.Checkbox
             
             textView.selectedRange = NSMakeRange(cursorLocation - 2, 0)
+            
+            handleListMergeWhenLineTypeChanged(cursorPoint.y, item: checkBoxListItem)
             
             return false
         case .Text:
@@ -348,7 +350,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             guard let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY) else { return }
             guard prevItem.listType() == nextItem.listType() else { return }
-            guard let firstItem = itemFromListItemContainerWithKeyY(prevItem.listInfoStore!.listStartByY) else { return }
+            guard let firstItem = itemFromListItemContainerWithY(prevItem.listInfoStore!.listStartByY) else { return }
             
             removeInfoStoreFromContainerWithY(y: nextItem.listInfoStore!.listStartByY)
             
@@ -361,13 +363,53 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
-    func handleListMergeWhenLineTypeChanged(y: CGFloat) {
-        guard itemFromListItemContainerWithY(y) == nil else { return }
-        
-        let prevY = y - self.font!.lineHeight
-        let nextY = y + self.font!.lineHeight
+    /**
+        Handle that prev or next list can be merged.
+     
+        - Parameter y: item point y.
+        - Parameter item: created item that on the point y.
+     
+        - Returns: true if merged success.
+     */
+    func handleListMergeWhenLineTypeChanged(y: CGFloat, item: BaseListItem) -> Bool {
+        let prevY = y - self.font!.lineHeight + 0.1
+        let nextY = y + self.font!.lineHeight + 0.1
         
         // TODO: Merge two list that have same type when new list item create that have same type too.
+        
+        let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY)
+        
+        var firstItem: BaseListItem?
+        
+        // Merge prev list!
+        if prevItem != nil && prevItem!.listType() == item.listType() {
+            item.prevItem = prevItem
+            prevItem!.nextItem = item
+            
+            // Clear BezierPath when item not a firstItem in the list.
+            item.listInfoStore?.clearBezierPath(self)
+            //removeInfoStoreFromContainerWithY(y: item.listInfoStore!.listStartByY)
+            
+            firstItem = itemFromListItemContainerWithY(prevItem!.listInfoStore!.listStartByY)
+        }
+        
+        // Merge next list
+        if nextItem != nil && nextItem?.listType() == item.listType() {
+            item.nextItem = nextItem
+            nextItem!.prevItem = item
+            
+            //removeInfoStoreFromContainerWithY(y: nextItem!.listInfoStore!.listStartByY)
+            
+            if firstItem == nil {
+                firstItem = item
+            }
+        }
+        
+        if firstItem != nil {
+            firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
+        }
+        
+        return true
     }
     
     func handleListItemYConflictIfNeeded(infoStore: BaseListInfoStore) {
