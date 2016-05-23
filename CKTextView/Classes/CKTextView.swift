@@ -24,6 +24,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // Save Y and InfoStore relationship.
     var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
+    var ignoreMoveOnce = false
     
     public class func ck_textView(frame: CGRect) -> CKTextView
     {
@@ -253,12 +254,16 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     return false
                 } else {
                     if let item = itemFromListItemContainerWithY(cursorPoint.y) {
+                        handleListItemYConflictIfNeeded(cursorPoint.y)
+                        
                         item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                     }
                 }
                 
             } else {
                 if let item = itemFromListItemContainerWithY(cursorPoint.y) {
+                    handleListItemYConflictIfNeeded(cursorPoint.y)
+                    
                     item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                 }
             }
@@ -281,7 +286,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 let isDeleteFirstItem = deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
                 
                 if isDeleteFirstItem {
-                    // Do not delete prev '\n' char when first item deleting.
+                    // Do not delete prev '\n' char when first item deleting. And set cursorType to Text.
+                    currentCursorType = ListType.Text
                     return false
                 }
             }
@@ -292,6 +298,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
+        if ignoreMoveOnce {
+            ignoreMoveOnce = false
+            return
+        }
+        
         handleListMergeWhenBackspace(y, moveValue: moveValue)
         
         let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
@@ -348,6 +359,16 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let nextY = y + self.font!.lineHeight
         
         // TODO: Merge two list that have same type when new list item create that have same type too.
+    }
+    
+    func handleListItemYConflictIfNeeded(y: CGFloat) {
+        let lineHeight = self.font!.lineHeight
+        
+        if let infoStore = listInfoStoreContainerMap[String(format: "%.1f", y + lineHeight)] {
+            // Add to ignore move container.
+            ignoreMoveOnce = true
+            handleLineChanged(y, moveValue: lineHeight)
+        }
     }
     
     func changeCurrentCursorPointIfNeeded(cursorPoint: CGPoint)
