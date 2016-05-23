@@ -70,19 +70,19 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return listItemContainerMap[String(Int(y))]
     }
     
-    func itemFromListItemContainerWithKeyY(keyY: String) -> BaseListItem?
+    func itemFromListItemContainerWithKeyY(keyY: CGFloat) -> BaseListItem?
     {
-        return listItemContainerMap[keyY]
+        return listItemContainerMap[String(Int(keyY))]
     }
     
-    func saveToListInfoStoreContainerY(y keyY: String)
+    func saveToListInfoStoreContainerY(y keyY: CGFloat)
     {
-        listInfoStoreContainerMap[keyY] = 0
+        listInfoStoreContainerMap[String(Int(keyY))] = 0
     }
     
-    func removeInfoStoreFromContainerWithY(y keyY: String)
+    func removeInfoStoreFromContainerWithY(y keyY: CGFloat)
     {
-        listInfoStoreContainerMap.removeValueForKey(keyY);
+        listInfoStoreContainerMap.removeValueForKey(String(Int(keyY)));
     }
     
     // MARK: - Setups
@@ -118,8 +118,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
-        CKTextUtil.checkChangedTextInfo(textView, shouldChangeTextInRange: range, replacementText: text)
         
+        // TODO: mutli operate.
+        // CKTextUtil.checkChangedTextInfo(textView, shouldChangeTextInRange: range, replacementText: text)
         
         var isContinue = true
         
@@ -160,6 +161,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         willBackspaceTouch = false
         
         print("cursor type: \(currentCursorType)")
+        print("list item container: \(listItemContainerMap)")
     }
     
     public func textViewDidChange(textView: UITextView)
@@ -189,7 +191,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Save to container
             saveToListItemContainerWithItem(numberedListItem)
-            saveToListInfoStoreContainerY(y: numberedListItem.listInfoStore!.listFirstKeyY)
+            saveToListInfoStoreContainerY(y: numberedListItem.listInfoStore!.listStartByY)
             
             currentCursorType = ListType.Numbered
             
@@ -206,7 +208,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Save to container
             saveToListItemContainerWithItem(bulletedListItem)
-            saveToListInfoStoreContainerY(y: bulletedListItem.listInfoStore!.listFirstKeyY)
+            saveToListInfoStoreContainerY(y: bulletedListItem.listInfoStore!.listStartByY)
             
             currentCursorType = ListType.Bulleted
             
@@ -221,7 +223,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             checkBoxListItem.listInfoStore?.fillBezierPath(self)
             
             saveToListItemContainerWithItem(checkBoxListItem)
-            saveToListInfoStoreContainerY(y: checkBoxListItem.listInfoStore!.listFirstKeyY)
+            saveToListInfoStoreContainerY(y: checkBoxListItem.listInfoStore!.listStartByY)
             
             currentCursorType = ListType.Checkbox
             
@@ -305,21 +307,22 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         handleListMergeWhenBackspace(y, moveValue: moveValue)
         
+        let filterY = y + 0.1
+        
         let infoStores = listInfoStoreContainerMap.filter { (keyY, infoStore) -> Bool in
-            if let numberY = NSNumberFormatter().numberFromString(keyY) {
-                let floatY = CGFloat(numberY)
-                
-                if floatY > y {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            let listFirstY = (keyY as NSString).floatValue
             
-            return true
+            if listFirstY > Float(filterY) {
+                return true
+            } else {
+                return false
+            }
         }
         
-        for (firstKeyY, _) in infoStores {
+        // Sort array DESC to fix conflict.
+        let infoStoresSortDesc = infoStores.sort({ ($0.0 as NSString).floatValue > ($1.0 as NSString).floatValue })
+        
+        for (firstKeyY, _) in infoStoresSortDesc {
             guard let item = listItemContainerMap[firstKeyY] else { continue }
             
             item.clearContainerWithAllYSet(self)
@@ -339,9 +342,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             guard let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY) else { return }
             guard prevItem.listType() == nextItem.listType() else { return }
-            guard let firstItem = itemFromListItemContainerWithKeyY(prevItem.listInfoStore!.listFirstKeyY) else { return }
+            guard let firstItem = itemFromListItemContainerWithKeyY(prevItem.listInfoStore!.listStartByY) else { return }
             
-            removeInfoStoreFromContainerWithY(y: nextItem.listInfoStore!.listFirstKeyY)
+            removeInfoStoreFromContainerWithY(y: nextItem.listInfoStore!.listStartByY)
             
             prevItem.nextItem = nextItem
             nextItem.prevItem = prevItem
@@ -363,7 +366,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleListItemYConflictIfNeeded(infoStore: BaseListInfoStore) {
         let lineHeight = self.font!.lineHeight
-        let firstItemY = CGFloat(atof(infoStore.listEndKeyY)) + lineHeight
+        let firstItemY = infoStore.listEndByY + lineHeight
         
         if listInfoStoreContainerMap[String(Int(firstItemY))] != nil {
             handleLineChanged(infoStore.listEndByY, moveValue: lineHeight)

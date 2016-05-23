@@ -14,37 +14,14 @@ class BaseListInfoStore: NSObject {
     /// All item of list used one Bezier path to excluding text area.
     var bezierPath: UIBezierPath?
     
-    var listStartByY: CGFloat! {
-        didSet {
-            syncListFirstKeyY()
-        }
-    }
-    var listEndByY: CGFloat! {
-        didSet {
-            syncListEndKeyY()
-        }
-    }
-    
-    // Defined key from container.
-    var listFirstKeyY: String!
-    var listEndKeyY: String!
+    var listStartByY: CGFloat!
+    var listEndByY: CGFloat!
     
     required init(listStartByY: CGFloat, listEndByY: CGFloat) {
         super.init()
         
         self.listStartByY = listStartByY
         self.listEndByY = listEndByY
-        
-        syncListFirstKeyY()
-        syncListEndKeyY()
-    }
-    
-    func syncListFirstKeyY() {
-        listFirstKeyY = String(format: "%.1f", listStartByY)
-    }
-    
-    func syncListEndKeyY() {
-        listEndKeyY = String(format: "%.1f", listEndByY)
     }
     
     func clearBezierPath(ckTextView: CKTextView) {

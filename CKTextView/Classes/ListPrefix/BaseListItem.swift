@@ -164,7 +164,7 @@ class BaseListItem: NSObject
         
         while item != nil {
             for (_, keyY) in item!.keyYSet.enumerate() {
-                needClearYSet.insert(String(format: "%.1f", keyY))
+                needClearYSet.insert(String(Int(keyY)))
             }
             
             item = item!.nextItem
@@ -176,7 +176,7 @@ class BaseListItem: NSObject
     func clearContainerWithAllYSet(ckTextView: CKTextView)
     {
         // Clear List info record.
-        ckTextView.removeInfoStoreFromContainerWithY(y: self.listInfoStore!.listFirstKeyY)
+        ckTextView.removeInfoStoreFromContainerWithY(y: self.listInfoStore!.listStartByY)
         
         var needClearYSet = allYSet(ckTextView.font!.lineHeight)
         
@@ -205,7 +205,7 @@ class BaseListItem: NSObject
         firstItem.keyYSet = newKeyYSet
         
         // Save new ListInfoStore to container.
-        ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listFirstKeyY)
+        ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listStartByY)
         // Save first item first.
         ckTextView.saveToListItemContainerWithItem(firstItem)
         
