@@ -388,7 +388,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Clear BezierPath when item not a firstItem in the list.
             item.listInfoStore?.clearBezierPath(self)
-            //removeInfoStoreFromContainerWithY(y: item.listInfoStore!.listStartByY)
+            removeInfoStoreFromContainerWithY(y: item.listInfoStore!.listStartByY)
             
             firstItem = itemFromListItemContainerWithY(prevItem!.listInfoStore!.listStartByY)
         }
@@ -398,7 +398,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             item.nextItem = nextItem
             nextItem!.prevItem = item
             
-            //removeInfoStoreFromContainerWithY(y: nextItem!.listInfoStore!.listStartByY)
+            nextItem!.listInfoStore!.clearBezierPath(self)
+            removeInfoStoreFromContainerWithY(y: nextItem!.listInfoStore!.listStartByY)
             
             if firstItem == nil {
                 firstItem = item
