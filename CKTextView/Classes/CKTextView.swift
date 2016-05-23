@@ -309,7 +309,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             if let numberY = NSNumberFormatter().numberFromString(keyY) {
                 let floatY = CGFloat(numberY)
                 
-                if floatY > y {
+                if floatY > round(y) {
                     return true
                 } else {
                     return false
@@ -365,9 +365,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let lineHeight = self.font!.lineHeight
         
         if let infoStore = listInfoStoreContainerMap[String(format: "%.1f", y + lineHeight)] {
+            handleLineChanged(y, moveValue: lineHeight)
+            
             // Add to ignore move container.
             ignoreMoveOnce = true
-            handleLineChanged(y, moveValue: lineHeight)
         }
     }
     
