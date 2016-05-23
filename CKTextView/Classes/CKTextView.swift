@@ -254,7 +254,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     return false
                 } else {
                     if let item = itemFromListItemContainerWithY(cursorPoint.y) {
-                        handleListItemYConflictIfNeeded(cursorPoint.y)
+                        handleListItemYConflictIfNeeded(item.listInfoStore!)
                         
                         item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                     }
@@ -262,7 +262,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
             } else {
                 if let item = itemFromListItemContainerWithY(cursorPoint.y) {
-                    handleListItemYConflictIfNeeded(cursorPoint.y)
+                    handleListItemYConflictIfNeeded(item.listInfoStore!)
                     
                     item.createNextItemWithY(cursorPoint.y + lineHeight, ckTextView: self)
                 }
@@ -361,11 +361,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         // TODO: Merge two list that have same type when new list item create that have same type too.
     }
     
-    func handleListItemYConflictIfNeeded(y: CGFloat) {
+    func handleListItemYConflictIfNeeded(infoStore: BaseListInfoStore) {
         let lineHeight = self.font!.lineHeight
+        let endY = infoStore.listEndByY
         
-        if let infoStore = listInfoStoreContainerMap[String(format: "%.1f", y + lineHeight)] {
-            handleLineChanged(y, moveValue: lineHeight)
+        if let infoStore = listInfoStoreContainerMap[String(format: "%.1f", endY + lineHeight)] {
+            handleLineChanged(endY, moveValue: lineHeight)
             
             // Add to ignore move container.
             ignoreMoveOnce = true
