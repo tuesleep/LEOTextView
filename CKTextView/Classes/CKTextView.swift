@@ -375,8 +375,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let prevY = y - self.font!.lineHeight + 0.1
         let nextY = y + self.font!.lineHeight + 0.1
         
-        // TODO: Merge two list that have same type when new list item create that have same type too.
-        
+        // Merge two list that have same type when new list item create that have same type too.
         let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY)
         
         var firstItem: BaseListItem?
@@ -460,7 +459,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // key Y of New line add to container.
                     item.keyYSet.insert(cursorPoint.y)
                     saveToListItemContainerWithItem(item)
-                    // TODO: change BeizerPathRect, more height
+                    
+                    // List item typed.. and changed line.
+                    let firstItem = itemFromListItemContainerWithY(item.listInfoStore!.listStartByY)
+                    firstItem?.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
                 }
             }
         }
