@@ -320,7 +320,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         // Sort array DESC to fix conflict.
-        let infoStoresSortDesc = infoStores.sort({ ($0.0 as NSString).floatValue > ($1.0 as NSString).floatValue })
+        let infoStoresSortDesc: [(String, Int)]!
+            
+        if moveValue > 0 {
+            infoStoresSortDesc = infoStores.sort({ ($0.0 as NSString).floatValue > ($1.0 as NSString).floatValue })
+        } else {
+            infoStoresSortDesc = infoStores.sort({ ($0.0 as NSString).floatValue < ($1.0 as NSString).floatValue })
+        }
         
         for (firstKeyY, _) in infoStoresSortDesc {
             guard let item = listItemContainerMap[firstKeyY] else { continue }
