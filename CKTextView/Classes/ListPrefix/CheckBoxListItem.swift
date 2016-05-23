@@ -42,9 +42,13 @@ class CheckBoxListItem: BaseListItem {
     }
     
     override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
-        button?.removeFromSuperview()
+        clearGlyph()
         
         setupCheckBoxButton(firstKeyY, ckTextView: ckTextView)
+    }
+    
+    override func clearGlyph() {
+        button?.removeFromSuperview()
     }
     
     override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {

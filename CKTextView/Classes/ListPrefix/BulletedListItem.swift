@@ -41,9 +41,13 @@ class BulletedListItem: BaseListItem {
     }
     
     override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
-        label?.removeFromSuperview()
+        clearGlyph()
         
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
+    }
+    
+    override func clearGlyph() {
+        label?.removeFromSuperview()
     }
     
     override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {

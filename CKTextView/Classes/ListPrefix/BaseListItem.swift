@@ -69,6 +69,11 @@ class BaseListItem: NSObject
         
     }
     
+    /// Must override this method
+    func clearGlyph() {
+        
+    }
+    
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.

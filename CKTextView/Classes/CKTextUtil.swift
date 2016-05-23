@@ -77,18 +77,32 @@ class CKTextUtil: NSObject {
         }
     }
     
-    class func checkChangedTextInfo(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> ([String], Bool)
+    class func checkChangedTextInfoAndHandleMutilSelect(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> ([String], Bool, CGFloat)
     {
         let lineHeight = textView.font!.lineHeight
         var changedYArray: Array<String> = []
         
         let selectedRange = textView.selectedTextRange!
         
-        print("selectedRange: \(selectedRange)")
+        let selectStartY = textView.caretRectForPosition(selectedRange.start).origin.y
+        let selectEndY = textView.caretRectForPosition(selectedRange.end).origin.y
         
-//        textView.caretRectForPosition(textView.selectedTextRange!.start).origin
+        print("select start with \(selectStartY) to \(selectEndY)")
         
-        return ([], false)
+        var needsRemoveItemYArray: [String] = []
+        
+        var moveY = selectEndY
+        
+        let compareSelectStartY = selectStartY + 0.1
+        
+        while moveY > compareSelectStartY {
+            needsRemoveItemYArray.append(String(Int(moveY)))
+            moveY -= textView.font!.lineHeight
+        }
+        
+        print("needsRemoveItemYArray: \(needsRemoveItemYArray)")
+        
+        return (needsRemoveItemYArray, needsRemoveItemYArray.count > 0, selectStartY - selectEndY)
     }
     
     class func clearTextByRange(range: NSRange, textView: UITextView)

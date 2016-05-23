@@ -18,6 +18,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var willReturnTouch: Bool = false
     var willBackspaceTouch: Bool = false
     var willChangeText: Bool = false
+    var willChangeTextMulti: Bool = false
     
     // Save Y and ListItem relationship.
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
@@ -114,8 +115,35 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         
-        // TODO: mutli operate.
-        // CKTextUtil.checkChangedTextInfo(textView, shouldChangeTextInRange: range, replacementText: text)
+        // Operate by select range.
+        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
+        
+        if textInfo.1 {
+            willChangeTextMulti = true
+            
+            let needsRemoveItemYArray = textInfo.0
+            
+            for itemY in needsRemoveItemYArray {
+                if let item = itemFromListItemContainerWithY(CGFloat((itemY as NSString).floatValue)) {
+                    item.prevItem?.nextItem = item.nextItem
+                    item.clearGlyph()
+                    item.listInfoStore!.clearBezierPath(self)
+                    listItemContainerMap.removeValueForKey(itemY)
+                }
+            }
+            
+            for keyY in listInfoStoreContainerMap {
+                if let firstItem = itemFromListItemContainerWithY(CGFloat((keyY.0 as NSString).floatValue)) {
+                    firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+                }
+            }
+            
+            handleLineChanged(CGFloat((needsRemoveItemYArray.last! as NSString).floatValue), moveValue: textInfo.2)
+            //ignoreMoveOnce = true
+            
+//            willChangeText = true
+//            return true
+        }
         
         var isContinue = true
         
@@ -154,6 +182,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
+        willChangeTextMulti = false
+        ignoreMoveOnce = false
         
         print("cursor type: \(currentCursorType)")
         print("list item container: \(listItemContainerMap)")
@@ -292,7 +322,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 if isDeleteFirstItem {
                     // Do not delete prev '\n' char when first item deleting. And set cursorType to Text.
                     currentCursorType = ListType.Text
-                    return false
+                    
+                    if !willChangeTextMulti {
+                        return false
+                    }
                 }
             }
         }
