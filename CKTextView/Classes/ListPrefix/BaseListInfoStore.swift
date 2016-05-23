@@ -19,10 +19,15 @@ class BaseListInfoStore: NSObject {
             syncListFirstKeyY()
         }
     }
-    var listEndByY: CGFloat!
+    var listEndByY: CGFloat! {
+        didSet {
+            syncListEndKeyY()
+        }
+    }
     
     // Defined key from container.
     var listFirstKeyY: String!
+    var listEndKeyY: String!
     
     required init(listStartByY: CGFloat, listEndByY: CGFloat) {
         super.init()
@@ -31,10 +36,15 @@ class BaseListInfoStore: NSObject {
         self.listEndByY = listEndByY
         
         syncListFirstKeyY()
+        syncListEndKeyY()
     }
     
     func syncListFirstKeyY() {
         listFirstKeyY = String(format: "%.1f", listStartByY)
+    }
+    
+    func syncListEndKeyY() {
+        listEndKeyY = String(format: "%.1f", listEndByY)
     }
     
     func clearBezierPath(ckTextView: CKTextView) {

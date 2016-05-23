@@ -61,13 +61,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func saveToListItemContainerWithItem(item: BaseListItem) {
         for (_, keyY) in item.keyYSet.enumerate() {
-            listItemContainerMap[String(format: "%.1f", keyY)] = item
+            listItemContainerMap[String(Int(keyY))] = item
         }
     }
     
     func itemFromListItemContainerWithY(y: CGFloat) -> BaseListItem?
     {
-        return listItemContainerMap[String(format: "%.1f", y)]
+        return listItemContainerMap[String(Int(y))]
     }
     
     func itemFromListItemContainerWithKeyY(keyY: String) -> BaseListItem?
@@ -309,7 +309,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             if let numberY = NSNumberFormatter().numberFromString(keyY) {
                 let floatY = CGFloat(numberY)
                 
-                if floatY > round(y) {
+                if floatY > y {
                     return true
                 } else {
                     return false
@@ -363,10 +363,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func handleListItemYConflictIfNeeded(infoStore: BaseListInfoStore) {
         let lineHeight = self.font!.lineHeight
-        let endY = infoStore.listEndByY
+        let firstItemY = CGFloat(atof(infoStore.listEndKeyY)) + lineHeight
         
-        if let infoStore = listInfoStoreContainerMap[String(format: "%.1f", endY + lineHeight)] {
-            handleLineChanged(endY, moveValue: lineHeight)
+        if listInfoStoreContainerMap[String(Int(firstItemY))] != nil {
+            handleLineChanged(infoStore.listEndByY, moveValue: lineHeight)
             
             // Add to ignore move container.
             ignoreMoveOnce = true
