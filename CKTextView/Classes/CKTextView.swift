@@ -639,7 +639,15 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     item = BulletedListItem(keyY: moveY, ckTextView: self, listInfoStore: nil)
                     break
                 case .Checkbox:
-                    item = CheckBoxListItem(keyY: moveY, ckTextView: self, listInfoStore: nil)
+                    let checkBoxListItem = CheckBoxListItem(keyY: moveY, ckTextView: self, listInfoStore: nil)
+                    
+                    if character.rangeOfString("- [x] ") != nil {
+                        checkBoxListItem.isChecked = true
+                    }
+                    checkBoxListItem.changeCheckBoxButtonBg()
+                    
+                    item = checkBoxListItem
+                    
                     break
                 case .Text:
                     break
