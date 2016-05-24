@@ -511,9 +511,15 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public override func cut(sender: AnyObject?) {
         copy(sender)
+        let copyText = UIPasteboard.generalPasteboard().string
+        
+        super.cut(sender)
+        UIPasteboard.generalPasteboard().string = copyText
     }
     
     public override func copy(sender: AnyObject?) {
+        super.copy(sender)
+        
         // All of the point y in seleted text.
         let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, isContainFirstLine: true, sortByAsc: true)
         
@@ -574,7 +580,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         print("paste type: \(UIPasteboard.generalPasteboard().pasteboardTypes())")
     
         let pasteText = UIPasteboard.generalPasteboard().string
-        
         
         
     }
