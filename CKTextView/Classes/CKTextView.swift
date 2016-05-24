@@ -121,28 +121,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         if textInfo.1 {
             willChangeTextMulti = true
             
-            let needsRemoveItemYArray = textInfo.0
-            
-            for itemY in needsRemoveItemYArray {
-                if let item = itemFromListItemContainerWithY(CGFloat((itemY as NSString).floatValue)) {
-                    item.prevItem?.nextItem = item.nextItem
-                    item.clearGlyph()
-                    item.listInfoStore!.clearBezierPath(self)
-                    listItemContainerMap.removeValueForKey(itemY)
-                }
-            }
-            
-            for keyY in listInfoStoreContainerMap {
-                if let firstItem = itemFromListItemContainerWithY(CGFloat((keyY.0 as NSString).floatValue)) {
-                    firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
-                }
-            }
-            
-            handleLineChanged(CGFloat((needsRemoveItemYArray.last! as NSString).floatValue), moveValue: textInfo.2)
-            //ignoreMoveOnce = true
-            
-//            willChangeText = true
-//            return true
+            handleMultiTextReplacement(textInfo)
         }
         
         var isContinue = true
@@ -333,6 +312,28 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return true
     }
     
+    func handleMultiTextReplacement(textInfo: ([String], Bool, CGFloat))
+    {
+        let needsRemoveItemYArray = textInfo.0
+        
+        for itemY in needsRemoveItemYArray {
+            if let item = itemFromListItemContainerWithY(CGFloat((itemY as NSString).floatValue)) {
+                item.prevItem?.nextItem = item.nextItem
+                item.clearGlyph()
+                item.listInfoStore!.clearBezierPath(self)
+                listItemContainerMap.removeValueForKey(itemY)
+            }
+        }
+        
+        for keyY in listInfoStoreContainerMap {
+            if let firstItem = itemFromListItemContainerWithY(CGFloat((keyY.0 as NSString).floatValue)) {
+                firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+            }
+        }
+        
+        handleLineChanged(CGFloat((needsRemoveItemYArray.last! as NSString).floatValue), moveValue: textInfo.2)
+    }
+    
     func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
         if ignoreMoveOnce {
@@ -501,11 +502,19 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
-    // MARK: - Copy & Paste
+    // MARK: - Cut & Copy & Paste
     
-//    public override func paste(sender: AnyObject?) {
-//        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
-//    }
+    public override func cut(sender: AnyObject?) {
+        
+    }
+    
+    public override func copy(sender: AnyObject?) {
+        print("copy sender: \(sender)")
+    }
+    
+    public override func paste(sender: AnyObject?) {
+        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
+    }
     
     // MARK: - KVO
     
