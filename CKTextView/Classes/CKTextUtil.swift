@@ -221,4 +221,21 @@ class CKTextUtil: NSObject {
         
         return ListType.Text
     }
+    
+    class func resetKeyYSetItem(item: BaseListItem, startY: CGFloat, textHeight: CGFloat, lineHeight: CGFloat)
+    {
+        var keyYSet: Set<CGFloat> = Set()
+        
+        var y = startY
+        var moveY = textHeight
+        
+        while moveY >= lineHeight {
+            keyYSet.insert(y)
+            y += lineHeight
+            
+            moveY -= lineHeight
+        }
+        
+        item.keyYSet = keyYSet
+    }
 }

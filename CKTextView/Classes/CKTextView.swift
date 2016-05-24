@@ -595,21 +595,69 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
             
             let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
-            let textHeight = textHeightAndNewText.0
             let newCharacter = textHeightAndNewText.1
             
             // Change characters, remove prefix keyword.
             allLineCharacters[index] = newCharacter
-            
-            // Incream pasteTextHeight.
-            pasteTextHeight += textHeight
-            
-            print("textHeight: \(textHeight)")
         }
         
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
         UIPasteboard.generalPasteboard().string = finalPasteText
         super.paste(sender)
+    
+        UIPasteboard.generalPasteboard().string = pasteText
+        
+        // Create items logic begin
+        var allLineCharactersCreation = (pasteText as NSString).componentsSeparatedByString("\n")
+        var createdItems: [BaseListItem] = []
+        var moveY = cursorPoint.y
+        
+        numberIndex = 1
+        
+        let lineHeight = self.font!.lineHeight
+        
+        for (index, character) in allLineCharactersCreation.enumerate() {
+            let listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
+            
+            if listType == ListType.Numbered {
+                numberIndex += 1
+            } else {
+                numberIndex = 1
+            }
+            
+            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
+            let textHeight = textHeightAndNewText.0
+            
+            if listType != .Text && itemFromListItemContainerWithY(moveY) == nil {
+                var item: BaseListItem!
+                
+                switch listType {
+                case .Numbered:
+                    item = NumberedListItem(keyY: moveY, number: 1, ckTextView: self, listInfoStore: nil)
+                    break
+                case .Bulleted:
+                    item = BulletedListItem(keyY: moveY, ckTextView: self, listInfoStore: nil)
+                    break
+                case .Checkbox:
+                    item = CheckBoxListItem(keyY: moveY, ckTextView: self, listInfoStore: nil)
+                    break
+                case .Text:
+                    break
+                }
+                
+                CKTextUtil.resetKeyYSetItem(item, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
+                
+                item.listInfoStore?.fillBezierPath(self)
+                
+                // Save to container
+                saveToListItemContainerWithItem(item)
+                saveToListInfoStoreContainerY(y: item.listInfoStore!.listStartByY)
+                
+                handleListMergeWhenLineTypeChanged(moveY, item: item)
+                
+                moveY += textHeight
+            }
+        }
     }
     
     // MARK: - KVO
