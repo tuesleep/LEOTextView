@@ -79,15 +79,22 @@ class CKTextUtil: NSObject {
     
     class func checkChangedTextInfoAndHandleMutilSelect(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> ([String], Bool, CGFloat)
     {
-        let lineHeight = textView.font!.lineHeight
-        var changedYArray: Array<String> = []
-        
         let selectedRange = textView.selectedTextRange!
         
         let selectStartY = textView.caretRectForPosition(selectedRange.start).origin.y
         let selectEndY = textView.caretRectForPosition(selectedRange.end).origin.y
         
-        print("select start with \(selectStartY) to \(selectEndY)")
+        var needsRemoveItemYArray = seletedPointYArrayWithTextView(textView, isContainFirstLine: false, sortByAsc: false)
+        
+        return (needsRemoveItemYArray, needsRemoveItemYArray.count > 0, selectStartY - selectEndY)
+    }
+    
+    class func seletedPointYArrayWithTextView(textView: UITextView, isContainFirstLine containFirstLine: Bool, sortByAsc: Bool) -> [String]
+    {
+        let selectedRange = textView.selectedTextRange!
+        
+        let selectStartY = textView.caretRectForPosition(selectedRange.start).origin.y
+        let selectEndY = textView.caretRectForPosition(selectedRange.end).origin.y
         
         var needsRemoveItemYArray: [String] = []
         
@@ -95,20 +102,32 @@ class CKTextUtil: NSObject {
         
         let compareSelectStartY = selectStartY + 0.1
         
+        if containFirstLine {
+            needsRemoveItemYArray.append(String(Int(selectStartY)))
+        }
+        
         while moveY > compareSelectStartY {
             needsRemoveItemYArray.append(String(Int(moveY)))
             moveY -= textView.font!.lineHeight
         }
         
-        print("needsRemoveItemYArray: \(needsRemoveItemYArray)")
+        if sortByAsc {
+            needsRemoveItemYArray = needsRemoveItemYArray.sort({ ($0 as NSString).integerValue < ($1 as NSString).integerValue })
+        }
         
-        return (needsRemoveItemYArray, needsRemoveItemYArray.count > 0, selectStartY - selectEndY)
+        return needsRemoveItemYArray
     }
     
     class func clearTextByRange(range: NSRange, textView: UITextView)
     {
         let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
         textView.text.replaceRange(clearRange, with: "")
+    }
+    
+    class func textByRange(range: NSRange, text: String) -> String
+    {
+        let targetRange = Range(text.startIndex.advancedBy(range.location) ..< text.startIndex.advancedBy(range.location + range.length))
+        return text.substringWithRange(targetRange)
     }
     
     class func typeForListKeywordWithLocation(location: Int, textView: UITextView) -> ListType

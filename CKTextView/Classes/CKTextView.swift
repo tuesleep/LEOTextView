@@ -71,6 +71,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return listItemContainerMap[String(Int(y))]
     }
     
+    func itemFromListItemContainerWithKeyY(keyY: String) -> BaseListItem?
+    {
+        return listItemContainerMap[keyY]
+    }
+    
     func saveToListInfoStoreContainerY(y keyY: CGFloat)
     {
         listInfoStoreContainerMap[String(Int(keyY))] = 0
@@ -317,7 +322,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let needsRemoveItemYArray = textInfo.0
         
         for itemY in needsRemoveItemYArray {
-            if let item = itemFromListItemContainerWithY(CGFloat((itemY as NSString).floatValue)) {
+            if let item = itemFromListItemContainerWithKeyY(itemY) {
                 item.prevItem?.nextItem = item.nextItem
                 item.clearGlyph()
                 item.listInfoStore!.clearBezierPath(self)
@@ -326,7 +331,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         for keyY in listInfoStoreContainerMap {
-            if let firstItem = itemFromListItemContainerWithY(CGFloat((keyY.0 as NSString).floatValue)) {
+            if let firstItem = itemFromListItemContainerWithKeyY(keyY.0) {
                 firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
             }
         }
@@ -509,11 +514,69 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     public override func copy(sender: AnyObject?) {
-        print("copy sender: \(sender)")
+        // All of the point y in seleted text.
+        let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, isContainFirstLine: true, sortByAsc: true)
+        
+        let selectedText = CKTextUtil.textByRange(self.selectedRange, text: self.text)
+        var allLineCharacters = (selectedText as NSString).componentsSeparatedByString("\n")
+        
+        var numberedItemIndex = 1
+        
+        for (index, seletedPointY) in selectedPointYArray.enumerate() {
+            if let item = itemFromListItemContainerWithKeyY(seletedPointY) where item.listType() != ListType.Text {
+                var characters = allLineCharacters[index]
+                
+                var prefixCharacters: String! = ""
+                
+                switch item.listType() {
+                case .Numbered:
+                    prefixCharacters = "\(numberedItemIndex). "
+                    numberedItemIndex += 1
+                    
+                    break
+                case .Bulleted:
+                    prefixCharacters = "* "
+                    
+                    numberedItemIndex = 1
+                    
+                    break
+                case .Checkbox:
+                    let checkBoxListItem = item as! CheckBoxListItem
+                    
+                    if checkBoxListItem.isChecked {
+                        prefixCharacters = "- [x] "
+                    } else {
+                        prefixCharacters = "- [ ] "
+                    }
+                    
+                    numberedItemIndex = 1
+                    
+                    break
+                case .Text:
+                    break
+                }
+                
+                characters = prefixCharacters + characters
+                
+                allLineCharacters[index] = characters
+            }
+        }
+        
+        let copyText = allLineCharacters.joinWithSeparator("\n")
+        
+        UIPasteboard.generalPasteboard().string = copyText
+//        UIPasteboard.generalPasteboard().setValue(copyText, forPasteboardType: )
+        
+        print("Text copied: \(copyText)")
     }
     
     public override func paste(sender: AnyObject?) {
         print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
+        print("paste type: \(UIPasteboard.generalPasteboard().pasteboardTypes())")
+        
+        for type in UIPasteboard.generalPasteboard().pasteboardTypes() {
+            print("paste value: \(UIPasteboard.generalPasteboard().valueForPasteboardType(type))")
+        }
     }
     
     // MARK: - KVO
