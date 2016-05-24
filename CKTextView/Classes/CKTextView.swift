@@ -576,12 +576,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     public override func paste(sender: AnyObject?) {
-        print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
-        print("paste type: \(UIPasteboard.generalPasteboard().pasteboardTypes())")
-    
-        let pasteText = UIPasteboard.generalPasteboard().string
+        guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
+        print("textview paste invoke. paste content: \(pasteText)")
         
+        let cursorPoint = CKTextUtil.cursorPointInTextView(self)
+        var pasteTextHeight: CGFloat = 0
         
+        var allLineCharacters = (pasteText as NSString).componentsSeparatedByString("\n")
+        
+        for (index, characters) in allLineCharacters.enumerate() {
+            
+        }
+        
+        // Move list that after current cursor point y.
+        handleLineChanged(cursorPoint.y, moveValue: pasteTextHeight)
     }
     
     // MARK: - KVO

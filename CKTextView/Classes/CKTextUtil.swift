@@ -118,6 +118,22 @@ class CKTextUtil: NSObject {
         return needsRemoveItemYArray
     }
     
+    class func heightWithText(text: String, width: CGFloat, textView: UITextView, isWithPrefix withPrefix: Bool) -> CGFloat
+    {
+        let calcTextView = textView.copy() as! UITextView
+    
+        if withPrefix {
+            let lineHeight = calcTextView.font!.lineHeight
+            let width = Int(lineHeight) + Int(lineHeight - 8)
+            
+            calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
+        }
+        
+        calcTextView.text = text
+        
+        return textHeightForTextView(calcTextView)
+    }
+    
     class func clearTextByRange(range: NSRange, textView: UITextView)
     {
         let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
