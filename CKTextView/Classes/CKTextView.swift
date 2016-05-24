@@ -510,7 +510,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // MARK: - Cut & Copy & Paste
     
     public override func cut(sender: AnyObject?) {
-        
+        copy(sender)
     }
     
     public override func copy(sender: AnyObject?) {
@@ -565,7 +565,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let copyText = allLineCharacters.joinWithSeparator("\n")
         
         UIPasteboard.generalPasteboard().string = copyText
-//        UIPasteboard.generalPasteboard().setValue(copyText, forPasteboardType: )
         
         print("Text copied: \(copyText)")
     }
@@ -573,10 +572,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public override func paste(sender: AnyObject?) {
         print("textview paste invoke. paste content: \(UIPasteboard.generalPasteboard().string)")
         print("paste type: \(UIPasteboard.generalPasteboard().pasteboardTypes())")
+    
+        let pasteText = UIPasteboard.generalPasteboard().string
         
-        for type in UIPasteboard.generalPasteboard().pasteboardTypes() {
-            print("paste value: \(UIPasteboard.generalPasteboard().valueForPasteboardType(type))")
-        }
+        
+        
     }
     
     // MARK: - KVO
