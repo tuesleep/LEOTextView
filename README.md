@@ -7,7 +7,7 @@
 
 > NOTE: This project still developing.. 
 
-Want to build a UITextView that have List feature, just look like 'Notes' app on the iPhone with iOS 9.
+Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9.
 
 ## WANT FEATURES
 
