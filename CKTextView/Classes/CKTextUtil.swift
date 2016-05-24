@@ -118,20 +118,28 @@ class CKTextUtil: NSObject {
         return needsRemoveItemYArray
     }
     
-    class func heightWithText(text: String, width: CGFloat, textView: UITextView, isWithPrefix withPrefix: Bool) -> CGFloat
+    class func heightWithText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
-        let calcTextView = textView.copy() as! UITextView
+        let calcTextView = UITextView(frame: CGRect(x: 0, y: 0, width: textView.bounds.width, height: CGFloat.max))
+        calcTextView.font = textView.font
     
-        if withPrefix {
+        if listType != ListType.Text {
+            let numberKeyword = "\(numberIndex). "
+            
+            let listTypeLengthDict = [ListType.Numbered: numberKeyword.characters.count, ListType.Bulleted: 2, ListType.Checkbox: 6]
+            
             let lineHeight = calcTextView.font!.lineHeight
             let width = Int(lineHeight) + Int(lineHeight - 8)
             
             calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
+            
+            calcTextView.text = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            
+        } else {
+            calcTextView.text = text
         }
         
-        calcTextView.text = text
-        
-        return textHeightForTextView(calcTextView)
+        return (textHeightForTextView(calcTextView), calcTextView.text)
     }
     
     class func clearTextByRange(range: NSRange, textView: UITextView)
@@ -188,4 +196,29 @@ class CKTextUtil: NSObject {
         
     }
     
+    class func typeOfCharacter(character: String, numberIndex: Int) -> ListType
+    {
+        let numberKeyword = "\(numberIndex). "
+        
+        let checkArray = [(numberKeyword, numberKeyword.characters.count, ListType.Numbered), ("* ", 2, ListType.Bulleted), ("- [ ] ", 6, ListType.Checkbox), ("- [x] ", 6, ListType.Checkbox)]
+        
+        for (_, value) in checkArray.enumerate() {
+            let keyword = value.0
+            let length = value.1
+            let listType = value.2
+            
+            if character.characters.count < length {
+                continue
+            }
+            
+            let range: Range = Range(character.startIndex ..< character.startIndex.advancedBy(length))
+            let keyChars = character.substringWithRange(range)
+            
+            if keyChars == keyword {
+                return listType
+            }
+        }
+        
+        return ListType.Text
+    }
 }

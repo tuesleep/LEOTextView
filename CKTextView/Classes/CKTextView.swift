@@ -528,10 +528,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         var numberedItemIndex = 1
         
-        for (index, seletedPointY) in selectedPointYArray.enumerate() {
+        for (index, characters) in allLineCharacters.enumerate() {
+            let seletedPointY = selectedPointYArray[index]
             if let item = itemFromListItemContainerWithKeyY(seletedPointY) where item.listType() != ListType.Text {
-                var characters = allLineCharacters[index]
-                
                 var prefixCharacters: String! = ""
                 
                 switch item.listType() {
@@ -562,9 +561,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     break
                 }
                 
-                characters = prefixCharacters + characters
+                let newCharacters = prefixCharacters + characters
                 
-                allLineCharacters[index] = characters
+                allLineCharacters[index] = newCharacters
             }
         }
         
@@ -584,12 +583,33 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         var allLineCharacters = (pasteText as NSString).componentsSeparatedByString("\n")
         
-        for (index, characters) in allLineCharacters.enumerate() {
+        var numberIndex = 1
+        
+        for (index, character) in allLineCharacters.enumerate() {
+            let listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
             
+            if listType == ListType.Numbered {
+                numberIndex += 1
+            } else {
+                numberIndex = 1
+            }
+            
+            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
+            let textHeight = textHeightAndNewText.0
+            let newCharacter = textHeightAndNewText.1
+            
+            // Change characters, remove prefix keyword.
+            allLineCharacters[index] = newCharacter
+            
+            // Incream pasteTextHeight.
+            pasteTextHeight += textHeight
+            
+            print("textHeight: \(textHeight)")
         }
         
-        // Move list that after current cursor point y.
-        handleLineChanged(cursorPoint.y, moveValue: pasteTextHeight)
+        var finalPasteText = allLineCharacters.joinWithSeparator("\n")
+        UIPasteboard.generalPasteboard().string = finalPasteText
+        super.paste(sender)
     }
     
     // MARK: - KVO
