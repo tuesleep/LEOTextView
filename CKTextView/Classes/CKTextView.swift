@@ -69,12 +69,24 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func itemFromListItemContainerWithY(y: CGFloat) -> BaseListItem?
     {
-        return listItemContainerMap[String(Int(y))]
+        return itemFromListItemContainerWithKeyY(String(Int(y)))
     }
     
     func itemFromListItemContainerWithKeyY(keyY: String) -> BaseListItem?
     {
-        return listItemContainerMap[keyY]
+        var y = (keyY as NSString).integerValue
+        
+        var item = listItemContainerMap[keyY]
+        
+        if item == nil {
+            item = listItemContainerMap[String(y + 1)];
+        }
+        
+        if item == nil {
+            item = listItemContainerMap[String(y - 1)];
+        }
+        
+        return item
     }
     
     func saveToListInfoStoreContainerY(y keyY: CGFloat)
