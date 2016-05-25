@@ -641,15 +641,15 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // First paste y just change to Text
                     listType = .Text
                 } else {
-                    // Handle point confict
-                    if thisItem.listType() == listType {
-                        thisItem.firstKeyY = moveY + textHeight
-                        
-                        CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: lineHeight * CGFloat(thisItem.keyYSet.count), lineHeight: lineHeight)
-                        saveToListItemContainerWithItem(thisItem)
-                    } else {
-                        // TODO: Difference list type handle.
+                    if thisItem.listType() != listType {
+                        listType = thisItem.listType()
                     }
+                    
+                    // Handle point confict
+                    thisItem.firstKeyY = moveY + textHeight
+                    
+                    CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: lineHeight * CGFloat(thisItem.keyYSet.count), lineHeight: lineHeight)
+                    saveToListItemContainerWithItem(thisItem)
                 }
                 
                 CKTextUtil.resetKeyYSetItem(thisItem, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
