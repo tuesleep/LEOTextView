@@ -19,6 +19,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     var willBackspaceTouch: Bool = false
     var willChangeText: Bool = false
     var willChangeTextMulti: Bool = false
+    var willPasteText: Bool = false
     
     // Save Y and ListItem relationship.
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
@@ -167,6 +168,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         willReturnTouch = false
         willBackspaceTouch = false
         willChangeTextMulti = false
+        willPasteText = false
+        
         ignoreMoveOnce = false
         
         print("cursor type: \(currentCursorType)")
@@ -494,7 +497,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             // Text changed, something happend.
             // Handle too long string typed.. add moreline bezierPath space fill. and set key to container.
-            if !willBackspaceTouch {
+            if !willBackspaceTouch && !willPasteText {
                 if let item = itemFromListItemContainerWithY(prevCursorPoint!.y)
                 {
                     // key Y of New line add to container.
@@ -590,18 +593,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         for (index, character) in allLineCharacters.enumerate() {
             let listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
             
+            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
+            let newCharacter = textHeightAndNewText.1
+            
             if listType == ListType.Numbered {
                 numberIndex += 1
             } else {
                 numberIndex = 1
             }
             
-            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
-            let newCharacter = textHeightAndNewText.1
-            
             // Change characters, remove prefix keyword.
             allLineCharacters[index] = newCharacter
         }
+        
+        willPasteText = true
         
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
         UIPasteboard.generalPasteboard().string = finalPasteText
@@ -619,7 +624,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let lineHeight = self.font!.lineHeight
         
         for (index, character) in allLineCharactersCreation.enumerate() {
-            let listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
+            var listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
+         
+            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
+            let textHeight = textHeightAndNewText.0
             
             if listType == ListType.Numbered {
                 numberIndex += 1
@@ -627,8 +635,25 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 numberIndex = 1
             }
             
-            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
-            let textHeight = textHeightAndNewText.0
+            if let thisItem = itemFromListItemContainerWithY(moveY) {
+                if index == 0 {
+                    // Change type to Text in first index.
+                    // First paste y just change to Text
+                    listType = .Text
+                } else {
+                    // Handle point confict
+                    if thisItem.listType() == listType {
+                        thisItem.firstKeyY = moveY + textHeight
+                        
+                        CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: lineHeight * CGFloat(thisItem.keyYSet.count), lineHeight: lineHeight)
+                        saveToListItemContainerWithItem(thisItem)
+                    } else {
+                        // TODO: Difference list type handle.
+                    }
+                }
+                
+                CKTextUtil.resetKeyYSetItem(thisItem, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
+            }
             
             if listType != .Text {
                 var item: BaseListItem!
@@ -660,9 +685,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 handleListMergeWhenLineTypeChanged(moveY, item: item)
             }
             
-            moveY += textHeight
-            
             currentCursorType = listType
+            
+            moveY += textHeight
         }
     }
     

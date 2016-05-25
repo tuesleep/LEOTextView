@@ -54,7 +54,7 @@ class CheckBoxListItem: BaseListItem {
     override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
         
-        button?.removeFromSuperview()
+        clearGlyph()
     }
     
     // MARK: - Setups

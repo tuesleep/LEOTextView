@@ -133,6 +133,8 @@ class CKTextUtil: NSObject {
             
             calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
             
+            let prefixLength = listTypeLengthDict[listType]!
+            
             calcTextView.text = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
             
         } else {

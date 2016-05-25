@@ -59,7 +59,7 @@ class NumberedListItem: BaseListItem {
     override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
         let needClearYSet = super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
         
-        label?.removeFromSuperview()
+        clearGlyph()
     }
     
     // MARK: setups
