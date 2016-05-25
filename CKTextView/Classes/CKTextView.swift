@@ -446,6 +446,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         if firstItem != nil {
             firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
+        } else {
+            item.resetAllItemYWithFirstItem(item, ckTextView: self)
         }
         
         return true
@@ -628,7 +630,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
             let textHeight = textHeightAndNewText.0
             
-            if listType != .Text && itemFromListItemContainerWithY(moveY) == nil {
+            if listType != .Text {
                 var item: BaseListItem!
                 
                 switch listType {
@@ -655,16 +657,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 CKTextUtil.resetKeyYSetItem(item, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
                 
-                item.listInfoStore?.fillBezierPath(self)
-                
-                // Save to container
-                saveToListItemContainerWithItem(item)
-                saveToListInfoStoreContainerY(y: item.listInfoStore!.listStartByY)
-                
                 handleListMergeWhenLineTypeChanged(moveY, item: item)
-                
-                moveY += textHeight
             }
+            
+            moveY += textHeight
+            
+            currentCursorType = listType
         }
     }
     
