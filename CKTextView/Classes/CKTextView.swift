@@ -21,19 +21,27 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var willChangeTextMulti: Bool = false
     private var willPasteText: Bool = false
     
-    public var ck_text: String! {
-        set {
-            let oldPasteText = UIPasteboard.generalPasteboard().string
-            pasteWithText(newValue, sender: nil)
-            UIPasteboard.generalPasteboard().string = oldPasteText
-        }
+    private var reloadedAfterPasted: Bool = false
+    
+    public func ck_setText(theText: String)
+    {
+        let oldPasteText = UIPasteboard.generalPasteboard().string
         
-        get {
-            let beginPosition = self.beginningOfDocument
-            let endPosition = self.endOfDocument
-            
-            return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
-        }
+        self.text = ""
+        self.listItemContainerMap.removeAll()
+        self.listInfoStoreContainerMap.removeAll()
+        self.currentCursorType = .Text
+        
+        pasteWithText(theText, sender: nil)
+        UIPasteboard.generalPasteboard().string = oldPasteText
+    }
+    
+    public func ck_text() -> String
+    {
+        let beginPosition = self.beginningOfDocument
+        let endPosition = self.endOfDocument
+        
+        return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
     }
     
     // Save Y and ListItem relationship.
@@ -41,6 +49,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // Save Y and InfoStore relationship.
     var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
+    
     private var ignoreMoveOnce = false
     
     public class func ck_textView(frame: CGRect) -> CKTextView
@@ -77,7 +86,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // MARK: - Public method
     
     func reloadText() {
-        
+        self.ck_setText(self.ck_text())
     }
     
     // MARK: - Container getter & setter
@@ -479,14 +488,15 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         if prevItem != nil && prevItem == nextItem {
             print("dead loop")
-            
             print("oh no")
+            
+            return false
         }
         
         var firstItem: BaseListItem?
         
         // Merge prev list!
-        if prevItem != nil && prevItem!.listType() == item.listType() {
+        if prevItem != nil && prevItem != item && prevItem!.listType() == item.listType() {
             item.prevItem = prevItem
             prevItem!.nextItem = item
             
@@ -498,7 +508,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         // Merge next list
-        if nextItem != nil && nextItem?.listType() == item.listType() {
+        if nextItem != nil && nextItem != item && nextItem?.listType() == item.listType() {
             item.nextItem = nextItem
             nextItem!.prevItem = item
             
@@ -728,7 +738,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     
                     if returnRange.location != NSNotFound {
                         // Maybe append 2 can fix this bug.
-                        pasteWithListItemEndLocation = returnRange.location + 2
+                        pasteWithListItemEndLocation = returnRange.location + 3
                     } else {
                         pasteWithListItemEndLocation = pastedTextInTextView.length
                     }
