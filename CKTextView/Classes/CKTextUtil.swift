@@ -84,15 +84,13 @@ class CKTextUtil: NSObject {
         let selectStartY = textView.caretRectForPosition(selectedRange.start).origin.y
         let selectEndY = textView.caretRectForPosition(selectedRange.end).origin.y
         
-        var needsRemoveItemYArray = seletedPointYArrayWithTextView(textView, isContainFirstLine: false, sortByAsc: false)
+        var needsRemoveItemYArray = seletedPointYArrayWithTextView(textView, selectedRange: selectedRange, isContainFirstLine: false, sortByAsc: false)
         
         return (needsRemoveItemYArray, needsRemoveItemYArray.count > 0, selectStartY - selectEndY)
     }
     
-    class func seletedPointYArrayWithTextView(textView: UITextView, isContainFirstLine containFirstLine: Bool, sortByAsc: Bool) -> [String]
+    class func seletedPointYArrayWithTextView(textView: UITextView, selectedRange: UITextRange, isContainFirstLine containFirstLine: Bool, sortByAsc: Bool) -> [String]
     {
-        let selectedRange = textView.selectedTextRange!
-        
         let selectStartY = textView.caretRectForPosition(selectedRange.start).origin.y
         let selectEndY = textView.caretRectForPosition(selectedRange.end).origin.y
         

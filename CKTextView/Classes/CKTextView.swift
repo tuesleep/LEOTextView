@@ -10,23 +10,38 @@ import UIKit
 
 public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     // Record current cursor point, to choose operations.
-    var currentCursorPoint: CGPoint?
-    var currentCursorType: ListType = .Text
+    private var currentCursorPoint: CGPoint?
+    private var currentCursorType: ListType = .Text
     
-    var prevCursorPoint: CGPoint?
+    private var prevCursorPoint: CGPoint?
     
-    var willReturnTouch: Bool = false
-    var willBackspaceTouch: Bool = false
-    var willChangeText: Bool = false
-    var willChangeTextMulti: Bool = false
-    var willPasteText: Bool = false
+    private var willReturnTouch: Bool = false
+    private var willBackspaceTouch: Bool = false
+    private var willChangeText: Bool = false
+    private var willChangeTextMulti: Bool = false
+    private var willPasteText: Bool = false
+    
+    public var ck_text: String! {
+        set {
+            let oldPasteText = UIPasteboard.generalPasteboard().string
+            pasteWithText(newValue, sender: nil)
+            UIPasteboard.generalPasteboard().string = oldPasteText
+        }
+        
+        get {
+            let beginPosition = self.beginningOfDocument
+            let endPosition = self.endOfDocument
+            
+            return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
+        }
+    }
     
     // Save Y and ListItem relationship.
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
     
     // Save Y and InfoStore relationship.
     var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
-    var ignoreMoveOnce = false
+    private var ignoreMoveOnce = false
     
     public class func ck_textView(frame: CGRect) -> CKTextView
     {
@@ -56,6 +71,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         self.delegate = self
         
         setupNotificationCenterObservers()
+        
+    }
+    
+    // MARK: - Public method
+    
+    func reloadText() {
         
     }
     
@@ -537,11 +558,31 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     public override func copy(sender: AnyObject?) {
         super.copy(sender)
         
-        // All of the point y in seleted text.
-        let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, isContainFirstLine: true, sortByAsc: true)
-        
         let selectedText = CKTextUtil.textByRange(self.selectedRange, text: self.text)
-        var allLineCharacters = (selectedText as NSString).componentsSeparatedByString("\n")
+        let selectedRange = self.selectedTextRange!
+        
+        let copyText = appendGlyphsWithText(selectedText, textRange: selectedRange)
+        
+        UIPasteboard.generalPasteboard().string = copyText
+        
+        print("Text copied: \(copyText)")
+    }
+    
+    public override func paste(sender: AnyObject?) {
+        guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
+        print("textview paste invoke. paste content: \(pasteText)")
+        
+        pasteWithText(pasteText, sender: sender)
+    }
+    
+    // MARK: - Convert
+    
+    func appendGlyphsWithText(text: String, textRange: UITextRange) -> String
+    {
+        // All of the point y in seleted text.
+        let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, selectedRange: textRange, isContainFirstLine: true, sortByAsc: true)
+        
+        var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
         
@@ -584,21 +625,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
         }
         
-        let copyText = allLineCharacters.joinWithSeparator("\n")
+        let textAppended = allLineCharacters.joinWithSeparator("\n")
         
-        UIPasteboard.generalPasteboard().string = copyText
-        
-        print("Text copied: \(copyText)")
+        return textAppended
     }
     
-    public override func paste(sender: AnyObject?) {
-        guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
-        print("textview paste invoke. paste content: \(pasteText)")
-        
+    func pasteWithText(text: String, sender: AnyObject?)
+    {
         let cursorPoint = CKTextUtil.cursorPointInTextView(self)
         var pasteTextHeight: CGFloat = 0
         
-        var allLineCharacters = (pasteText as NSString).componentsSeparatedByString("\n")
+        var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
         
         var numberIndex = 1
         
@@ -623,11 +660,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
         UIPasteboard.generalPasteboard().string = finalPasteText
         super.paste(sender)
-    
-        UIPasteboard.generalPasteboard().string = pasteText
+        
+        UIPasteboard.generalPasteboard().string = text
         
         // Create items logic begin
-        var allLineCharactersCreation = (pasteText as NSString).componentsSeparatedByString("\n")
+        var allLineCharactersCreation = (text as NSString).componentsSeparatedByString("\n")
         var createdItems: [BaseListItem] = []
         var moveY = cursorPoint.y
         
@@ -637,7 +674,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         for (index, character) in allLineCharactersCreation.enumerate() {
             var listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
-         
+            
             let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
             let textHeight = textHeightAndNewText.0
             
