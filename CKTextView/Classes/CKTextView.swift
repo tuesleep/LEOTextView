@@ -28,6 +28,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let oldPasteText = UIPasteboard.generalPasteboard().string
         
         self.text = ""
+        self.listItemContainerMap.forEach({ $0.1.clearGlyph(); $0.1.listInfoStore?.clearBezierPath(self) })
         self.listItemContainerMap.removeAll()
         self.listInfoStoreContainerMap.removeAll()
         self.currentCursorType = .Text
