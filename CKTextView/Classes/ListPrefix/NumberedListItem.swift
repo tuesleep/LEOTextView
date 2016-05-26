@@ -47,7 +47,9 @@ class NumberedListItem: BaseListItem {
     override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
         clearGlyph()
         
-        number = index + 1
+        if index >= 0 {
+            number = index + 1
+        }
         
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }

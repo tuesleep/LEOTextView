@@ -420,15 +420,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             guard let pasteLocationItem = itemFromListItemContainerWithY(y) else { return }
             
             let lineHeight = self.font!.lineHeight
-            var pasteLocationNextItem = pasteLocationItem.nextItem
             
-            while pasteLocationNextItem != nil {
-                pasteLocationNextItem!.firstKeyY = pasteLocationNextItem!.firstKeyY + moveValue
-                CKTextUtil.resetKeyYSetItem(pasteLocationNextItem!, startY: pasteLocationNextItem!.firstKeyY, textHeight: CGFloat(pasteLocationNextItem!.keyYSet.count) * lineHeight, lineHeight: lineHeight)
+            guard let pasteEndItem = itemFromListItemContainerWithY(pasteLocationItem.listInfoStore!.listEndByY) else { return }
+            
+            var pasteLocationPrevItem = pasteEndItem
+            
+            while pasteLocationPrevItem != pasteLocationItem {
+                listItemContainerMap.removeValueForKey(String(Int(pasteLocationPrevItem.firstKeyY)))
                 
-                saveToListItemContainerWithItem(pasteLocationNextItem!)
+                pasteLocationPrevItem.firstKeyY = pasteLocationPrevItem.firstKeyY + moveValue
+                CKTextUtil.resetKeyYSetItem(pasteLocationPrevItem, startY: pasteLocationPrevItem.firstKeyY, textHeight: CGFloat(pasteLocationPrevItem.keyYSet.count) * lineHeight, lineHeight: lineHeight)
                 
-                pasteLocationNextItem = pasteLocationNextItem?.nextItem
+                saveToListItemContainerWithItem(pasteLocationPrevItem)
+                
+                pasteLocationPrevItem = pasteLocationPrevItem.prevItem!
             }
         }
     }
@@ -471,6 +476,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         // Merge two list that have same type when new list item create that have same type too.
         let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY)
+        
+        if prevItem != nil && prevItem == nextItem {
+            print("dead loop")
+            
+            print("oh no")
+        }
         
         var firstItem: BaseListItem?
         
@@ -733,6 +744,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                         CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: textHeight, lineHeight: lineHeight)
                         
                         saveToListItemContainerWithItem(thisItem)
+                        
+                        handleListMergeWhenLineTypeChanged(moveY, item: thisItem)
                     }
                     
                 } else {
