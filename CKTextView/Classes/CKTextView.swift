@@ -98,6 +98,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
+    func removeListItemFromContainer(item: BaseListItem) {
+        for (_, keyY) in item.keyYSet.enumerate() {
+            listItemContainerMap.removeValueForKey(String(Int(keyY)))
+        }
+    }
+    
     func itemFromListItemContainerWithY(y: CGFloat) -> BaseListItem?
     {
         return itemFromListItemContainerWithKeyY(String(Int(y)))
@@ -356,6 +362,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     if !willChangeTextMulti {
                         return false
                     }
+                } else {
+                    if let item = itemFromListItemContainerWithY(cursorPoint.y) {
+                        currentCursorType = item.listType()
+                    } else {
+                        currentCursorType = .Text
+                    }
                 }
             }
         }
@@ -372,7 +384,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 item.prevItem?.nextItem = item.nextItem
                 item.clearGlyph()
                 item.listInfoStore!.clearBezierPath(self)
-                listItemContainerMap.removeValueForKey(itemY)
+                removeListItemFromContainer(item)
             }
         }
         
@@ -436,7 +448,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             var pasteLocationPrevItem = pasteEndItem
             
             while pasteLocationPrevItem != pasteLocationItem {
-                listItemContainerMap.removeValueForKey(String(Int(pasteLocationPrevItem.firstKeyY)))
+                removeListItemFromContainer(pasteLocationPrevItem)
                 
                 pasteLocationPrevItem.firstKeyY = pasteLocationPrevItem.firstKeyY + moveValue
                 CKTextUtil.resetKeyYSetItem(pasteLocationPrevItem, startY: pasteLocationPrevItem.firstKeyY, textHeight: CGFloat(pasteLocationPrevItem.keyYSet.count) * lineHeight, lineHeight: lineHeight)
