@@ -448,7 +448,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
      */
     func handleListMergeWhenLineTypeChanged(y: CGFloat, item: BaseListItem) -> Bool {
         let prevY = y - self.font!.lineHeight + 0.1
-        let nextY = y + self.font!.lineHeight + 0.1
+        
+        // FIXME: Can not just append one line height! must think multi-line mode.
+        let nextY = y + (CGFloat(item.keyYSet.count) * self.font!.lineHeight) + 0.1
         
         // Merge two list that have same type when new list item create that have same type too.
         let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY)
@@ -633,7 +635,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     func pasteWithText(text: String, sender: AnyObject?)
     {
         let cursorPoint = CKTextUtil.cursorPointInTextView(self)
-        var pasteTextHeight: CGFloat = 0
+        let pasteLocation = self.selectedRange.location
         
         var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
         
@@ -676,7 +678,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             var listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
             
             let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: self, listType: listType, numberIndex: numberIndex)
-            let textHeight = textHeightAndNewText.0
+            var textHeight = textHeightAndNewText.0
             
             if listType == ListType.Numbered {
                 numberIndex += 1
@@ -689,6 +691,32 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // Change type to Text in first index.
                     // First paste y just change to Text
                     listType = .Text
+                    
+                    // Update this item keyYSet.
+                    let pastedTextInTextView = self.text.substringFromIndex(self.text.startIndex.advancedBy(pasteLocation)) as NSString
+                    
+                    let returnRange = pastedTextInTextView.rangeOfString("\n")
+                    var pasteWithListItemEndLocation: Int
+                    
+                    if returnRange.location != NSNotFound {
+                        // Maybe append 2 can fix this bug.
+                        pasteWithListItemEndLocation = returnRange.location + 2
+                    } else {
+                        pasteWithListItemEndLocation = pastedTextInTextView.length
+                    }
+                    
+                    let firstItemEndLocation = pasteWithListItemEndLocation + pasteLocation
+                    
+                    if let targetPosition = self.positionFromPosition(self.beginningOfDocument, offset: firstItemEndLocation) {
+                        let point = self.caretRectForPosition(targetPosition).origin
+                        
+                        textHeight = point.y - cursorPoint.y
+                        
+                        CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: textHeight, lineHeight: lineHeight)
+                        
+                        saveToListItemContainerWithItem(thisItem)
+                    }
+                    
                 } else {
                     if thisItem.listType() != listType {
                         listType = thisItem.listType()
@@ -700,8 +728,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: lineHeight * CGFloat(thisItem.keyYSet.count), lineHeight: lineHeight)
                     saveToListItemContainerWithItem(thisItem)
                 }
-                
-                CKTextUtil.resetKeyYSetItem(thisItem, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
             }
             
             if listType != .Text {

@@ -229,7 +229,7 @@ class CKTextUtil: NSObject {
         var y = startY
         var moveY = textHeight
         
-        while moveY >= lineHeight {
+        while Int(moveY) >= Int(lineHeight) {
             keyYSet.insert(y)
             y += lineHeight
             

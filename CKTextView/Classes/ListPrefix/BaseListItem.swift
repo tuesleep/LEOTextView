@@ -203,11 +203,7 @@ class BaseListItem: NSObject
         
         // reset firstItem keyYSets
         let keySetCount = firstItem.keyYSet.count
-        var newKeyYSet = Set<CGFloat>()
-        for i in 0 ..< keySetCount {
-            newKeyYSet.insert(firstItem.firstKeyY + CGFloat(i) * firstItem.firstKeyY)
-        }
-        firstItem.keyYSet = newKeyYSet
+        CKTextUtil.resetKeyYSetItem(firstItem, startY: firstItem.firstKeyY, textHeight: CGFloat(keySetCount) * lineHeight, lineHeight: lineHeight)
         
         // Save new ListInfoStore to container.
         ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listStartByY)

@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.automaticallyAdjustsScrollViewInsets = false
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -29,12 +28,10 @@ class ViewController: UIViewController {
         
         self.containerView.addSubview(ckTextView!)
         
-        
         // Set text
-        ckTextView?.ck_text = "1. hello\n2. world\n3. yeah"
+        ckTextView?.ck_text = "1. helloworld,yeah,yes,more,helloworld,yeah,google,yeah,google.yeah,yes,oh\n2. world"
         
-        
-        print("ck_text: \(ckTextView?.ck_text)")
+//        print("ck_text: \(ckTextView?.ck_text)")
     }
     
     override func didReceiveMemoryWarning() {
