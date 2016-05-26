@@ -414,6 +414,23 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             item.resetAllItemYWithFirstItem(item, ckTextView: self)
         }
+        
+        // Paste text addition handle.
+        if willPasteText {
+            guard let pasteLocationItem = itemFromListItemContainerWithY(y) else { return }
+            
+            let lineHeight = self.font!.lineHeight
+            var pasteLocationNextItem = pasteLocationItem.nextItem
+            
+            while pasteLocationNextItem != nil {
+                pasteLocationNextItem!.firstKeyY = pasteLocationNextItem!.firstKeyY + moveValue
+                CKTextUtil.resetKeyYSetItem(pasteLocationNextItem!, startY: pasteLocationNextItem!.firstKeyY, textHeight: CGFloat(pasteLocationNextItem!.keyYSet.count) * lineHeight, lineHeight: lineHeight)
+                
+                saveToListItemContainerWithItem(pasteLocationNextItem!)
+                
+                pasteLocationNextItem = pasteLocationNextItem?.nextItem
+            }
+        }
     }
     
     func handleListMergeWhenBackspace(y: CGFloat, moveValue: CGFloat) {
@@ -449,7 +466,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     func handleListMergeWhenLineTypeChanged(y: CGFloat, item: BaseListItem) -> Bool {
         let prevY = y - self.font!.lineHeight + 0.1
         
-        // FIXME: Can not just append one line height! must think multi-line mode.
+        // Support multi-line mode.
         let nextY = y + (CGFloat(item.keyYSet.count) * self.font!.lineHeight) + 0.1
         
         // Merge two list that have same type when new list item create that have same type too.
@@ -632,12 +649,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return textAppended
     }
     
-    func pasteWithText(text: String, sender: AnyObject?)
+    func pasteWithText(pasteText: String, sender: AnyObject?)
     {
         let cursorPoint = CKTextUtil.cursorPointInTextView(self)
         let pasteLocation = self.selectedRange.location
         
-        var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
+        var allLineCharacters = (pasteText as NSString).componentsSeparatedByString("\n")
         
         var numberIndex = 1
         
@@ -663,10 +680,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         UIPasteboard.generalPasteboard().string = finalPasteText
         super.paste(sender)
         
-        UIPasteboard.generalPasteboard().string = text
+        UIPasteboard.generalPasteboard().string = pasteText
         
         // Create items logic begin
-        var allLineCharactersCreation = (text as NSString).componentsSeparatedByString("\n")
+        var allLineCharactersCreation = (pasteText as NSString).componentsSeparatedByString("\n")
         var createdItems: [BaseListItem] = []
         var moveY = cursorPoint.y
         
@@ -710,7 +727,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     if let targetPosition = self.positionFromPosition(self.beginningOfDocument, offset: firstItemEndLocation) {
                         let point = self.caretRectForPosition(targetPosition).origin
                         
-                        textHeight = point.y - cursorPoint.y
+                        moveY = thisItem.firstKeyY
+                        textHeight = point.y - thisItem.firstKeyY
                         
                         CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: textHeight, lineHeight: lineHeight)
                         
@@ -760,7 +778,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 handleListMergeWhenLineTypeChanged(moveY, item: item)
             }
             
-            currentCursorType = listType
+            if index > 0 {
+                currentCursorType = listType
+            }
             
             moveY += textHeight
         }
