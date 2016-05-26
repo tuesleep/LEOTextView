@@ -39,6 +39,8 @@ public class NCKTextView: UITextView {
     public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
     public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
     
+    public var defaultAttributesForLoad: [String : AnyObject] = [:]
+    
     // Custom fonts
     
     public var normalFont: UIFont = UIFont.systemFontOfSize(18) {
@@ -89,6 +91,19 @@ public class NCKTextView: UITextView {
     }
     
     // MARK: Public APIs
+    
+    public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
+        let paragraphLocation = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location).1
+        let remainText: NSString = NSString(string: self.text).substringFromIndex(selectedRange.location)
+        var nextLineBreakLocation = remainText.rangeOfString("\n").location
+        nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: self.text).length : nextLineBreakLocation + selectedRange.location
+        
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return
+        }
+        
+        nck_textStorage.performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
+    }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
         guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
@@ -287,7 +302,7 @@ public class NCKTextView: UITextView {
         if (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList) {
             let listPrefix = (isOrderedList ? "1. " : "• ")
             
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: listPrefix)
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad))
             
             self.selectedRange = NSRange(location: self.selectedRange.location + NSString(string: listPrefix).length, length: self.selectedRange.length)
         }
