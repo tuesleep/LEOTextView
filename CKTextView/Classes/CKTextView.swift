@@ -193,7 +193,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         else if CKTextUtil.isBackspace(text)
         {
             willBackspaceTouch = true
-            isContinue = handleBackspaceEvent(textView)
+            isContinue = handleBackspaceEvent(textView, replacementText: text)
             
             if range.location == 0 && range.length == 0 {
                 isContinue = false
@@ -342,7 +342,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return true
     }
     
-    func handleBackspaceEvent(textView: UITextView) -> Bool
+    func handleBackspaceEvent(textView: UITextView, replacementText: String) -> Bool
     {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         
@@ -359,7 +359,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // Do not delete prev '\n' char when first item deleting. And set cursorType to Text.
                     currentCursorType = ListType.Text
                     
-                    if !willChangeTextMulti {
+                    if !willChangeTextMulti && replacementText == "\n" {
                         return false
                     }
                 } else {
@@ -379,12 +379,21 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     {
         let needsRemoveItemYArray = textInfo.0
         
+        print("needsRemoveItemYArray: \(needsRemoveItemYArray)")
+        
         for itemY in needsRemoveItemYArray {
             if let item = itemFromListItemContainerWithKeyY(itemY) {
-                item.prevItem?.nextItem = item.nextItem
-                item.clearGlyph()
-                item.listInfoStore!.clearBezierPath(self)
-                removeListItemFromContainer(item)
+                if String(Int(item.firstKeyY)) == itemY {
+                    item.prevItem?.nextItem = item.nextItem
+                    item.clearGlyph()
+                    item.listInfoStore!.clearBezierPath(self)
+                    removeListItemFromContainer(item)
+                } else {
+                    let lineHeight = self.font!.lineHeight
+                    
+                    CKTextUtil.resetKeyYSetItem(item, startY: item.firstKeyY, textHeight: CGFloat(item.keyYSet.count - 1) * lineHeight, lineHeight: lineHeight)
+                    listItemContainerMap.removeValueForKey(itemY)
+                }
             }
         }
         
