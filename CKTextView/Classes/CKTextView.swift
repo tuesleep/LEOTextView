@@ -456,6 +456,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             var pasteLocationPrevItem = pasteEndItem
             
+            // Remove item of same list, start by end item.
             while pasteLocationPrevItem != pasteLocationItem {
                 removeListItemFromContainer(pasteLocationPrevItem)
                 
