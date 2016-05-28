@@ -34,6 +34,8 @@ class BaseListItem: NSObject
         Handle right relation with next item and self.
      */
     func handleRelationWithNextItem(nextItem: BaseListItem, ckTextView: CKTextView) {
+        self.keyYSet = Set(self.keyYSet.filter({ $0 < nextItem.firstKeyY }))
+        
         // Insert to queue.
         if self.nextItem != nil {
             self.nextItem!.prevItem = nextItem
@@ -201,12 +203,15 @@ class BaseListItem: NSObject
         
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
+        var moveY: CGFloat = firstItem.firstKeyY
+        
+        let itemTextHeight = CKTextUtil.itemTextHeightWithY(moveY, ckTextView: ckTextView)
+        
         // reset firstItem keyYSets
-        let keySetCount = firstItem.keyYSet.count
-        CKTextUtil.resetKeyYSetItem(firstItem, startY: firstItem.firstKeyY, textHeight: CGFloat(keySetCount) * lineHeight, lineHeight: lineHeight)
+        CKTextUtil.resetKeyYSetItem(firstItem, startY: firstItem.firstKeyY, textHeight: itemTextHeight, lineHeight: lineHeight)
         
         // Save new ListInfoStore to container.
-        ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listStartByY)
+        ckTextView.saveToListInfoStoreContainerY(y: firstItem.firstKeyY)
         // Save first item first.
         ckTextView.saveToListItemContainerWithItem(firstItem)
         
@@ -215,7 +220,7 @@ class BaseListItem: NSObject
         firstItem.reDrawGlyph(index, ckTextView: ckTextView)
         index += 1
         
-        var moveY = firstItem.endYWithLineHeight(lineHeight)
+        moveY = firstItem.endYWithLineHeight(lineHeight)
         var item = firstItem.nextItem
         
         if item == nil {
@@ -228,12 +233,8 @@ class BaseListItem: NSObject
                 item!.listInfoStore = firstItem.listInfoStore
                 item!.firstKeyY = moveY
                 
-                let newKeyYArray = item!.keyYSet.map({ (value) -> CGFloat in
-                    let thatY = moveY
-                    moveY += lineHeight
-                    return thatY
-                })
-                item!.keyYSet = Set(newKeyYArray)
+                let thisItemTextHeight = CKTextUtil.itemTextHeightWithY(moveY, ckTextView: ckTextView)
+                CKTextUtil.resetKeyYSetItem(item!, startY: item!.firstKeyY, textHeight: thisItemTextHeight, lineHeight: lineHeight)
                 
                 item!.reDrawGlyph(index, ckTextView: ckTextView)
                 index += 1
