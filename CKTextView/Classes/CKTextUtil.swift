@@ -13,6 +13,11 @@ enum ListKeywordType {
 }
 
 class CKTextUtil: NSObject {
+    class func bezierPathWidthWithLineHeight(lineHeight: CGFloat) -> Int
+    {
+        return Int(lineHeight) + Int(lineHeight - 8)
+    }
+    
     class func isSpace(text: String) -> Bool
     {
         if text == " " {
@@ -116,6 +121,52 @@ class CKTextUtil: NSObject {
         return needsRemoveItemYArray
     }
     
+    class func itemTextHeightWithY(y: CGFloat, ckTextView: CKTextView) -> CGFloat {
+        let lineHeight = ckTextView.font!.lineHeight
+        
+        var itemRange = ckTextView.characterRangeAtPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)), y: y))
+        
+        if itemRange == nil {
+            itemRange = ckTextView.textRangeFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.beginningOfDocument)
+        }
+        
+        let textStartIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: itemRange!.start)
+        var textEndIndex: Int!
+        
+        let checkedText = ckTextView.text.substringFromIndex(ckTextView.text.startIndex.advancedBy(textStartIndex))
+        
+        print("checkedText: \(checkedText)")
+        
+        let range = (checkedText as NSString).rangeOfString("\n")
+        if range.location != NSNotFound {
+            textEndIndex = range.location
+        } else {
+            textEndIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.endOfDocument)
+        }
+        
+        let startPosition = ckTextView.positionFromPosition(ckTextView.beginningOfDocument, offset: textStartIndex)
+        let endPosition = ckTextView.positionFromPosition(ckTextView.beginningOfDocument, offset: textEndIndex)
+        
+        let itemTextRange = ckTextView.textRangeFromPosition(startPosition!, toPosition: endPosition!)
+        let selectionRects = ckTextView.selectionRectsForRange(itemTextRange!)
+        
+        var heights: CGFloat = 0.0
+        
+        selectionRects.filter({ $0.rect.width > 0 }).map({ heights += $0.rect.height })
+        
+        heights -= 1.5
+        
+        if heights < lineHeight {
+            heights = lineHeight
+        }
+        
+        print("itemTextRange: \(itemTextRange)")
+        print("heights: \(heights)")
+        
+        return heights
+    }
+    
+    // FIXME: Bad performance
     class func heightWithText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
         let calcTextView = UITextView(frame: CGRect(x: 0, y: 0, width: textView.bounds.width, height: CGFloat.max))
@@ -127,7 +178,7 @@ class CKTextUtil: NSObject {
             let listTypeLengthDict = [ListType.Numbered: numberKeyword.characters.count, ListType.Bulleted: 2, ListType.Checkbox: 6]
             
             let lineHeight = calcTextView.font!.lineHeight
-            let width = Int(lineHeight) + Int(lineHeight - 8)
+            let width = CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)
             
             calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
             

@@ -19,6 +19,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var prevTextHeight: CGFloat?
     private var currentTextHeight: CGFloat?
     
+    private var willDestoryItem: Bool = false
     private var willReturnTouch: Bool = false
     private var willBackspaceTouch: Bool = false
     private var willChangeText: Bool = false
@@ -222,6 +223,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
+        willDestoryItem = false
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
@@ -361,6 +363,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if isFirstLocationInLine {
                 // If delete first character.
+                willDestoryItem = true
                 let isDeleteFirstItem = deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
                 
                 if isDeleteFirstItem {
@@ -590,9 +593,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
             
             // Operate with a list item.
-            if !willReturnTouch && item != nil
+            if item != nil
             {
-                CKTextUtil.resetKeyYSetItem(item!, startY: item!.firstKeyY, textHeight: (CGFloat(item!.keyYSet.count) * lineHeight) + textMoveValue, lineHeight: lineHeight)
                 let firstItem = itemFromListItemContainerWithY(item!.listInfoStore!.listStartByY)
                 firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
             }
