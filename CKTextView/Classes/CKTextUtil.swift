@@ -124,14 +124,16 @@ class CKTextUtil: NSObject {
     class func itemTextHeightWithY(y: CGFloat, ckTextView: CKTextView) -> CGFloat {
         let lineHeight = ckTextView.font!.lineHeight
         
-        var itemRange = ckTextView.characterRangeAtPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)), y: y))
+//        var itemRange = ckTextView.characterRangeAtPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)) + ckTextView.font!.pointSize / 2, y: y + (lineHeight / 2)))
+//        
+//        if itemRange == nil {
+//            itemRange = ckTextView.textRangeFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.beginningOfDocument)
+//        }
         
-        if itemRange == nil {
-            itemRange = ckTextView.textRangeFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.beginningOfDocument)
-        }
+        let lineHeadPosition = ckTextView.closestPositionToPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)) + ckTextView.font!.pointSize / 2, y: y + (lineHeight / 2)))
         
-        let textStartIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: itemRange!.start)
-        var textEndIndex: Int!
+        let textStartIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: lineHeadPosition!)
+        var textEndIndex: Int
         
         let checkedText = ckTextView.text.substringFromIndex(ckTextView.text.startIndex.advancedBy(textStartIndex))
         
@@ -140,6 +142,7 @@ class CKTextUtil: NSObject {
         let range = (checkedText as NSString).rangeOfString("\n")
         if range.location != NSNotFound {
             textEndIndex = range.location
+            textEndIndex += textStartIndex
         } else {
             textEndIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.endOfDocument)
         }
