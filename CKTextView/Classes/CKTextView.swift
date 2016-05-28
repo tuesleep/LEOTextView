@@ -143,7 +143,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func removeInfoStoreFromContainerWithY(y keyY: CGFloat)
     {
-        listInfoStoreContainerMap.removeValueForKey(String(Int(keyY)));
+        var key = String(Int(keyY))
+        var infoStore = listInfoStoreContainerMap[key];
+        
+        if infoStore == nil {
+            key = String(Int(keyY) + 1)
+            infoStore = listInfoStoreContainerMap[key];
+        }
+        
+        if infoStore == nil {
+            key = String(Int(keyY) - 1)
+            infoStore = listInfoStoreContainerMap[key];
+        }
+        
+        listInfoStoreContainerMap.removeValueForKey(key)
     }
     
     // MARK: - Setups
@@ -167,9 +180,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             isDeleteFirstItem = item.firstKeyY == item.listInfoStore!.listStartByY
             
             item.destroy(self, byBackspace: byBackspace, withY: y)
-            
-            // reload
-            handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         }
         
         return isDeleteFirstItem
@@ -239,7 +249,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
-        
+        listInfoStoreContainerMap.map({ itemFromListItemContainerWithKeyY($0.0)?.resetAllItemYWithFirstItem(itemFromListItemContainerWithKeyY($0.0)!, ckTextView: self) })
     }
     
     // MARK: - Event Handler
@@ -370,7 +380,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     // Do not delete prev '\n' char when first item deleting. And set cursorType to Text.
                     currentCursorType = ListType.Text
                     
-                    if !willChangeTextMulti && deleteText == "\n" {
+                    if deleteText == "\n" {
                         return false
                     }
                 } else {
@@ -405,12 +415,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     CKTextUtil.resetKeyYSetItem(item, startY: item.firstKeyY, textHeight: CGFloat(item.keyYSet.count - 1) * lineHeight, lineHeight: lineHeight)
                     listItemContainerMap.removeValueForKey(itemY)
                 }
-            }
-        }
-        
-        for keyY in listInfoStoreContainerMap {
-            if let firstItem = itemFromListItemContainerWithKeyY(keyY.0) {
-                firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
             }
         }
         
@@ -477,8 +481,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             nextItem.prevItem = prevItem
             
             nextItem.listInfoStore!.clearBezierPath(self)
-            
-            prevItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
         }
     }
     
@@ -538,12 +540,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
         }
         
-        if firstItem != nil {
-            firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
-        } else {
-            item.resetAllItemYWithFirstItem(item, ckTextView: self)
-        }
-        
         return true
     }
     
@@ -591,13 +587,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             if item == nil || !willReturnTouch {
                 handleLineChanged(prevCursorPoint!.y, moveValue: textMoveValue)
             }
-            
-            // Operate with a list item.
-            if item != nil
-            {
-                let firstItem = itemFromListItemContainerWithY(item!.listInfoStore!.listStartByY)
-                firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
-            }
         }
         
         // Update List type
@@ -637,6 +626,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: - Convert
     
+    // FIXME: wrong, dont think about text line.
     func appendGlyphsWithText(text: String, textRange: UITextRange) -> String
     {
         // All of the point y in seleted text.
@@ -645,11 +635,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
+        
+        for characters in allLineCharacters {
+            // New method.
+            
+            
+        }
+        
         var lineCharactersIndex = 0
         
         for selectedPointY in selectedPointYArray {
-            if let item = itemFromListItemContainerWithKeyY(selectedPointY)
-                where item.listType() != ListType.Text && String(Int(item.firstKeyY)) == selectedPointY
+            if let item = itemFromListItemContainerWithKeyY(selectedPointY) where String(Int(item.firstKeyY)) == selectedPointY
             {
                 let characters = allLineCharacters[lineCharactersIndex]
                 
@@ -689,6 +685,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 lineCharactersIndex += 1
             }
+            
+            
         }
         
         let textAppended = allLineCharacters.joinWithSeparator("\n")

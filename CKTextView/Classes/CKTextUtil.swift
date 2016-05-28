@@ -124,12 +124,6 @@ class CKTextUtil: NSObject {
     class func itemTextHeightWithY(y: CGFloat, ckTextView: CKTextView) -> CGFloat {
         let lineHeight = ckTextView.font!.lineHeight
         
-//        var itemRange = ckTextView.characterRangeAtPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)) + ckTextView.font!.pointSize / 2, y: y + (lineHeight / 2)))
-//        
-//        if itemRange == nil {
-//            itemRange = ckTextView.textRangeFromPosition(ckTextView.beginningOfDocument, toPosition: ckTextView.beginningOfDocument)
-//        }
-        
         let lineHeadPosition = ckTextView.closestPositionToPoint(CGPoint(x: CGFloat(CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)) + ckTextView.font!.pointSize / 2, y: y + (lineHeight / 2)))
         
         let textStartIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: lineHeadPosition!)
