@@ -583,10 +583,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             let item = itemFromListItemContainerWithY(prevCursorPoint!.y)
             
-            // Handle support for Text line ReturnTouch
-            if item == nil || !willReturnTouch {
-                handleLineChanged(prevCursorPoint!.y, moveValue: textMoveValue)
-            }
+            handleLineChanged(prevCursorPoint!.y, moveValue: textMoveValue)
         }
         
         // Update List type
