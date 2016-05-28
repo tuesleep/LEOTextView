@@ -34,6 +34,8 @@ class BaseListItem: NSObject
         Handle right relation with next item and self.
      */
     func handleRelationWithNextItem(nextItem: BaseListItem, ckTextView: CKTextView) {
+        self.keyYSet = Set(self.keyYSet.filter({ $0 < nextItem.firstKeyY }))
+        
         // Insert to queue.
         if self.nextItem != nil {
             self.nextItem!.prevItem = nextItem

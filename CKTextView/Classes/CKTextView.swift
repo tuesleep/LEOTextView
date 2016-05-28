@@ -9,11 +9,15 @@
 import UIKit
 
 public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
-    // Record current cursor point, to choose operations.
-    private var currentCursorPoint: CGPoint?
+    
     private var currentCursorType: ListType = .Text
     
+    // Record current cursor point, to choose operations.
     private var prevCursorPoint: CGPoint?
+    private var currentCursorPoint: CGPoint?
+    
+    private var prevTextHeight: CGFloat?
+    private var currentTextHeight: CGFloat?
     
     private var willReturnTouch: Bool = false
     private var willBackspaceTouch: Bool = false
@@ -66,6 +70,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let ckTextView = CKTextView(frame: frame, textContainer: ckTextContainer)
         // Setting about TextView
         ckTextView.autocorrectionType = .No
+        ckTextView.currentCursorPoint = CKTextUtil.cursorPointInTextView(ckTextView)
         
         return ckTextView
     }
@@ -236,7 +241,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     // MARK: - Event Handler
-    
     func handleSpaceEvent(textView: UITextView) -> Bool
     {
         if currentCursorType != ListType.Text {
@@ -452,28 +456,27 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             item.resetAllItemYWithFirstItem(item, ckTextView: self)
         }
         
-        // Paste text addition handle.
-        if willPasteText {
-            guard let pasteLocationItem = itemFromListItemContainerWithY(y) else { return }
+        /*
+        guard let selfItem = itemFromListItemContainerWithY(y) else { return }
+        
+        let lineHeight = self.font!.lineHeight
+        
+        guard let pasteEndItem = itemFromListItemContainerWithY(selfItem.listInfoStore!.listEndByY) else { return }
+        
+        var pasteLocationPrevItem = pasteEndItem
+        
+        // Remove item of same list, start by end item.
+        while pasteLocationPrevItem != selfItem {
+            removeListItemFromContainer(pasteLocationPrevItem)
             
-            let lineHeight = self.font!.lineHeight
+            pasteLocationPrevItem.firstKeyY = pasteLocationPrevItem.firstKeyY + moveValue
+            CKTextUtil.resetKeyYSetItem(pasteLocationPrevItem, startY: pasteLocationPrevItem.firstKeyY, textHeight: CGFloat(pasteLocationPrevItem.keyYSet.count) * lineHeight, lineHeight: lineHeight)
             
-            guard let pasteEndItem = itemFromListItemContainerWithY(pasteLocationItem.listInfoStore!.listEndByY) else { return }
+            saveToListItemContainerWithItem(pasteLocationPrevItem)
             
-            var pasteLocationPrevItem = pasteEndItem
-            
-            // Remove item of same list, start by end item.
-            while pasteLocationPrevItem != pasteLocationItem {
-                removeListItemFromContainer(pasteLocationPrevItem)
-                
-                pasteLocationPrevItem.firstKeyY = pasteLocationPrevItem.firstKeyY + moveValue
-                CKTextUtil.resetKeyYSetItem(pasteLocationPrevItem, startY: pasteLocationPrevItem.firstKeyY, textHeight: CGFloat(pasteLocationPrevItem.keyYSet.count) * lineHeight, lineHeight: lineHeight)
-                
-                saveToListItemContainerWithItem(pasteLocationPrevItem)
-                
-                pasteLocationPrevItem = pasteLocationPrevItem.prevItem!
-            }
+            pasteLocationPrevItem = pasteLocationPrevItem.prevItem!
         }
+        */
     }
     
     func handleListMergeWhenBackspace(y: CGFloat, moveValue: CGFloat) {
@@ -516,16 +519,17 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let prevItem = itemFromListItemContainerWithY(prevY), nextItem = itemFromListItemContainerWithY(nextY)
         
         if prevItem != nil && prevItem == nextItem {
-            print("dead loop")
-            print("oh no")
-            
-            return false
+            print("dead loop: prevItem == nextItem")
         }
         
         var firstItem: BaseListItem?
         
         // Merge prev list!
-        if prevItem != nil && prevItem != item && prevItem!.listType() == item.listType() {
+        if prevItem != nil && prevItem!.listType() == item.listType() {
+            if prevItem != item {
+                print("dead loop: prevItem == item")
+            }
+            
             item.prevItem = prevItem
             prevItem!.nextItem = item
             
@@ -537,7 +541,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         // Merge next list
-        if nextItem != nil && nextItem != item && nextItem?.listType() == item.listType() {
+        if nextItem != nil && nextItem?.listType() == item.listType() {
+            if prevItem != item {
+                print("dead loop: nextItem == item")
+            }
+            
             item.nextItem = nextItem
             nextItem!.prevItem = item
             
@@ -579,6 +587,39 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
      
         print("cursorY changed to: \(currentCursorPoint?.y), prev cursorY: \(prevCursorPoint!.y)")
         
+        if currentTextHeight == nil {
+            currentTextHeight = CKTextUtil.textHeightForTextView(self)
+            return
+        }
+        
+        prevTextHeight = currentTextHeight
+        currentTextHeight = CKTextUtil.textHeightForTextView(self)
+        
+        guard prevTextHeight != nil else { return }
+        
+        print("prevTextHeight: \(prevTextHeight); currentTextHeight: \(currentTextHeight)")
+        
+        // TextHeight changed, needs reload all item keyYSet and move some items.
+        if currentTextHeight != prevTextHeight && !willReturnTouch {
+            let lineHeight = self.font!.lineHeight
+            let textMoveValue = currentTextHeight! - prevTextHeight!
+            
+            handleLineChanged(prevCursorPoint!.y, moveValue: textMoveValue)
+            
+            // Operate with a list item.
+            if let item = itemFromListItemContainerWithY(prevCursorPoint!.y)
+            {
+                CKTextUtil.resetKeyYSetItem(item, startY: item.firstKeyY, textHeight: (CGFloat(item.keyYSet.count) * lineHeight) + textMoveValue, lineHeight: lineHeight)
+                let firstItem = itemFromListItemContainerWithY(item.listInfoStore!.listStartByY)
+                firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
+            }
+        }
+        
+        // Update List type
+        let item = itemFromListItemContainerWithY(cursorPoint.y)
+        currentCursorType = item == nil ? ListType.Text : item!.listType()
+        
+        /*
         if prevCursorPoint!.y != cursorPoint.y {
             // Handle all list that after this y position.
             if willChangeText {
@@ -612,6 +653,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 }
             }
         }
+         */
     }
     
     // MARK: - Cut & Copy & Paste
