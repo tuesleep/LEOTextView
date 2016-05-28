@@ -654,10 +654,14 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
+        var lineCharactersIndex = 0
         
-        for (index, characters) in allLineCharacters.enumerate() {
-            let seletedPointY = selectedPointYArray[index]
-            if let item = itemFromListItemContainerWithKeyY(seletedPointY) where item.listType() != ListType.Text {
+        for selectedPointY in selectedPointYArray {
+            if let item = itemFromListItemContainerWithKeyY(selectedPointY)
+                where item.listType() != ListType.Text && String(Int(item.firstKeyY)) == selectedPointY
+            {
+                let characters = allLineCharacters[lineCharactersIndex]
+                
                 var prefixCharacters: String! = ""
                 
                 switch item.listType() {
@@ -690,7 +694,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 let newCharacters = prefixCharacters + characters
                 
-                allLineCharacters[index] = newCharacters
+                allLineCharacters[lineCharactersIndex] = newCharacters
+                
+                lineCharactersIndex += 1
             }
         }
         
