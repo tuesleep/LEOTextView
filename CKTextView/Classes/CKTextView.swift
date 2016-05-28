@@ -63,7 +63,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let textStorage = NSTextStorage()
         textStorage.addLayoutManager(layoutManager)
         
-        return CKTextView(frame: frame, textContainer: ckTextContainer)
+        let ckTextView = CKTextView(frame: frame, textContainer: ckTextContainer)
+        // Setting about TextView
+        ckTextView.autocorrectionType = .No
+        
+        return ckTextView
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -222,7 +226,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         ignoreMoveOnce = false
         
         print("cursor type: \(currentCursorType)")
-        print("list item container: \(listItemContainerMap)")
+//        print("list item container: \(listItemContainerMap)")
         print("list info store container: \(listInfoStoreContainerMap)")
     }
     
@@ -413,7 +417,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             return
         }
         
-        handleListMergeWhenBackspace(y, moveValue: moveValue)
+        if moveValue < 0 {
+            handleListMergeWhenBackspace(y, moveValue: moveValue)
+        }
         
         let filterY = y + 0.1
         

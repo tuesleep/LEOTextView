@@ -29,10 +29,6 @@ class ViewController: UIViewController {
         
         self.containerView.addSubview(ckTextView!)
         
-        // Set text
-        ckTextView?.ck_setText("1. helloworld,yeah,yes,more,helloworld,yeah,google,yeah,google.yeah,yes,oh\n2. world")
-        
-//        print("ck_text: \(ckTextView?.ck_text)")
     }
     
     override func didReceiveMemoryWarning() {
