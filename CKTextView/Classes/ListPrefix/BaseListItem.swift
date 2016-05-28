@@ -208,7 +208,7 @@ class BaseListItem: NSObject
         CKTextUtil.resetKeyYSetItem(firstItem, startY: firstItem.firstKeyY, textHeight: CGFloat(keySetCount) * lineHeight, lineHeight: lineHeight)
         
         // Save new ListInfoStore to container.
-        ckTextView.saveToListInfoStoreContainerY(y: firstItem.listInfoStore!.listStartByY)
+        ckTextView.saveToListInfoStoreContainerY(y: firstItem.firstKeyY)
         // Save first item first.
         ckTextView.saveToListItemContainerWithItem(firstItem)
         
