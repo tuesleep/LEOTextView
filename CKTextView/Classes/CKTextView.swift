@@ -540,6 +540,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
         }
         
+        if firstItem != nil {
+            firstItem!.resetAllItemYWithFirstItem(firstItem!, ckTextView: self)
+        } else {
+            item.resetAllItemYWithFirstItem(item, ckTextView: self)
+        }
+        
         return true
     }
     
