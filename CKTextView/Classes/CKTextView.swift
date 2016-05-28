@@ -19,14 +19,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var prevTextHeight: CGFloat?
     private var currentTextHeight: CGFloat?
     
-    private var willDestoryItem: Bool = false
     private var willReturnTouch: Bool = false
     private var willBackspaceTouch: Bool = false
     private var willChangeText: Bool = false
     private var willChangeTextMulti: Bool = false
-    private var willPasteText: Bool = false
-    
-    private var reloadedAfterPasted: Bool = false
     
     public func ck_setText(theText: String)
     {
@@ -233,12 +229,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
-        willDestoryItem = false
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
         willChangeTextMulti = false
-        willPasteText = false
         
         ignoreMoveOnce = false
         
@@ -373,7 +367,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if isFirstLocationInLine {
                 // If delete first character.
-                willDestoryItem = true
                 let isDeleteFirstItem = deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
                 
                 if isDeleteFirstItem {
@@ -721,8 +714,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             // Change characters, remove prefix keyword.
             allLineCharacters[index] = newCharacter
         }
-        
-        willPasteText = true
         
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
         UIPasteboard.generalPasteboard().string = finalPasteText
