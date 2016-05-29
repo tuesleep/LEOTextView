@@ -190,6 +190,33 @@ class CKTextUtil: NSObject {
         return (textHeightForTextView(calcTextView), calcTextView.text)
     }
     
+    // FIXME: Bad performance
+    class func heightWithKeyText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
+    {
+        let calcTextView = UITextView(frame: CGRect(x: 0, y: 0, width: textView.bounds.width, height: CGFloat.max))
+        calcTextView.font = textView.font
+        
+        if listType != ListType.Text {
+            let numberKeyword = "\(numberIndex). "
+            
+            let listTypeLengthDict = [ListType.Numbered: 3, ListType.Bulleted: 3, ListType.Checkbox: 3]
+            
+            let lineHeight = calcTextView.font!.lineHeight
+            let width = CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)
+            
+            calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
+            
+            let prefixLength = listTypeLengthDict[listType]!
+            
+            calcTextView.text = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            
+        } else {
+            calcTextView.text = text
+        }
+        
+        return (textHeightForTextView(calcTextView), calcTextView.text)
+    }
+    
     class func clearTextByRange(range: NSRange, textView: UITextView)
     {
         let clearRange = Range(textView.text.startIndex.advancedBy(range.location) ..< textView.text.startIndex.advancedBy(range.location + range.length))
@@ -270,6 +297,30 @@ class CKTextUtil: NSObject {
         return ListType.Text
     }
     
+    class func typeOfKeyCharacter(keyCharacter: String) -> ListType
+    {
+        let checkArray = [("@ :", 3, ListType.Numbered), ("* :", 3, ListType.Bulleted), ("c :", 3, ListType.Checkbox), ("cc:", 3, ListType.Checkbox)]
+        
+        for (_, value) in checkArray.enumerate() {
+            let keyword = value.0
+            let length = value.1
+            let listType = value.2
+            
+            if keyCharacter.characters.count < length {
+                continue
+            }
+            
+            let range: Range = Range(keyCharacter.startIndex ..< keyCharacter.startIndex.advancedBy(length))
+            let keyChars = keyCharacter.substringWithRange(range)
+            
+            if keyChars == keyword {
+                return listType
+            }
+        }
+        
+        return ListType.Text
+    }
+    
     class func resetKeyYSetItem(item: BaseListItem, startY: CGFloat, textHeight: CGFloat, lineHeight: CGFloat)
     {
         var keyYSet: Set<CGFloat> = Set()
@@ -285,5 +336,111 @@ class CKTextUtil: NSObject {
         }
         
         item.keyYSet = keyYSet
+    }
+    
+    // MARK: - KeyText and NormalText Convertion
+    
+    public class func changeToKeyTextWithNormalText(normalText: String, textView: UITextView) -> String
+    {
+        var allLineCharacters = (normalText as NSString).componentsSeparatedByString("\n")
+        
+        var numberIndex = 1
+        
+        for (index, character) in allLineCharacters.enumerate() {
+            let listType = CKTextUtil.typeOfCharacter(character, numberIndex: numberIndex)
+            
+            let textHeightAndNewText = CKTextUtil.heightWithText(character, textView: textView, listType: listType, numberIndex: numberIndex)
+            let newCharacter = textHeightAndNewText.1
+            
+            if listType == ListType.Numbered {
+                numberIndex += 1
+            } else {
+                numberIndex = 1
+            }
+            
+            var listPrefix = ""
+            
+            switch listType {
+            case .Numbered:
+                listPrefix = "@ :"
+                break
+            case .Bulleted:
+                listPrefix = "* :"
+                break
+            case .Checkbox:
+                if character.rangeOfString("- [x] ") != nil {
+                    listPrefix = "cc:"
+                } else {
+                    listPrefix = "c :"
+                }
+                break
+            case .Text:
+                break
+            }
+            
+            // Change characters, remove prefix keyword.
+            allLineCharacters[index] = listPrefix + newCharacter
+        }
+        
+        return allLineCharacters.joinWithSeparator("\n")
+    }
+    
+    public class func changeToNormalTextWithKeyText(keyText: String, textView: UITextView) -> String
+    {
+        var allLineCharacters = (keyText as NSString).componentsSeparatedByString("\n")
+        
+        var numberIndex = 1
+        
+        for (index, character) in allLineCharacters.enumerate() {
+            let listType = CKTextUtil.typeOfKeyCharacter(character)
+            
+            let textHeightAndNewText = CKTextUtil.heightWithKeyText(character, textView: textView, listType: listType, numberIndex: numberIndex)
+            let newCharacter = textHeightAndNewText.1
+            
+            var listPrefix = ""
+            
+            switch listType {
+            case .Numbered:
+                listPrefix = "\(numberIndex). "
+                break
+            case .Bulleted:
+                listPrefix = "* "
+                break
+            case .Checkbox:
+                if character.rangeOfString("cc:") != nil {
+                    listPrefix = "- [x] "
+                } else {
+                    listPrefix = "- [ ] "
+                }
+                break
+            case .Text:
+                break
+            }
+            
+            // Change characters, remove prefix keyword.
+            allLineCharacters[index] = listPrefix + newCharacter
+            
+            if listType == ListType.Numbered {
+                numberIndex += 1
+            } else {
+                numberIndex = 1
+            }
+        }
+        
+        return allLineCharacters.joinWithSeparator("\n")
+    }
+    
+    class func keyTypePrefixWithListType(listType: ListType) -> String
+    {
+        switch listType {
+        case .Numbered:
+            return "@ :"
+        case .Bulleted:
+            return "* :"
+        case .Checkbox:
+            return "c :"
+        case .Text:
+            return ""
+        }
     }
 }

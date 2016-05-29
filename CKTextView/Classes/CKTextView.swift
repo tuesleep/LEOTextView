@@ -174,9 +174,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
         } else {
             // Selected range target
+            let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
+            let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
+            
+            // TODO: Get all item in a Set that keyY belong startY and endY
             
             
-            
+            print("startY: \(startY), endY: \(endY)")
         }
     }
     
@@ -836,10 +840,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
-        UIPasteboard.generalPasteboard().string = finalPasteText
-        super.paste(sender)
-        
-        UIPasteboard.generalPasteboard().string = pasteText
+        self.text = finalPasteText
         
         // Create items logic begin
         var allLineCharactersCreation = (pasteText as NSString).componentsSeparatedByString("\n")
@@ -935,6 +936,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 }
                 
                 CKTextUtil.resetKeyYSetItem(item, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
+                saveToListItemContainerWithItem(item)
                 
                 handleListMergeWhenLineTypeChanged(moveY, item: item)
             }
@@ -945,6 +947,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             moveY += textHeight
         }
+        
+        handleInfoStoreContainerKeySetRight()
     }
     
     // MARK: - Toolbar button event
