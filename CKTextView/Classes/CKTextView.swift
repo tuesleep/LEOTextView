@@ -102,7 +102,47 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         changeSelectedTextLineType(.Numbered)
     }
     
-    // MARK: - Initialized
+    func createItemWithY(y: CGFloat, type: ListType) {
+        var createdItem: BaseListItem?
+        
+        switch type {
+        case .Checkbox:
+            let checkBoxListItem = CheckBoxListItem(keyY: y, ckTextView: self, listInfoStore: nil)
+            createdItem = checkBoxListItem
+            
+            break
+        case .Bulleted:
+            let bulletedListItem = BulletedListItem(keyY: y, ckTextView: self, listInfoStore: nil)
+            createdItem = bulletedListItem
+            
+            break
+        case .Numbered:
+            let numberListItem = NumberedListItem(keyY: y, number: 1, ckTextView: self, listInfoStore: nil)
+            createdItem = numberListItem
+            
+            break
+        case .Text:
+            break
+        }
+        
+        if createdItem != nil {
+            let lineHeight = self.font!.lineHeight
+            
+            createdItem!.listInfoStore!.fillBezierPath(self)
+            
+            saveToListItemContainerWithItem(createdItem!)
+            saveToListInfoStoreContainerY(y: createdItem!.listInfoStore!.listStartByY)
+            
+            let itemTextHeight = CKTextUtil.itemTextHeightWithY(y, ckTextView: self)
+            CKTextUtil.resetKeyYSetItem(createdItem!, startY: y, textHeight: itemTextHeight, lineHeight: lineHeight)
+            
+            createdItem?.resetAllItemYWithFirstItem(createdItem!, ckTextView: self)
+            
+            currentCursorType = createdItem!.listType()
+            
+            handleListMergeWhenLineTypeChanged(y, item: createdItem!)
+        }
+    }
     
     func changeSelectedTextLineType(type: ListType)
     {
@@ -115,74 +155,36 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             }
             
             // Get target y
-            let cursorIndex = self.offsetFromPosition(self.beginningOfDocument, toPosition: selectedTextRange!.start)
-            let checkText = self.text.substringToIndex(self.text.startIndex.advancedBy(cursorIndex))
-            
-            let lineHeadIndex: Int
-            
-            let searchRange = (checkText as NSString).rangeOfString("\n", options: .BackwardsSearch)
-            if searchRange.location != NSNotFound {
-                lineHeadIndex = searchRange.location + 1
-            } else {
-                lineHeadIndex = 0
-            }
-            
-            print("lineHeadIndex: \(lineHeadIndex)")
-            
-            let lineHeightPosition = self.positionFromPosition(self.beginningOfDocument, offset: lineHeadIndex)
-            let targetY = self.caretRectForPosition(lineHeightPosition!).origin.y
-            
-            var createdItem: BaseListItem?
-            
-            switch type {
-            case .Checkbox:
-                let checkBoxListItem = CheckBoxListItem(keyY: targetY, ckTextView: self, listInfoStore: nil)
-                createdItem = checkBoxListItem
-                
-                break
-            case .Bulleted:
-                let bulletedListItem = BulletedListItem(keyY: targetY, ckTextView: self, listInfoStore: nil)
-                createdItem = bulletedListItem
-                
-                break
-            case .Numbered:
-                let numberListItem = NumberedListItem(keyY: targetY, number: 1, ckTextView: self, listInfoStore: nil)
-                createdItem = numberListItem
-                
-                break
-            case .Text:
-                break
-            }
-            
-            if createdItem != nil {
-                let lineHeight = self.font!.lineHeight
-                
-                createdItem!.listInfoStore!.fillBezierPath(self)
-                
-                saveToListItemContainerWithItem(createdItem!)
-                saveToListInfoStoreContainerY(y: createdItem!.listInfoStore!.listStartByY)
-                
-                let itemTextHeight = CKTextUtil.itemTextHeightWithY(targetY, ckTextView: self)
-                CKTextUtil.resetKeyYSetItem(createdItem!, startY: targetY, textHeight: itemTextHeight, lineHeight: lineHeight)
-                
-                createdItem?.resetAllItemYWithFirstItem(createdItem!, ckTextView: self)
-                
-                currentCursorType = createdItem!.listType()
-                
-                handleListMergeWhenLineTypeChanged(targetY, item: createdItem!)
-            }
+            let targetY = CKTextUtil.lineHeadPointYWithPosition(selectedTextRange!.start, ckTextView: self)
+            createItemWithY(targetY, type: type)
             
         } else {
-            // Selected range target
-            let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
-            let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
+            var moveTextPosition = self.selectedTextRange!.end
             
-            // TODO: Get all item in a Set that keyY belong startY and endY
-            
-            
-            print("startY: \(startY), endY: \(endY)")
+            while self.offsetFromPosition(self.selectedTextRange!.start, toPosition: moveTextPosition) > 0 {
+                let currentTextLineHeadPosition = CKTextUtil.lineHeadPositionWithPosition(moveTextPosition, ckTextView: self)
+                
+                let y = CKTextUtil.lineHeadPointYWithLineHeadPosition(currentTextLineHeadPosition, ckTextView: self)
+                
+                // Delete item if exist
+                if let item = itemFromListItemContainerWithY(y) {
+                    item.destroy(self, byBackspace: false, withY: y)
+                }
+                
+                createItemWithY(y, type: type)
+                
+                if offsetFromPosition(self.selectedTextRange!.start, toPosition: currentTextLineHeadPosition) == 0 {
+                    break
+                }
+                
+                moveTextPosition = positionFromPosition(currentTextLineHeadPosition, offset: -1)!
+            }
         }
+        
+        handleInfoStoreContainerKeySetRight()
     }
+    
+    // MARK: - Initialized
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -295,13 +297,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         handleUpdateCurrentCursorType()
         
         // Operate by select range.
-        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
-        
-        if textInfo.1 {
-            willChangeTextMulti = true
-            
-            handleMultiTextReplacement(textInfo)
-        }
+//        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
+//        
+//        if textInfo.1 {
+//            willChangeTextMulti = true
+//            
+//            handleMultiTextReplacement(textInfo)
+//        }
         
         var isContinue = true
         

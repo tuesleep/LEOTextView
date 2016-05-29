@@ -248,6 +248,56 @@ class CKTextUtil: NSObject {
         return ListType.Text
     }
     
+    class func lineHeadIndexWithPosition(position: UITextPosition, ckTextView:CKTextView) -> Int
+    {
+        // Get target y
+        let cursorIndex = ckTextView.offsetFromPosition(ckTextView.beginningOfDocument, toPosition: position)
+        let checkText = ckTextView.text.substringToIndex(ckTextView.text.startIndex.advancedBy(cursorIndex))
+        
+        let lineHeadIndex: Int
+        
+        let searchRange = (checkText as NSString).rangeOfString("\n", options: .BackwardsSearch)
+        if searchRange.location != NSNotFound {
+            lineHeadIndex = searchRange.location + 1
+        } else {
+            lineHeadIndex = 0
+        }
+        
+        return lineHeadIndex
+    }
+    
+    class func lineHeadPositionWithPosition(position: UITextPosition, ckTextView:CKTextView) -> UITextPosition
+    {
+        let lineHeadIndex = lineHeadIndexWithPosition(position, ckTextView: ckTextView)
+        let lineHeadPosition = ckTextView.positionFromPosition(ckTextView.beginningOfDocument, offset: lineHeadIndex)
+        
+        return lineHeadPosition!
+    }
+    
+    class func lineHeadPointYWithPosition(position: UITextPosition, ckTextView:CKTextView) -> CGFloat
+    {
+        // Get target y
+        let lineHeadPosition = self.lineHeadPositionWithPosition(position, ckTextView: ckTextView)
+        let targetY = ckTextView.caretRectForPosition(lineHeadPosition).origin.y
+        
+        return targetY
+    }
+    
+    class func lineHeadPointYWithLineHeadPosition(lineHeadPosition: UITextPosition, ckTextView: CKTextView) -> CGFloat
+    {
+        let targetY = ckTextView.caretRectForPosition(lineHeadPosition).origin.y
+        
+        return targetY
+    }
+    
+    class func lineHeadPointYWithLineHeadIndex(index: Int, ckTextView: CKTextView) -> CGFloat
+    {
+        let lineHeadPosition = ckTextView.positionFromPosition(ckTextView.beginningOfDocument, offset: index)
+        let targetY = ckTextView.caretRectForPosition(lineHeadPosition!).origin.y
+        
+        return targetY
+    }
+    
     private class func keyCharsWithLocation(location: Int, textView: UITextView, length: Int) -> String
     {
         guard location >= length && CKTextUtil.isFirstLocationInLineWithLocation(location - length, textView: textView) else { return "" }
