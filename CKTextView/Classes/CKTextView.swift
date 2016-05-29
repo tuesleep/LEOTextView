@@ -22,7 +22,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var willReturnTouch: Bool = false
     private var willBackspaceTouch: Bool = false
     private var willChangeText: Bool = false
-    private var willChangeTextMulti: Bool = false
     
     // Save Y and ListItem relationship.
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
@@ -58,8 +57,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func ck_setText(theText: String)
     {
-        let oldPasteText = UIPasteboard.generalPasteboard().string
-        
         self.text = ""
         self.listItemContainerMap.forEach({ $0.1.clearGlyph(); $0.1.listInfoStore?.clearBezierPath(self) })
         self.listItemContainerMap.removeAll()
@@ -67,7 +64,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         self.currentCursorType = .Text
         
         pasteWithText(theText, sender: nil)
-        UIPasteboard.generalPasteboard().string = oldPasteText
     }
     
     public func ck_text() -> String
@@ -287,6 +283,45 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return isDeleteFirstItem
     }
     
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementWithNormalText: String) {
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(replacementWithNormalText, textView: self)
+        
+        // first string line not Text line, and this line not Text type.
+        if CKTextUtil.typeOfKeyCharacter(keyText) != .Text
+            && itemFromListItemContainerWithY(currentCursorPoint!.y) != nil
+        {
+            keyText = keyText.substringFromIndex(keyText.startIndex.advancedBy(3))
+        }
+        
+        handleMultiLineWithShouldChangeTextInRange(range, replacementText: keyText)
+    }
+    
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementText: String)
+    {
+        let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
+        let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
+        
+        let prevItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue <= Int(startY) }).count
+        
+        let containItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue > Int(startY) && ($0.0 as NSString).integerValue <= Int(endY) }).count
+        
+        let locationMoveValue = prevItemCount * 3
+        let lengthMoveValue = containItemCount * 3
+        
+        let keyTextLocation = range.location + locationMoveValue
+        let keyTextLength = range.length + lengthMoveValue
+        
+        let normalText = appendGlyphsWithText(self.text, range: NSMakeRange(0, self.text.characters.count))
+        
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(normalText, textView: self)
+        let replaceRange = Range(start: keyText.startIndex.advancedBy(keyTextLocation), end: keyText.startIndex.advancedBy(keyTextLocation + keyTextLength))
+        
+        keyText.replaceRange(replaceRange, with: replacementText)
+        
+        let finalText = CKTextUtil.changeToNormalTextWithKeyText(keyText, textView: self)
+        ck_setText(finalText)
+    }
+    
     // MARK: - UITextViewDelegate
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
@@ -296,15 +331,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         // Operate by select range.
         if CKTextUtil.isSelectedTextMultiLine(textView) {
             print("multi")
+            handleMultiLineWithShouldChangeTextInRange(range, replacementText: text)
+            return false
         }
-        
-//        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
-//        
-//        if textInfo.1 {
-//            willChangeTextMulti = true
-//            
-//            handleMultiTextReplacement(textInfo)
-//        }
         
         var isContinue = true
         
@@ -345,7 +374,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
-        willChangeTextMulti = false
         
         ignoreMoveOnce = false
         
@@ -748,7 +776,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
         print("textview paste invoke. paste content: \(pasteText)")
         
-        pasteWithText(pasteText, sender: sender)
+        // Every paste needs reload all text
+        handleMultiLineWithShouldChangeTextInRange(self.selectedRange, replacementWithNormalText: pasteText)
     }
     
     // MARK: - Convert
