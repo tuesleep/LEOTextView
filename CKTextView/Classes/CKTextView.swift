@@ -542,31 +542,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return true
     }
     
-    func handleMultiTextReplacement(textInfo: ([String], Bool, CGFloat))
-    {
-        let needsRemoveItemYArray = textInfo.0
-        
-        print("needsRemoveItemYArray: \(needsRemoveItemYArray)")
-        
-        for itemY in needsRemoveItemYArray {
-            if let item = itemFromListItemContainerWithKeyY(itemY) {
-                if String(Int(item.firstKeyY)) == itemY {
-                    item.prevItem?.nextItem = item.nextItem
-                    item.clearGlyph()
-                    item.listInfoStore!.clearBezierPath(self)
-                    removeListItemFromContainer(item)
-                } else {
-                    let lineHeight = self.font!.lineHeight
-                    
-                    CKTextUtil.resetKeyYSetItem(item, startY: item.firstKeyY, textHeight: CGFloat(item.keyYSet.count - 1) * lineHeight, lineHeight: lineHeight)
-                    listItemContainerMap.removeValueForKey(itemY)
-                }
-            }
-        }
-        
-        handleLineChanged(CGFloat((needsRemoveItemYArray.last! as NSString).floatValue), moveValue: textInfo.2)
-    }
-    
     func handleLineChanged(y: CGFloat, moveValue: CGFloat)
     {
         if ignoreMoveOnce {
