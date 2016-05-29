@@ -19,36 +19,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var prevTextHeight: CGFloat?
     private var currentTextHeight: CGFloat?
     
-    private var willDestoryItem: Bool = false
     private var willReturnTouch: Bool = false
     private var willBackspaceTouch: Bool = false
     private var willChangeText: Bool = false
-    private var willChangeTextMulti: Bool = false
-    private var willPasteText: Bool = false
-    
-    private var reloadedAfterPasted: Bool = false
-    
-    public func ck_setText(theText: String)
-    {
-        let oldPasteText = UIPasteboard.generalPasteboard().string
-        
-        self.text = ""
-        self.listItemContainerMap.forEach({ $0.1.clearGlyph(); $0.1.listInfoStore?.clearBezierPath(self) })
-        self.listItemContainerMap.removeAll()
-        self.listInfoStoreContainerMap.removeAll()
-        self.currentCursorType = .Text
-        
-        pasteWithText(theText, sender: nil)
-        UIPasteboard.generalPasteboard().string = oldPasteText
-    }
-    
-    public func ck_text() -> String
-    {
-        let beginPosition = self.beginningOfDocument
-        let endPosition = self.endOfDocument
-        
-        return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
-    }
     
     // Save Y and ListItem relationship.
     var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
@@ -58,6 +31,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     private var ignoreMoveOnce = false
     
+    private var toolbar: UIToolbar?
+    
+    // MARK: - Public
+    
+    public var isShowToolbar: Bool = true
+ 
     public class func ck_textView(frame: CGRect) -> CKTextView
     {
         let ckTextContainer = CKTextContainer(size: CGSize(width: CGRectGetWidth(frame), height: CGFloat.max))
@@ -76,6 +55,130 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return ckTextView
     }
     
+    public func ck_setText(theText: String)
+    {
+        self.text = ""
+        self.listItemContainerMap.forEach({ $0.1.clearGlyph(); $0.1.listInfoStore?.clearBezierPath(self) })
+        self.listItemContainerMap.removeAll()
+        self.listInfoStoreContainerMap.removeAll()
+        self.currentCursorType = .Text
+        
+        pasteWithText(theText, sender: nil)
+    }
+    
+    public func ck_text() -> String
+    {
+        return appendGlyphsWithText(text, range: NSMakeRange(0, text.characters.count))
+    }
+    
+    public func reloadText() {
+        self.ck_setText(self.ck_text())
+    }
+    
+    public func changeSelectedTextToBody()
+    {
+        changeSelectedTextLineType(.Text)
+    }
+    
+    public func changeSelectedTextToCheckbox()
+    {
+        changeSelectedTextLineType(.Checkbox)
+    }
+    
+    public func changeSelectedTextToBulleted()
+    {
+        changeSelectedTextLineType(.Bulleted)
+    }
+    
+    public func changeSelectedTextToNumbered()
+    {
+        changeSelectedTextLineType(.Numbered)
+    }
+    
+    func createItemWithY(y: CGFloat, type: ListType) {
+        var createdItem: BaseListItem?
+        
+        switch type {
+        case .Checkbox:
+            let checkBoxListItem = CheckBoxListItem(keyY: y, ckTextView: self, listInfoStore: nil)
+            createdItem = checkBoxListItem
+            
+            break
+        case .Bulleted:
+            let bulletedListItem = BulletedListItem(keyY: y, ckTextView: self, listInfoStore: nil)
+            createdItem = bulletedListItem
+            
+            break
+        case .Numbered:
+            let numberListItem = NumberedListItem(keyY: y, number: 1, ckTextView: self, listInfoStore: nil)
+            createdItem = numberListItem
+            
+            break
+        case .Text:
+            break
+        }
+        
+        if createdItem != nil {
+            let lineHeight = self.font!.lineHeight
+            
+            createdItem!.listInfoStore!.fillBezierPath(self)
+            
+            saveToListItemContainerWithItem(createdItem!)
+            saveToListInfoStoreContainerY(y: createdItem!.listInfoStore!.listStartByY)
+            
+            let itemTextHeight = CKTextUtil.itemTextHeightWithY(y, ckTextView: self)
+            CKTextUtil.resetKeyYSetItem(createdItem!, startY: y, textHeight: itemTextHeight, lineHeight: lineHeight)
+            
+            createdItem?.resetAllItemYWithFirstItem(createdItem!, ckTextView: self)
+            
+            currentCursorType = createdItem!.listType()
+            
+            handleListMergeWhenLineTypeChanged(y, item: createdItem!)
+        }
+    }
+    
+    func changeSelectedTextLineType(type: ListType)
+    {
+        let selectedTextRange = self.selectedTextRange
+        
+        if selectedTextRange!.empty {
+            // Before change to Text
+            if let item = itemFromListItemContainerWithY(currentCursorPoint!.y) {
+                item.destroy(self, byBackspace: false, withY: currentCursorPoint!.y)
+            }
+            
+            // Get target y
+            let targetY = CKTextUtil.lineHeadPointYWithPosition(selectedTextRange!.start, ckTextView: self)
+            createItemWithY(targetY, type: type)
+            
+        } else {
+            var moveTextPosition = self.selectedTextRange!.end
+            
+            while self.offsetFromPosition(self.selectedTextRange!.start, toPosition: moveTextPosition) > 0 {
+                let currentTextLineHeadPosition = CKTextUtil.lineHeadPositionWithPosition(moveTextPosition, ckTextView: self)
+                
+                let y = CKTextUtil.lineHeadPointYWithLineHeadPosition(currentTextLineHeadPosition, ckTextView: self)
+                
+                // Delete item if exist
+                if let item = itemFromListItemContainerWithY(y) {
+                    item.destroy(self, byBackspace: false, withY: y)
+                }
+                
+                createItemWithY(y, type: type)
+                
+                if offsetFromPosition(self.selectedTextRange!.start, toPosition: currentTextLineHeadPosition) == 0 {
+                    break
+                }
+                
+                moveTextPosition = positionFromPosition(currentTextLineHeadPosition, offset: -1)!
+            }
+        }
+        
+        handleInfoStoreContainerKeySetRight()
+    }
+    
+    // MARK: - Initialized
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         initialized()
@@ -92,12 +195,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         setupNotificationCenterObservers()
         
-    }
-    
-    // MARK: - Public method
-    
-    func reloadText() {
-        self.ck_setText(self.ck_text())
     }
     
     // MARK: - Container getter & setter
@@ -163,7 +260,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func setupNotificationCenterObservers()
     {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
     }
     
     /**
@@ -185,18 +283,56 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return isDeleteFirstItem
     }
     
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementWithNormalText: String) {
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(replacementWithNormalText, textView: self)
+        
+        // first string line not Text line, and this line not Text type.
+        if CKTextUtil.typeOfKeyCharacter(keyText) != .Text
+            && itemFromListItemContainerWithY(currentCursorPoint!.y) != nil
+        {
+            keyText = keyText.substringFromIndex(keyText.startIndex.advancedBy(3))
+        }
+        
+        handleMultiLineWithShouldChangeTextInRange(range, replacementText: keyText)
+    }
+    
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementText: String)
+    {
+        let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
+        let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
+        
+        let prevItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue <= Int(startY) }).count
+        
+        let containItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue > Int(startY) && ($0.0 as NSString).integerValue <= Int(endY) }).count
+        
+        let locationMoveValue = prevItemCount * 3
+        let lengthMoveValue = containItemCount * 3
+        
+        let keyTextLocation = range.location + locationMoveValue
+        let keyTextLength = range.length + lengthMoveValue
+        
+        let normalText = appendGlyphsWithText(self.text, range: NSMakeRange(0, self.text.characters.count))
+        
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(normalText, textView: self)
+        let replaceRange = Range(start: keyText.startIndex.advancedBy(keyTextLocation), end: keyText.startIndex.advancedBy(keyTextLocation + keyTextLength))
+        
+        keyText.replaceRange(replaceRange, with: replacementText)
+        
+        let finalText = CKTextUtil.changeToNormalTextWithKeyText(keyText, textView: self)
+        ck_setText(finalText)
+    }
+    
     // MARK: - UITextViewDelegate
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
+        handleUpdateCurrentCursorType()
         
         // Operate by select range.
-        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
-        
-        if textInfo.1 {
-            willChangeTextMulti = true
-            
-            handleMultiTextReplacement(textInfo)
+        if CKTextUtil.isSelectedTextMultiLine(textView) {
+            print("multi")
+            handleMultiLineWithShouldChangeTextInRange(range, replacementText: text)
+            return false
         }
         
         var isContinue = true
@@ -233,26 +369,37 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
-        willDestoryItem = false
+        handleInfoStoreContainerKeySetRight()
+        
         willChangeText = false
         willReturnTouch = false
         willBackspaceTouch = false
-        willChangeTextMulti = false
-        willPasteText = false
         
         ignoreMoveOnce = false
         
         print("cursor type: \(currentCursorType)")
-//        print("list item container: \(listItemContainerMap)")
+        print("list item container: \(listItemContainerMap)")
         print("list info store container: \(listInfoStoreContainerMap)")
     }
     
     public func textViewDidChange(textView: UITextView)
     {
-        listInfoStoreContainerMap.map({ itemFromListItemContainerWithKeyY($0.0)?.resetAllItemYWithFirstItem(itemFromListItemContainerWithKeyY($0.0)!, ckTextView: self) })
+        handleInfoStoreContainerKeySetRight()
     }
     
     // MARK: - Event Handler
+    func handleInfoStoreContainerKeySetRight()
+    {
+        listInfoStoreContainerMap.map({
+            if let firstItem = itemFromListItemContainerWithKeyY($0.0) {
+                firstItem.clearContainerWithAllYSet(self)
+                firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+            } else {
+                listInfoStoreContainerMap.removeValueForKey($0.0)
+            }
+        })
+    }
+    
     func handleSpaceEvent(textView: UITextView) -> Bool
     {
         if currentCursorType != ListType.Text {
@@ -373,7 +520,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             if isFirstLocationInLine {
                 // If delete first character.
-                willDestoryItem = true
                 let isDeleteFirstItem = deleteListPrefixWithY(cursorPoint.y, cursorPoint: cursorPoint, byBackspace: true)
                 
                 if isDeleteFirstItem {
@@ -593,7 +739,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         // Update List type
-        let item = itemFromListItemContainerWithY(cursorPoint.y)
+        handleUpdateCurrentCursorType()
+    }
+    
+    func handleUpdateCurrentCursorType()
+    {
+        // Update List type
+        let item = itemFromListItemContainerWithY(currentCursorPoint!.y)
         currentCursorType = item == nil ? ListType.Text : item!.listType()
     }
     
@@ -611,9 +763,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         super.copy(sender)
         
         let selectedText = CKTextUtil.textByRange(self.selectedRange, text: self.text)
-        let selectedRange = self.selectedTextRange!
+        let selectedRange = self.selectedRange
         
-        let copyText = appendGlyphsWithText(selectedText, textRange: selectedRange)
+        let copyText = appendGlyphsWithText(selectedText, range: selectedRange)
         
         UIPasteboard.generalPasteboard().string = copyText
         
@@ -624,44 +776,37 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
         print("textview paste invoke. paste content: \(pasteText)")
         
-        pasteWithText(pasteText, sender: sender)
+        // Every paste needs reload all text
+        handleMultiLineWithShouldChangeTextInRange(self.selectedRange, replacementWithNormalText: pasteText)
     }
     
     // MARK: - Convert
     
-    // FIXME: wrong, dont think about text line.
-    func appendGlyphsWithText(text: String, textRange: UITextRange) -> String
+    func appendGlyphsWithText(text: String, range: NSRange) -> String
     {
-        // All of the point y in seleted text.
-        let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, selectedRange: textRange, isContainFirstLine: true, sortByAsc: true)
-        
-        var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
+        var allLineString = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
+        // move location record current range location of string.
+        var moveLocationValue = 0
         
-        for characters in allLineCharacters {
-            // New method.
+        let beginPosition = positionFromPosition(beginningOfDocument, offset: range.location)
+        
+        for (index, lineString) in allLineString.enumerate() {
+            let currentPosition = self.positionFromPosition(beginPosition!, offset: moveLocationValue)
+            let currentY = self.caretRectForPosition(currentPosition!).origin.y
             
-            
-        }
-        
-        var lineCharactersIndex = 0
-        
-        for selectedPointY in selectedPointYArray {
-            if let item = itemFromListItemContainerWithKeyY(selectedPointY) where String(Int(item.firstKeyY)) == selectedPointY
-            {
-                let characters = allLineCharacters[lineCharactersIndex]
-                
-                var prefixCharacters: String! = ""
+            if let item = itemFromListItemContainerWithY(currentY) {
+                var prefixString: String! = ""
                 
                 switch item.listType() {
                 case .Numbered:
-                    prefixCharacters = "\(numberedItemIndex). "
+                    prefixString = "\(numberedItemIndex). "
                     numberedItemIndex += 1
                     
                     break
                 case .Bulleted:
-                    prefixCharacters = "* "
+                    prefixString = "* "
                     
                     numberedItemIndex = 1
                     
@@ -670,9 +815,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     let checkBoxListItem = item as! CheckBoxListItem
                     
                     if checkBoxListItem.isChecked {
-                        prefixCharacters = "- [x] "
+                        prefixString = "- [x] "
                     } else {
-                        prefixCharacters = "- [ ] "
+                        prefixString = "- [ ] "
                     }
                     
                     numberedItemIndex = 1
@@ -682,17 +827,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     break
                 }
                 
-                let newCharacters = prefixCharacters + characters
+                let lineStringWithPrefix = prefixString + lineString
                 
-                allLineCharacters[lineCharactersIndex] = newCharacters
+                allLineString[index] = lineStringWithPrefix
                 
-                lineCharactersIndex += 1
+            } else {
+                // Normal text
+                // Nothing needs to do.
             }
             
-            
+            // add 1 for '\n' char length.
+            moveLocationValue += lineString.characters.count + 1
         }
         
-        let textAppended = allLineCharacters.joinWithSeparator("\n")
+        let textAppended = allLineString.joinWithSeparator("\n")
         
         return textAppended
     }
@@ -722,13 +870,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             allLineCharacters[index] = newCharacter
         }
         
-        willPasteText = true
-        
         var finalPasteText = allLineCharacters.joinWithSeparator("\n")
-        UIPasteboard.generalPasteboard().string = finalPasteText
-        super.paste(sender)
-        
-        UIPasteboard.generalPasteboard().string = pasteText
+        self.text = finalPasteText
         
         // Create items logic begin
         var allLineCharactersCreation = (pasteText as NSString).componentsSeparatedByString("\n")
@@ -824,6 +967,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 }
                 
                 CKTextUtil.resetKeyYSetItem(item, startY: moveY, textHeight: textHeight, lineHeight: lineHeight)
+                saveToListItemContainerWithItem(item)
                 
                 handleListMergeWhenLineTypeChanged(moveY, item: item)
             }
@@ -834,17 +978,65 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
             moveY += textHeight
         }
+        
+        handleInfoStoreContainerKeySetRight()
+    }
+    
+    // MARK: - Toolbar button event
+    
+    func bodyButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToBody()
+    }
+    
+    func checkboxButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToCheckbox()
+    }
+    
+    func bulletedButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToBulleted()
+    }
+    
+    func numberedButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToNumbered()
     }
     
     // MARK: - KVO
     
-    func keyboardWillShow(notification: NSNotification)
+    func keyboardDidShow(notification: NSNotification)
     {
         if let userInfo: NSDictionary = notification.userInfo {
             let value = userInfo["UIKeyboardBoundsUserInfoKey"]
             if let rect = value?.CGRectValue() {
                 self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: rect.height + 100, right: 0)
+                
+                // Show toolbar if needed.
+                if isShowToolbar {
+                    let screenSize = UIScreen.mainScreen().bounds.size
+                    toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 30, width: screenSize.width, height: 30))
+                    
+                    // Buttons
+                    let bodyButton = UIBarButtonItem(title: "Body", style: .Plain, target: self, action: #selector(self.bodyButtonAction(_:)))
+                    let checkBoxButton = UIBarButtonItem(title: "CheckBox", style: .Plain, target: self, action: #selector(self.checkboxButtonAction(_:)))
+                    let bulletButton = UIBarButtonItem(title: "Bullet", style: .Plain, target: self, action: #selector(self.bulletedButtonAction(_:)))
+                    let numberButton = UIBarButtonItem(title: "Number", style: .Plain, target: self, action: #selector(self.numberedButtonAction(_:)))
+                    
+                    let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+                    
+                    toolbar?.items = [flexibleSpaceButton, bodyButton, flexibleSpaceButton, checkBoxButton, flexibleSpaceButton, bulletButton, flexibleSpaceButton, numberButton, flexibleSpaceButton]
+                    
+                    self.window?.addSubview(toolbar!)
+                }
             }
         }
+    }
+    
+    func keyboardDidHide(notification: NSNotification)
+    {
+        toolbar?.removeFromSuperview()
+        toolbar = nil
     }
 }
