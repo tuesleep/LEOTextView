@@ -109,8 +109,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let selectedTextRange = self.selectedTextRange
         
         if selectedTextRange!.empty {
-            // Change current line to type.
-            
             // Before change to Text
             if let item = itemFromListItemContainerWithY(currentCursorPoint!.y) {
                 item.destroy(self, byBackspace: false, withY: currentCursorPoint!.y)
@@ -176,6 +174,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
             
         } else {
             // Selected range target
+            
+            
             
         }
     }
@@ -288,6 +288,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
+        handleUpdateCurrentCursorType()
         
         // Operate by select range.
         let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
@@ -329,14 +330,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
 
     public func textViewDidChangeSelection(textView: UITextView) {
-        listInfoStoreContainerMap.map({
-            let firstItem = itemFromListItemContainerWithKeyY($0.0)!
-            firstItem.clearContainerWithAllYSet(self)
-            firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
-        })
-        
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
+        
+        handleInfoStoreContainerKeySetRight()
         
         willChangeText = false
         willReturnTouch = false
@@ -356,6 +353,18 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     // MARK: - Event Handler
+    func handleInfoStoreContainerKeySetRight()
+    {
+        listInfoStoreContainerMap.map({
+            if let firstItem = itemFromListItemContainerWithKeyY($0.0) {
+                firstItem.clearContainerWithAllYSet(self)
+                firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+            } else {
+                listInfoStoreContainerMap.removeValueForKey($0.0)
+            }
+        })
+    }
+    
     func handleSpaceEvent(textView: UITextView) -> Bool
     {
         if currentCursorType != ListType.Text {
@@ -695,7 +704,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
         
         // Update List type
-        let item = itemFromListItemContainerWithY(cursorPoint.y)
+        handleUpdateCurrentCursorType()
+    }
+    
+    func handleUpdateCurrentCursorType()
+    {
+        // Update List type
+        let item = itemFromListItemContainerWithY(currentCursorPoint!.y)
         currentCursorType = item == nil ? ListType.Text : item!.listType()
     }
     
