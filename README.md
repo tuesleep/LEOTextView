@@ -22,6 +22,7 @@ Want to build a UITextView that have List feature(Rich Text Editor), just look l
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ![textview](https://github.com/chanricle/CKTextView/blob/develop/textview.gif?raw=true)
+![textview](https://github.com/chanricle/CKTextView/blob/develop/textview2.gif?raw=true)
 
 ## Requirements
 
