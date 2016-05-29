@@ -49,6 +49,15 @@ class BaseListItem: NSObject
         while firstItem.prevItem != nil {
             firstItem = firstItem.prevItem!
         }
+        
+        // Just update BezierPath made looks good.
+        var lastItem: BaseListItem? = firstItem
+        while lastItem!.nextItem != nil {
+            lastItem = lastItem!.nextItem
+        }
+        
+        firstItem.listInfoStore!.listEndByY = lastItem?.firstKeyY
+        firstItem.listInfoStore!.fillBezierPath(ckTextView)
     }
     
     // MARK: - Subclass need override
