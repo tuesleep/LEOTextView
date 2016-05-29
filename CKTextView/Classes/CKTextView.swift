@@ -746,39 +746,32 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: - Convert
     
-    // FIXME: wrong, dont think about text line.
     func appendGlyphsWithText(text: String, textRange: UITextRange) -> String
     {
         // All of the point y in seleted text.
         let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, selectedRange: textRange, isContainFirstLine: true, sortByAsc: true)
         
-        var allLineCharacters = (text as NSString).componentsSeparatedByString("\n")
+        var allLineString = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
+        // move location record current range location of string.
+        var moveLocationValue = 0
         
-        for characters in allLineCharacters {
-            // New method.
+        for (index, lineString) in allLineString.enumerate() {
+            let currentPosition = self.positionFromPosition(self.beginningOfDocument, offset: moveLocationValue)
+            let currentY = self.caretRectForPosition(currentPosition!).origin.y
             
-            
-        }
-        
-        var lineCharactersIndex = 0
-        
-        for selectedPointY in selectedPointYArray {
-            if let item = itemFromListItemContainerWithKeyY(selectedPointY) where String(Int(item.firstKeyY)) == selectedPointY
-            {
-                let characters = allLineCharacters[lineCharactersIndex]
-                
-                var prefixCharacters: String! = ""
+            if let item = itemFromListItemContainerWithY(currentY) {
+                var prefixString: String! = ""
                 
                 switch item.listType() {
                 case .Numbered:
-                    prefixCharacters = "\(numberedItemIndex). "
+                    prefixString = "\(numberedItemIndex). "
                     numberedItemIndex += 1
                     
                     break
                 case .Bulleted:
-                    prefixCharacters = "* "
+                    prefixString = "* "
                     
                     numberedItemIndex = 1
                     
@@ -787,9 +780,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     let checkBoxListItem = item as! CheckBoxListItem
                     
                     if checkBoxListItem.isChecked {
-                        prefixCharacters = "- [x] "
+                        prefixString = "- [x] "
                     } else {
-                        prefixCharacters = "- [ ] "
+                        prefixString = "- [ ] "
                     }
                     
                     numberedItemIndex = 1
@@ -799,17 +792,20 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     break
                 }
                 
-                let newCharacters = prefixCharacters + characters
+                let lineStringWithPrefix = prefixString + lineString
                 
-                allLineCharacters[lineCharactersIndex] = newCharacters
+                allLineString[index] = lineStringWithPrefix
                 
-                lineCharactersIndex += 1
+            } else {
+                // Normal text
+                // Nothing needs to do.
             }
             
-            
+            // add 1 for '\n' char length.
+            moveLocationValue += lineString.characters.count + 1
         }
         
-        let textAppended = allLineCharacters.joinWithSeparator("\n")
+        let textAppended = allLineString.joinWithSeparator("\n")
         
         return textAppended
     }
