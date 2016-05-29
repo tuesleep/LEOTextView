@@ -24,6 +24,38 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     private var willChangeText: Bool = false
     private var willChangeTextMulti: Bool = false
     
+    // Save Y and ListItem relationship.
+    var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
+    
+    // Save Y and InfoStore relationship.
+    var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
+    
+    private var ignoreMoveOnce = false
+    
+    private var toolbar: UIToolbar?
+    
+    // MARK: - Public
+    
+    public var isShowToolbar: Bool = true
+ 
+    public class func ck_textView(frame: CGRect) -> CKTextView
+    {
+        let ckTextContainer = CKTextContainer(size: CGSize(width: CGRectGetWidth(frame), height: CGFloat.max))
+        
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(ckTextContainer)
+        
+        let textStorage = NSTextStorage()
+        textStorage.addLayoutManager(layoutManager)
+        
+        let ckTextView = CKTextView(frame: frame, textContainer: ckTextContainer)
+        // Setting about TextView
+        ckTextView.autocorrectionType = .No
+        ckTextView.currentCursorPoint = CKTextUtil.cursorPointInTextView(ckTextView)
+        
+        return ckTextView
+    }
+    
     public func ck_setText(theText: String)
     {
         let oldPasteText = UIPasteboard.generalPasteboard().string
@@ -46,30 +78,106 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
     }
     
-    // Save Y and ListItem relationship.
-    var listItemContainerMap: Dictionary<String, BaseListItem> = [:]
+    public func reloadText() {
+        self.ck_setText(self.ck_text())
+    }
     
-    // Save Y and InfoStore relationship.
-    var listInfoStoreContainerMap: Dictionary<String, Int> = [:]
-    
-    private var ignoreMoveOnce = false
-    
-    public class func ck_textView(frame: CGRect) -> CKTextView
+    public func changeSelectedTextToBody()
     {
-        let ckTextContainer = CKTextContainer(size: CGSize(width: CGRectGetWidth(frame), height: CGFloat.max))
+        changeSelectedTextLineType(.Text)
+    }
+    
+    public func changeSelectedTextToCheckbox()
+    {
+        changeSelectedTextLineType(.Checkbox)
+    }
+    
+    public func changeSelectedTextToBulleted()
+    {
+        changeSelectedTextLineType(.Bulleted)
+    }
+    
+    public func changeSelectedTextToNumbered()
+    {
+        changeSelectedTextLineType(.Numbered)
+    }
+    
+    // MARK: - Initialized
+    
+    func changeSelectedTextLineType(type: ListType)
+    {
+        let selectedTextRange = self.selectedTextRange
         
-        let layoutManager = NSLayoutManager()
-        layoutManager.addTextContainer(ckTextContainer)
-        
-        let textStorage = NSTextStorage()
-        textStorage.addLayoutManager(layoutManager)
-        
-        let ckTextView = CKTextView(frame: frame, textContainer: ckTextContainer)
-        // Setting about TextView
-        ckTextView.autocorrectionType = .No
-        ckTextView.currentCursorPoint = CKTextUtil.cursorPointInTextView(ckTextView)
-        
-        return ckTextView
+        if selectedTextRange!.empty {
+            // Change current line to type.
+            
+            // Before change to Text
+            if let item = itemFromListItemContainerWithY(currentCursorPoint!.y) {
+                item.destroy(self, byBackspace: false, withY: currentCursorPoint!.y)
+            }
+            
+            // Get target y
+            let cursorIndex = self.offsetFromPosition(self.beginningOfDocument, toPosition: selectedTextRange!.start)
+            let checkText = self.text.substringToIndex(self.text.startIndex.advancedBy(cursorIndex))
+            
+            let lineHeadIndex: Int
+            
+            let searchRange = (checkText as NSString).rangeOfString("\n", options: .BackwardsSearch)
+            if searchRange.location != NSNotFound {
+                lineHeadIndex = searchRange.location + 1
+            } else {
+                lineHeadIndex = 0
+            }
+            
+            print("lineHeadIndex: \(lineHeadIndex)")
+            
+            let lineHeightPosition = self.positionFromPosition(self.beginningOfDocument, offset: lineHeadIndex)
+            let targetY = self.caretRectForPosition(lineHeightPosition!).origin.y
+            
+            var createdItem: BaseListItem?
+            
+            switch type {
+            case .Checkbox:
+                let checkBoxListItem = CheckBoxListItem(keyY: targetY, ckTextView: self, listInfoStore: nil)
+                createdItem = checkBoxListItem
+                
+                break
+            case .Bulleted:
+                let bulletedListItem = BulletedListItem(keyY: targetY, ckTextView: self, listInfoStore: nil)
+                createdItem = bulletedListItem
+                
+                break
+            case .Numbered:
+                let numberListItem = NumberedListItem(keyY: targetY, number: 1, ckTextView: self, listInfoStore: nil)
+                createdItem = numberListItem
+                
+                break
+            case .Text:
+                break
+            }
+            
+            if createdItem != nil {
+                let lineHeight = self.font!.lineHeight
+                
+                createdItem!.listInfoStore!.fillBezierPath(self)
+                
+                saveToListItemContainerWithItem(createdItem!)
+                saveToListInfoStoreContainerY(y: createdItem!.listInfoStore!.listStartByY)
+                
+                let itemTextHeight = CKTextUtil.itemTextHeightWithY(targetY, ckTextView: self)
+                CKTextUtil.resetKeyYSetItem(createdItem!, startY: targetY, textHeight: itemTextHeight, lineHeight: lineHeight)
+                
+                createdItem?.resetAllItemYWithFirstItem(createdItem!, ckTextView: self)
+                
+                currentCursorType = createdItem!.listType()
+                
+                handleListMergeWhenLineTypeChanged(targetY, item: createdItem!)
+            }
+            
+        } else {
+            // Selected range target
+            
+        }
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -88,12 +196,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         setupNotificationCenterObservers()
         
-    }
-    
-    // MARK: - Public method
-    
-    func reloadText() {
-        self.ck_setText(self.ck_text())
     }
     
     // MARK: - Container getter & setter
@@ -159,7 +261,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func setupNotificationCenterObservers()
     {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardWillShow), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
     }
     
     /**
@@ -226,6 +329,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
 
     public func textViewDidChangeSelection(textView: UITextView) {
+        listInfoStoreContainerMap.map({
+            let firstItem = itemFromListItemContainerWithKeyY($0.0)!
+            firstItem.clearContainerWithAllYSet(self)
+            firstItem.resetAllItemYWithFirstItem(firstItem, ckTextView: self)
+        })
+        
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
@@ -237,13 +346,13 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         ignoreMoveOnce = false
         
         print("cursor type: \(currentCursorType)")
-//        print("list item container: \(listItemContainerMap)")
+        print("list item container: \(listItemContainerMap)")
         print("list info store container: \(listInfoStoreContainerMap)")
     }
     
     public func textViewDidChange(textView: UITextView)
     {
-        listInfoStoreContainerMap.map({ itemFromListItemContainerWithKeyY($0.0)?.resetAllItemYWithFirstItem(itemFromListItemContainerWithKeyY($0.0)!, ckTextView: self) })
+        
     }
     
     // MARK: - Event Handler
@@ -827,15 +936,61 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         }
     }
     
+    // MARK: - Toolbar button event
+    
+    func bodyButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToBody()
+    }
+    
+    func checkboxButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToCheckbox()
+    }
+    
+    func bulletedButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToBulleted()
+    }
+    
+    func numberedButtonAction(button: UIBarButtonItem)
+    {
+        changeSelectedTextToNumbered()
+    }
+    
     // MARK: - KVO
     
-    func keyboardWillShow(notification: NSNotification)
+    func keyboardDidShow(notification: NSNotification)
     {
         if let userInfo: NSDictionary = notification.userInfo {
             let value = userInfo["UIKeyboardBoundsUserInfoKey"]
             if let rect = value?.CGRectValue() {
                 self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: rect.height + 100, right: 0)
+                
+                // Show toolbar if needed.
+                if isShowToolbar {
+                    let screenSize = UIScreen.mainScreen().bounds.size
+                    toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 30, width: screenSize.width, height: 30))
+                    
+                    // Buttons
+                    let bodyButton = UIBarButtonItem(title: "Body", style: .Plain, target: self, action: #selector(self.bodyButtonAction(_:)))
+                    let checkBoxButton = UIBarButtonItem(title: "CheckBox", style: .Plain, target: self, action: #selector(self.checkboxButtonAction(_:)))
+                    let bulletButton = UIBarButtonItem(title: "Bullet", style: .Plain, target: self, action: #selector(self.bulletedButtonAction(_:)))
+                    let numberButton = UIBarButtonItem(title: "Number", style: .Plain, target: self, action: #selector(self.numberedButtonAction(_:)))
+                    
+                    let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+                    
+                    toolbar?.items = [flexibleSpaceButton, bodyButton, flexibleSpaceButton, checkBoxButton, flexibleSpaceButton, bulletButton, flexibleSpaceButton, numberButton, flexibleSpaceButton]
+                    
+                    self.window?.addSubview(toolbar!)
+                }
             }
         }
+    }
+    
+    func keyboardDidHide(notification: NSNotification)
+    {
+        toolbar?.removeFromSuperview()
+        toolbar = nil
     }
 }

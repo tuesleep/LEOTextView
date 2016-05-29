@@ -49,9 +49,6 @@ class BaseListItem: NSObject
         while firstItem.prevItem != nil {
             firstItem = firstItem.prevItem!
         }
-        
-        clearContainerWithAllYSet(ckTextView)
-        resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
     }
     
     // MARK: - Subclass need override
