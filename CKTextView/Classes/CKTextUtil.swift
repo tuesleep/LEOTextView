@@ -82,6 +82,20 @@ class CKTextUtil: NSObject {
         }
     }
     
+    class func isSelectedTextMultiLine(textView: UITextView) -> Bool
+    {
+        if let selectedTextRange = textView.selectedTextRange {
+            let startY = textView.caretRectForPosition(selectedTextRange.start).origin.y
+            let endY = textView.caretRectForPosition(selectedTextRange.end).origin.y
+            
+            if startY != endY {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     class func checkChangedTextInfoAndHandleMutilSelect(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> ([String], Bool, CGFloat)
     {
         let selectedRange = textView.selectedTextRange!

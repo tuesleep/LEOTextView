@@ -72,10 +72,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func ck_text() -> String
     {
-        let beginPosition = self.beginningOfDocument
-        let endPosition = self.endOfDocument
-        
-        return appendGlyphsWithText(text, textRange: self.textRangeFromPosition(beginPosition, toPosition: endPosition)!)
+        return appendGlyphsWithText(text, range: NSMakeRange(0, text.characters.count))
     }
     
     public func reloadText() {
@@ -297,6 +294,10 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         handleUpdateCurrentCursorType()
         
         // Operate by select range.
+        if CKTextUtil.isSelectedTextMultiLine(textView) {
+            print("multi")
+        }
+        
 //        let textInfo = CKTextUtil.checkChangedTextInfoAndHandleMutilSelect(textView, shouldChangeTextInRange: range, replacementText: text)
 //        
 //        if textInfo.1 {
@@ -355,7 +356,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
-        
+        handleInfoStoreContainerKeySetRight()
     }
     
     // MARK: - Event Handler
@@ -734,9 +735,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         super.copy(sender)
         
         let selectedText = CKTextUtil.textByRange(self.selectedRange, text: self.text)
-        let selectedRange = self.selectedTextRange!
+        let selectedRange = self.selectedRange
         
-        let copyText = appendGlyphsWithText(selectedText, textRange: selectedRange)
+        let copyText = appendGlyphsWithText(selectedText, range: selectedRange)
         
         UIPasteboard.generalPasteboard().string = copyText
         
@@ -752,19 +753,18 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     // MARK: - Convert
     
-    func appendGlyphsWithText(text: String, textRange: UITextRange) -> String
+    func appendGlyphsWithText(text: String, range: NSRange) -> String
     {
-        // All of the point y in seleted text.
-        let selectedPointYArray = CKTextUtil.seletedPointYArrayWithTextView(self, selectedRange: textRange, isContainFirstLine: true, sortByAsc: true)
-        
         var allLineString = (text as NSString).componentsSeparatedByString("\n")
         
         var numberedItemIndex = 1
         // move location record current range location of string.
         var moveLocationValue = 0
         
+        let beginPosition = positionFromPosition(beginningOfDocument, offset: range.location)
+        
         for (index, lineString) in allLineString.enumerate() {
-            let currentPosition = self.positionFromPosition(self.beginningOfDocument, offset: moveLocationValue)
+            let currentPosition = self.positionFromPosition(beginPosition!, offset: moveLocationValue)
             let currentY = self.caretRectForPosition(currentPosition!).origin.y
             
             if let item = itemFromListItemContainerWithY(currentY) {
