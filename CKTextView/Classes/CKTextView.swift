@@ -1017,6 +1017,9 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 // Show toolbar if needed.
                 if isShowToolbar {
+                    toolbar?.removeFromSuperview()
+                    toolbar = nil
+                    
                     let screenSize = UIScreen.mainScreen().bounds.size
                     toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 30, width: screenSize.width, height: 30))
                     
