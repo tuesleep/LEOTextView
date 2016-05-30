@@ -293,7 +293,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         // Operate by select range.
         if CKTextUtil.isSelectedTextMultiLine(textView) {
-            print("multi")
             handleMultiLineWithShouldChangeTextInRange(range, replacementText: text, replacementTextCount: text.characters.count)
             return false
         }
@@ -332,7 +331,11 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
+        print(NSDate().description)
+        
         handleInfoStoreContainerKeySetRight()
+        
+        print(NSDate().description)
         
         willChangeText = false
         willReturnTouch = false
@@ -347,7 +350,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
-        handleInfoStoreContainerKeySetRight()
+//        handleInfoStoreContainerKeySetRight()
     }
     
     // MARK: - Event Handler
@@ -762,12 +765,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         UIPasteboard.generalPasteboard().string = copyText
         
-        print("Text copied: \(copyText)")
+//        print("Text copied: \(copyText)")
     }
     
     public override func paste(sender: AnyObject?) {
         guard let pasteText = UIPasteboard.generalPasteboard().string else { return }
-        print("textview paste invoke. paste content: \(pasteText)")
+//        print("textview paste invoke. paste content: \(pasteText)")
         
         // Every paste needs reload all text
         handleMultiLineWithShouldChangeTextInRange(self.selectedRange, replacementWithNormalText: pasteText)
@@ -997,6 +1000,12 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         changeSelectedTextToNumbered()
     }
     
+    func hideKeyboardAction(button: UIBarButtonItem)
+    {
+        toolbar?.hidden = true
+        self.resignFirstResponder()
+    }
+    
     // MARK: - KVO
     
     func keyboardDidShow(notification: NSNotification)
@@ -1012,14 +1021,16 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 30, width: screenSize.width, height: 30))
                     
                     // Buttons
-                    let bodyButton = UIBarButtonItem(title: "Body", style: .Plain, target: self, action: #selector(self.bodyButtonAction(_:)))
-                    let checkBoxButton = UIBarButtonItem(title: "CheckBox", style: .Plain, target: self, action: #selector(self.checkboxButtonAction(_:)))
-                    let bulletButton = UIBarButtonItem(title: "Bullet", style: .Plain, target: self, action: #selector(self.bulletedButtonAction(_:)))
-                    let numberButton = UIBarButtonItem(title: "Number", style: .Plain, target: self, action: #selector(self.numberedButtonAction(_:)))
+                    let bodyButton = UIBarButtonItem(title: "⌧", style: .Plain, target: self, action: #selector(self.bodyButtonAction(_:)))
+                    let checkBoxButton = UIBarButtonItem(title: "◎", style: .Plain, target: self, action: #selector(self.checkboxButtonAction(_:)))
+                    let bulletButton = UIBarButtonItem(title: "●", style: .Plain, target: self, action: #selector(self.bulletedButtonAction(_:)))
+                    let numberButton = UIBarButtonItem(title: "1. ", style: .Plain, target: self, action: #selector(self.numberedButtonAction(_:)))
+                    
+                    let hideKeyboardButton = UIBarButtonItem(title: "⇣", style: .Plain, target: self, action: #selector(self.hideKeyboardAction(_:)))
                     
                     let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
                     
-                    toolbar?.items = [flexibleSpaceButton, bodyButton, flexibleSpaceButton, checkBoxButton, flexibleSpaceButton, bulletButton, flexibleSpaceButton, numberButton, flexibleSpaceButton]
+                    toolbar?.items = [flexibleSpaceButton, bodyButton, flexibleSpaceButton, checkBoxButton, flexibleSpaceButton, bulletButton, flexibleSpaceButton, numberButton, flexibleSpaceButton, hideKeyboardButton, flexibleSpaceButton]
                     
                     self.window?.addSubview(toolbar!)
                 }

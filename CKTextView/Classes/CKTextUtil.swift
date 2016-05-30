@@ -145,8 +145,6 @@ class CKTextUtil: NSObject {
         
         let checkedText = ckTextView.text.substringFromIndex(ckTextView.text.startIndex.advancedBy(textStartIndex))
         
-        print("checkedText: \(checkedText)")
-        
         let range = (checkedText as NSString).rangeOfString("\n")
         if range.location != NSNotFound {
             textEndIndex = range.location
@@ -170,9 +168,6 @@ class CKTextUtil: NSObject {
         if heights < lineHeight {
             heights = lineHeight
         }
-        
-        print("itemTextRange: \(itemTextRange)")
-        print("heights: \(heights)")
         
         return heights
     }
