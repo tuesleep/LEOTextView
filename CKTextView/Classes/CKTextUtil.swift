@@ -72,6 +72,10 @@ class CKTextUtil: NSObject {
         
         let textString = textView.text
         
+        if location > textString.characters.count {
+            return false
+        }
+        
         let range: Range = Range(textString.startIndex.advancedBy(location - 1) ..< textString.startIndex.advancedBy(location))
         let keyChar = textView.text.substringWithRange(range)
         
