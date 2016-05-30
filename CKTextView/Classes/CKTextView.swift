@@ -647,7 +647,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         // Merge prev list!
         if prevItem != nil && prevItem!.listType() == item.listType() {
-            if prevItem != item {
+            if prevItem == item {
                 print("dead loop: prevItem == item")
             }
             
@@ -663,7 +663,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         
         // Merge next list
         if nextItem != nil && nextItem?.listType() == item.listType() {
-            if prevItem != item {
+            if prevItem == item {
                 print("dead loop: nextItem == item")
             }
             
@@ -886,53 +886,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 numberIndex = 1
             }
             
-            if let thisItem = itemFromListItemContainerWithY(moveY) {
-                if index == 0 {
-                    // Change type to Text in first index.
-                    // First paste y just change to Text
-                    listType = .Text
-                    
-                    // Update this item keyYSet.
-                    let pastedTextInTextView = self.text.substringFromIndex(self.text.startIndex.advancedBy(pasteLocation)) as NSString
-                    
-                    let returnRange = pastedTextInTextView.rangeOfString("\n")
-                    var pasteWithListItemEndLocation: Int
-                    
-                    if returnRange.location != NSNotFound {
-                        // Maybe append 2 can fix this bug.
-                        pasteWithListItemEndLocation = returnRange.location + 3
-                    } else {
-                        pasteWithListItemEndLocation = pastedTextInTextView.length
-                    }
-                    
-                    let firstItemEndLocation = pasteWithListItemEndLocation + pasteLocation
-                    
-                    if let targetPosition = self.positionFromPosition(self.beginningOfDocument, offset: firstItemEndLocation) {
-                        let point = self.caretRectForPosition(targetPosition).origin
-                        
-                        moveY = thisItem.firstKeyY
-                        textHeight = point.y - thisItem.firstKeyY
-                        
-                        CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: textHeight, lineHeight: lineHeight)
-                        
-                        saveToListItemContainerWithItem(thisItem)
-                        
-                        handleListMergeWhenLineTypeChanged(moveY, item: thisItem)
-                    }
-                    
-                } else {
-                    if thisItem.listType() != listType {
-                        listType = thisItem.listType()
-                    }
-                    
-                    // Handle point confict
-                    thisItem.firstKeyY = moveY + textHeight
-                    
-                    CKTextUtil.resetKeyYSetItem(thisItem, startY: thisItem.firstKeyY, textHeight: lineHeight * CGFloat(thisItem.keyYSet.count), lineHeight: lineHeight)
-                    saveToListItemContainerWithItem(thisItem)
-                }
-            }
-            
             if listType != .Text {
                 var item: BaseListItem!
                 
@@ -1009,7 +962,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         if let userInfo: NSDictionary = notification.userInfo {
             let value = userInfo["UIKeyboardBoundsUserInfoKey"]
             if let rect = value?.CGRectValue() {
-                self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: rect.height + 100, right: 0)
+                self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: rect.height + 44, right: 0)
                 
                 // Show toolbar if needed.
                 if isShowToolbar {
@@ -1039,8 +992,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func keyboardDidHide(notification: NSNotification)
     {
-        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-        
         toolbar?.removeFromSuperview()
         toolbar = nil
     }
