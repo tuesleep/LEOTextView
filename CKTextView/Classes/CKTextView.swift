@@ -264,6 +264,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CKTextView.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
     }
     
+    // MARK: - Delete
+    
     /**
         Do something about delete list item.
      
@@ -283,45 +285,6 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         return isDeleteFirstItem
     }
     
-    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementWithNormalText: String) {
-        var keyText = CKTextUtil.changeToKeyTextWithNormalText(replacementWithNormalText, textView: self)
-        
-        // first string line not Text line, and this line not Text type.
-        if CKTextUtil.typeOfKeyCharacter(keyText) != .Text
-            && itemFromListItemContainerWithY(currentCursorPoint!.y) != nil
-        {
-            keyText = keyText.substringFromIndex(keyText.startIndex.advancedBy(3))
-        }
-        
-        handleMultiLineWithShouldChangeTextInRange(range, replacementText: keyText)
-    }
-    
-    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementText: String)
-    {
-        let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
-        let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
-        
-        let prevItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue <= Int(startY) }).count
-        
-        let containItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue > Int(startY) && ($0.0 as NSString).integerValue <= Int(endY) }).count
-        
-        let locationMoveValue = prevItemCount * 3
-        let lengthMoveValue = containItemCount * 3
-        
-        let keyTextLocation = range.location + locationMoveValue
-        let keyTextLength = range.length + lengthMoveValue
-        
-        let normalText = appendGlyphsWithText(self.text, range: NSMakeRange(0, self.text.characters.count))
-        
-        var keyText = CKTextUtil.changeToKeyTextWithNormalText(normalText, textView: self)
-        let replaceRange = Range(start: keyText.startIndex.advancedBy(keyTextLocation), end: keyText.startIndex.advancedBy(keyTextLocation + keyTextLength))
-        
-        keyText.replaceRange(replaceRange, with: replacementText)
-        
-        let finalText = CKTextUtil.changeToNormalTextWithKeyText(keyText, textView: self)
-        ck_setText(finalText)
-    }
-    
     // MARK: - UITextViewDelegate
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
@@ -331,7 +294,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         // Operate by select range.
         if CKTextUtil.isSelectedTextMultiLine(textView) {
             print("multi")
-            handleMultiLineWithShouldChangeTextInRange(range, replacementText: text)
+            handleMultiLineWithShouldChangeTextInRange(range, replacementText: text, replacementTextCount: text.characters.count)
             return false
         }
         
@@ -388,6 +351,61 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     }
     
     // MARK: - Event Handler
+    
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementWithNormalText: String) {
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(replacementWithNormalText, textView: self)
+        
+        if CKTextUtil.isFirstLocationInLineWithLocation(range.location, textView: self) {
+            if itemFromListItemContainerWithY(currentCursorPoint!.y) != nil {
+                keyText = keyText.substringFromIndex(keyText.startIndex.advancedBy(3))
+            }
+        } else {
+            keyText = keyText.substringFromIndex(keyText.startIndex.advancedBy(3))
+        }
+        
+        let noStyleText = CKTextUtil.changeToTextWithKeyText(keyText)
+        
+        handleMultiLineWithShouldChangeTextInRange(range, replacementText: keyText, replacementTextCount: noStyleText.characters.count)
+    }
+    
+    func handleMultiLineWithShouldChangeTextInRange(range: NSRange, replacementText: String, replacementTextCount: Int)
+    {
+        let startY = self.caretRectForPosition(selectedTextRange!.start).origin.y
+        let endY = self.caretRectForPosition(selectedTextRange!.end).origin.y
+        
+        let prevItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue <= Int(startY) }).count
+        
+        let containItemCount = listItemContainerMap.filter({ $0.0 == String(Int($0.1.firstKeyY)) && ($0.0 as NSString).integerValue > Int(startY) && ($0.0 as NSString).integerValue <= Int(endY) }).count
+        
+        let locationMoveValue = prevItemCount * 3
+        let lengthMoveValue = containItemCount * 3
+        
+        let keyTextLocation = range.location + locationMoveValue
+        let keyTextLength = range.length + lengthMoveValue
+        
+        let normalText = appendGlyphsWithText(self.text, range: NSMakeRange(0, self.text.characters.count))
+        
+        var keyText = CKTextUtil.changeToKeyTextWithNormalText(normalText, textView: self)
+        
+        var replaceEndIndex = keyText.startIndex.advancedBy(keyTextLocation + keyTextLength)
+        
+        // Stop out of range.
+        var replaceEndMoveValue = keyTextLocation + keyTextLength
+        if replaceEndMoveValue > keyText.characters.count {
+            replaceEndMoveValue = keyText.characters.count
+        }
+        
+        let replaceRange = Range(start: keyText.startIndex.advancedBy(keyTextLocation), end: keyText.startIndex.advancedBy(replaceEndMoveValue))
+        
+        keyText.replaceRange(replaceRange, with: replacementText)
+        
+        let finalText = CKTextUtil.changeToNormalTextWithKeyText(keyText, textView: self)
+        ck_setText(finalText)
+        
+        let cursorLocation = range.location + replacementTextCount
+        self.selectedRange = NSMakeRange(cursorLocation, 0)
+    }
+    
     func handleInfoStoreContainerKeySetRight()
     {
         listInfoStoreContainerMap.map({

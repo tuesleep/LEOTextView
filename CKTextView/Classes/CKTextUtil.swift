@@ -494,6 +494,23 @@ class CKTextUtil: NSObject {
         return allLineCharacters.joinWithSeparator("\n")
     }
     
+    public class func changeToTextWithKeyText(keyText: String) -> String
+    {
+        var allLineCharacters = (keyText as NSString).componentsSeparatedByString("\n")
+        
+        var numberIndex = 1
+        
+        for (index, character) in allLineCharacters.enumerate() {
+            let listType = CKTextUtil.typeOfKeyCharacter(character)
+            
+            if listType != .Text {
+                allLineCharacters[index] = character.substringFromIndex(character.startIndex.advancedBy(3))
+            }
+        }
+        
+        return allLineCharacters.joinWithSeparator("\n")
+    }
+    
     class func keyTypePrefixWithListType(listType: ListType) -> String
     {
         switch listType {
