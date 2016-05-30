@@ -331,11 +331,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
         let cursorPoint = CKTextUtil.cursorPointInTextView(textView)
         handleTextHeightChangedAndUpdateCurrentCursorPoint(cursorPoint)
         
-        print(NSDate().description)
-        
         handleInfoStoreContainerKeySetRight()
-        
-        print(NSDate().description)
         
         willChangeText = false
         willReturnTouch = false
@@ -350,7 +346,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     public func textViewDidChange(textView: UITextView)
     {
-//        handleInfoStoreContainerKeySetRight()
+        
     }
     
     // MARK: - Event Handler
@@ -1021,7 +1017,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                     toolbar = nil
                     
                     let screenSize = UIScreen.mainScreen().bounds.size
-                    toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 30, width: screenSize.width, height: 30))
+                    toolbar = UIToolbar(frame: CGRect(x: 0, y: screenSize.height - rect.height - 44, width: screenSize.width, height: 44))
                     
                     // Buttons
                     let bodyButton = UIBarButtonItem(title: "⌧", style: .Plain, target: self, action: #selector(self.bodyButtonAction(_:)))
@@ -1043,6 +1039,8 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
     
     func keyboardDidHide(notification: NSNotification)
     {
+        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        
         toolbar?.removeFromSuperview()
         toolbar = nil
     }

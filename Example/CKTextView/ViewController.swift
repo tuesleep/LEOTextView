@@ -37,16 +37,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Orientation changed
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (context) in
             self.ckTextView?.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
             }) { (context) in
-                
+                self.ckTextView?.reloadText()
         }
-    }
-    
-    @IBAction func styleButtonAction(sender: UIBarButtonItem) {
-        ckTextView?.ck_setText("1. helloworld,yeah,yes,more,helloworld,yeah,google,yeah,google.yeah,yes,oh\n2. world")
     }
     
 }
