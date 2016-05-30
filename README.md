@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 [![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 
+![textview](https://github.com/chanricle/CKTextView/blob/develop/logo.png?raw=true)
+
 > NOTE: This project still developing.. 
 
 Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9.
