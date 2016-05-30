@@ -29,13 +29,7 @@
                             <constraint firstAttribute="trailing" secondItem="4hm-2y-K6p" secondAttribute="trailing" id="rD9-Lf-96d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CKTextView" id="U8T-2L-iFT">
-                        <barButtonItem key="rightBarButtonItem" title="Style" id="fDs-de-3Xz">
-                            <connections>
-                                <action selector="styleButtonAction:" destination="vZU-EL-1Tn" id="DxT-ez-i3J"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="CKTextView" id="U8T-2L-iFT"/>
                     <connections>
                         <outlet property="containerView" destination="4hm-2y-K6p" id="7Zo-eS-dDg"/>
                     </connections>
