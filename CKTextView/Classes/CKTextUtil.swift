@@ -179,55 +179,59 @@ class CKTextUtil: NSObject {
     // FIXME: Bad performance
     class func heightWithText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
-        let calcTextView = UITextView(frame: CGRect(x: 0, y: 0, width: textView.bounds.width, height: CGFloat.max))
-        calcTextView.font = textView.font
-    
+        var onlyText: String
+        var width: CGFloat
+        
         if listType != ListType.Text {
             let numberKeyword = "\(numberIndex). "
             
             let listTypeLengthDict = [ListType.Numbered: numberKeyword.characters.count, ListType.Bulleted: 2, ListType.Checkbox: 6]
-            
-            let lineHeight = calcTextView.font!.lineHeight
-            let width = CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)
-            
-            calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
-            
             let prefixLength = listTypeLengthDict[listType]!
             
-            calcTextView.text = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            onlyText = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            
+            width = textView.bounds.width - CGFloat(bezierPathWidthWithLineHeight(textView.font!.lineHeight))
             
         } else {
-            calcTextView.text = text
+            onlyText = text
+            width = textView.bounds.width
         }
         
-        return (textHeightForTextView(calcTextView), calcTextView.text)
+        let rect = (onlyText as NSString).boundingRectWithSize(CGSize(width: width, height: 0),
+                                                               options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+                                                               attributes: [NSFontAttributeName: textView.font!],
+                                                               context: nil)
+        
+        print("text height: \(rect.height)")
+        return (rect.height, onlyText)
     }
     
     // FIXME: Bad performance
     class func heightWithKeyText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
-        let calcTextView = UITextView(frame: CGRect(x: 0, y: 0, width: textView.bounds.width, height: CGFloat.max))
-        calcTextView.font = textView.font
+        var onlyText: String
+        var width: CGFloat
         
         if listType != ListType.Text {
-            let numberKeyword = "\(numberIndex). "
-            
             let listTypeLengthDict = [ListType.Numbered: 3, ListType.Bulleted: 3, ListType.Checkbox: 3]
-            
-            let lineHeight = calcTextView.font!.lineHeight
-            let width = CKTextUtil.bezierPathWidthWithLineHeight(lineHeight)
-            
-            calcTextView.textContainer.exclusionPaths.append(UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: Int.max)))
-            
             let prefixLength = listTypeLengthDict[listType]!
             
-            calcTextView.text = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            onlyText = text.substringFromIndex(text.startIndex.advancedBy(listTypeLengthDict[listType]!))
+            
+            width = textView.bounds.width - CGFloat(bezierPathWidthWithLineHeight(textView.font!.lineHeight))
             
         } else {
-            calcTextView.text = text
+            onlyText = text
+            width = textView.bounds.width
         }
         
-        return (textHeightForTextView(calcTextView), calcTextView.text)
+        let rect = (onlyText as NSString).boundingRectWithSize(CGSize(width: width, height: 0),
+                                                               options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+                                                               attributes: [NSFontAttributeName: textView.font!],
+                                                               context: nil)
+        
+        print("text height: \(rect.height)")
+        return (rect.height, onlyText)
     }
     
     class func clearTextByRange(range: NSRange, textView: UITextView)
