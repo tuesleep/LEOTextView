@@ -166,7 +166,7 @@ public class CKTextView: UITextView, UITextViewDelegate, UIActionSheetDelegate {
                 
                 createItemWithY(y, type: type)
                 
-                if offsetFromPosition(self.selectedTextRange!.start, toPosition: currentTextLineHeadPosition) == 0 {
+                if offsetFromPosition(self.selectedTextRange!.start, toPosition: currentTextLineHeadPosition) <= 0 {
                     break
                 }
                 
