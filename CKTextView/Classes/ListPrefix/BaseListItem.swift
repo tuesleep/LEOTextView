@@ -9,7 +9,7 @@
 import UIKit
 
 enum ListType {
-    case Text, Numbered, Bulleted
+    case Text, Numbered, Bulleted, Checkbox
 }
 
 class BaseListItem: NSObject
@@ -30,6 +30,36 @@ class BaseListItem: NSObject
         return firstKeyY + CGFloat(keyYSet.count) * lineHeight
     }
     
+    /**
+        Handle right relation with next item and self.
+     */
+    func handleRelationWithNextItem(nextItem: BaseListItem, ckTextView: CKTextView) {
+        self.keyYSet = Set(self.keyYSet.filter({ $0 < nextItem.firstKeyY }))
+        
+        // Insert to queue.
+        if self.nextItem != nil {
+            self.nextItem!.prevItem = nextItem
+            nextItem.nextItem = self.nextItem
+        }
+        
+        self.nextItem = nextItem
+        nextItem.prevItem = self
+        
+        var firstItem = self;
+        while firstItem.prevItem != nil {
+            firstItem = firstItem.prevItem!
+        }
+        
+        // Just update BezierPath made looks good.
+        var lastItem: BaseListItem? = firstItem
+        while lastItem!.nextItem != nil {
+            lastItem = lastItem!.nextItem
+        }
+        
+        firstItem.listInfoStore!.listEndByY = lastItem?.firstKeyY
+        firstItem.listInfoStore!.fillBezierPath(ckTextView)
+    }
+    
     // MARK: - Subclass need override
     
     /// Must override this method
@@ -38,35 +68,44 @@ class BaseListItem: NSObject
     }
     
     /// Must override this method
-    func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
-        return BaseListItem()
+    func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
+        
     }
     
     /// Must override this method
-    func reDrawGlyph(ckTextView: CKTextView) {
+    func reDrawGlyph(index: Int, ckTextView: CKTextView) {
+        
+    }
+    
+    /// Must override this method
+    func clearGlyph() {
         
     }
     
     /// Usually override this method to perform additional things about destory.
     ///
     /// Must call super in your implementation.
-    func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        // Backspace destory this item.
+    /// 
+    /// - Returns: A set of y that need to be delete.
+    func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat)
+    {
+        clearContainerWithAllYSet(ckTextView)
+        
+        // Backspace destroy this item.
         if byBackspace {
             // handle first item delete
             var firstItem = self
             
             // delete first item of list, this item's next item become a first item.
             if firstItem.prevItem == nil {
-                firstItem.listInfoStore?.clearBezierPath(ckTextView)
-                
                 if firstItem.nextItem != nil {
-                    firstItem.nextItem?.firstKeyY = firstItem.firstKeyY
                     firstItem = firstItem.nextItem!
+                    // Clear prev item, now it's first item.
+                    firstItem.prevItem = nil
                     
                     resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
                 } else {
-                    // Prev item and next item all nil, self is a deleting item of last
+                    // List all item destroy.
                     firstItem.listInfoStore?.clearBezierPath(ckTextView)
                 }
                 
@@ -74,6 +113,8 @@ class BaseListItem: NSObject
                 // Link prev item with next item.
                 if self.nextItem != nil {
                     self.prevItem?.nextItem = self.nextItem
+                    self.nextItem?.prevItem = self.prevItem
+                    
                 } else {
                     self.prevItem?.nextItem = nil
                 }
@@ -83,6 +124,7 @@ class BaseListItem: NSObject
                 while firstItem.prevItem != nil {
                     firstItem = firstItem.prevItem!
                 }
+                
                 resetAllItemYWithFirstItem(firstItem, ckTextView: ckTextView)
             }
             
@@ -103,26 +145,88 @@ class BaseListItem: NSObject
             if self.nextItem != nil {
                 self.nextItem?.prevItem = nil
                 var firstItem = self.nextItem!
-                
-                firstItem.firstKeyY = y
-                
                 firstItems.append(firstItem)
             }
             
-            self.listInfoStore?.clearBezierPath(ckTextView)
-            
             for item in firstItems {
+                item.listInfoStore?.clearBezierPath(ckTextView)
+                item.listInfoStore = BaseListInfoStore(listStartByY: 0, listEndByY: 0)
+                
                 resetAllItemYWithFirstItem(item, ckTextView: ckTextView)
+            }
+            
+            if firstItems.count == 0 {
+                // Handle last item destroy event.
+                self.listInfoStore?.clearBezierPath(ckTextView)
             }
         }
     }
     
+    // MARK: -
+    
+    func allYSet(lineHeight: CGFloat) -> Set<String>
+    {
+        var needClearYSet = Set<String>()
+        
+        var firstItem = self;
+        while firstItem.prevItem != nil {
+            firstItem = firstItem.prevItem!
+        }
+        
+        var item: BaseListItem? = firstItem
+        
+        while item != nil {
+            for (_, keyY) in item!.keyYSet.enumerate() {
+                needClearYSet.insert(String(Int(keyY)))
+            }
+            
+            item = item!.nextItem
+        }
+        
+        return needClearYSet
+    }
+    
+    func clearContainerWithAllYSet(ckTextView: CKTextView)
+    {
+        // Clear List info record.
+        ckTextView.removeInfoStoreFromContainerWithY(y: self.listInfoStore!.listStartByY)
+        
+        var needClearYSet = allYSet(ckTextView.font!.lineHeight)
+        
+        // Clear all old item Y relations.
+        for (_, keyY) in needClearYSet.enumerate() {
+            ckTextView.listItemContainerMap.removeValueForKey(keyY)
+        }
+    }
+    
+    /**
+        Reset all item position in list. Set the right firstKeyY of firstItem before call this method.
+     
+        - Returns: A set of y that is list type.
+     */
     func resetAllItemYWithFirstItem(firstItem: BaseListItem, ckTextView: CKTextView) {
         let lineHeight = ckTextView.font!.lineHeight
         
         firstItem.listInfoStore?.listStartByY = firstItem.firstKeyY
         
-        var moveY = firstItem.endYWithLineHeight(lineHeight)
+        var moveY: CGFloat = firstItem.firstKeyY
+        
+        let itemTextHeight = CKTextUtil.itemTextHeightWithY(moveY, ckTextView: ckTextView)
+        
+        // reset firstItem keyYSets
+        CKTextUtil.resetKeyYSetItem(firstItem, startY: firstItem.firstKeyY, textHeight: itemTextHeight, lineHeight: lineHeight)
+        
+        // Save new ListInfoStore to container.
+        ckTextView.saveToListInfoStoreContainerY(y: firstItem.firstKeyY)
+        // Save first item first.
+        ckTextView.saveToListItemContainerWithItem(firstItem)
+        
+        var index = 0
+        
+        firstItem.reDrawGlyph(index, ckTextView: ckTextView)
+        index += 1
+        
+        moveY = firstItem.endYWithLineHeight(lineHeight)
         var item = firstItem.nextItem
         
         if item == nil {
@@ -131,15 +235,17 @@ class BaseListItem: NSObject
             
         } else {
             while item != nil {
+                // sync listInfoStore object.
+                item!.listInfoStore = firstItem.listInfoStore
                 item!.firstKeyY = moveY
                 
-                let newKeyYArray = item!.keyYSet.map({ (value) -> CGFloat in
-                    let thatY = moveY
-                    moveY += lineHeight
-                    return thatY
-                })
-                item!.keyYSet = Set(newKeyYArray)
-                item!.reDrawGlyph(ckTextView)
+                let thisItemTextHeight = CKTextUtil.itemTextHeightWithY(moveY, ckTextView: ckTextView)
+                CKTextUtil.resetKeyYSetItem(item!, startY: item!.firstKeyY, textHeight: thisItemTextHeight, lineHeight: lineHeight)
+                
+                item!.reDrawGlyph(index, ckTextView: ckTextView)
+                index += 1
+                
+                ckTextView.saveToListItemContainerWithItem(item!)
                 
                 moveY = item!.endYWithLineHeight(lineHeight)
                 

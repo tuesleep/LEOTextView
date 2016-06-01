@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = "Want to build a component that like UITextView and iPhone 'Notes' app."
+  s.description      = "Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9."
 
   s.homepage         = "https://github.com/chanricle/CKTextView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
@@ -30,9 +30,9 @@ Pod::Spec.new do |s|
 
   s.source_files = 'CKTextView/Classes/**/*'
 
-  # s.resource_bundles = {
-  #   'CKTextView' => ['CKTextView/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'CKTextView' => ['CKTextView/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

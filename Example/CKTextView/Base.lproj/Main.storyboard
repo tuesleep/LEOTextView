@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iQS-7p-nq3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iQS-7p-nq3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -29,13 +29,7 @@
                             <constraint firstAttribute="trailing" secondItem="4hm-2y-K6p" secondAttribute="trailing" id="rD9-Lf-96d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CKTextView" id="U8T-2L-iFT">
-                        <barButtonItem key="rightBarButtonItem" title="Style" id="fDs-de-3Xz">
-                            <connections>
-                                <action selector="styleButtonAction:" destination="vZU-EL-1Tn" id="DxT-ez-i3J"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="CKTextView" id="U8T-2L-iFT"/>
                     <connections>
                         <outlet property="containerView" destination="4hm-2y-K6p" id="7Zo-eS-dDg"/>
                     </connections>

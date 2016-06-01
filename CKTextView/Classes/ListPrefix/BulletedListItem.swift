@@ -35,46 +35,40 @@ class BulletedListItem: BaseListItem {
     
     // MARK: Override
     
-    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
         let nextItem = BulletedListItem(keyY: y, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
-        self.nextItem = nextItem
-        nextItem.prevItem = self
-        
-        self.listInfoStore!.listEndByY = y
-        self.listInfoStore!.fillBezierPath(ckTextView)
-        
-        return nextItem
+        handleRelationWithNextItem(nextItem, ckTextView: ckTextView)
     }
     
-    override func reDrawGlyph(ckTextView: CKTextView) {
-        label?.removeFromSuperview()
+    override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
+        clearGlyph()
         
         setupBulletLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
-        
+    override func clearGlyph() {
         label?.removeFromSuperview()
+    }
+    
+    override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
+        
+        clearGlyph()
     }
     
     // MARK: setups
     
     private func setupBulletLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
-        ckTextView.font ?? UIFont.systemFontSize()
-        
         let lineHeight = ckTextView.font!.lineHeight
-        
-        let height = lineHeight
-        var width = lineHeight + 10
+        let width = lineHeight + 10
         
         label = UILabel(frame: CGRect(x: 8, y: keyY, width: width, height: lineHeight))
-        label!.text = "  ●"
         label!.font = ckTextView.font!
+        label?.textAlignment = .Center
+        label!.text = "●"
         
         // Append label to textView.
         ckTextView.addSubview(label!)
     }
-    
 }

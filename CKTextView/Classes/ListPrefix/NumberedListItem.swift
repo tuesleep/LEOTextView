@@ -39,38 +39,36 @@ class NumberedListItem: BaseListItem {
     
     // MARK: Override
     
-    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) -> BaseListItem {
+    override func createNextItemWithY(y: CGFloat, ckTextView: CKTextView) {
         let nextItem = NumberedListItem(keyY: y, number: self.number + 1, ckTextView: ckTextView, listInfoStore: self.listInfoStore)
-        self.nextItem = nextItem
-        nextItem.prevItem = self
-        
-        self.listInfoStore!.listEndByY = y
-        self.listInfoStore!.fillBezierPath(ckTextView)
-        
-        return nextItem
+        handleRelationWithNextItem(nextItem, ckTextView: ckTextView)
     }
     
-    override func reDrawGlyph(ckTextView: CKTextView) {
-        label?.removeFromSuperview()
+    override func reDrawGlyph(index: Int, ckTextView: CKTextView) {
+        clearGlyph()
+        
+        if index >= 0 {
+            number = index + 1
+        }
         
         setupNumberLabel(firstKeyY, ckTextView: ckTextView)
     }
     
-    override func destory(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
-        super.destory(ckTextView, byBackspace: byBackspace, withY: y)
-        
+    override func clearGlyph() {
         label?.removeFromSuperview()
+    }
+    
+    override func destroy(ckTextView: CKTextView, byBackspace: Bool, withY y: CGFloat) {
+        let needClearYSet = super.destroy(ckTextView, byBackspace: byBackspace, withY: y)
+        
+        clearGlyph()
     }
     
     // MARK: setups
     
     private func setupNumberLabel(keyY: CGFloat, ckTextView: CKTextView)
     {
-        ckTextView.font ?? UIFont.systemFontSize()
-        
         let lineHeight = ckTextView.font!.lineHeight
-        
-        let height = lineHeight
         var width = lineHeight + 10
         
         // Woo.. too big

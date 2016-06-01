@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9BE86CDA6FBF0119F6C4A614EB7D938E'
+               BlueprintIdentifier = 'E99C6FCE13A1FF1A9D090BF2B3A82A3F'
                BlueprintName = 'CKTextView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'CKTextView.framework'>
