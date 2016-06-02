@@ -176,7 +176,6 @@ class CKTextUtil: NSObject {
         return heights
     }
     
-    // FIXME: Bad performance
     class func heightWithText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
         var onlyText: String
@@ -206,7 +205,6 @@ class CKTextUtil: NSObject {
         return (rect.height, onlyText)
     }
     
-    // FIXME: Bad performance
     class func heightWithKeyText(text: String, textView: UITextView, listType: ListType, numberIndex: Int) -> (CGFloat, String)
     {
         var onlyText: String
