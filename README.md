@@ -31,7 +31,7 @@ Xcode 7.3
 
 Swift 2.2
 
-## Installation now unavailable
+## Installation unavailable now
 
 ## Author
 
