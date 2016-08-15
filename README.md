@@ -1,4 +1,4 @@
-# CKTextView
+# NCKTextView
 
 [![CI Status](http://img.shields.io/travis/Chanricle King/CKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/CKTextView)
 [![Version](https://img.shields.io/cocoapods/v/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
@@ -13,11 +13,11 @@ Want to build a UITextView that have List feature(Rich Text Editor), just look l
 
 ## WANT FEATURES
 
-* *Numbered List*
-* *Bulleted List*
-* *Checkbox List*
-* Undo and redo control 
-* Attributed text support
+* Bold Text
+* Italic Text
+* *Unordered List*
+* *Ordered List*
+* Undo and Redo control
 
 ## Example
 
@@ -39,4 +39,4 @@ Chanricle King, chanricle@icloud.com
 
 ## License
 
-CKTextView is available under the MIT license. See the LICENSE file for more info.
+NCKTextView is available under the MIT license. See the LICENSE file for more info.
