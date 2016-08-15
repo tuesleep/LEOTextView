@@ -1,19 +1,35 @@
 PODS:
-  - CKTextView (0.1.0)
-  - Reveal-iOS-SDK (1.6.2)
+  - FBSnapshotTestCase (2.1.2):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
+  - FBSnapshotTestCase/Core (2.1.2)
+  - FBSnapshotTestCase/SwiftSupport (2.1.2):
+    - FBSnapshotTestCase/Core
+  - NCKTextView (0.1.0)
+  - Nimble (3.2.0)
+  - Nimble-Snapshots (4.1.0):
+    - FBSnapshotTestCase (~> 2.0)
+    - Nimble
+    - Quick
+  - Quick (0.9.3)
 
 DEPENDENCIES:
-  - CKTextView (from `../`)
-  - Reveal-iOS-SDK
+  - FBSnapshotTestCase
+  - NCKTextView (from `../`)
+  - Nimble (~> 3.0)
+  - Nimble-Snapshots
+  - Quick (~> 0.8)
 
 EXTERNAL SOURCES:
-  CKTextView:
+  NCKTextView:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CKTextView: 9def2b56324a8de3039605370f32aa6379399847
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
+  NCKTextView: 941c62ce95b8695db01ae3fd6987577dd9d9501c
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
 
-PODFILE CHECKSUM: 1f8436370243cfd8dde5a73607d7c9a6f2fd2fa4
+PODFILE CHECKSUM: 7c48d844057f489efc56d3734e179a4f482174ea
 
-COCOAPODS: 1.0.0.beta.5
+COCOAPODS: 1.0.1

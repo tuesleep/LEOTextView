@@ -1,6 +1,0 @@
-framework module Pods_CKTextView_Example {
-  umbrella header "Pods-CKTextView_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}

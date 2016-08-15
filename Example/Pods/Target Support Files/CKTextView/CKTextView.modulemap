@@ -1,6 +1,0 @@
-framework module CKTextView {
-  umbrella header "CKTextView-umbrella.h"
-
-  export *
-  module * { export * }
-}

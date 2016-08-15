@@ -1,0 +1,6 @@
+framework module NCKTextView {
+  umbrella header "NCKTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

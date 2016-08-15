@@ -1,14 +1,14 @@
 use_frameworks!
 
-target 'CKTextView_Example' do
-  pod 'CKTextView', :path => '../'
-  
-  pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-  
-end
+target 'NCKTextView_Example' do
+  pod 'NCKTextView', :path => '../'
 
-target 'CKTextView_Tests' do
-  pod 'CKTextView', :path => '../'
+  target 'NCKTextView_Tests' do
+    inherit! :search_paths
 
-  
+    pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+  pod 'FBSnapshotTestCase'
+  pod 'Nimble-Snapshots'
+  end
 end
