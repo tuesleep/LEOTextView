@@ -23,6 +23,8 @@ public class NCKTextView: UITextView {
         textStorage.addLayoutManager(layoutManager)
         
         super.init(frame: frame, textContainer: textContainer)
+        
+        textStorage.textView = self
     }
     
 }
