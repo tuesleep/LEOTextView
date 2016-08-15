@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import NCKTextView
 
 class ViewController: UIViewController {
+    
+    var textView: NCKTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
+        self.view.addSubview(textView)
+        
+        textView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
