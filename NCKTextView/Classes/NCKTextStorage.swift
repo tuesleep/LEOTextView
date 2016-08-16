@@ -23,6 +23,7 @@ class NCKTextStorage: NSTextStorage {
     
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
         var listItemFillText: String = ""
+        var currentNumber: Int?
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
@@ -53,17 +54,39 @@ class NCKTextStorage: NSTextStorage {
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
                 number! += 1
                 listItemFillText = "\(number!). "
+                
+                currentNumber = number
             }
         }
         
         beginEditing()
+        
         currentString.replaceCharactersInRange(range, withString: str + listItemFillText)
         edited(.EditedCharacters, range: NSRange(location: range.location, length: range.length), changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
+        
         endEditing()
         
         // Selected range changed.
         if listItemFillText != "" {
-            textView.selectedRange = NSRange(location: textView.selectedRange.location + listItemFillText.characters.count, length: textView.selectedRange.length)
+            let selectedRangeLocation = textView.selectedRange.location + listItemFillText.characters.count
+            
+            textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
+            
+//            if currentNumber != nil {
+//                // Reorder numbers after current line.
+//                var afterStrings = textView.text.substringFromIndex(textView.text.startIndex.advancedBy(textView.selectedRange.location))
+//                
+//                let orderedListAfterItemsMatches = NCKTextUtil.markdownOrderedListAfterItemsRegularExpression.matchesInString(afterStrings, options: [], range: NSRange(location: 0, length: afterStrings.characters.count))
+//                
+//                for orderedListAfterItem in orderedListAfterItemsMatches {
+//                    currentNumber! += 1
+//                    
+//                    let location = orderedListAfterItem.range.location
+//                    let length = orderedListAfterItem.range.length
+//                    
+//                    afterStrings.replaceRange(Range(start: afterStrings.startIndex.advancedBy(location), end: afterStrings.startIndex.advancedBy(location + length)), with: "\n\(currentNumber!). ")
+//                }
+//            }
         }
     }
     

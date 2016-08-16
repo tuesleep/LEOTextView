@@ -15,18 +15,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        self.title = "NCKTextView"
+        
+        // Init and config TextView
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
-        self.view.addSubview(textView)
+        textView.font = UIFont.systemFontOfSize(18)
         
+        // add to View
+        self.view.addSubview(textView)
+
         textView.becomeFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
