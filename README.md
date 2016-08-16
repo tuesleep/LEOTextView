@@ -5,33 +5,45 @@
 [![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 [![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
 
-![textview](https://github.com/chanricle/CKTextView/blob/develop/logo.png?raw=true)
+NCKTextView is a **very high-performance** rich editor. Because it's a **subclass of UITextView**, not UIWebView. All of code by **TextKit** framework.
 
-> NOTE: This project still developing.. 
-
-Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9.
-
-## WANT FEATURES
+## Features
 
 * Bold Text
 * Italic Text
-* *Unordered List*
-* *Ordered List*
-* Undo and Redo control
+* Unordered List
+* Ordered List
+* Undo and Redo
+
+## Usage
+Not extends any class, not EditorController and so on...
+
+You can embed NCKTextView to anywhere that you want.
+
+```swift
+// Init TextView
+let textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
+
+// If you want to use built-in toolbar, call it.
+textView.enableToolbar()
+
+// add to View
+self.view.addSubview(textView)
+```
+
+Done.
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-![textview](https://github.com/chanricle/CKTextView/blob/develop/textview.gif?raw=true)
-
 ## Requirements
 
-Xcode 7.3
+Xcode 7.3 +
 
-Swift 2.2
+Swift 2.2 +
 
-## Installation unavailable now
+## Installation
 
 ## Author
 
