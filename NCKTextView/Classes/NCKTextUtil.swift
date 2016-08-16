@@ -7,7 +7,7 @@
 //
 
 class NCKTextUtil: NSObject {
-    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*] .", options: .CaseInsensitive)
+    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*•] .", options: .CaseInsensitive)
     static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. .", options: .CaseInsensitive)
     static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .CaseInsensitive)
     
@@ -18,4 +18,10 @@ class NCKTextUtil: NSObject {
             return false
         }
     }
+    
+    class func isSelectedTextWithTextView(textView: UITextView) -> Bool {
+        let length = textView.selectedRange.length
+        return length > 0
+    }
+    
 }

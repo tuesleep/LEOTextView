@@ -1,9 +1,9 @@
 {
   "name": "NCKTextView",
   "version": "0.1.0",
-  "summary": "A short description of NCKTextView.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/NCKTextView",
+  "summary": "NCKTextView is a simple extension from UITextView.",
+  "description": "Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9.",
+  "homepage": "https://github.com/chanricle/NCKTextView",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,16 @@
     "Chanricle King": "chanricle@icloud.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/NCKTextView.git",
+    "git": "https://github.com/chanricle/NCKTextView.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "NCKTextView/Classes/**/*"
+  "source_files": "NCKTextView/Classes/**/*",
+  "resource_bundles": {
+    "NCKTextView": [
+      "NCKTextView/Assets/*"
+    ]
+  }
 }

@@ -7,10 +7,12 @@
 //
 
 class NCKTextStorage: NSTextStorage {
-    var textView: UITextView!
+    var textView: NCKTextView!
 
     var currentString: NSMutableAttributedString = NSMutableAttributedString()
     var attributes: Dictionary<String, AnyObject> = [:]
+    
+    var isChangeCharacters: Bool = false
     
     // MARK: - Must override
     override var string: String {
@@ -59,10 +61,12 @@ class NCKTextStorage: NSTextStorage {
             }
         }
         
+        isChangeCharacters = true
+        
         beginEditing()
         
         currentString.replaceCharactersInRange(range, withString: str + listItemFillText)
-        edited(.EditedCharacters, range: NSRange(location: range.location, length: range.length), changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
+        edited(.EditedCharacters, range: range, changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
         
         endEditing()
         
@@ -92,12 +96,44 @@ class NCKTextStorage: NSTextStorage {
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
         beginEditing()
+        
         currentString.setAttributes(attrs, range: range)
         edited(.EditedAttributes, range: range, changeInLength: 0)
+
         endEditing()
     }
     
     // MARK: - Other overrided
+    
+    override func processEditing() {
+        performReplacementsForRange(editedRange)
+        
+        super.processEditing()
+    }
 
-
+    // MARK: - Other methods
+    
+    func performReplacementsForRange(range: NSRange) {
+        if range.length > 0 && isChangeCharacters {
+            isChangeCharacters = false
+            
+            // Add addition attributes.
+            var attrValue: UIFont!
+            
+            switch textView.inputFontMode {
+            case .Normal:
+                attrValue = textView.normalFont
+                break
+            case .Bold:
+                attrValue = textView.boldFont
+                break
+            case .Italic:
+                attrValue = textView.italicFont
+                break
+            }
+     
+            self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
+        }
+    }
+    
 }
