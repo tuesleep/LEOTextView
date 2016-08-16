@@ -18,6 +18,23 @@ public class NCKTextView: UITextView {
     public var toolbarHeight: CGFloat = 40
     public var currentFrame: CGRect = CGRectZero
     
+    public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
+    public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
+    
+    // Custom fonts
+    
+    public var normalFont: UIFont = UIFont(name: "Helvetica", size: 18)! {
+        didSet {
+            self.font = normalFont
+        }
+    }
+    
+    public var boldFont: UIFont = UIFont(name: "Helvetica-Bold", size: 18)!
+    public var italicFont: UIFont = UIFont(name: "Helvetica-Oblique", size: 18)!
+    
+    var boldButton: UIBarButtonItem?
+    var italicButton: UIBarButtonItem?
+    
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
@@ -44,15 +61,18 @@ public class NCKTextView: UITextView {
     // MARK: Public APIs
     
     public func boldSelectedText() {
+        var mutableAttributedText = self.attributedText.mutableCopy() as! NSMutableAttributedString
+        mutableAttributedText.addAttribute(NSFontAttributeName, value: boldFont, range: selectedRange)
+        
         
     }
     
     public func italicSelectedText() {
-        
+        self.textStorage.addAttribute(NSFontAttributeName, value: italicFont, range: selectedRange)
     }
     
     public func normalSelectedText() {
-        
+        self.textStorage.addAttribute(NSFontAttributeName, value: normalFont, range: selectedRange)
     }
     
     /**
@@ -60,7 +80,7 @@ public class NCKTextView: UITextView {
      
      */
     public func enableToolbar() -> UIToolbar {
-        toolbar = UIToolbar(frame: CGRect(origin: CGPointZero, size: CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: toolbarHeight)))
+        toolbar = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: CGRectGetHeight(UIScreen.mainScreen().bounds)), size: CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: toolbarHeight)))
         toolbar?.autoresizingMask = .FlexibleWidth
         toolbar?.backgroundColor = UIColor.clearColor()
         
@@ -82,16 +102,16 @@ public class NCKTextView: UITextView {
         let hideKeyboardButton = UIBarButtonItem(image: UIImage(named: "icon-keyboard", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.hideKeyboardButtonAction))
         
         // Common function buttons
-        let boldButton = UIBarButtonItem(image: UIImage(named: "icon-bold", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.boldButtonAction))
-        let italicButton = UIBarButtonItem(image: UIImage(named: "icon-italic", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.italicButtonAction))
+        boldButton = UIBarButtonItem(image: UIImage(named: "icon-bold", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.boldButtonAction))
+        italicButton = UIBarButtonItem(image: UIImage(named: "icon-italic", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.italicButtonAction))
         let unorderedListButton = UIBarButtonItem(image: UIImage(named: "icon-unorderedlist", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.unorderedListButtonAction))
         let orderedListButton = UIBarButtonItem(image: UIImage(named: "icon-orderedlist", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.orderedListButtonAction))
         
-        let buttonItems = [boldButton, flexibleSpaceButton, italicButton, flexibleSpaceButton, unorderedListButton, flexibleSpaceButton, orderedListButton, flexibleSpaceButton, hideKeyboardButton]
+        let buttonItems = [boldButton!, flexibleSpaceButton, italicButton!, flexibleSpaceButton, unorderedListButton, flexibleSpaceButton, orderedListButton, flexibleSpaceButton, hideKeyboardButton]
         
         // Button styles
         for buttonItem in buttonItems {
-            buttonItem.tintColor = UIColor.darkGrayColor()
+            buttonItem.tintColor = toolbarButtonTintColor
         }
         
         return buttonItems
@@ -102,22 +122,36 @@ public class NCKTextView: UITextView {
     }
     
     func boldButtonAction() {
-        if selectedRange.length > 0 {
+        if NCKTextUtil.isSelectedTextWithTextView(self) {
             boldSelectedText()
         } else {
-            inputFontMode = .Bold
-            // TODO: Change Button colors, keep bold and italic button color right.
+            // Change Button colors, keep bold and italic button color right.
+            italicButton?.tintColor = toolbarButtonTintColor
             
+            if inputFontMode == .Bold {
+                boldButton?.tintColor = toolbarButtonTintColor
+                inputFontMode = .Normal
+            } else {
+                boldButton?.tintColor = toolbarButtonHighlightColor
+                inputFontMode = .Bold
+            }
         }
     }
     
     func italicButtonAction() {
-        if selectedRange.length > 0 {
-            italicButtonAction()
+        if NCKTextUtil.isSelectedTextWithTextView(self) {
+            italicSelectedText()
         } else {
-            inputFontMode = .Italic
-            // TODO: Change Button colors, keep bold and italic button color right.
+            // Change Button colors, keep bold and italic button color right.
+            boldButton?.tintColor = toolbarButtonTintColor
             
+            if inputFontMode == .Italic {
+                italicButton?.tintColor = toolbarButtonTintColor
+                inputFontMode = .Normal
+            } else {
+                italicButton?.tintColor = toolbarButtonHighlightColor
+                inputFontMode = .Italic
+            }
         }
     }
     

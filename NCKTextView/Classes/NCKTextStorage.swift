@@ -7,7 +7,7 @@
 //
 
 class NCKTextStorage: NSTextStorage {
-    var textView: UITextView!
+    var textView: NCKTextView!
 
     var currentString: NSMutableAttributedString = NSMutableAttributedString()
     var attributes: Dictionary<String, AnyObject> = [:]
@@ -62,7 +62,7 @@ class NCKTextStorage: NSTextStorage {
         beginEditing()
         
         currentString.replaceCharactersInRange(range, withString: str + listItemFillText)
-        edited(.EditedCharacters, range: NSRange(location: range.location, length: range.length), changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
+        edited(.EditedCharacters, range: range, changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
         
         endEditing()
         
@@ -98,6 +98,34 @@ class NCKTextStorage: NSTextStorage {
     }
     
     // MARK: - Other overrided
+    
+    override func processEditing() {
+        performReplacementsForRange(editedRange)
+        
+        super.processEditing()
+    }
 
-
+    // MARK: - Other methods
+    
+    func performReplacementsForRange(range: NSRange) {
+        if range.length > 0 {
+            // Add addition attributes.
+            var attrValue: UIFont!
+            
+            switch textView.inputFontMode {
+            case .Normal:
+                attrValue = textView.normalFont
+                break
+            case .Bold:
+                attrValue = textView.boldFont
+                break
+            case .Italic:
+                attrValue = textView.italicFont
+                break
+            }
+     
+            self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
+        }
+    }
+    
 }

@@ -22,8 +22,6 @@ class ViewController: UIViewController {
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
         textView.enableToolbar()
         
-        textView.font = UIFont.systemFontOfSize(18)
-        
         // add to View
         self.view.addSubview(textView)
 
