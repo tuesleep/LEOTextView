@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         
         // Init and config TextView
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
+        textView.enableToolbar()
+        
         textView.font = UIFont.systemFontOfSize(18)
         
         // add to View
