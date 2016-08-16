@@ -53,6 +53,7 @@ public class NCKTextView: UITextView {
         
         super.init(frame: frame, textContainer: textContainer)
         
+        self.font = normalFont
         currentFrame = frame
         
         textStorage.textView = self
@@ -60,19 +61,22 @@ public class NCKTextView: UITextView {
     
     // MARK: Public APIs
     
-    public func boldSelectedText() {
-        var mutableAttributedText = self.attributedText.mutableCopy() as! NSMutableAttributedString
-        mutableAttributedText.addAttribute(NSFontAttributeName, value: boldFont, range: selectedRange)
+    public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
+        var objectFont: UIFont!
         
+        switch mode {
+        case .Normal:
+            objectFont = normalFont
+            break
+        case .Bold:
+            objectFont = boldFont
+            break
+        case .Italic:
+            objectFont = italicFont
+            break
+        }
         
-    }
-    
-    public func italicSelectedText() {
-        self.textStorage.addAttribute(NSFontAttributeName, value: italicFont, range: selectedRange)
-    }
-    
-    public func normalSelectedText() {
-        self.textStorage.addAttribute(NSFontAttributeName, value: normalFont, range: selectedRange)
+        self.textStorage.addAttribute(NSFontAttributeName, value: objectFont, range: selectedRange)
     }
     
     /**
@@ -121,38 +125,44 @@ public class NCKTextView: UITextView {
         self.resignFirstResponder()
     }
     
-    func boldButtonAction() {
+    func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
+        guard mode != .Normal else {
+            return
+        }
+        
         if NCKTextUtil.isSelectedTextWithTextView(self) {
-            boldSelectedText()
+            var font = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
+            
+            let objectFont = (mode == .Bold ? boldFont : italicFont)
+            
+            if font.fontName != objectFont.fontName {
+                changeSelectedTextWithInputFontMode(mode)
+            } else {
+                changeSelectedTextWithInputFontMode(.Normal)
+            }
         } else {
             // Change Button colors, keep bold and italic button color right.
+            boldButton?.tintColor = toolbarButtonTintColor
             italicButton?.tintColor = toolbarButtonTintColor
             
-            if inputFontMode == .Bold {
-                boldButton?.tintColor = toolbarButtonTintColor
-                inputFontMode = .Normal
+            if inputFontMode != mode {
+                inputFontMode = mode
+                
+                let objectButton = (mode == .Bold ? boldButton : italicButton)
+                objectButton?.tintColor = toolbarButtonHighlightColor
+                
             } else {
-                boldButton?.tintColor = toolbarButtonHighlightColor
-                inputFontMode = .Bold
+                inputFontMode = .Normal
             }
         }
     }
     
+    func boldButtonAction() {
+        buttonActionWithInputFontMode(.Bold)
+    }
+    
     func italicButtonAction() {
-        if NCKTextUtil.isSelectedTextWithTextView(self) {
-            italicSelectedText()
-        } else {
-            // Change Button colors, keep bold and italic button color right.
-            boldButton?.tintColor = toolbarButtonTintColor
-            
-            if inputFontMode == .Italic {
-                italicButton?.tintColor = toolbarButtonTintColor
-                inputFontMode = .Normal
-            } else {
-                italicButton?.tintColor = toolbarButtonHighlightColor
-                inputFontMode = .Italic
-            }
-        }
+        buttonActionWithInputFontMode(.Italic)
     }
     
     func unorderedListButtonAction() {

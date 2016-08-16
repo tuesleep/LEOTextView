@@ -12,6 +12,8 @@ class NCKTextStorage: NSTextStorage {
     var currentString: NSMutableAttributedString = NSMutableAttributedString()
     var attributes: Dictionary<String, AnyObject> = [:]
     
+    var isChangeCharacters: Bool = false
+    
     // MARK: - Must override
     override var string: String {
         return currentString.string
@@ -59,6 +61,8 @@ class NCKTextStorage: NSTextStorage {
             }
         }
         
+        isChangeCharacters = true
+        
         beginEditing()
         
         currentString.replaceCharactersInRange(range, withString: str + listItemFillText)
@@ -92,8 +96,10 @@ class NCKTextStorage: NSTextStorage {
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
         beginEditing()
+        
         currentString.setAttributes(attrs, range: range)
         edited(.EditedAttributes, range: range, changeInLength: 0)
+
         endEditing()
     }
     
@@ -108,7 +114,9 @@ class NCKTextStorage: NSTextStorage {
     // MARK: - Other methods
     
     func performReplacementsForRange(range: NSRange) {
-        if range.length > 0 {
+        if range.length > 0 && isChangeCharacters {
+            isChangeCharacters = false
+            
             // Add addition attributes.
             var attrValue: UIFont!
             
