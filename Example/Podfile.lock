@@ -1,35 +1,16 @@
 PODS:
-  - FBSnapshotTestCase (2.1.2):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
-  - FBSnapshotTestCase/Core (2.1.2)
-  - FBSnapshotTestCase/SwiftSupport (2.1.2):
-    - FBSnapshotTestCase/Core
   - NCKTextView (0.1.0)
-  - Nimble (3.2.0)
-  - Nimble-Snapshots (4.1.0):
-    - FBSnapshotTestCase (~> 2.0)
-    - Nimble
-    - Quick
-  - Quick (0.9.3)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
   - NCKTextView (from `../`)
-  - Nimble (~> 3.0)
-  - Nimble-Snapshots
-  - Quick (~> 0.8)
 
 EXTERNAL SOURCES:
   NCKTextView:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   NCKTextView: ce364fd3d96ee8438a75b77092f9cd88adb8077b
-  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
-  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
 
-PODFILE CHECKSUM: 7c48d844057f489efc56d3734e179a4f482174ea
+PODFILE CHECKSUM: 35bdfe5378121371363358eb7e31cf160ee659a1
 
 COCOAPODS: 1.0.1
