@@ -168,11 +168,41 @@ public class NCKTextView: UITextView {
     }
     
     func unorderedListButtonAction() {
+        var objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
         
+        if NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
+            // Already unorderedList
+            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, 2)
+            
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 2), withString: "")
+            
+            self.selectedRange = NSRange(location: self.selectedRange.location - moveLocation, length: self.selectedRange.length)
+
+        } else {
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: "• ")
+            
+            self.selectedRange = NSRange(location: self.selectedRange.location + 2, length: self.selectedRange.length)
+        }
     }
     
     func orderedListButtonAction() {
+        var objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
         
+        if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
+            // Already orderedList
+            let numberLength = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).length + 1
+            
+            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, numberLength)
+            
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: numberLength), withString: "")
+            
+            self.selectedRange = NSRange(location: self.selectedRange.location - moveLocation, length: self.selectedRange.length)
+            
+        } else {
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: "1. ")
+            
+            self.selectedRange = NSRange(location: self.selectedRange.location + 3, length: self.selectedRange.length)
+        }
     }
     
     // MARK: - Other methods

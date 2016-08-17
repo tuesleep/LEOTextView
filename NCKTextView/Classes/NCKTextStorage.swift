@@ -29,13 +29,7 @@ class NCKTextStorage: NSTextStorage {
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
-            print("woo! return key touch!")
-            
-            var objectLine = self.string.substringToIndex(self.string.startIndex.advancedBy(range.location))
-            let textSplits = objectLine.componentsSeparatedByString("\n")
-            if textSplits.count > 0 {
-                objectLine = textSplits[textSplits.count - 1]
-            }
+            var objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
             
             let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
             
@@ -44,15 +38,11 @@ class NCKTextStorage: NSTextStorage {
             let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
             
             if unorderedListMatches.count > 0 {
-                print("it's a continue item of unordered list")
-                
                 var listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
                 listItemFillText = "\(listPrefixItem) "
             }
             
             if orderedListMatches.count > 0 {
-                print("it's a continue item of ordered list")
-                
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
                 number! += 1
                 listItemFillText = "\(number!). "
