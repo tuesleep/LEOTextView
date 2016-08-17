@@ -24,7 +24,7 @@ class NCKTextStorage: NSTextStorage {
     }
     
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
-        var listItemFillText: String = ""
+        var listItemFillText: NSString = ""
         var currentNumber: Int?
         
         // Unordered and Ordered list auto-complete support
@@ -37,7 +37,7 @@ class NCKTextStorage: NSTextStorage {
                 objectLine = textSplits[textSplits.count - 1]
             }
             
-            let objectLineRange = NSRange(location: 0, length: objectLine.characters.count)
+            let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
             
             // Check matches.
             let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
@@ -65,14 +65,16 @@ class NCKTextStorage: NSTextStorage {
         
         beginEditing()
         
-        currentString.replaceCharactersInRange(range, withString: str + listItemFillText)
-        edited(.EditedCharacters, range: range, changeInLength: (str.characters.count + listItemFillText.characters.count) - range.length)
+        let finalStr: NSString = "\(str)\(listItemFillText)"
+        
+        currentString.replaceCharactersInRange(range, withString: String(finalStr))
+        edited(.EditedCharacters, range: range, changeInLength: (finalStr.length - range.length))
         
         endEditing()
         
         // Selected range changed.
         if listItemFillText != "" {
-            let selectedRangeLocation = textView.selectedRange.location + listItemFillText.characters.count
+            let selectedRangeLocation = textView.selectedRange.location + listItemFillText.length
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
             
@@ -80,7 +82,7 @@ class NCKTextStorage: NSTextStorage {
 //                // Reorder numbers after current line.
 //                var afterStrings = textView.text.substringFromIndex(textView.text.startIndex.advancedBy(textView.selectedRange.location))
 //                
-//                let orderedListAfterItemsMatches = NCKTextUtil.markdownOrderedListAfterItemsRegularExpression.matchesInString(afterStrings, options: [], range: NSRange(location: 0, length: afterStrings.characters.count))
+//                let orderedListAfterItemsMatches = NCKTextUtil.markdownOrderedListAfterItemsRegularExpression.matchesInString(afterStrings, options: [], range: NSRange(location: 0, length: NSString(string: afterStrings).length))
 //                
 //                for orderedListAfterItem in orderedListAfterItemsMatches {
 //                    currentNumber! += 1
