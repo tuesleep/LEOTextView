@@ -98,23 +98,57 @@ public class NCKTextView: UITextView {
     }
     
     /**
-        All of attributes about current text. 
-        If your want to save this textAttributes by JSON, call - textAttributesJSON method.
+        All of attributes about current text by JSON
      */
-    public func textAttributes() -> [String: AnyObject] {
-        if let nck_textStorage = self.textStorage as? NCKTextStorage {
-            return nck_textStorage.attributes
-        } else {
-            return [:]
+    public func textAttributesJSON() -> String {
+        var attributesData: [Dictionary<String, AnyObject>] = []
+        
+        self.attributedText.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: self.text).length), options: .Reverse) { (attr, range, mutablePointer) in
+            
+            var attribute = [String: AnyObject]()
+            
+            attr.keys.forEach {
+                if $0 == NSFontAttributeName {
+                    let font = attr[$0] as! UIFont
+                    
+                    attribute["name"] = NSFontAttributeName
+                    attribute["fontName"] = font.fontName
+                    attribute["location"] = range.location
+                    attribute["length"] = range.length
+                    
+                    attributesData.append(attribute)
+                }
+            }
         }
+        
+        var jsonDict: [String: AnyObject] = [:]
+        jsonDict["text"] = self.text
+        jsonDict["attributes"] = attributesData
+        
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(jsonDict, options: .PrettyPrinted)
+        return String(data: jsonData, encoding: NSUTF8StringEncoding)!
     }
     
-    public func textAttributesJSON() -> String {
-//        textAttributes().forEach {
-//            
-//        }
+    public func setAttributeTextWithJSONString(jsonString: String) {
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
         
-        return ""
+        let text = jsonDict["text"] as! String
+        self.text = text
+        
+        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        
+        var textAttributes = [String: AnyObject]()
+        
+        attributes.forEach {
+            let attribute = $0
+            let attributeName = attribute["name"] as! String
+            
+            if attributeName == NSFontAttributeName {
+                if let font = UIFont(name: attribute["fontName"] as! String, size: normalFont.pointSize) {
+                    self.textStorage.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
+                }
+            }
+        }
     }
     
     // MARK: - Toolbar buttons

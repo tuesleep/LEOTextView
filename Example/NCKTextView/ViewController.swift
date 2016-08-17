@@ -10,6 +10,7 @@ import UIKit
 import NCKTextView
 
 class ViewController: UIViewController {
+    let textAttributesJSONKey = "textAttributesJSON"
     
     var textView: NCKTextView!
 
@@ -29,11 +30,29 @@ class ViewController: UIViewController {
     }
     
     @IBAction func saveButtonAction(sender: AnyObject) {
+        textView.resignFirstResponder()
         
+        let textAttributesJSON = textView.textAttributesJSON()
+        
+        NSUserDefaults.standardUserDefaults().setValue(textAttributesJSON, forKey: textAttributesJSONKey)
+        
+        print("textAttributesJSON: \(textAttributesJSON)")
+        
+        alert("Current attributed text export to JSON string successed and saved.")
     }
     
     @IBAction func loadButtonAction(sender: AnyObject) {
+        textView.resignFirstResponder()
         
+        let textAttributesJSON = NSUserDefaults.standardUserDefaults().valueForKey(textAttributesJSONKey)
+        
+        textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+    }
+    
+    func alert(message: String) {
+        let alertController = UIAlertController(title: "Saved", message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

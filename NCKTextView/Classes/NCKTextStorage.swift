@@ -10,7 +10,6 @@ class NCKTextStorage: NSTextStorage {
     var textView: NCKTextView!
 
     var currentString: NSMutableAttributedString = NSMutableAttributedString()
-    var attributes: Dictionary<String, AnyObject> = [:]
     
     var isChangeCharacters: Bool = false
     
@@ -87,8 +86,6 @@ class NCKTextStorage: NSTextStorage {
     }
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
-        attrs?.forEach { attributes[$0.0] = $0.1 }
-        
         beginEditing()
         
         currentString.setAttributes(attrs, range: range)
@@ -129,5 +126,4 @@ class NCKTextStorage: NSTextStorage {
             self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
         }
     }
-    
 }
