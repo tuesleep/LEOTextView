@@ -54,6 +54,7 @@ public class NCKTextView: UITextView {
         super.init(frame: frame, textContainer: textContainer)
         
         self.font = normalFont
+        
         currentFrame = frame
         
         textStorage.textView = self
@@ -94,6 +95,26 @@ public class NCKTextView: UITextView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         return toolbar!
+    }
+    
+    /**
+        All of attributes about current text. 
+        If your want to save this textAttributes by JSON, call - textAttributesJSON method.
+     */
+    public func textAttributes() -> [String: AnyObject] {
+        if let nck_textStorage = self.textStorage as? NCKTextStorage {
+            return nck_textStorage.attributes
+        } else {
+            return [:]
+        }
+    }
+    
+    public func textAttributesJSON() -> String {
+        textAttributes().forEach {
+            $0.
+        }
+        
+        return ""
     }
     
     // MARK: - Toolbar buttons
@@ -159,36 +180,12 @@ public class NCKTextView: UITextView {
         }
     }
     
-    func boldButtonAction() {
-        buttonActionWithInputFontMode(.Bold)
-    }
-    
-    func italicButtonAction() {
-        buttonActionWithInputFontMode(.Italic)
-    }
-    
-    func unorderedListButtonAction() {
+    func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool) {
         var objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
         
-        if NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
-            // Already unorderedList
-            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, 2)
-            
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 2), withString: "")
-            
-            self.selectedRange = NSRange(location: self.selectedRange.location - moveLocation, length: self.selectedRange.length)
-
-        } else {
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: "• ")
-            
-            self.selectedRange = NSRange(location: self.selectedRange.location + 2, length: self.selectedRange.length)
-        }
-    }
-    
-    func orderedListButtonAction() {
-        var objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
+        let regularExpression = (isOrderedList ? NCKTextUtil.markdownOrderedListRegularExpression : NCKTextUtil.markdownUnorderedListRegularExpression)
         
-        if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
+        if regularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
             // Already orderedList
             let numberLength = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).length + 1
             
@@ -199,10 +196,28 @@ public class NCKTextView: UITextView {
             self.selectedRange = NSRange(location: self.selectedRange.location - moveLocation, length: self.selectedRange.length)
             
         } else {
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: "1. ")
+            let listPrefix = (isOrderedList ? "1. " : "• ")
             
-            self.selectedRange = NSRange(location: self.selectedRange.location + 3, length: self.selectedRange.length)
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: listPrefix)
+            
+            self.selectedRange = NSRange(location: self.selectedRange.location + NSString(string: listPrefix).length, length: self.selectedRange.length)
         }
+    }
+    
+    func boldButtonAction() {
+        buttonActionWithInputFontMode(.Bold)
+    }
+    
+    func italicButtonAction() {
+        buttonActionWithInputFontMode(.Italic)
+    }
+    
+    func unorderedListButtonAction() {
+        buttonActionWithOrderedOrUnordered(orderedList: false)
+    }
+    
+    func orderedListButtonAction() {
+        buttonActionWithOrderedOrUnordered(orderedList: true)
     }
     
     // MARK: - Other methods

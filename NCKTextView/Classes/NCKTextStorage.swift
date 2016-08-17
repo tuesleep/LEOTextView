@@ -87,6 +87,8 @@ class NCKTextStorage: NSTextStorage {
     }
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
+        attrs?.forEach { attributes[$0.0] = $0.1 }
+        
         beginEditing()
         
         currentString.setAttributes(attrs, range: range)
