@@ -23,14 +23,14 @@ public class NCKTextView: UITextView {
     
     // Custom fonts
     
-    public var normalFont: UIFont = UIFont(name: "Helvetica", size: 18)! {
+    public var normalFont: UIFont = UIFont.systemFontOfSize(18) {
         didSet {
             self.font = normalFont
         }
     }
     
-    public var boldFont: UIFont = UIFont(name: "Helvetica-Bold", size: 18)!
-    public var italicFont: UIFont = UIFont(name: "Helvetica-Oblique", size: 18)!
+    public var boldFont: UIFont = UIFont.boldSystemFontOfSize(18)
+    public var italicFont: UIFont = UIFont.italicSystemFontOfSize(18)
     
     var boldButton: UIBarButtonItem?
     var italicButton: UIBarButtonItem?
@@ -133,9 +133,11 @@ public class NCKTextView: UITextView {
         if NCKTextUtil.isSelectedTextWithTextView(self) {
             var font = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
             
-            let objectFont = (mode == .Bold ? boldFont : italicFont)
+            let objectFontKeyword = (mode == .Bold ? "bold" : "italic")
             
-            if font.fontName != objectFont.fontName {
+            let fontName = NSString(string: font.fontName)
+            
+            if fontName.rangeOfString(objectFontKeyword, options: .CaseInsensitiveSearch).location == NSNotFound {
                 changeSelectedTextWithInputFontMode(mode)
             } else {
                 changeSelectedTextWithInputFontMode(.Normal)
