@@ -27,5 +27,13 @@ class ViewController: UIViewController {
 
         textView.becomeFirstResponder()
     }
+    
+    @IBAction func saveButtonAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func loadButtonAction(sender: AnyObject) {
+        
+    }
 }
 

@@ -110,9 +110,9 @@ public class NCKTextView: UITextView {
     }
     
     public func textAttributesJSON() -> String {
-        textAttributes().forEach {
-            $0.
-        }
+//        textAttributes().forEach {
+//            
+//        }
         
         return ""
     }
@@ -185,7 +185,13 @@ public class NCKTextView: UITextView {
         
         let regularExpression = (isOrderedList ? NCKTextUtil.markdownOrderedListRegularExpression : NCKTextUtil.markdownUnorderedListRegularExpression)
         
-        if regularExpression.matchesInString(objectLineAndIndex.0, options: [], range: NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)).count > 0 {
+        let objectLineRange = NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)
+        
+        // Check current list type.
+        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
+        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
+        
+        if (isCurrentOrderedList || isCurrentUnorderedList) {
             // Already orderedList
             let numberLength = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).length + 1
             
@@ -194,8 +200,9 @@ public class NCKTextView: UITextView {
             self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: numberLength), withString: "")
             
             self.selectedRange = NSRange(location: self.selectedRange.location - moveLocation, length: self.selectedRange.length)
-            
-        } else {
+        }
+
+        if (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList) {
             let listPrefix = (isOrderedList ? "1. " : "• ")
             
             self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: listPrefix)

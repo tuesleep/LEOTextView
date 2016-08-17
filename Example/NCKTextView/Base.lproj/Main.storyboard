@@ -17,7 +17,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xni-ww-665"/>
+                    <navigationItem key="navigationItem" id="xni-ww-665">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="nop-yC-upA">
+                            <connections>
+                                <action selector="saveButtonAction:" destination="vXZ-lx-hvc" id="Rxl-Ix-abT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="0lP-It-8tb">
+                            <connections>
+                                <action selector="loadButtonAction:" destination="vXZ-lx-hvc" id="Rm7-fc-MFx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
