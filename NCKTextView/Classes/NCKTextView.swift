@@ -32,6 +32,8 @@ public class NCKTextView: UITextView {
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(18)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(18)
     
+    // MARK: - UI Buttons
+    
     var boldButton: UIBarButtonItem?
     var italicButton: UIBarButtonItem?
     
@@ -109,10 +111,10 @@ public class NCKTextView: UITextView {
             
             attr.keys.forEach {
                 if $0 == NSFontAttributeName {
-                    let font = attr[$0] as! UIFont
+                    let currentFont = attr[$0] as! UIFont
                     
                     attribute["name"] = NSFontAttributeName
-                    attribute["fontName"] = font.fontName
+                    attribute["fontName"] = currentFont.fontName
                     attribute["location"] = range.location
                     attribute["length"] = range.length
                     
@@ -144,8 +146,8 @@ public class NCKTextView: UITextView {
             let attributeName = attribute["name"] as! String
             
             if attributeName == NSFontAttributeName {
-                if let font = UIFont(name: attribute["fontName"] as! String, size: normalFont.pointSize) {
-                    self.textStorage.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
+                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: normalFont.pointSize) {
+                    self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
                 }
             }
         }
@@ -186,13 +188,11 @@ public class NCKTextView: UITextView {
         }
         
         if NCKTextUtil.isSelectedTextWithTextView(self) {
-            var font = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
+            var currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
             
-            let objectFontKeyword = (mode == .Bold ? "bold" : "italic")
+            let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
             
-            let fontName = NSString(string: font.fontName)
-            
-            if fontName.rangeOfString(objectFontKeyword, options: .CaseInsensitiveSearch).location == NSNotFound {
+            if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
             } else {
                 changeSelectedTextWithInputFontMode(.Normal)

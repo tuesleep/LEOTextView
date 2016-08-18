@@ -66,22 +66,6 @@ class NCKTextStorage: NSTextStorage {
             let selectedRangeLocation = textView.selectedRange.location + listItemFillText.length
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
-            
-//            if currentNumber != nil {
-//                // Reorder numbers after current line.
-//                var afterStrings = textView.text.substringFromIndex(textView.text.startIndex.advancedBy(textView.selectedRange.location))
-//                
-//                let orderedListAfterItemsMatches = NCKTextUtil.markdownOrderedListAfterItemsRegularExpression.matchesInString(afterStrings, options: [], range: NSRange(location: 0, length: NSString(string: afterStrings).length))
-//                
-//                for orderedListAfterItem in orderedListAfterItemsMatches {
-//                    currentNumber! += 1
-//                    
-//                    let location = orderedListAfterItem.range.location
-//                    let length = orderedListAfterItem.range.length
-//                    
-//                    afterStrings.replaceRange(Range(start: afterStrings.startIndex.advancedBy(location), end: afterStrings.startIndex.advancedBy(location + length)), with: "\n\(currentNumber!). ")
-//                }
-//            }
         }
     }
     

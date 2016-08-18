@@ -38,4 +38,29 @@ class NCKTextUtil: NSObject {
         
         return (objectLine, objectIndex)
     }
+    
+    class func isBoldFont(font: UIFont) -> Bool {
+        let keywords = ["bold", "medium"]
+        
+        return isSpecialFont(font, keywords: keywords)
+    }
+    
+    class func isItalicFont(font: UIFont) -> Bool {
+        let keywords = ["italic"]
+        
+        return isSpecialFont(font, keywords: keywords)
+    }
+    
+    class func isSpecialFont(font: UIFont, keywords: [String]) -> Bool {
+        let fontName = NSString(string: font.fontName)
+        
+        for keyword in keywords {
+            if fontName.rangeOfString(keyword, options: .CaseInsensitiveSearch).location != NSNotFound {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
 }
