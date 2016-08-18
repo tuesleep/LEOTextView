@@ -1,9 +1,9 @@
 # NCKTextView
 
-[![CI Status](http://img.shields.io/travis/Chanricle King/CKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/CKTextView)
-[![Version](https://img.shields.io/cocoapods/v/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
-[![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
-[![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/CKTextView)
+[![CI Status](http://img.shields.io/travis/Chanricle King/CKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
+[![Version](https://img.shields.io/cocoapods/v/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 
 NCKTextView is a **very high-performance** rich editor. Because it's a **subclass of UITextView**, not UIWebView. All of code by **TextKit** framework.
 
@@ -46,6 +46,20 @@ Xcode 7.3 +
 Swift 2.2 +
 
 ## Installation
+
+###Stable source code
+
+```
+git clone -b stable https://github.com/chanricle/NCKTextView.git
+```
+
+###Cocoapods
+
+NCKTextView is available through CocoaPods. To install it, simply add the following line to your Podfile:
+
+```
+pod "NCKTextView"
+```
 
 ## Author
 
