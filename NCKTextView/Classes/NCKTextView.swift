@@ -147,8 +147,6 @@ public class NCKTextView: UITextView {
         
         let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
         
-        var textAttributes = [String: AnyObject]()
-        
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
@@ -196,7 +194,7 @@ public class NCKTextView: UITextView {
         }
         
         if NCKTextUtil.isSelectedTextWithTextView(self) {
-            var currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
+            let currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
             
             let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
             
@@ -211,9 +209,7 @@ public class NCKTextView: UITextView {
     }
     
     func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool) {
-        var objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
-        
-        let regularExpression = (isOrderedList ? NCKTextUtil.markdownOrderedListRegularExpression : NCKTextUtil.markdownUnorderedListRegularExpression)
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
         
         let objectLineRange = NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)
         
@@ -265,12 +261,9 @@ public class NCKTextView: UITextView {
         }
         
         let duration = info[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let curve = info[UIKeyboardAnimationCurveUserInfoKey] as! Int
         let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         
         let toolbarHeight = toolbar!.frame.size.height
-
-        let animationOptions = curve << 16
         
         if notification.name == UIKeyboardWillShowNotification {
             self.superview?.addSubview(toolbar!)

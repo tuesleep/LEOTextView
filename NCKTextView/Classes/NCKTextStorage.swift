@@ -24,11 +24,10 @@ class NCKTextStorage: NSTextStorage {
     
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
         var listItemFillText: NSString = ""
-        var currentNumber: Int?
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
-            var objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
+            let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
             
             let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
             
@@ -37,7 +36,7 @@ class NCKTextStorage: NSTextStorage {
             let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
             
             if unorderedListMatches.count > 0 {
-                var listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
+                let listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
                 listItemFillText = "\(listPrefixItem) "
             }
             
@@ -45,8 +44,6 @@ class NCKTextStorage: NSTextStorage {
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
                 number! += 1
                 listItemFillText = "\(number!). "
-                
-                currentNumber = number
             }
         }
         

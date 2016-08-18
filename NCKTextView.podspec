@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NCKTextView'
-  s.version          = '0.1.0'
-  s.summary          = 'NCKTextView is a simple extension from UITextView.'
+  s.version          = '0.2.0'
+  s.summary          = 'NCKTextView is a high-performance rich editor based on UITextView and code with TextKit.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips
 
-  s.description      = "Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9."
+  s.description      = "NCKTextView is a very high-performance rich editor. Because it's a subclass of UITextView, not UIWebView. All of code by TextKit framework."
 
   s.homepage         = 'https://github.com/chanricle/NCKTextView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'

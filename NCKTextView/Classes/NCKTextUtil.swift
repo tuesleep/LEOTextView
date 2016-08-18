@@ -30,7 +30,7 @@ class NCKTextUtil: NSObject {
         
         let textSplits = objectLine.componentsSeparatedByString("\n")
         if textSplits.count > 0 {
-            var currentObjectLine = textSplits[textSplits.count - 1]
+            let currentObjectLine = textSplits[textSplits.count - 1]
             
             objectIndex = NSString(string: objectLine).length - NSString(string: currentObjectLine).length
             objectLine = currentObjectLine
