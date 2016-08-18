@@ -81,21 +81,22 @@ class NCKTextStorage: NSTextStorage {
     // MARK: - Other overrided
     
     override func processEditing() {
-        performReplacementsForRange(editedRange)
+        if isChangeCharacters && editedRange.length > 0 {
+            isChangeCharacters = false
+            performReplacementsForRange(editedRange, mode: textView.inputFontMode)
+        }
         
         super.processEditing()
     }
 
     // MARK: - Other methods
     
-    func performReplacementsForRange(range: NSRange) {
-        if range.length > 0 && isChangeCharacters {
-            isChangeCharacters = false
-            
+    func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
+        if range.length > 0 {
             // Add addition attributes.
             var attrValue: UIFont!
             
-            switch textView.inputFontMode {
+            switch mode {
             case .Normal:
                 attrValue = textView.normalFont
                 break
