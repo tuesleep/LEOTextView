@@ -13,7 +13,25 @@ public enum NCKInputFontMode {
 public class NCKTextView: UITextView {
     // MARK: - Public properties
     
-    public var inputFontMode: NCKInputFontMode = .Normal
+    public var inputFontMode: NCKInputFontMode = .Normal {
+        didSet {
+            // Change Button colors, keep bold and italic button color right.
+            boldButton?.tintColor = toolbarButtonTintColor
+            italicButton?.tintColor = toolbarButtonTintColor
+            
+            switch inputFontMode {
+            case .Bold:
+                boldButton?.tintColor = toolbarButtonHighlightColor
+                break
+            case .Italic:
+                italicButton?.tintColor = toolbarButtonHighlightColor
+                break
+            default:
+                break
+            }
+        }
+    }
+    
     public var toolbar: UIToolbar?
     public var toolbarHeight: CGFloat = 40
     public var currentFrame: CGRect = CGRectZero
@@ -65,21 +83,11 @@ public class NCKTextView: UITextView {
     // MARK: Public APIs
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
-        var objectFont: UIFont!
-        
-        switch mode {
-        case .Normal:
-            objectFont = normalFont
-            break
-        case .Bold:
-            objectFont = boldFont
-            break
-        case .Italic:
-            objectFont = italicFont
-            break
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return
         }
         
-        self.textStorage.addAttribute(NSFontAttributeName, value: objectFont, range: selectedRange)
+        nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
     }
     
     /**
@@ -198,19 +206,7 @@ public class NCKTextView: UITextView {
                 changeSelectedTextWithInputFontMode(.Normal)
             }
         } else {
-            // Change Button colors, keep bold and italic button color right.
-            boldButton?.tintColor = toolbarButtonTintColor
-            italicButton?.tintColor = toolbarButtonTintColor
-            
-            if inputFontMode != mode {
-                inputFontMode = mode
-                
-                let objectButton = (mode == .Bold ? boldButton : italicButton)
-                objectButton?.tintColor = toolbarButtonHighlightColor
-                
-            } else {
-                inputFontMode = .Normal
-            }
+            inputFontMode = (inputFontMode != mode) ? mode : .Normal
         }
     }
     
@@ -301,6 +297,4 @@ public class NCKTextView: UITextView {
             })
         }
     }
-
-
 }
