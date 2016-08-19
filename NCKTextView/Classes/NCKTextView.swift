@@ -80,6 +80,19 @@ public class NCKTextView: UITextView {
         textStorage.textView = self
         
         customSelectionMenu()
+        
+        
+        let bundle = podBundle()
+        let checkListItem = NSTextAttachment()
+        
+        
+        
+        checkListItem.image = UIImage(named: "icon-checkbox-normal", inBundle: bundle, compatibleWithTraitCollection: nil)
+        
+        
+        let str = NSAttributedString(attachment: checkListItem)
+        
+        self.textStorage.replaceCharactersInRange(NSRange(location: 0, length: 0), withAttributedString: str)
     }
     
     // MARK: Public APIs
@@ -161,10 +174,16 @@ public class NCKTextView: UITextView {
         }
     }
     
+    func podBundle() -> NSBundle {
+        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+        
+        return bundle!
+    }
+    
     // MARK: - Toolbar buttons
     
     func enableBarButtonItems() -> [UIBarButtonItem] {
-        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+        let bundle = podBundle()
         
         let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
