@@ -78,6 +78,8 @@ public class NCKTextView: UITextView {
         currentFrame = frame
         
         textStorage.textView = self
+        
+        customSelectionMenu()
     }
     
     // MARK: Public APIs
@@ -206,6 +208,20 @@ public class NCKTextView: UITextView {
         } else {
             inputFontMode = (inputFontMode != mode) ? mode : .Normal
         }
+    }
+    
+    func customSelectionMenu() {
+        let menuController = UIMenuController.sharedMenuController()
+        
+        menuController.menuItems = [UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldMenuItemAction)), UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicMenuItemAction))]
+    }
+    
+    func boldMenuItemAction() {
+        boldButtonAction()
+    }
+    
+    func italicMenuItemAction() {
+        italicButtonAction()
     }
     
     func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool) {
