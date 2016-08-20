@@ -58,26 +58,45 @@ public class NCKTextView: UITextView {
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public init(frame: CGRect, textContainer: NSTextContainer?) {
-        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        let screenSize = UIScreen.mainScreen().bounds.size
         
-        if textContainer != nil {
-            layoutManager.addTextContainer(textContainer!)
-        }
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(textContainer)
         
         let textStorage = NCKTextStorage()
         textStorage.addLayoutManager(layoutManager)
         
-        super.init(frame: frame, textContainer: textContainer)
-        
-        self.font = normalFont
-        
-        currentFrame = frame
+        super.init(frame: CGRect(origin: CGPointZero, size: screenSize), textContainer: textContainer)
         
         textStorage.textView = self
+        
+        customTextView()
+    }
+    
+    override public init(frame: CGRect, textContainer: NSTextContainer?) {
+        let nonenullTextContainer = (textContainer == nil) ? NSTextContainer() : textContainer!
+        
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(nonenullTextContainer)
+        
+        let textStorage = NCKTextStorage()
+        textStorage.addLayoutManager(layoutManager)
+        
+        super.init(frame: frame, textContainer: nonenullTextContainer)
+        
+        textStorage.textView = self
+        
+        customTextView()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func customTextView() {
+        self.font = normalFont
+        currentFrame = self.frame
         
         customSelectionMenu()
     }
