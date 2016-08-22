@@ -39,6 +39,9 @@ public class NCKTextView: UITextView {
     public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
     public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
     
+    /** If want custom string trimming, use `trimmingText` property. */
+    public var trimmingCharactersInSet: NSCharacterSet?
+    
     // Custom fonts
     
     public var normalFont: UIFont = UIFont.systemFontOfSize(18) {
@@ -58,7 +61,7 @@ public class NCKTextView: UITextView {
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -121,6 +124,10 @@ public class NCKTextView: UITextView {
     public func textAttributesJSON() -> String {
         var attributesData: [Dictionary<String, AnyObject>] = []
         
+        if trimmingCharactersInSet != nil {
+            self.text = self.trimmingText
+        }
+        
         self.attributedText.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: self.text).length), options: .Reverse) { (attr, range, mutablePointer) in
             
             var attribute = [String: AnyObject]()
@@ -140,7 +147,8 @@ public class NCKTextView: UITextView {
         }
         
         var jsonDict: [String: AnyObject] = [:]
-        jsonDict["text"] = self.text
+        
+        jsonDict["text"] = self.trimmingText
         jsonDict["attributes"] = attributesData
         
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(jsonDict, options: .PrettyPrinted)
@@ -164,6 +172,19 @@ public class NCKTextView: UITextView {
                     self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
                 }
             }
+        }
+    }
+    
+    public var trimmingText: String! {
+        get {
+            if trimmingCharactersInSet != nil {
+                return self.text.stringByTrimmingCharactersInSet(trimmingCharactersInSet!)
+            } else {
+                return self.text
+            }
+        }
+        set {
+            
         }
     }
     

@@ -26,8 +26,9 @@ class NCKTextUtil: NSObject {
     
     class func objectLineAndIndexWithString(string: String, location: Int) -> (String, Int) {
         var objectIndex: Int = 0
-        var objectLine = string.substringToIndex(string.startIndex.advancedBy(location))
         
+        var objectLine = NSString(string: string).substringToIndex(location)
+
         let textSplits = objectLine.componentsSeparatedByString("\n")
         if textSplits.count > 0 {
             let currentObjectLine = textSplits[textSplits.count - 1]
