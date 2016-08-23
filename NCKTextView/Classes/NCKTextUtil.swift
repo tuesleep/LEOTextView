@@ -41,7 +41,9 @@ class NCKTextUtil: NSObject {
     }
     
     class func isBoldFont(font: UIFont) -> Bool {
-        let keywords = ["bold", "medium"]
+        let keywords = ["bold", "medium", "PingFangSC-Regular"]
+        
+        // At chinese language: PingFangSC-Light is normal, PingFangSC-Regular is bold
         
         return isSpecialFont(font, keywords: keywords)
     }

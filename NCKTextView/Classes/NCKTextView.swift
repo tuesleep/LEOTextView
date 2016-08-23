@@ -154,6 +154,12 @@ public class NCKTextView: UITextView {
         let text = jsonDict["text"] as! String
         self.text = text
         
+        setAttributesWithJSONString(jsonString)
+    }
+    
+    public func setAttributesWithJSONString(jsonString: String) {
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
         let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
         
         attributes.forEach {
@@ -166,6 +172,27 @@ public class NCKTextView: UITextView {
                 }
             }
         }
+    }
+    
+    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, pointSize: CGFloat) -> NSAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
+        
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
+        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        
+        attributes.forEach {
+            let attribute = $0
+            let attributeName = attribute["name"] as! String
+            
+            if attributeName == NSFontAttributeName {
+                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: pointSize) {
+                    mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
+                }
+            }
+        }
+        
+        return mutableAttributedString
     }
     
     // MARK: - Toolbar buttons
@@ -205,7 +232,13 @@ public class NCKTextView: UITextView {
         if NCKTextUtil.isSelectedTextWithTextView(self) {
             let currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
             
-            let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
+            let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
+            
+            var isSpecialFont = currentFont.fontName == compareFontName
+            
+            if !isSpecialFont {
+                isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
+            }
             
             if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
