@@ -27,23 +27,24 @@ class NCKTextStorage: NSTextStorage {
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
-            let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
-            
-            let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
-            
-            // Check matches.
-            let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
-            let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
-            
-            if unorderedListMatches.count > 0 {
-                let listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
-                listItemFillText = "\(listPrefixItem) "
+            if textView.inputFontMode == .Title {
+                textView.inputFontMode = .Normal
             }
             
-            if orderedListMatches.count > 0 {
+            let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
+            
+            switch currentParagraphTypeWithLocation(range.location) {
+            case .NumberedList:
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
                 number! += 1
                 listItemFillText = "\(number!). "
+                break
+            case .BulletedList, .DashedList:
+                let listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
+                listItemFillText = "\(listPrefixItem) "
+                break
+            default:
+                break
             }
         }
         
@@ -88,6 +89,45 @@ class NCKTextStorage: NSTextStorage {
 
     // MARK: - Other methods
     
+    func currentParagraphTypeWithLocation(location: Int) -> NCKInputParagraphType {
+        if self.textView.text == "" {
+            return (self.textView.inputFontMode) == .Title ? .Title : .Body
+        }
+        
+        var nck_location = location
+        if NSString(string: self.textView.text).length <= location {
+            nck_location = location - 1
+        }
+        
+        let currentFont = self.textView.attributedText.attribute(NSFontAttributeName, atIndex: nck_location, effectiveRange: nil) as! UIFont
+        if currentFont.pointSize == textView.titleFont.pointSize {
+            return .Title
+        }
+        
+        let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: nck_location).0
+        let ns_objectLine = NSString(string: objectLine)
+        
+        let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
+        
+        // Check matches.
+        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        if unorderedListMatches.count > 0 {
+            let firstChar = ns_objectLine.substringToIndex(1)
+            if firstChar == "-" {
+                return .DashedList
+            } else {
+                return .BulletedList
+            }
+        }
+        
+        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        if orderedListMatches.count > 0 {
+            return .NumberedList
+        }
+        
+        return .Body
+    }
+    
     func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
         if range.length > 0 {
             // Add addition attributes.
@@ -102,6 +142,9 @@ class NCKTextStorage: NSTextStorage {
                 break
             case .Italic:
                 attrValue = textView.italicFont
+                break
+            case .Title:
+                attrValue = textView.titleFont
                 break
             }
      

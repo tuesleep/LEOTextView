@@ -1,15 +1,15 @@
 PODS:
-  - NCKTextView (0.1.0)
+  - NCKTextView (0.2.1)
 
 DEPENDENCIES:
   - NCKTextView (from `../`)
 
 EXTERNAL SOURCES:
   NCKTextView:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  NCKTextView: ce364fd3d96ee8438a75b77092f9cd88adb8077b
+  NCKTextView: a7004fbca1d9fd46ef8c7b3944cf95cefc74f3d9
 
 PODFILE CHECKSUM: 35bdfe5378121371363358eb7e31cf160ee659a1
 

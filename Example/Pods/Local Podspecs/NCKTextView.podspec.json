@@ -1,8 +1,8 @@
 {
   "name": "NCKTextView",
-  "version": "0.1.0",
-  "summary": "NCKTextView is a simple extension from UITextView.",
-  "description": "Want to build a UITextView that have List feature(Rich Text Editor), just look like 'Notes' app on the iPhone with iOS 9.",
+  "version": "0.2.1",
+  "summary": "NCKTextView is a high-performance rich editor based on UITextView and code with TextKit.",
+  "description": "NCKTextView is a very high-performance rich editor. Because it's a subclass of UITextView, not UIWebView. All of code by TextKit framework.",
   "homepage": "https://github.com/chanricle/NCKTextView",
   "license": {
     "type": "MIT",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/chanricle/NCKTextView.git",
-    "tag": "0.1.0"
+    "tag": "0.2.1"
   },
   "platforms": {
     "ios": "9.0"

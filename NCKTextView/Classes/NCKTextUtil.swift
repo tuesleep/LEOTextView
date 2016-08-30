@@ -25,9 +25,10 @@ class NCKTextUtil: NSObject {
     }
     
     class func objectLineAndIndexWithString(string: String, location: Int) -> (String, Int) {
-        var objectIndex: Int = 0
+        let ns_string = NSString(string: string)
         
-        var objectLine = NSString(string: string).substringToIndex(location)
+        var objectIndex: Int = 0
+        var objectLine = ns_string.substringToIndex(location)
 
         let textSplits = objectLine.componentsSeparatedByString("\n")
         if textSplits.count > 0 {
@@ -64,6 +65,19 @@ class NCKTextUtil: NSObject {
         }
         
         return false
+    }
+    
+    class func keyboardWindow() -> UIWindow? {
+        var keyboardWin: UIWindow?
+        
+        UIApplication.sharedApplication().windows.forEach {
+            if String($0.dynamicType) == "UITextEffectsWindow" {
+                keyboardWin = $0
+                return
+            }
+        }
+        
+        return keyboardWin
     }
     
 }
