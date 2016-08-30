@@ -17,34 +17,8 @@ public enum NCKInputParagraphType: Int {
 public class NCKTextView: UITextView {
     // MARK: - Public properties
     
-    public var inputFontMode: NCKInputFontMode = .Normal {
-        didSet {
-            // Change Button colors, keep bold and italic button color right.
-            boldButton?.tintColor = toolbarButtonTintColor
-            italicButton?.tintColor = toolbarButtonTintColor
-            
-            switch inputFontMode {
-            case .Bold:
-                boldButton?.tintColor = toolbarButtonHighlightColor
-                break
-            case .Italic:
-                italicButton?.tintColor = toolbarButtonHighlightColor
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    public var toolbar: UIToolbar?
-    public var toolbarHeight: CGFloat = 40
-    public var currentFrame: CGRect = CGRectZero
-    
-    public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
-    public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
-    
+    public var inputFontMode: NCKInputFontMode = .Normal
     public var defaultAttributesForLoad: [String : AnyObject] = [:]
-    
     public var selectMenuItems: [NCKInputFontMode] = [.Bold, .Italic]
     
     // Custom fonts
@@ -56,18 +30,8 @@ public class NCKTextView: UITextView {
     }
     
     public var titleFont: UIFont = UIFont.boldSystemFontOfSize(20)
-    
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(18)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(18)
-    
-    // MARK: - UI Buttons
-    
-    var formatButton: UIBarButtonItem?
-    var boldButton: UIBarButtonItem?
-    var italicButton: UIBarButtonItem?
-    
-    var nck_formatTableViewController: NCKFormatTableViewController?
-    var formatMenuView: UIView?
     
     // MARK: - Init methods
     
@@ -125,23 +89,6 @@ public class NCKTextView: UITextView {
         }
         
         nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
-    }
-    
-    /**
-        Enable the toolbar, binding the show and hide events.
-     
-     */
-    public func enableToolbar() -> UIToolbar {
-        toolbar = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: CGRectGetHeight(UIScreen.mainScreen().bounds)), size: CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: toolbarHeight)))
-        toolbar?.autoresizingMask = .FlexibleWidth
-        toolbar?.backgroundColor = UIColor.clearColor()
-        
-        toolbar?.items = enableBarButtonItems()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        return toolbar!
     }
     
     /**
@@ -232,31 +179,6 @@ public class NCKTextView: UITextView {
         return nck_textStorage.currentParagraphTypeWithLocation(selectedRange.location)
     }
     
-    // MARK: - Toolbar buttons
-    
-    func enableBarButtonItems() -> [UIBarButtonItem] {
-        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
-        
-        let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        let hideKeyboardButton = UIBarButtonItem(image: UIImage(named: "icon-keyboard", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.hideKeyboardButtonAction))
-        
-        formatButton = UIBarButtonItem(image: UIImage(named: "icon-format", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.formatButtonAction))
-        
-        let buttonItems = [formatButton!, flexibleSpaceButton, hideKeyboardButton]
-        
-        // Button styles
-        for buttonItem in buttonItems {
-            buttonItem.tintColor = toolbarButtonTintColor
-        }
-        
-        return buttonItems
-    }
-    
-    func hideKeyboardButtonAction() {
-        self.resignFirstResponder()
-    }
-    
     func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
         guard mode != .Normal else {
             return
@@ -290,10 +212,10 @@ public class NCKTextView: UITextView {
         selectMenuItems.forEach {
             switch $0 {
             case .Bold:
-                menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldMenuItemAction)))
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldButtonAction)))
                 break
             case .Italic:
-                menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicMenuItemAction)))
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicButtonAction)))
                 break
             default:
                 break
@@ -301,68 +223,6 @@ public class NCKTextView: UITextView {
         }
         
         menuController.menuItems = menuItems
-    }
-    
-    func boldMenuItemAction() {
-        boldButtonAction()
-    }
-    
-    func italicMenuItemAction() {
-        italicButtonAction()
-    }
-    
-    func formatButtonAction() {
-        if formatMenuView == nil {
-            let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
-            let nck_formatNavigationController = UIStoryboard(name: "NCKTextView", bundle: bundle).instantiateViewControllerWithIdentifier("NCKFormatNavigationController") as! UINavigationController
-            
-            nck_formatTableViewController = nck_formatNavigationController.viewControllers[0] as! NCKFormatTableViewController
-            nck_formatTableViewController?.selectedCompletion = { [unowned self] (type) in
-                let currentParagraphType = self.currentParagraphType()
-                
-                switch type {
-                case .Title:
-                    self.inputFontMode = .Title
-                    self.changeCurrentParagraphTextWithInputFontMode(.Title)
-                    
-                    break
-                case .Body:
-                    self.inputFontMode = .Normal
-                    if currentParagraphType == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
-                    }
-                    
-                    break
-                case .BulletedList:
-                    self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "• ")
-                    break
-                case .DashedList:
-                    self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "- ")
-                    break
-                case .NumberedList:
-                    self.buttonActionWithOrderedOrUnordered(orderedList: true, listPrefix: "1. ")
-                    break
-                }
-            }
-            
-            let superViewSize = self.superview!.bounds.size
-            let toolbarOriginY = self.toolbar!.frame.origin.y
-            let menuViewHeight: CGFloat = toolbarOriginY - 200 >= 44 ? 180 : 120
-            
-            nck_formatNavigationController.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: superViewSize.width, height: menuViewHeight))
-            
-            formatMenuView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: toolbarOriginY + 44 - menuViewHeight), size: CGSize(width: superViewSize.width, height: menuViewHeight)))
-            formatMenuView?.addSubview(nck_formatNavigationController.view)
-            
-            nck_formatTableViewController?.navigationItem.title = NSLocalizedString("Formatting", comment: "")
-            nck_formatTableViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.formatMenuViewDoneButtonAction))
-        }
-        
-        self.superview?.addSubview(formatMenuView!)
-    }
-    
-    func formatMenuViewDoneButtonAction() {
-        formatMenuView?.removeFromSuperview()
     }
     
     func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool, listPrefix: String) {
@@ -398,45 +258,5 @@ public class NCKTextView: UITextView {
     
     func italicButtonAction() {
         buttonActionWithInputFontMode(.Italic)
-    }
-    
-    // MARK: - Other methods
-    
-    func keyboardWillShowOrHide(notification: NSNotification) {
-        guard let info = notification.userInfo else {
-            return
-        }
-        
-        let duration = info[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        
-        let toolbarHeight = toolbar!.frame.size.height
-        
-        if notification.name == UIKeyboardWillShowNotification {
-            formatMenuView?.removeFromSuperview()
-            
-            self.superview?.addSubview(toolbar!)
-            
-            var textViewFrame = self.frame
-            textViewFrame.size.height = self.superview!.frame.height - keyboardEnd.height - toolbarHeight
-            self.frame = textViewFrame
-            
-            UIView.animateWithDuration(duration, animations: {
-                var frame = self.toolbar!.frame
-                frame.origin.y = self.superview!.frame.height - (keyboardEnd.height + toolbarHeight)
-                self.toolbar!.frame = frame
-            }, completion: nil)
-        } else {
-            self.frame = currentFrame
-            
-            UIView.animateWithDuration(duration, animations: {
-                var frame = self.toolbar!.frame
-                frame.origin.y = self.superview!.frame.size.height
-                self.toolbar!.frame = frame
-                
-            }, completion: { (success) in
-                self.toolbar!.removeFromSuperview()
-            })
-        }
     }
 }
