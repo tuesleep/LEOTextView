@@ -61,10 +61,7 @@ public class NCKTextView: UITextView {
     
     func customTextView() {
         self.font = normalFont
-        currentFrame = self.frame
-        
-        self.alwaysBounceVertical = true
-        
+
         customSelectionMenu()
     }
     
