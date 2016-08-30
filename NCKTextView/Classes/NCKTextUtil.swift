@@ -41,6 +41,10 @@ class NCKTextUtil: NSObject {
         return (objectLine, objectIndex)
     }
     
+    class func objectLineWithString(string: String, location: Int) -> String {
+        return objectLineAndIndexWithString(string, location: location).0
+    }
+    
     class func isBoldFont(font: UIFont) -> Bool {
         let keywords = ["bold", "medium", "PingFangSC-Regular"]
         

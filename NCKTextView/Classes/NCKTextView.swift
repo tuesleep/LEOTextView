@@ -106,7 +106,7 @@ public class NCKTextView: UITextView {
                     attribute["fontName"] = currentFont.fontName
                     attribute["location"] = range.location
                     attribute["length"] = range.length
-                    attribute["pointSize"] = currentFont.pointSize
+                    attribute["isTitle"] = currentFont.pointSize == self.titleFont.pointSize ? 1 : 0
                     
                     attributesData.append(attribute)
                 }
@@ -139,9 +139,11 @@ public class NCKTextView: UITextView {
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
-            let pointSize = attribute["pointSize"] as! CGFloat
+            let isTitle = attribute["isTitle"] as? Int
             
             if attributeName == NSFontAttributeName {
+                let pointSize = (isTitle == 1) ? self.titleFont.pointSize : self.normalFont.pointSize
+                
                 if let currentFont = UIFont(name: attribute["fontName"] as! String, size: pointSize) {
                     self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
                 }
@@ -159,9 +161,12 @@ public class NCKTextView: UITextView {
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
+            let isTitle = attribute["isTitle"] as? Int
+            
+            let nck_pointSize = (isTitle == 1) ? (pointSize + 2) : pointSize
             
             if attributeName == NSFontAttributeName {
-                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: pointSize) {
+                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: nck_pointSize) {
                     mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
                 }
             }
