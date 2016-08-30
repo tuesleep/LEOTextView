@@ -106,6 +106,7 @@ public class NCKTextView: UITextView {
                     attribute["fontName"] = currentFont.fontName
                     attribute["location"] = range.location
                     attribute["length"] = range.length
+                    attribute["pointSize"] = currentFont.pointSize
                     
                     attributesData.append(attribute)
                 }
@@ -138,9 +139,10 @@ public class NCKTextView: UITextView {
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
+            let pointSize = attribute["pointSize"] as! CGFloat
             
             if attributeName == NSFontAttributeName {
-                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: normalFont.pointSize) {
+                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: pointSize) {
                     self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
                 }
             }

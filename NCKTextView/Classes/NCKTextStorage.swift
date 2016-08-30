@@ -25,6 +25,9 @@ class NCKTextStorage: NSTextStorage {
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
         var listItemFillText: NSString = ""
         
+        var listPrefixItemLength = 0
+        var deleteCurrentListPrefixItem = false
+        
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
             if textView.inputFontMode == .Title {
@@ -36,15 +39,29 @@ class NCKTextStorage: NSTextStorage {
             switch currentParagraphTypeWithLocation(range.location) {
             case .NumberedList:
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
+                
+                listPrefixItemLength = NSString(string: "\(number!). ").length
+                
                 number! += 1
                 listItemFillText = "\(number!). "
                 break
             case .BulletedList, .DashedList:
                 let listPrefixItem = objectLine.componentsSeparatedByString(" ")[0]
                 listItemFillText = "\(listPrefixItem) "
+                
+                listPrefixItemLength = listItemFillText.length
+                
                 break
             default:
                 break
+            }
+            
+            if listPrefixItemLength == NSString(string: objectLine).length {
+                let remainText: NSString = NSString(string: self.string).substringFromIndex(range.location)
+                if remainText == "" || remainText.rangeOfString("\n").location == 0 {
+                    deleteCurrentListPrefixItem = true
+                    listItemFillText = ""
+                }
             }
         }
         
@@ -53,10 +70,10 @@ class NCKTextStorage: NSTextStorage {
         beginEditing()
         
         let finalStr: NSString = "\(str)\(listItemFillText)"
-        
+            
         currentString.replaceCharactersInRange(range, withString: String(finalStr))
         edited(.EditedCharacters, range: range, changeInLength: (finalStr.length - range.length))
-        
+       
         endEditing()
         
         // Selected range changed.
@@ -64,6 +81,10 @@ class NCKTextStorage: NSTextStorage {
             let selectedRangeLocation = textView.selectedRange.location + listItemFillText.length
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
+        }
+    
+        if deleteCurrentListPrefixItem {
+//            let deleteRange = NSRange(location: range.location - listPrefixItemLength, length: listPrefixItemLength)
         }
     }
     
@@ -104,7 +125,7 @@ class NCKTextStorage: NSTextStorage {
             return .Title
         }
         
-        let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: nck_location).0
+        let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: location).0
         let ns_objectLine = NSString(string: objectLine)
         
         let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
