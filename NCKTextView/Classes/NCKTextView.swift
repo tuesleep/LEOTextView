@@ -55,6 +55,15 @@ public class NCKTextView: UITextView {
         customTextView()
     }
     
+    public init(normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) {
+        super.init(frame: CGRectZero, textContainer: NSTextContainer())
+        
+        self.normalFont = normalFont
+        self.titleFont = titleFont
+        self.boldFont = boldFont
+        self.italicFont = italicFont
+    }
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -102,11 +111,21 @@ public class NCKTextView: UITextView {
                 if $0 == NSFontAttributeName {
                     let currentFont = attr[$0] as! UIFont
                     
+                    var fontType = "normal";
+                    
+                    if (currentFont.pointSize == self.titleFont.pointSize) {
+                        fontType = "title"
+                    } else if (NCKTextUtil.isBoldFont(currentFont)) {
+                        fontType = "bold"
+                    } else if (NCKTextUtil.isItalicFont(currentFont)) {
+                        fontType = "italic"
+                    }
+                    
+                    // Normal font properties saved.
                     attribute["name"] = NSFontAttributeName
-                    attribute["fontName"] = currentFont.fontName
+                    attribute["fontType"] = fontType
                     attribute["location"] = range.location
                     attribute["length"] = range.length
-                    attribute["isTitle"] = currentFont.pointSize == self.titleFont.pointSize ? 1 : 0
                     
                     attributesData.append(attribute)
                 }
@@ -132,47 +151,61 @@ public class NCKTextView: UITextView {
     }
     
     public func setAttributesWithJSONString(jsonString: String) {
-        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
-        
-        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        let attributes = NCKTextView.attributesWithJSONString(jsonString)
         
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
-            let isTitle = attribute["isTitle"] as? Int
             
             if attributeName == NSFontAttributeName {
-                let pointSize = (isTitle == 1) ? self.titleFont.pointSize : self.normalFont.pointSize
+                var currentFont = fontOfTypeWithAttribute(attribute)
                 
-                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: pointSize) {
-                    self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
-                }
+                self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
             }
         }
     }
     
-    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, pointSize: CGFloat) -> NSAttributedString {
+    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) -> NSAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
-        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
-        
-        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        let attributes = NCKTextView.attributesWithJSONString(jsonString)
+        let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
         
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
-            let isTitle = attribute["isTitle"] as? Int
-            
-            let nck_pointSize = (isTitle == 1) ? (pointSize + 2) : pointSize
             
             if attributeName == NSFontAttributeName {
-                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: nck_pointSize) {
-                    mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
-                }
+                let currentFont = tool_nck_textView.fontOfTypeWithAttribute(attribute)
+                
+                mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
             }
         }
         
         return mutableAttributedString
+    }
+    
+    public class func attributesWithJSONString(jsonString: String) -> [[String: AnyObject]] {
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
+        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        
+        return attributes
+    }
+    
+    public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
+        var fontType = attribute["fontType"] as? String
+        var currentFont = self.normalFont
+        
+        if fontType == "title" {
+            currentFont = titleFont
+        } else if fontType == "bold" {
+            currentFont = boldFont
+        } else if fontType == "italic" {
+            currentFont = italicFont
+        }
+        
+        return currentFont
     }
     
     public func currentParagraphType() -> NCKInputParagraphType {
