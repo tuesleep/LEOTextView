@@ -25,9 +25,11 @@ class NCKTextUtil: NSObject {
     }
     
     class func objectLineAndIndexWithString(string: String, location: Int) -> (String, Int) {
-        var objectIndex: Int = 0
-        var objectLine = string.substringToIndex(string.startIndex.advancedBy(location))
+        let ns_string = NSString(string: string)
         
+        var objectIndex: Int = 0
+        var objectLine = ns_string.substringToIndex(location)
+
         let textSplits = objectLine.componentsSeparatedByString("\n")
         if textSplits.count > 0 {
             let currentObjectLine = textSplits[textSplits.count - 1]
@@ -39,8 +41,14 @@ class NCKTextUtil: NSObject {
         return (objectLine, objectIndex)
     }
     
+    class func objectLineWithString(string: String, location: Int) -> String {
+        return objectLineAndIndexWithString(string, location: location).0
+    }
+    
     class func isBoldFont(font: UIFont) -> Bool {
-        let keywords = ["bold", "medium"]
+        let keywords = ["bold", "medium", "PingFangSC-Regular"]
+        
+        // At chinese language: PingFangSC-Light is normal, PingFangSC-Regular is bold
         
         return isSpecialFont(font, keywords: keywords)
     }
@@ -61,6 +69,19 @@ class NCKTextUtil: NSObject {
         }
         
         return false
+    }
+    
+    class func keyboardWindow() -> UIWindow? {
+        var keyboardWin: UIWindow?
+        
+        UIApplication.sharedApplication().windows.forEach {
+            if String($0.dynamicType) == "UITextEffectsWindow" {
+                keyboardWin = $0
+                return
+            }
+        }
+        
+        return keyboardWin
     }
     
 }

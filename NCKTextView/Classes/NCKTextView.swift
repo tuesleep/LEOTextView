@@ -6,38 +6,20 @@
 //
 //
 
-public enum NCKInputFontMode {
-    case Normal, Bold, Italic
+public enum NCKInputFontMode: Int {
+    case Normal, Bold, Italic, Title
+}
+
+public enum NCKInputParagraphType: Int {
+    case Title, Body, BulletedList, DashedList, NumberedList
 }
 
 public class NCKTextView: UITextView {
     // MARK: - Public properties
     
-    public var inputFontMode: NCKInputFontMode = .Normal {
-        didSet {
-            // Change Button colors, keep bold and italic button color right.
-            boldButton?.tintColor = toolbarButtonTintColor
-            italicButton?.tintColor = toolbarButtonTintColor
-            
-            switch inputFontMode {
-            case .Bold:
-                boldButton?.tintColor = toolbarButtonHighlightColor
-                break
-            case .Italic:
-                italicButton?.tintColor = toolbarButtonHighlightColor
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    public var toolbar: UIToolbar?
-    public var toolbarHeight: CGFloat = 40
-    public var currentFrame: CGRect = CGRectZero
-    
-    public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
-    public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
+    public var inputFontMode: NCKInputFontMode = .Normal
+    public var defaultAttributesForLoad: [String : AnyObject] = [:]
+    public var selectMenuItems: [NCKInputFontMode] = [.Bold, .Italic]
     
     // Custom fonts
     
@@ -47,55 +29,65 @@ public class NCKTextView: UITextView {
         }
     }
     
+    public var titleFont: UIFont = UIFont.boldSystemFontOfSize(20)
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(18)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(18)
-    
-    // MARK: - UI Buttons
-    
-    var boldButton: UIBarButtonItem?
-    var italicButton: UIBarButtonItem?
     
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
-        let layoutManager = NSLayoutManager()
+        let nonenullTextContainer = (textContainer == nil) ? NSTextContainer() : textContainer!
         
-        if textContainer != nil {
-            layoutManager.addTextContainer(textContainer!)
-        }
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(nonenullTextContainer)
         
         let textStorage = NCKTextStorage()
         textStorage.addLayoutManager(layoutManager)
         
-        super.init(frame: frame, textContainer: textContainer)
-        
-        self.font = normalFont
-        
-        currentFrame = frame
+        super.init(frame: frame, textContainer: nonenullTextContainer)
         
         textStorage.textView = self
         
+        customTextView()
+    }
+    
+    public init(normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) {
+        super.init(frame: CGRectZero, textContainer: NSTextContainer())
+        
+        self.normalFont = normalFont
+        self.titleFont = titleFont
+        self.boldFont = boldFont
+        self.italicFont = italicFont
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func customTextView() {
+        self.font = normalFont
+
         customSelectionMenu()
-        
-        
-        let bundle = podBundle()
-        let checkListItem = NSTextAttachment()
-        
-        
-        
-        checkListItem.image = UIImage(named: "icon-checkbox-normal", inBundle: bundle, compatibleWithTraitCollection: nil)
-        
-        
-        let str = NSAttributedString(attachment: checkListItem)
-        
-        self.textStorage.replaceCharactersInRange(NSRange(location: 0, length: 0), withAttributedString: str)
     }
     
     // MARK: Public APIs
+    
+    public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
+        let paragraphLocation = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location).1
+        let remainText: NSString = NSString(string: self.text).substringFromIndex(selectedRange.location)
+        var nextLineBreakLocation = remainText.rangeOfString("\n").location
+        nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: self.text).length : nextLineBreakLocation + selectedRange.location
+        
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return
+        }
+        
+        nck_textStorage.performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
+    }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
         guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
@@ -103,23 +95,6 @@ public class NCKTextView: UITextView {
         }
         
         nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
-    }
-    
-    /**
-        Enable the toolbar, binding the show and hide events.
-     
-     */
-    public func enableToolbar() -> UIToolbar {
-        toolbar = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: CGRectGetHeight(UIScreen.mainScreen().bounds)), size: CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: toolbarHeight)))
-        toolbar?.autoresizingMask = .FlexibleWidth
-        toolbar?.backgroundColor = UIColor.clearColor()
-        
-        toolbar?.items = enableBarButtonItems()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        return toolbar!
     }
     
     /**
@@ -136,8 +111,19 @@ public class NCKTextView: UITextView {
                 if $0 == NSFontAttributeName {
                     let currentFont = attr[$0] as! UIFont
                     
+                    var fontType = "normal";
+                    
+                    if (currentFont.pointSize == self.titleFont.pointSize) {
+                        fontType = "title"
+                    } else if (NCKTextUtil.isBoldFont(currentFont)) {
+                        fontType = "bold"
+                    } else if (NCKTextUtil.isItalicFont(currentFont)) {
+                        fontType = "italic"
+                    }
+                    
+                    // Normal font properties saved.
                     attribute["name"] = NSFontAttributeName
-                    attribute["fontName"] = currentFont.fontName
+                    attribute["fontType"] = fontType
                     attribute["location"] = range.location
                     attribute["length"] = range.length
                     
@@ -147,6 +133,7 @@ public class NCKTextView: UITextView {
         }
         
         var jsonDict: [String: AnyObject] = [:]
+        
         jsonDict["text"] = self.text
         jsonDict["attributes"] = attributesData
         
@@ -160,53 +147,73 @@ public class NCKTextView: UITextView {
         let text = jsonDict["text"] as! String
         self.text = text
         
-        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        setAttributesWithJSONString(jsonString)
+    }
+    
+    public func setAttributesWithJSONString(jsonString: String) {
+        let attributes = NCKTextView.attributesWithJSONString(jsonString)
         
         attributes.forEach {
             let attribute = $0
             let attributeName = attribute["name"] as! String
             
             if attributeName == NSFontAttributeName {
-                if let currentFont = UIFont(name: attribute["fontName"] as! String, size: normalFont.pointSize) {
-                    self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
-                }
+                var currentFont = fontOfTypeWithAttribute(attribute)
+                
+                self.textStorage.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
             }
         }
     }
     
-    func podBundle() -> NSBundle {
-        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) -> NSAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
-        return bundle!
-    }
-    
-    // MARK: - Toolbar buttons
-    
-    func enableBarButtonItems() -> [UIBarButtonItem] {
-        let bundle = podBundle()
+        let attributes = NCKTextView.attributesWithJSONString(jsonString)
+        let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
         
-        let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        let hideKeyboardButton = UIBarButtonItem(image: UIImage(named: "icon-keyboard", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.hideKeyboardButtonAction))
-        
-        // Common function buttons
-        boldButton = UIBarButtonItem(image: UIImage(named: "icon-bold", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.boldButtonAction))
-        italicButton = UIBarButtonItem(image: UIImage(named: "icon-italic", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.italicButtonAction))
-        let unorderedListButton = UIBarButtonItem(image: UIImage(named: "icon-unorderedlist", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.unorderedListButtonAction))
-        let orderedListButton = UIBarButtonItem(image: UIImage(named: "icon-orderedlist", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.orderedListButtonAction))
-        
-        let buttonItems = [boldButton!, flexibleSpaceButton, italicButton!, flexibleSpaceButton, unorderedListButton, flexibleSpaceButton, orderedListButton, flexibleSpaceButton, hideKeyboardButton]
-        
-        // Button styles
-        for buttonItem in buttonItems {
-            buttonItem.tintColor = toolbarButtonTintColor
+        attributes.forEach {
+            let attribute = $0
+            let attributeName = attribute["name"] as! String
+            
+            if attributeName == NSFontAttributeName {
+                let currentFont = tool_nck_textView.fontOfTypeWithAttribute(attribute)
+                
+                mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int))
+            }
         }
         
-        return buttonItems
+        return mutableAttributedString
     }
     
-    func hideKeyboardButtonAction() {
-        self.resignFirstResponder()
+    public class func attributesWithJSONString(jsonString: String) -> [[String: AnyObject]] {
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
+        let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
+        
+        return attributes
+    }
+    
+    public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
+        var fontType = attribute["fontType"] as? String
+        var currentFont = self.normalFont
+        
+        if fontType == "title" {
+            currentFont = titleFont
+        } else if fontType == "bold" {
+            currentFont = boldFont
+        } else if fontType == "italic" {
+            currentFont = italicFont
+        }
+        
+        return currentFont
+    }
+    
+    public func currentParagraphType() -> NCKInputParagraphType {
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return .Body
+        }
+        
+        return nck_textStorage.currentParagraphTypeWithLocation(selectedRange.location)
     }
     
     func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
@@ -217,7 +224,13 @@ public class NCKTextView: UITextView {
         if NCKTextUtil.isSelectedTextWithTextView(self) {
             let currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
             
-            let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
+            let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
+            
+            var isSpecialFont = currentFont.fontName == compareFontName
+            
+            if !isSpecialFont {
+                isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
+            }
             
             if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
@@ -231,19 +244,25 @@ public class NCKTextView: UITextView {
     
     func customSelectionMenu() {
         let menuController = UIMenuController.sharedMenuController()
+        var menuItems = [UIMenuItem]()
         
-        menuController.menuItems = [UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldMenuItemAction)), UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicMenuItemAction))]
+        selectMenuItems.forEach {
+            switch $0 {
+            case .Bold:
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldButtonAction)))
+                break
+            case .Italic:
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicButtonAction)))
+                break
+            default:
+                break
+            }
+        }
+        
+        menuController.menuItems = menuItems
     }
     
-    func boldMenuItemAction() {
-        boldButtonAction()
-    }
-    
-    func italicMenuItemAction() {
-        italicButtonAction()
-    }
-    
-    func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool) {
+    func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool, listPrefix: String) {
         let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
         
         let objectLineRange = NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)
@@ -264,9 +283,7 @@ public class NCKTextView: UITextView {
         }
 
         if (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList) {
-            let listPrefix = (isOrderedList ? "1. " : "• ")
-            
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withString: listPrefix)
+            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad))
             
             self.selectedRange = NSRange(location: self.selectedRange.location + NSString(string: listPrefix).length, length: self.selectedRange.length)
         }
@@ -278,51 +295,5 @@ public class NCKTextView: UITextView {
     
     func italicButtonAction() {
         buttonActionWithInputFontMode(.Italic)
-    }
-    
-    func unorderedListButtonAction() {
-        buttonActionWithOrderedOrUnordered(orderedList: false)
-    }
-    
-    func orderedListButtonAction() {
-        buttonActionWithOrderedOrUnordered(orderedList: true)
-    }
-    
-    // MARK: - Other methods
-    
-    func keyboardWillShowOrHide(notification: NSNotification) {
-        guard let info = notification.userInfo else {
-            return
-        }
-        
-        let duration = info[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        
-        let toolbarHeight = toolbar!.frame.size.height
-        
-        if notification.name == UIKeyboardWillShowNotification {
-            self.superview?.addSubview(toolbar!)
-            
-            var textViewFrame = self.frame
-            textViewFrame.size.height = self.superview!.frame.height - keyboardEnd.height - toolbarHeight
-            self.frame = textViewFrame
-            
-            UIView.animateWithDuration(duration, animations: {
-                var frame = self.toolbar!.frame
-                frame.origin.y = self.superview!.frame.height - (keyboardEnd.height + toolbarHeight)
-                self.toolbar!.frame = frame
-            }, completion: nil)
-        } else {
-            self.frame = currentFrame
-            
-            UIView.animateWithDuration(duration, animations: {
-                var frame = self.toolbar!.frame
-                frame.origin.y = self.superview!.frame.size.height
-                self.toolbar!.frame = frame
-                
-            }, completion: { (success) in
-                self.toolbar!.removeFromSuperview()
-            })
-        }
     }
 }

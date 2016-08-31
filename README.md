@@ -1,9 +1,9 @@
 # NCKTextView
 
-[![CI Status](http://img.shields.io/travis/Chanricle King/CKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
-[![Version](https://img.shields.io/cocoapods/v/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
-[![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
-[![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![CI Status](http://img.shields.io/travis/Chanricle King/NCKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
+[![Version](https://img.shields.io/cocoapods/v/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![License](https://img.shields.io/cocoapods/l/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![Platform](https://img.shields.io/cocoapods/p/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 
 NCKTextView is a **very high-performance** rich editor. Because it's a **subclass of UITextView**, not UIWebView. All of code by **TextKit** framework.
 

@@ -45,8 +45,9 @@ class ViewController: UIViewController {
         textView.resignFirstResponder()
         
         let textAttributesJSON = NSUserDefaults.standardUserDefaults().valueForKey(textAttributesJSONKey)
-        
-        textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+        if textAttributesJSON != nil {
+            textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+        }
     }
     
     func alert(message: String) {
