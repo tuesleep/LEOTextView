@@ -27,6 +27,7 @@ class NCKTextStorage: NSTextStorage {
         
         var listPrefixItemLength = 0
         var deleteCurrentListPrefixItem = false
+        var isCheckedList = false
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
@@ -42,6 +43,7 @@ class NCKTextStorage: NSTextStorage {
                 
                 listPrefixItemLength = NSString(string: "\(number!). ").length
                 
+                // number changed.
                 number! += 1
                 listItemFillText = "\(number!). "
                 break
@@ -50,6 +52,11 @@ class NCKTextStorage: NSTextStorage {
                 listItemFillText = "\(listPrefixItem) "
                 
                 listPrefixItemLength = listItemFillText.length
+                
+                break
+            case .CheckedList:
+                isCheckedList = true
+                listPrefixItemLength = 1
                 
                 break
             default:
@@ -61,6 +68,8 @@ class NCKTextStorage: NSTextStorage {
                 if remainText == "" || remainText.rangeOfString("\n").location == 0 {
                     deleteCurrentListPrefixItem = true
                     listItemFillText = ""
+                    listPrefixItemLength = listItemFillText.length
+                    isCheckedList = false
                 }
             }
         }
@@ -72,13 +81,18 @@ class NCKTextStorage: NSTextStorage {
         let finalStr: NSString = "\(str)\(listItemFillText)"
             
         currentString.replaceCharactersInRange(range, withString: String(finalStr))
+
         edited(.EditedCharacters, range: range, changeInLength: (finalStr.length - range.length))
        
         endEditing()
         
+        if isCheckedList {
+            self.replaceCharactersInRange(NSMakeRange(range.location + finalStr.length, 0), withAttributedString: textView.checkListStringWithChecked(false))
+        }
+        
         // Selected range changed.
-        if listItemFillText != "" {
-            let selectedRangeLocation = textView.selectedRange.location + listItemFillText.length
+        if listPrefixItemLength > 0 {
+            let selectedRangeLocation = textView.selectedRange.location + listPrefixItemLength
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
         }
@@ -125,7 +139,8 @@ class NCKTextStorage: NSTextStorage {
             return .Title
         }
         
-        let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: location).0
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.string, location: location)
+        let objectLine = objectLineAndIndex.0
         let ns_objectLine = NSString(string: objectLine)
         
         let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
@@ -146,6 +161,13 @@ class NCKTextStorage: NSTextStorage {
             return .NumberedList
         }
         
+        if NSString(string: objectLineAndIndex.0).length > 0 {
+            let attributeValue = self.attribute(NSAttachmentAttributeName, atIndex: objectLineAndIndex.1, effectiveRange: nil)
+            if attributeValue != nil {
+                return .CheckedList
+            }
+        }
+        
         return .Body
     }
     
@@ -156,7 +178,7 @@ class NCKTextStorage: NSTextStorage {
             
             switch mode {
             case .Normal:
-                attrValue = textView.normalFont
+                attrValue = textView.font ?? UIFont.systemFontOfSize(17)
                 break
             case .Bold:
                 attrValue = textView.boldFont

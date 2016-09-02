@@ -43,7 +43,7 @@ extension NCKTextView {
     // MARK: - Toolbar buttons
     
     func enableBarButtonItems() -> [UIBarButtonItem] {
-        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+        let bundle = podBundle()
         
         let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
@@ -63,12 +63,12 @@ extension NCKTextView {
     
     func formatButtonAction() {
         if formatMenuView == nil {
-            let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+            let bundle = podBundle()
+            
             let nck_formatNavigationController = UIStoryboard(name: "NCKTextView", bundle: bundle).instantiateViewControllerWithIdentifier("NCKFormatNavigationController") as! UINavigationController
             
             nck_formatTableViewController = nck_formatNavigationController.viewControllers[0] as! NCKFormatTableViewController
             nck_formatTableViewController?.selectedCompletion = { [unowned self] (type) in
-                let currentParagraphType = self.currentParagraphType()
                 
                 switch type {
                 case .Title:
@@ -78,19 +78,27 @@ extension NCKTextView {
                     break
                 case .Body:
                     self.inputFontMode = .Normal
-                    if currentParagraphType == .Title {
+
+                    if self.currentParagraphType() == .Title {
                         self.changeCurrentParagraphTextWithInputFontMode(.Normal)
                     }
                     
                     break
+                case .CheckedList:
+                    self.checkedListParagraph()
+                    
+                    break
                 case .BulletedList:
                     self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "• ")
+                    
                     break
                 case .DashedList:
                     self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "- ")
+                    
                     break
                 case .NumberedList:
                     self.buttonActionWithOrderedOrUnordered(orderedList: true, listPrefix: "1. ")
+                    
                     break
                 }
             }
@@ -154,6 +162,8 @@ extension NCKTextView {
                 }, completion: { (success) in
                     toolbar!.removeFromSuperview()
             })
+            
+            formatMenuView?.removeFromSuperview()
         }
     }
 }
