@@ -120,11 +120,19 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         var nextLineBreakLocation = remainText.rangeOfString("\n").location
         nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: self.text).length : nextLineBreakLocation + selectedRange.location
         
-        performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return
+        }
+        
+        nck_textStorage.performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
     }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
-        performReplacementsForRange(selectedRange, mode: mode)
+        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
+            return
+        }
+        
+        nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
     }
     
     /**
@@ -151,9 +159,9 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     
                     if (currentFont.pointSize == self.titleFont.pointSize) {
                         fontType = "title"
-                    } else if (NCKTextUtil.isBoldFont(currentFont)) {
+                    } else if (NCKTextUtil.isBoldFont(currentFont, boldFontName: self.boldFont.fontName)) {
                         fontType = "bold"
-                    } else if (NCKTextUtil.isItalicFont(currentFont)) {
+                    } else if (NCKTextUtil.isItalicFont(currentFont, italicFontName: self.italicFont.fontName)) {
                         fontType = "italic"
                     }
                     
@@ -286,15 +294,10 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         
         if NCKTextUtil.isSelectedTextWithTextView(self) {
             let currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
-            
             let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
             
-            var isSpecialFont = currentFont.fontName == compareFontName
-            
-            if !isSpecialFont {
-                isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont) : NCKTextUtil.isItalicFont(currentFont))
-            }
-            
+            let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : NCKTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))
+
             if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
             } else {
@@ -399,29 +402,5 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
         
         return bundle!
-    }
-    
-    func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
-        if range.length > 0 {
-            // Add addition attributes.
-            var attrValue: UIFont!
-            
-            switch mode {
-            case .Normal:
-                attrValue = normalFont
-                break
-            case .Bold:
-                attrValue = boldFont
-                break
-            case .Italic:
-                attrValue = italicFont
-                break
-            case .Title:
-                attrValue = titleFont
-                break
-            }
-            
-            self.textStorage.addAttribute(NSFontAttributeName, value: attrValue, range: range)
-        }
     }
 }

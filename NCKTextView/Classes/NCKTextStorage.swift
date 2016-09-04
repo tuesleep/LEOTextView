@@ -11,6 +11,8 @@ class NCKTextStorage: NSTextStorage {
 
     var currentString: NSMutableAttributedString = NSMutableAttributedString()
     
+    var isChangeCharacters: Bool = false
+    
     // MARK: - Must override
     override var string: String {
         return currentString.string
@@ -72,13 +74,13 @@ class NCKTextStorage: NSTextStorage {
             }
         }
         
-        let inputModeFont = fontWithMode(textView.inputFontMode)
+        isChangeCharacters = true
         
         beginEditing()
         
         let finalStr: NSString = "\(str)\(listItemFillText)"
 
-        currentString.replaceCharactersInRange(range, withAttributedString: NSAttributedString(string: String(finalStr), attributes: [NSFontAttributeName: inputModeFont]))
+        currentString.replaceCharactersInRange(range, withString: String(finalStr))
 
         edited(.EditedCharacters, range: range, changeInLength: (finalStr.length - range.length))
        
@@ -112,6 +114,11 @@ class NCKTextStorage: NSTextStorage {
     // MARK: - Other overrided
     
     override func processEditing() {
+        if isChangeCharacters && editedRange.length > 0 {
+            isChangeCharacters = false
+            performReplacementsForRange(editedRange, mode: textView.inputFontMode)
+        }
+
         super.processEditing()
     }
 
@@ -164,24 +171,27 @@ class NCKTextStorage: NSTextStorage {
         return .Body
     }
     
-    func fontWithMode(mode: NCKInputFontMode) -> UIFont {
-        var attrValue: UIFont!
-        
-        switch mode {
-        case .Normal:
-            attrValue = textView.normalFont
-            break
-        case .Bold:
-            attrValue = textView.boldFont
-            break
-        case .Italic:
-            attrValue = textView.italicFont
-            break
-        case .Title:
-            attrValue = textView.titleFont
-            break
+    func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
+        if range.length > 0 {
+            // Add addition attributes.
+            var attrValue: UIFont!
+            
+            switch mode {
+            case .Normal:
+                attrValue = textView.normalFont
+                break
+            case .Bold:
+                attrValue = textView.boldFont
+                break
+            case .Italic:
+                attrValue = textView.italicFont
+                break
+            case .Title:
+                attrValue = textView.titleFont
+                break
+            }
+            
+            self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
         }
-        
-        return attrValue
     }
 }

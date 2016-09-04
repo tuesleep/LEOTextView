@@ -45,7 +45,11 @@ class NCKTextUtil: NSObject {
         return objectLineAndIndexWithString(string, location: location).0
     }
     
-    class func isBoldFont(font: UIFont) -> Bool {
+    class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
+        if font.fontName == boldFontName {
+            return true
+        }
+        
         let keywords = ["bold", "medium", "PingFangSC-Regular"]
         
         // At chinese language: PingFangSC-Light is normal, PingFangSC-Regular is bold
@@ -53,7 +57,11 @@ class NCKTextUtil: NSObject {
         return isSpecialFont(font, keywords: keywords)
     }
     
-    class func isItalicFont(font: UIFont) -> Bool {
+    class func isItalicFont(font: UIFont, italicFontName: String) -> Bool {
+        if font.fontName == italicFontName {
+            return true
+        }
+        
         let keywords = ["italic"]
         
         return isSpecialFont(font, keywords: keywords)
