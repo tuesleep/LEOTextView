@@ -22,7 +22,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     public var selectMenuItems: [NCKInputFontMode] = [.Bold, .Italic]
     
     // Custom fonts
-    
+    public var normalFont: UIFont = UIFont.systemFontOfSize(17)
     public var titleFont: UIFont = UIFont.boldSystemFontOfSize(18)
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(17)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(17)
@@ -51,10 +51,11 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         customTextView()
     }
     
-    public init(font: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) {
+    public init(normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) {
         super.init(frame: CGRectZero, textContainer: NSTextContainer())
         
-        self.font = font
+        self.font = normalFont
+        self.normalFont = normalFont
         self.titleFont = titleFont
         self.boldFont = boldFont
         self.italicFont = italicFont
@@ -65,8 +66,6 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     }
     
     func customTextView() {
-        self.font = UIFont.systemFontOfSize(17)
-
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapHandle(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
         
@@ -121,19 +120,11 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         var nextLineBreakLocation = remainText.rangeOfString("\n").location
         nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: self.text).length : nextLineBreakLocation + selectedRange.location
         
-        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
-            return
-        }
-        
-        nck_textStorage.performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
+        performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
     }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
-        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
-            return
-        }
-        
-        nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
+        performReplacementsForRange(selectedRange, mode: mode)
     }
     
     /**
@@ -231,7 +222,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
-        let tool_nck_textView = NCKTextView(font: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
+        let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
         
         attributes.forEach {
             let attribute = $0
@@ -267,7 +258,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     
     public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
         let fontType = attribute["fontType"] as? String
-        var currentFont = self.font ?? UIFont.systemFontOfSize(17)
+        var currentFont = self.normalFont
         
         if fontType == "title" {
             currentFont = titleFont
@@ -410,4 +401,27 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         return bundle!
     }
     
+    func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
+        if range.length > 0 {
+            // Add addition attributes.
+            var attrValue: UIFont!
+            
+            switch mode {
+            case .Normal:
+                attrValue = normalFont
+                break
+            case .Bold:
+                attrValue = boldFont
+                break
+            case .Italic:
+                attrValue = italicFont
+                break
+            case .Title:
+                attrValue = titleFont
+                break
+            }
+            
+            self.textStorage.addAttribute(NSFontAttributeName, value: attrValue, range: range)
+        }
+    }
 }
