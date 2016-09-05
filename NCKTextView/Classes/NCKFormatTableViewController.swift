@@ -25,9 +25,10 @@ class NCKFormatTableViewController: UITableViewController {
             selectedCompletion!(NCKInputParagraphType(rawValue: indexPath.row)!)
         }
         
+        /*
         cells.forEach { $0.accessoryType = .None }
-        
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+        */
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
