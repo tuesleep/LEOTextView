@@ -85,18 +85,34 @@ extension NCKTextView {
                     
                     break
                 case .CheckedList:
+                    if self.currentParagraphType() == .Title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                    }
+                    
                     self.checkedListParagraph()
                     
                     break
                 case .BulletedList:
+                    if self.currentParagraphType() == .Title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                    }
+                    
                     self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "• ")
                     
                     break
                 case .DashedList:
+                    if self.currentParagraphType() == .Title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                    }
+                    
                     self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "- ")
                     
                     break
                 case .NumberedList:
+                    if self.currentParagraphType() == .Title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                    }
+                    
                     self.buttonActionWithOrderedOrUnordered(orderedList: true, listPrefix: "1. ")
                     
                     break

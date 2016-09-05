@@ -45,6 +45,21 @@ class NCKTextUtil: NSObject {
         return objectLineAndIndexWithString(string, location: location).0
     }
     
+    class func lineEndIndexWithString(string: String, location: Int) -> Int {
+        let remainText: NSString = NSString(string: string).substringFromIndex(location)
+        var nextLineBreakLocation = remainText.rangeOfString("\n").location
+        nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: string).length : nextLineBreakLocation + location
+        
+        return nextLineBreakLocation
+    }
+    
+    class func paragraphRangeOfString(string: String, location: Int) -> NSRange {
+        let startLocation = objectLineAndIndexWithString(string, location: location).1
+        let endLocation = lineEndIndexWithString(string, location: location)
+        
+        return NSMakeRange(startLocation, endLocation - startLocation)
+    }
+    
     class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
         if font.fontName == boldFontName {
             return true
