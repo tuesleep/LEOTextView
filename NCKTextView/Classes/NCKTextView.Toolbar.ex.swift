@@ -21,6 +21,15 @@ var nck_formatTableViewController: NCKFormatTableViewController?
 var formatMenuView: UIView?
 
 extension NCKTextView {
+    
+    /**
+     Remove toolbar notifications
+     */
+    
+    public func removeToolbarNotifications() {
+         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     /**
      Enable the toolbar, binding the show and hide events.
      
@@ -137,6 +146,10 @@ extension NCKTextView {
     
     func keyboardWillShowOrHide(notification: NSNotification) {
         guard let info = notification.userInfo else {
+            return
+        }
+  
+        guard self.superview != nil else {
             return
         }
         
