@@ -72,6 +72,30 @@ class NCKTextUtil: NSObject {
         return NSString(string: string).substringWithRange(paragraphRangeOfString(string, location: location))
     }
     
+    /**
+     Just return ListTypes.
+     */
+    class func paragraphTypeWithObjectLine(objectLine: String) -> NCKInputParagraphType {
+        let objectLineRange = NSMakeRange(0, NSString(string: objectLine).length)
+        
+        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        if unorderedListMatches.count > 0 {
+            let firstChar = NSString(string: objectLine).substringToIndex(1)
+            if firstChar == "-" {
+                return .DashedList
+            } else {
+                return .BulletedList
+            }
+        }
+        
+        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        if orderedListMatches.count > 0 {
+            return .NumberedList
+        }
+        
+        return .Body
+    }
+    
     class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
         if font.fontName == boldFontName {
             return true

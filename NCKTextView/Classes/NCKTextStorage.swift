@@ -37,10 +37,12 @@ class NCKTextStorage: NSTextStorage {
             
             let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
             
-            switch currentParagraphTypeWithLocation(range.location) {
+            switch NCKTextUtil.paragraphTypeWithObjectLine(objectLine) {
             case .NumberedList:
                 var number = Int(objectLine.componentsSeparatedByString(".")[0])
-                
+                if number == nil {
+                    break
+                }
                 listPrefixItemLength = NSString(string: "\(number!). ").length
                 
                 // number changed.
@@ -70,12 +72,16 @@ class NCKTextStorage: NSTextStorage {
             }
         } else if NCKTextUtil.isBackspace(str) && range.length == 1 {
             var firstLine = NCKTextUtil.objectLineWithString(self.textView.text, location: range.location)
+            firstLine.appendContentsOf(" ")
+            
+            let separates = firstLine.componentsSeparatedByString(" ").count
             var firstLineRange = NSMakeRange(0, NSString(string: firstLine).length)
-            // FIXME: 判断方法有问题。
-            if NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 || NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 {
+    
+            if separates == 2 && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0) {
                 // Delete mark
                 deleteCurrentListPrefixItemByBackspace = true
-                listPrefixItemLength = firstLineRange.length
+                // a space char will deleting by edited operate, so we auto delete length needs subtraction one
+                listPrefixItemLength = firstLineRange.length - 1
                 listItemFillText = ""
             }
         }
@@ -109,9 +115,12 @@ class NCKTextStorage: NSTextStorage {
             self.deleteCharactersInRange(deleteRange)
         } else if deleteCurrentListPrefixItemByBackspace {
             // Delete list item characters.
-            let deleteLocation = range.location - listPrefixItemLength + 1
+            let deleteLocation = range.location - listPrefixItemLength
             
-            print("deleteLocation: \(deleteLocation)")
+            textView.selectedRange = NSRange(location: deleteLocation, length: 0)
+            
+            let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength)
+            self.deleteCharactersInRange(deleteRange)
         }
     }
     
@@ -157,27 +166,10 @@ class NCKTextStorage: NSTextStorage {
         }
         
         let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.string, location: location)
-        let paragraphString = NSString(string: self.string).substringWithRange(paragraphRange)
         
-        let objectLineRange = NSRange(location: 0, length: NSString(string: paragraphString).length)
-        
-        // Check matches.
-        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(paragraphString, options: [], range: objectLineRange)
-        if unorderedListMatches.count > 0 {
-            let firstChar = NSString(string: paragraphString).substringToIndex(1)
-            if firstChar == "-" {
-                return .DashedList
-            } else {
-                return .BulletedList
-            }
-        }
-        
-        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(paragraphString, options: [], range: objectLineRange)
-        if orderedListMatches.count > 0 {
-            return .NumberedList
-        }
-        
-        return .Body
+        let objectLine = NSString(string: self.string).substringWithRange(paragraphRange)
+
+        return NCKTextUtil.paragraphTypeWithObjectLine(objectLine)
     }
     
     func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
