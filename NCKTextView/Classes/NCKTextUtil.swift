@@ -43,15 +43,6 @@ class NCKTextUtil: NSObject {
             let currentObjectLine = textSplits[textSplits.count - 1]
             
             objectIndex = NSString(string: objectLine).length - NSString(string: currentObjectLine).length
-            
-            // Text in the end, fix out of bounds.
-            if objectIndex >= ns_string.length {
-                objectIndex = ns_string.length - 1
-            }
-            if objectIndex < 0 {
-                objectIndex = 0
-            }
-            
             objectLine = currentObjectLine
         }
         
