@@ -26,7 +26,7 @@ extension NCKTextView {
      Remove toolbar notifications
      */
     
-    public func RemoveToolbarNotifications() {
+    public func removeToolbarNotifications() {
          NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     

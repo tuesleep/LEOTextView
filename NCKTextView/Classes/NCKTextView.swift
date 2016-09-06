@@ -62,7 +62,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     }
     
     deinit {
-        self.RemoveToolbarNotifications()
+        self.removeToolbarNotifications()
     }
     
     func customTextView() {
