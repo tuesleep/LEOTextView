@@ -13,6 +13,9 @@ class NCKTextStorage: NSTextStorage {
     
     var isChangeCharacters: Bool = false
     
+    // Each dictionary in array. Key: location of NSRange, value: FontType
+    var returnKeyDeleteEffectRanges: [[Int: NCKInputFontMode]] = []
+    
     // MARK: - Must override
     override var string: String {
         return currentString.string
@@ -104,23 +107,49 @@ class NCKTextStorage: NSTextStorage {
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
         }
-    
+        
         if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
-            
-            textView.selectedRange = NSRange(location: deleteLocation - 1, length: 0)
-            
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
+            
             self.deleteCharactersInRange(deleteRange)
+            textView.selectedRange = NSRange(location: deleteLocation > 0 ? deleteLocation - 1 : 0, length: 0)
+            
+            let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: deleteRange.location + 1, effectiveRange: nil)
+            print("fontAfterDeleteText: \(fontAfterDeleteText)")
+            
+            returnKeyDeleteEffectRanges.removeAll()
+            var effectIndex = deleteRange.location + 1
+            while effectIndex < NSString(string: string).length {
+                guard let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil) as? UIFont else {
+                    continue
+                }
+                
+                var fontType: NCKInputFontMode = .Normal
+                
+                if fontAfterDeleteText.pointSize == textView.titleFont.pointSize {
+                    fontType = .Title
+                } else if NCKTextUtil.isBoldFont(fontAfterDeleteText, boldFontName: textView.boldFont.fontName) {
+                    fontType = .Bold
+                } else if NCKTextUtil.isItalicFont(fontAfterDeleteText, italicFontName: textView.italicFont.fontName) {
+                    fontType = .Italic
+                }
+                
+                returnKeyDeleteEffectRanges.append([effectIndex: fontType])
+                
+                effectIndex += 1
+            }
+            
+            // FIXME: Bug, when deleting punctuation, the text after this will format to current font style, the length equal punctuation's length.
+            
         } else if deleteCurrentListPrefixItemByBackspace {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
-            
-            textView.selectedRange = NSRange(location: deleteLocation, length: 0)
-            
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength)
+            
             self.deleteCharactersInRange(deleteRange)
+            textView.selectedRange = NSRange(location: deleteLocation, length: 0)
         }
     }
     

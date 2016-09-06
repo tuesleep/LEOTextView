@@ -14,7 +14,7 @@ public enum NCKInputParagraphType: Int {
     case Title, Body, BulletedList, DashedList, NumberedList
 }
 
-public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
+public class NCKTextView: UITextView {
     // MARK: - Public properties
     
     public var inputFontMode: NCKInputFontMode = .Normal
@@ -67,14 +67,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     }
     
     func customTextView() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapHandle(_:)))
-        self.addGestureRecognizer(tapGestureRecognizer)
-        
         customSelectionMenu()
-    }
-    
-    func tapHandle(sender: UITapGestureRecognizer) {
-        print("tap handle")
     }
     
     // MARK: - UIGestureRecognizer

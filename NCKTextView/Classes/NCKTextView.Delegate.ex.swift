@@ -18,7 +18,9 @@ extension NCKTextView: UITextViewDelegate {
                 return
             }
             
-            let currentParagraphStyle = self.textStorage.attribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil) as! NSParagraphStyle
+            guard let currentParagraphStyle = self.textStorage.attribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil) as? NSParagraphStyle else {
+                return
+            }
             
             if currentParagraphStyle.firstLineHeadIndent == 0 {
                 return
@@ -35,5 +37,35 @@ extension NCKTextView: UITextViewDelegate {
             // Set typing style
             typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
         }
+        
+        guard let nck_textStorage = textStorage as? NCKTextStorage else {
+            return
+        }
+        
+        nck_textStorage.returnKeyDeleteEffectRanges.forEach {
+            let location = $0.first!.0
+            let fontType = $0.first!.1
+            
+            var font = normalFont
+            
+            switch fontType {
+            case .Normal:
+                font = normalFont
+                break
+            case .Title:
+                font = titleFont
+                break
+            case .Bold:
+                font = boldFont
+                break
+            case .Italic:
+                font = italicFont
+                break
+            }
+            
+            textStorage.addAttributes([NSFontAttributeName: font], range: NSMakeRange(location, 1))
+        }
+        
+        nck_textStorage.returnKeyDeleteEffectRanges.removeAll()
     }
 }
