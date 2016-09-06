@@ -84,14 +84,6 @@ extension NCKTextView {
                     }
                     
                     break
-                case .CheckedList:
-                    if self.currentParagraphType() == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
-                    }
-                    
-                    self.checkedListParagraph()
-                    
-                    break
                 case .BulletedList:
                     if self.currentParagraphType() == .Title {
                         self.changeCurrentParagraphTextWithInputFontMode(.Normal)

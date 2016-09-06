@@ -60,6 +60,10 @@ class NCKTextUtil: NSObject {
         return NSMakeRange(startLocation, endLocation - startLocation)
     }
     
+    class func currentParagraphStringOfString(string: String, location: Int) -> String {
+        return NSString(string: string).substringWithRange(paragraphRangeOfString(string, location: location))
+    }
+    
     class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
         if font.fontName == boldFontName {
             return true

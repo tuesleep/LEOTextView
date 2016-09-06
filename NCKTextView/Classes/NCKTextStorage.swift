@@ -13,6 +13,8 @@ class NCKTextStorage: NSTextStorage {
     
     var isChangeCharacters: Bool = false
     
+    var resetFirstLineIndent = false
+    
     // MARK: - Must override
     override var string: String {
         return currentString.string
@@ -28,6 +30,8 @@ class NCKTextStorage: NSTextStorage {
         var listPrefixItemLength = 0
         var deleteCurrentListPrefixItem = false
         var isCheckedList = false
+        
+        resetFirstLineIndent = false
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
@@ -54,22 +58,19 @@ class NCKTextStorage: NSTextStorage {
                 listPrefixItemLength = listItemFillText.length
                 
                 break
-            case .CheckedList:
-                isCheckedList = true
-                listPrefixItemLength = 1
-                
-                break
             default:
                 break
             }
             
-            if listPrefixItemLength == NSString(string: objectLine).length {
-                let remainText: NSString = NSString(string: self.string).substringFromIndex(range.location)
-                if remainText == "" || remainText.rangeOfString("\n").location == 0 {
+            let separateds = objectLine.componentsSeparatedByString(" ")
+            if separateds.count >= 2 {
+                let objectLineRange = NSMakeRange(0, NSString(string: objectLine).length)
+                if separateds[1] == "" && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0) {
+                    // Delete mark
                     deleteCurrentListPrefixItem = true
-                    listItemFillText = ""
-                    listPrefixItemLength = listItemFillText.length
                     isCheckedList = false
+                    listPrefixItemLength = listItemFillText.length
+                    listItemFillText = ""
                 }
             }
         }
@@ -91,18 +92,30 @@ class NCKTextStorage: NSTextStorage {
         }
         
         // Selected range changed.
-        if listPrefixItemLength > 0 {
+        if NSString(string: listItemFillText).length > 0 {
             let selectedRangeLocation = textView.selectedRange.location + listPrefixItemLength
             
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
         }
     
         if deleteCurrentListPrefixItem {
-//            let deleteRange = NSRange(location: range.location - listPrefixItemLength, length: listPrefixItemLength)
+            // Delete list item characters.
+            let deleteLocation = range.location - listPrefixItemLength
+            
+            textView.selectedRange = NSRange(location: deleteLocation - 1, length: 0)
+            
+            let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
+            self.deleteCharactersInRange(deleteRange)
+            
+            resetFirstLineIndent = true
         }
     }
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
+        guard NSString(string: currentString.string).length > range.location else {
+            return
+        }
+        
         beginEditing()
         
         currentString.setAttributes(attrs, range: range)
@@ -139,16 +152,15 @@ class NCKTextStorage: NSTextStorage {
             return .Title
         }
         
-        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.string, location: location)
-        let objectLine = objectLineAndIndex.0
-        let ns_objectLine = NSString(string: objectLine)
+        let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.string, location: location)
+        let paragraphString = NSString(string: self.string).substringWithRange(paragraphRange)
         
-        let objectLineRange = NSRange(location: 0, length: NSString(string: objectLine).length)
+        let objectLineRange = NSRange(location: 0, length: NSString(string: paragraphString).length)
         
         // Check matches.
-        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(paragraphString, options: [], range: objectLineRange)
         if unorderedListMatches.count > 0 {
-            let firstChar = ns_objectLine.substringToIndex(1)
+            let firstChar = NSString(string: paragraphString).substringToIndex(1)
             if firstChar == "-" {
                 return .DashedList
             } else {
@@ -156,16 +168,9 @@ class NCKTextStorage: NSTextStorage {
             }
         }
         
-        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(paragraphString, options: [], range: objectLineRange)
         if orderedListMatches.count > 0 {
             return .NumberedList
-        }
-        
-        if NSString(string: objectLineAndIndex.0).length > 0 {
-            let attributeValue = self.attribute(NSAttachmentAttributeName, atIndex: objectLineAndIndex.1, effectiveRange: nil)
-            if attributeValue != nil {
-                return .CheckedList
-            }
         }
         
         return .Body

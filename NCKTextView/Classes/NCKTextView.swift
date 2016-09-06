@@ -11,7 +11,7 @@ public enum NCKInputFontMode: Int {
 }
 
 public enum NCKInputParagraphType: Int {
-    case Title, Body, CheckedList, BulletedList, DashedList, NumberedList
+    case Title, Body, BulletedList, DashedList, NumberedList
 }
 
 public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
@@ -47,6 +47,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         super.init(frame: frame, textContainer: nonenullTextContainer)
         
         textStorage.textView = self
+        delegate = self
         
         customTextView()
     }
@@ -140,10 +141,9 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         var attributesData: [Dictionary<String, AnyObject>] = []
         
         self.attributedText.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: self.text).length), options: .Reverse) { (attr, range, mutablePointer) in
-            
-            var attribute = [String: AnyObject]()
-            
             attr.keys.forEach {
+                var attribute = [String: AnyObject]()
+                
                 // Common name property
                 attribute["name"] = $0
                 // Common range property
@@ -178,6 +178,16 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     
                     attributesData.append(attribute)
                 }
+                // Paragraph indent saved
+                else if $0 == NSParagraphStyleAttributeName {
+                    let nck_textStorage = self.textStorage as! NCKTextStorage
+                    let paragraphType = nck_textStorage.currentParagraphTypeWithLocation(range.location)
+                    
+                    if paragraphType == .BulletedList || paragraphType == .DashedList || paragraphType == .NumberedList {
+                        attribute["listType"] = paragraphType.rawValue
+                        attributesData.append(attribute)
+                    }
+                }
             }
         }
         
@@ -192,6 +202,8 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
     
     public func setAttributeTextWithJSONString(jsonString: String) {
         let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
+        print(jsonDict)
         
         let text = jsonDict["text"] as! String
         self.attributedText = NSAttributedString(string: text, attributes: self.defaultAttributesForLoad)
@@ -220,6 +232,22 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     checkListAttachment.image = (checked == 0) ? checkedListIconImage! : checkedListCheckedIconImage!
                     self.textStorage.addAttribute(attributeName, value: checkListAttachment, range: range)
                 }
+            } else if attributeName == NSParagraphStyleAttributeName {
+                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
+                var listPrefixWidth: CGFloat = 0
+                
+                if listType == .NumberedList {
+                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
+                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
+                    listPrefixString.appendContentsOf(" ")
+                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                } else {
+                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                }
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.headIndent = listPrefixWidth
+                self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
     }
@@ -248,6 +276,22 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     
                     mutableAttributedString.addAttribute(attributeName, value: checkListTextAttachment, range: range)
                 }
+            } else if attributeName == NSParagraphStyleAttributeName {
+                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
+                var listPrefixWidth: CGFloat = 0
+                
+                if listType == .NumberedList {
+                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
+                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
+                    listPrefixString.appendContentsOf(" ")
+                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                } else {
+                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                }
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.headIndent = listPrefixWidth
+                mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
         
@@ -260,6 +304,13 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
         
         return attributes
+    }
+    
+    public class func textWithJSONString(jsonString: String) -> String {
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        
+        let textString = jsonDict["text"] as! String
+        return textString
     }
     
     public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
@@ -326,18 +377,6 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
         menuController.menuItems = menuItems
     }
     
-    func checkedListParagraph() {
-        var objectIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location).1
-        
-        if currentParagraphType() == .CheckedList {
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectIndex, length: 1), withString: "")
-            selectedRange = NSRange(location: selectedRange.location - 1, length: selectedRange.length)
-        } else {
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectIndex, length: 0), withAttributedString: checkListStringWithChecked(false))
-            selectedRange = NSRange(location: selectedRange.location + 1, length: selectedRange.length)
-        }
-    }
-    
     /**
         Create a new checklist string, a attributed string with icon image.
      */
@@ -385,6 +424,7 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.headIndent = 0
+            paragraphStyle.firstLineHeadIndent = 0
             self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
         }
 
@@ -399,7 +439,8 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
             let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
             
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width
+            paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width + normalFont.lineHeight
+            paragraphStyle.firstLineHeadIndent = normalFont.lineHeight
             self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
         }
     }
