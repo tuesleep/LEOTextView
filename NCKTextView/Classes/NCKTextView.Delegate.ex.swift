@@ -14,12 +14,18 @@ extension NCKTextView: UITextViewDelegate {
             return
         }
         
-        if nck_textStorage.resetFirstLineIndent {
+        let paragraphType = currentParagraphType()
+        if paragraphType != .BulletedList && paragraphType != .DashedList && paragraphType != .NumberedList {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.headIndent = 0
             paragraphStyle.firstLineHeadIndent = 0
-            typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont]
             
+            // Set paragraph style
+            let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
+            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
+            
+            // Set typing style
+            typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
         }
     }
 }

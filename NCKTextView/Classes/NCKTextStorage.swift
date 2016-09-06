@@ -13,8 +13,6 @@ class NCKTextStorage: NSTextStorage {
     
     var isChangeCharacters: Bool = false
     
-    var resetFirstLineIndent = false
-    
     // MARK: - Must override
     override var string: String {
         return currentString.string
@@ -28,9 +26,8 @@ class NCKTextStorage: NSTextStorage {
         var listItemFillText: NSString = ""
         
         var listPrefixItemLength = 0
-        var deleteCurrentListPrefixItem = false
-        
-        resetFirstLineIndent = false
+        var deleteCurrentListPrefixItemByReturn = false
+        var deleteCurrentListPrefixItemByBackspace = false
         
         // Unordered and Ordered list auto-complete support
         if NCKTextUtil.isReturn(str) {
@@ -66,10 +63,20 @@ class NCKTextStorage: NSTextStorage {
                 let objectLineRange = NSMakeRange(0, NSString(string: objectLine).length)
                 if separateds[1] == "" && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0) {
                     // Delete mark
-                    deleteCurrentListPrefixItem = true
+                    deleteCurrentListPrefixItemByReturn = true
                     listPrefixItemLength = listItemFillText.length
                     listItemFillText = ""
                 }
+            }
+        } else if NCKTextUtil.isBackspace(str) && range.length == 1 {
+            var firstLine = NCKTextUtil.objectLineWithString(self.textView.text, location: range.location)
+            var firstLineRange = NSMakeRange(0, NSString(string: firstLine).length)
+            // FIXME: 判断方法有问题。
+            if NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 || NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 {
+                // Delete mark
+                deleteCurrentListPrefixItemByBackspace = true
+                listPrefixItemLength = firstLineRange.length
+                listItemFillText = ""
             }
         }
         
@@ -92,7 +99,7 @@ class NCKTextStorage: NSTextStorage {
             textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
         }
     
-        if deleteCurrentListPrefixItem {
+        if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
             
@@ -100,8 +107,11 @@ class NCKTextStorage: NSTextStorage {
             
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
             self.deleteCharactersInRange(deleteRange)
+        } else if deleteCurrentListPrefixItemByBackspace {
+            // Delete list item characters.
+            let deleteLocation = range.location - listPrefixItemLength + 1
             
-            resetFirstLineIndent = true
+            print("deleteLocation: \(deleteLocation)")
         }
     }
     
@@ -133,7 +143,7 @@ class NCKTextStorage: NSTextStorage {
     
     func currentParagraphTypeWithLocation(location: Int) -> NCKInputParagraphType {
         if self.textView.text == "" {
-            return (self.textView.inputFontMode) == .Title ? .Title : .Body
+            return self.textView.inputFontMode == .Title ? .Title : .Body
         }
         
         var nck_location = location
