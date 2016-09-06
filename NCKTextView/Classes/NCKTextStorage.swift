@@ -75,7 +75,7 @@ class NCKTextStorage: NSTextStorage {
             firstLine.appendContentsOf(" ")
             
             let separates = firstLine.componentsSeparatedByString(" ").count
-            var firstLineRange = NSMakeRange(0, NSString(string: firstLine).length)
+            let firstLineRange = NSMakeRange(0, NSString(string: firstLine).length)
     
             if separates == 2 && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0) {
                 // Delete mark

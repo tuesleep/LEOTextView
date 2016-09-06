@@ -10,12 +10,20 @@ import Foundation
 
 extension NCKTextView: UITextViewDelegate {
     public func textViewDidChange(textView: UITextView) {
-        guard let nck_textStorage = textStorage as? NCKTextStorage else {
-            return
-        }
-        
         let paragraphType = currentParagraphType()
         if paragraphType != .BulletedList && paragraphType != .DashedList && paragraphType != .NumberedList {
+            let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
+            
+            if objectIndex >= NSString(string: text).length {
+                return
+            }
+            
+            let currentParagraphStyle = self.textStorage.attribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil) as! NSParagraphStyle
+            
+            if currentParagraphStyle.firstLineHeadIndent == 0 {
+                return
+            }
+            
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.headIndent = 0
             paragraphStyle.firstLineHeadIndent = 0

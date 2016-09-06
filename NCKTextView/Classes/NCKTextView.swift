@@ -245,8 +245,11 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
                 }
                 
+                let lineHeight = normalFont.lineHeight
+                
                 let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth
+                paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                paragraphStyle.firstLineHeadIndent = lineHeight
                 self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
@@ -289,8 +292,11 @@ public class NCKTextView: UITextView, UIGestureRecognizerDelegate {
                     listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
                 }
                 
+                let lineHeight = normalFont.lineHeight
+                
                 let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth
+                paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                paragraphStyle.firstLineHeadIndent = lineHeight
                 mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
