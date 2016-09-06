@@ -26,8 +26,10 @@ class NCKTextStorage: NSTextStorage {
     }
     
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
+        // New item of list by increase
         var listItemFillText: NSString = ""
         
+        // Current list item punctuation length
         var listPrefixItemLength = 0
         var deleteCurrentListPrefixItemByReturn = false
         var deleteCurrentListPrefixItemByBackspace = false
@@ -101,13 +103,6 @@ class NCKTextStorage: NSTextStorage {
        
         endEditing()
         
-        // Selected range changed.
-        if NSString(string: listItemFillText).length > 0 {
-            let selectedRangeLocation = textView.selectedRange.location + listPrefixItemLength
-            
-            textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
-        }
-        
         if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
@@ -153,6 +148,15 @@ class NCKTextStorage: NSTextStorage {
             
             self.deleteCharactersInRange(deleteRange)
             textView.selectedRange = NSRange(location: deleteLocation, length: 0)
+        } else {
+            // List item increase
+            let listItemTextLength = NSString(string: listItemFillText).length
+            
+            if listItemTextLength > 0 {
+                // Follow text cursor to new list item location.
+                let selectedRangeLocation = textView.selectedRange.location + listItemTextLength
+                textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
+            }
         }
     }
     

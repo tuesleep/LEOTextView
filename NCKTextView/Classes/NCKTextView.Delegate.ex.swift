@@ -70,24 +70,26 @@ extension NCKTextView: UITextViewDelegate {
             let location = $0.first!.0
             let fontType = $0.first!.1
             
-            var font = normalFont
-            
-            switch fontType {
-            case .Normal:
-                font = normalFont
-                break
-            case .Title:
-                font = titleFont
-                break
-            case .Bold:
-                font = boldFont
-                break
-            case .Italic:
-                font = italicFont
-                break
+            if location < NSString(string: textView.text).length {
+                var font = normalFont
+                
+                switch fontType {
+                case .Normal:
+                    font = normalFont
+                    break
+                case .Title:
+                    font = titleFont
+                    break
+                case .Bold:
+                    font = boldFont
+                    break
+                case .Italic:
+                    font = italicFont
+                    break
+                }
+                
+                textStorage.addAttributes([NSFontAttributeName: font], range: NSMakeRange(location, 1))
             }
-            
-            textStorage.addAttributes([NSFontAttributeName: font], range: NSMakeRange(location, 1))
         }
         
         nck_textStorage.returnKeyDeleteEffectRanges.removeAll()
