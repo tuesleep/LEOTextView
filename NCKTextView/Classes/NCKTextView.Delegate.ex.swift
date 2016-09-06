@@ -20,7 +20,6 @@ extension NCKTextView: UITextViewDelegate {
             paragraphStyle.firstLineHeadIndent = 0
             typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont]
             
-            
         }
     }
 }

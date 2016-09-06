@@ -29,7 +29,6 @@ class NCKTextStorage: NSTextStorage {
         
         var listPrefixItemLength = 0
         var deleteCurrentListPrefixItem = false
-        var isCheckedList = false
         
         resetFirstLineIndent = false
         
@@ -68,7 +67,6 @@ class NCKTextStorage: NSTextStorage {
                 if separateds[1] == "" && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0) {
                     // Delete mark
                     deleteCurrentListPrefixItem = true
-                    isCheckedList = false
                     listPrefixItemLength = listItemFillText.length
                     listItemFillText = ""
                 }
@@ -86,10 +84,6 @@ class NCKTextStorage: NSTextStorage {
         edited(.EditedCharacters, range: range, changeInLength: (finalStr.length - range.length))
        
         endEditing()
-        
-        if isCheckedList {
-            self.replaceCharactersInRange(NSMakeRange(range.location + finalStr.length, 0), withAttributedString: textView.checkListStringWithChecked(false))
-        }
         
         // Selected range changed.
         if NSString(string: listItemFillText).length > 0 {
@@ -199,4 +193,5 @@ class NCKTextStorage: NSTextStorage {
             self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
         }
     }
+
 }
