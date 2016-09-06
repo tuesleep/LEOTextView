@@ -116,29 +116,32 @@ class NCKTextStorage: NSTextStorage {
             self.deleteCharactersInRange(deleteRange)
             textView.selectedRange = NSRange(location: deleteLocation > 0 ? deleteLocation - 1 : 0, length: 0)
             
-            let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: deleteRange.location + 1, effectiveRange: nil)
-            print("fontAfterDeleteText: \(fontAfterDeleteText)")
-            
-            returnKeyDeleteEffectRanges.removeAll()
             var effectIndex = deleteRange.location + 1
-            while effectIndex < NSString(string: string).length {
-                guard let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil) as? UIFont else {
-                    continue
+            
+            if effectIndex < NSString(string: string).length {
+                let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil)
+                
+                returnKeyDeleteEffectRanges.removeAll()
+                
+                while effectIndex < NSString(string: string).length {
+                    guard let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil) as? UIFont else {
+                        continue
+                    }
+                    
+                    var fontType: NCKInputFontMode = .Normal
+                    
+                    if fontAfterDeleteText.pointSize == textView.titleFont.pointSize {
+                        fontType = .Title
+                    } else if NCKTextUtil.isBoldFont(fontAfterDeleteText, boldFontName: textView.boldFont.fontName) {
+                        fontType = .Bold
+                    } else if NCKTextUtil.isItalicFont(fontAfterDeleteText, italicFontName: textView.italicFont.fontName) {
+                        fontType = .Italic
+                    }
+                    
+                    returnKeyDeleteEffectRanges.append([effectIndex: fontType])
+                    
+                    effectIndex += 1
                 }
-                
-                var fontType: NCKInputFontMode = .Normal
-                
-                if fontAfterDeleteText.pointSize == textView.titleFont.pointSize {
-                    fontType = .Title
-                } else if NCKTextUtil.isBoldFont(fontAfterDeleteText, boldFontName: textView.boldFont.fontName) {
-                    fontType = .Bold
-                } else if NCKTextUtil.isItalicFont(fontAfterDeleteText, italicFontName: textView.italicFont.fontName) {
-                    fontType = .Italic
-                }
-                
-                returnKeyDeleteEffectRanges.append([effectIndex: fontType])
-                
-                effectIndex += 1
             }
             
             // FIXME: Bug, when deleting punctuation, the text after this will format to current font style, the length equal punctuation's length.
@@ -185,11 +188,14 @@ class NCKTextStorage: NSTextStorage {
         }
         
         var nck_location = location
-        if NSString(string: self.textView.text).length <= location {
+        if NSString(string: textView.text).length <= location {
             nck_location = location - 1
         }
         
-        let currentFont = self.textView.attributedText.attribute(NSFontAttributeName, atIndex: nck_location, effectiveRange: nil) as! UIFont
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: nck_location)
+        let titleFirstCharLocation = objectLineAndIndex.1
+        
+        let currentFont = self.textView.attributedText.attribute(NSFontAttributeName, atIndex: titleFirstCharLocation, effectiveRange: nil) as! UIFont
         if currentFont.pointSize == textView.titleFont.pointSize {
             return .Title
         }

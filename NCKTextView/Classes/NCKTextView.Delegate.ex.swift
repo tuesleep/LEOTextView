@@ -8,7 +8,31 @@
 
 import Foundation
 
+var nck_changeText = false
+
 extension NCKTextView: UITextViewDelegate {
+    
+    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        nck_changeText = true
+        return true
+    }
+    
+    public func textViewDidChangeSelection(textView: UITextView) {
+        if nck_changeText {
+            nck_changeText = false
+        } else {
+            // Just judge when text not changed, only section move
+            let type = currentParagraphType()
+            if type == .Title {
+                inputFontMode = .Title
+            } else if type == .Body {
+                inputFontMode = .Normal
+            } else {
+                inputFontMode = .Normal
+            }
+        }
+    }
+    
     public func textViewDidChange(textView: UITextView) {
         let paragraphType = currentParagraphType()
         if paragraphType != .BulletedList && paragraphType != .DashedList && paragraphType != .NumberedList {

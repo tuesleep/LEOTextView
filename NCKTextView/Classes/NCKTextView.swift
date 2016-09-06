@@ -70,33 +70,6 @@ public class NCKTextView: UITextView {
         customSelectionMenu()
     }
     
-    // MARK: - UIGestureRecognizer
-    
-    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
-        
-        guard let touch = touches.first else {
-            return
-        }
-        
-        let touchPoint = touch.locationInView(self)
-        
-        guard let touchTextRange = self.characterRangeAtPoint(touchPoint) else {
-            return
-        }
-        
-        let location = self.offsetFromPosition(self.beginningOfDocument, toPosition: touchTextRange.start)
-        
-        if let textAttachment = self.attributedText.attribute(NSAttachmentAttributeName, atIndex: location, effectiveRange: nil) as? NSTextAttachment {
-            // Get convert image text attachment
-            let checkedListTextAttachment = checkListTextAttachmentWithChecked(!(textAttachment.image == checkedListCheckedIconImage))
-            
-            self.textStorage.addAttribute(NSAttachmentAttributeName, value: checkedListTextAttachment, range: NSMakeRange(location, 1))
-  
-            let currentSelectedRange = selectedRange
-        }
-    }
-    
     func initBuiltInCheckedListImageIfNeeded() {
         if checkedListIconImage == nil || checkedListCheckedIconImage == nil {
             let bundle = podBundle()
