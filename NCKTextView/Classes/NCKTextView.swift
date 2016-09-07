@@ -17,6 +17,8 @@ public enum NCKInputParagraphType: Int {
 public class NCKTextView: UITextView {
     // MARK: - Public properties
     
+    public var nck_delegate: UITextViewDelegate?
+    
     public var inputFontMode: NCKInputFontMode = .Normal
     public var defaultAttributesForLoad: [String : AnyObject] = [:]
     public var selectMenuItems: [NCKInputFontMode] = [.Bold, .Italic]
@@ -48,6 +50,8 @@ public class NCKTextView: UITextView {
         
         textStorage.textView = self
         delegate = self
+        
+        undoManager?.disableUndoRegistration()
         
         customTextView()
     }

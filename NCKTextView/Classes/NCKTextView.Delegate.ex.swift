@@ -14,6 +14,11 @@ extension NCKTextView: UITextViewDelegate {
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         nck_changeText = true
+        
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldChangeTextInRange:replacementText:))) {
+            return nck_delegate!.textView!(textView, shouldChangeTextInRange: range, replacementText: text)
+        }
+        
         return true
     }
     
@@ -30,6 +35,10 @@ extension NCKTextView: UITextViewDelegate {
             } else {
                 inputFontMode = .Normal
             }
+        }
+        
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChangeSelection(_:))) {
+            nck_delegate!.textViewDidChangeSelection!(textView)
         }
     }
     
@@ -93,5 +102,50 @@ extension NCKTextView: UITextViewDelegate {
         }
         
         nck_textStorage.returnKeyDeleteEffectRanges.removeAll()
+        
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChange(_:))) {
+            nck_delegate!.textViewDidChange!(textView)
+        }
+    }
+    
+    public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewShouldBeginEditing(_:))) {
+            return nck_delegate!.textViewShouldBeginEditing!(textView)
+        }
+        
+        return true
+    }
+    
+    public func textViewDidBeginEditing(textView: UITextView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidBeginEditing(_:))) {
+            nck_delegate!.textViewDidBeginEditing!(textView)
+        }
+    }
+    
+    public func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewShouldEndEditing(_:))) {
+            return nck_delegate!.textViewShouldEndEditing!(textView)
+        }
+        return true
+    }
+    
+    public func textViewDidEndEditing(textView: UITextView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidEndEditing(_:))) {
+            nck_delegate!.textViewDidEndEditing!(textView)
+        }
+    }
+    
+    public func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldInteractWithTextAttachment:inRange:))) {
+            return nck_delegate!.textView!(textView, shouldInteractWithTextAttachment: textAttachment, inRange: characterRange)
+        }
+        return true
+    }
+    
+    public func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldInteractWithURL:inRange:))) {
+            return nck_delegate!.textView!(textView, shouldInteractWithURL: URL, inRange: characterRange)
+        }
+        return true
     }
 }

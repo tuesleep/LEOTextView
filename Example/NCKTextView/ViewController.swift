@@ -9,7 +9,7 @@
 import UIKit
 import NCKTextView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
     let textAttributesJSONKey = "textAttributesJSON"
     
     var textView: NCKTextView!
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         // Init and config TextView
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
         textView.enableToolbar()
+        textView.nck_delegate = self
         
         // add to View
         self.view.addSubview(textView)
@@ -54,6 +55,12 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "Saved", message: message, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidChangeSelection(textView: UITextView) {
+        print("text view font: \(textView.font)")
     }
 
 }
