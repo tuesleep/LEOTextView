@@ -76,7 +76,7 @@ extension NCKTextView {
             
             let nck_formatNavigationController = UIStoryboard(name: "NCKTextView", bundle: bundle).instantiateViewControllerWithIdentifier("NCKFormatNavigationController") as! UINavigationController
             
-            nck_formatTableViewController = nck_formatNavigationController.viewControllers[0] as! NCKFormatTableViewController
+            nck_formatTableViewController = nck_formatNavigationController.viewControllers[0] as? NCKFormatTableViewController
             nck_formatTableViewController?.selectedCompletion = { [unowned self] (type) in
                 
                 switch type {

@@ -14,7 +14,7 @@ class NCKFormatTableViewController: UITableViewController {
     
     typealias SelectionCompletion = (NCKInputParagraphType) -> Void
     
-    public var selectedCompletion: SelectionCompletion?
+    var selectedCompletion: SelectionCompletion?
     
     override func viewDidLoad() {
         super.viewDidLoad()

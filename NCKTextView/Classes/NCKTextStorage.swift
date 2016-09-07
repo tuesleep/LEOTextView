@@ -114,8 +114,6 @@ class NCKTextStorage: NSTextStorage {
             var effectIndex = deleteRange.location + 1
             
             if effectIndex < NSString(string: string).length {
-                let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil)
-                
                 returnKeyDeleteEffectRanges.removeAll()
                 
                 while effectIndex < NSString(string: string).length {
