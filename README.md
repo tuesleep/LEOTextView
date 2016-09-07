@@ -1,9 +1,9 @@
 # NCKTextView
 
-[![CI Status](http://img.shields.io/travis/Chanricle King/CKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
-[![Version](https://img.shields.io/cocoapods/v/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
-[![License](https://img.shields.io/cocoapods/l/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
-[![Platform](https://img.shields.io/cocoapods/p/CKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![CI Status](http://img.shields.io/travis/Chanricle King/NCKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
+[![Version](https://img.shields.io/cocoapods/v/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![License](https://img.shields.io/cocoapods/l/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
+[![Platform](https://img.shields.io/cocoapods/p/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 
 NCKTextView is a **very high-performance** rich editor. Because it's a **subclass of UITextView**, not UIWebView. All of code by **TextKit** framework.
 
@@ -13,7 +13,9 @@ NCKTextView is a **very high-performance** rich editor. Because it's a **subclas
 * Italic Text
 * Unordered List
 * Ordered List
-* Undo and Redo
+* List auto indentation
+* Undo and Redo (Developing)
+* Rich Text Copy & Paste (Developing)
 
 ## Usage
 Not extends any class, not EditorController and so on...
@@ -32,6 +34,14 @@ self.view.addSubview(textView)
 ```
 
 Done.
+
+## UITextViewDelegate
+
+Some feature I use delegate method, so NCKTextView is delegate self. And provide another delegate property named `nck_delegate`
+
+```swift
+public var nck_delegate: UITextViewDelegate?
+```
 
 ## Example
 
