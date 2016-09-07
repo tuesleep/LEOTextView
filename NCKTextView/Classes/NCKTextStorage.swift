@@ -95,7 +95,7 @@ class NCKTextStorage: NSTextStorage {
         
         beginEditing()
         
-        let finalStr: NSString = "\(str)\(listItemFillText)"
+        let finalStr: NSString = "\(str)"
 
         currentString.replaceCharactersInRange(range, withString: String(finalStr))
 
@@ -107,9 +107,9 @@ class NCKTextStorage: NSTextStorage {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
+            let deleteString = NSString(string: string).substringWithRange(deleteRange)
             
-            self.deleteCharactersInRange(deleteRange)
-            textView.selectedRange = NSRange(location: deleteLocation > 0 ? deleteLocation - 1 : 0, length: 0)
+            undoSupportDeleteByReturnRange(deleteRange, withString: deleteString, selectedRangeLocationMove: -listPrefixItemLength)
             
             var effectIndex = deleteRange.location + 1
             
@@ -137,23 +137,20 @@ class NCKTextStorage: NSTextStorage {
                 }
             }
             
-            // FIXME: Bug, when deleting punctuation, the text after this will format to current font style, the length equal punctuation's length.
-            
         } else if deleteCurrentListPrefixItemByBackspace {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength)
+            var deleteString = NSString(string: string).substringWithRange(deleteRange)
             
-            self.deleteCharactersInRange(deleteRange)
-            textView.selectedRange = NSRange(location: deleteLocation, length: 0)
+            undoSupportDeleteByBackspaceRange(deleteRange, withString: deleteString, selectedRangeLocationMove: -listPrefixItemLength)
         } else {
             // List item increase
             let listItemTextLength = NSString(string: listItemFillText).length
             
             if listItemTextLength > 0 {
                 // Follow text cursor to new list item location.
-                let selectedRangeLocation = textView.selectedRange.location + listItemTextLength
-                textView.selectedRange = NSRange(location: selectedRangeLocation, length: textView.selectedRange.length)
+                undoSupportAppendRange(NSMakeRange(range.location + NSString(string: str).length, 0), withString: String(listItemFillText), selectedRangeLocationMove: listItemTextLength)
             }
         }
     }
@@ -230,6 +227,51 @@ class NCKTextStorage: NSTextStorage {
             }
             
             self.addAttribute(NSFontAttributeName, value: attrValue, range: range)
+        }
+    }
+    
+    // MARK: - Undo & Redo support
+    
+    func undoSupportDeleteByReturnRange(replaceRange: NSRange, withString deleteString: String, selectedRangeLocationMove: Int) {
+        textView.undoManager?.prepareWithInvocationTarget(self).undoSupportDeleteByReturnRange(replaceRange, withString: deleteString, selectedRangeLocationMove: selectedRangeLocationMove)
+        
+        if textView.undoManager!.undoing {
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, 0), withString: deleteString)
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location - selectedRangeLocationMove, 0)
+        } else {
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
+            safeReplaceCharactersInRange(replaceRange, withString: "")
+        }
+    }
+    
+    func undoSupportDeleteByBackspaceRange(replaceRange: NSRange, withString deleteString: String, selectedRangeLocationMove: Int) {
+        textView.undoManager?.prepareWithInvocationTarget(self).undoSupportDeleteByBackspaceRange(replaceRange, withString: deleteString, selectedRangeLocationMove: -selectedRangeLocationMove)
+        
+        if textView.undoManager!.undoing {
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, 0), withString: deleteString)
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
+        } else {
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
+            safeReplaceCharactersInRange(replaceRange, withString: "")
+        }
+    }
+    
+    func undoSupportAppendRange(replaceRange: NSRange, withString appendString: String, selectedRangeLocationMove: Int) {
+        textView.undoManager?.prepareWithInvocationTarget(self).undoSupportAppendRange(replaceRange, withString: appendString, selectedRangeLocationMove: -selectedRangeLocationMove)
+        
+        if textView.undoManager!.undoing {
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, NSString(string: appendString).length), withString: "")
+        } else {
+            safeReplaceCharactersInRange(replaceRange, withString: appendString)
+            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
+        }
+    }
+    
+    func safeReplaceCharactersInRange(range: NSRange, withString str: String) {
+        let maxLength = range.location + range.length
+        if maxLength <= NSString(string: string).length {
+            replaceCharactersInRange(range, withString: str)
         }
     }
 

@@ -51,8 +51,6 @@ public class NCKTextView: UITextView {
         textStorage.textView = self
         delegate = self
         
-        undoManager?.disableUndoRegistration()
-        
         customTextView()
     }
     
