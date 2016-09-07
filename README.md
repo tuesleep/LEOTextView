@@ -13,7 +13,9 @@ NCKTextView is a **very high-performance** rich editor. Because it's a **subclas
 * Italic Text
 * Unordered List
 * Ordered List
-* Undo and Redo
+* List auto indentation
+* Undo and Redo (Developing)
+* Rich Text Copy & Paste (Developing)
 
 ## Usage
 Not extends any class, not EditorController and so on...
@@ -32,6 +34,14 @@ self.view.addSubview(textView)
 ```
 
 Done.
+
+## UITextViewDelegate
+
+Some feature I use delegate method, so NCKTextView is delegate self. And provide another delegate property named `nck_delegate`
+
+```swift
+public var nck_delegate: UITextViewDelegate?
+```
 
 ## Example
 
