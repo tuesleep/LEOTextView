@@ -141,7 +141,7 @@ class NCKTextStorage: NSTextStorage {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength)
-            var deleteString = NSString(string: string).substringWithRange(deleteRange)
+            let deleteString = NSString(string: string).substringWithRange(deleteRange)
             
             undoSupportDeleteByBackspaceRange(deleteRange, withString: deleteString, selectedRangeLocationMove: -listPrefixItemLength)
         } else {
