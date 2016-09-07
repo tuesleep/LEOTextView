@@ -9,7 +9,7 @@
 import UIKit
 import NCKTextView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
     let textAttributesJSONKey = "textAttributesJSON"
     
     var textView: NCKTextView!
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         // Init and config TextView
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
         textView.enableToolbar()
+        textView.nck_delegate = self
         
         // add to View
         self.view.addSubview(textView)
@@ -45,8 +46,9 @@ class ViewController: UIViewController {
         textView.resignFirstResponder()
         
         let textAttributesJSON = NSUserDefaults.standardUserDefaults().valueForKey(textAttributesJSONKey)
-        
-        textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+        if textAttributesJSON != nil {
+            textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+        }
     }
     
     func alert(message: String) {
@@ -54,5 +56,12 @@ class ViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidChangeSelection(textView: UITextView) {
+        print("text view font: \(textView.font)")
+    }
+
 }
 

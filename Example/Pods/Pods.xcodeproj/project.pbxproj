@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		11EE34B898D2E64876AA1A4B578B3248 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */; };
 		14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		27CBA65E7E207B7F583BA99DF7A861E2 /* NCKTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */; };
 		455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E28EEF7EDFB69EBF2949B2964F5D06C /* NCKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */; };
 		7383FFD9516B57F000D0F16DD86676B5 /* NCKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7ED6CC1988A67C5D25DA3E234352B /* NCKTextUtil.swift */; };
-		8FC6CBCCFBE7D6B2A8B7E634EF942E0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7E2CE34009D4F74207F974E2FA1FE /* Images.xcassets */; };
 		97366B7ADCC58DC8091C3802B14E2B09 /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F886E7749EAB30144FACD8129827253 /* NCKTextView.swift */; };
 		B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B904D57A1D7438FE00F360DE /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */; };
+		B910F25D1D75546000195F02 /* NCKTextView.Toolbar.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */; };
+		B91ED6531D7E49870078985A /* NCKTextView.Delegate.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */; };
 		B9A13A3926DF4BAB522AEB58A2EF540B /* NCKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */; };
 		C4DDCB61BEA75B84FAC3B09FC75F6D4C /* NCKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6643A1A5F8A7236370AA346AE81E0E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
@@ -47,7 +51,7 @@
 		2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-prefix.pch"; sourceTree = "<group>"; };
 		2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-umbrella.h"; sourceTree = "<group>"; };
 		2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
-		3DF7E2CE34009D4F74207F974E2FA1FE /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
 		5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -66,6 +70,9 @@
 		AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NCKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
+		B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKFormatTableViewController.swift; sourceTree = "<group>"; };
+		B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
+		B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextView.Delegate.ex.swift; sourceTree = "<group>"; };
 		B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Example-dummy.m"; sourceTree = "<group>"; };
 		B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
 		BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 		CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NCKTextView.storyboard; sourceTree = "<group>"; };
 		EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,14 +131,6 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		22921E70C3C01103940182FB2C4684B1 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				3DF7E2CE34009D4F74207F974E2FA1FE /* Images.xcassets */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +163,9 @@
 				C8F9C1AE809013570858D8EDCA46DFFA /* NCKTextStorage.swift */,
 				5EB7ED6CC1988A67C5D25DA3E234352B /* NCKTextUtil.swift */,
 				7F886E7749EAB30144FACD8129827253 /* NCKTextView.swift */,
+				B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */,
+				B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */,
+				B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,12 +196,13 @@
 			path = "Target Support Files/Pods-NCKTextView_Tests";
 			sourceTree = "<group>";
 		};
-		6B17EDEE9EDFCA797BE5F1073E1781E9 /* NCKTextView */ = {
+		69494C3398C92EB3CD3195D0CB8391B6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				22921E70C3C01103940182FB2C4684B1 /* Assets */,
+				3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */,
+				E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */,
 			);
-			path = NCKTextView;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -238,10 +242,18 @@
 			path = "Target Support Files/Pods-NCKTextView_Example";
 			sourceTree = "<group>";
 		};
+		A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				69494C3398C92EB3CD3195D0CB8391B6 /* Assets */,
+			);
+			path = NCKTextView;
+			sourceTree = "<group>";
+		};
 		B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6B17EDEE9EDFCA797BE5F1073E1781E9 /* NCKTextView */,
+				A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -347,7 +359,7 @@
 			buildPhases = (
 				3E36371FDF71B77EEEEDA1C20964AC8F /* Sources */,
 				C4BB032EE72C7B58727096513A4134C0 /* Frameworks */,
-				BCA0C5E88979235C43E461E9DCEE28A4 /* Resources */,
+				B5A4BEDA9F369EA311F2D502CA89F0EB /* Resources */,
 			);
 			buildRules = (
 			);
@@ -413,11 +425,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BCA0C5E88979235C43E461E9DCEE28A4 /* Resources */ = {
+		B5A4BEDA9F369EA311F2D502CA89F0EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FC6CBCCFBE7D6B2A8B7E634EF942E0E /* Images.xcassets in Resources */,
+				11EE34B898D2E64876AA1A4B578B3248 /* Images.xcassets in Resources */,
+				27CBA65E7E207B7F583BA99DF7A861E2 /* NCKTextView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +459,10 @@
 				F2047F13C28BF43BEAC1B25DA10A6664 /* NCKTextStorage.swift in Sources */,
 				7383FFD9516B57F000D0F16DD86676B5 /* NCKTextUtil.swift in Sources */,
 				6E28EEF7EDFB69EBF2949B2964F5D06C /* NCKTextView-dummy.m in Sources */,
+				B910F25D1D75546000195F02 /* NCKTextView.Toolbar.ex.swift in Sources */,
+				B91ED6531D7E49870078985A /* NCKTextView.Delegate.ex.swift in Sources */,
 				97366B7ADCC58DC8091C3802B14E2B09 /* NCKTextView.swift in Sources */,
+				B904D57A1D7438FE00F360DE /* NCKFormatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
