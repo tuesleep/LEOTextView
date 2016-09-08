@@ -103,6 +103,10 @@ class NCKTextStorage: NSTextStorage {
        
         endEditing()
         
+        if textView.undoManager!.redoing {
+            return
+        }
+        
         if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
