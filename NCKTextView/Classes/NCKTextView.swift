@@ -31,6 +31,8 @@ public class NCKTextView: UITextView {
     
     public var checkedListIconImage: UIImage?, checkedListCheckedIconImage: UIImage?
     
+    var nck_textStorage: NCKTextStorage!
+    
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
@@ -49,7 +51,10 @@ public class NCKTextView: UITextView {
         super.init(frame: frame, textContainer: nonenullTextContainer)
         
         textStorage.textView = self
+        
+        // TextView property set
         delegate = self
+        nck_textStorage = textStorage
         
         customTextView()
     }
@@ -84,22 +89,15 @@ public class NCKTextView: UITextView {
     // MARK: Public APIs
     
     public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
-        let paragraphLocation = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location).1
-        let nextLineBreakLocation = NCKTextUtil.lineEndIndexWithString(self.text, location: selectedRange.location)
+        let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
+        let currentMode = inputModeWithIndex(paragraphRange.location)
         
-        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
-            return
-        }
-        
-        nck_textStorage.performReplacementsForRange(NSRange(location: paragraphLocation, length: nextLineBreakLocation - paragraphLocation), mode: mode)
+        nck_textStorage.undoSupportChangeWithRange(paragraphRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
-        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
-            return
-        }
-        
-        nck_textStorage.performReplacementsForRange(selectedRange, mode: mode)
+        let currentMode = inputModeWithIndex(selectedRange.location)
+        nck_textStorage.undoSupportChangeWithRange(selectedRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
     
     /**
@@ -148,8 +146,7 @@ public class NCKTextView: UITextView {
                 }
                 // Paragraph indent saved
                 else if $0 == NSParagraphStyleAttributeName {
-                    let nck_textStorage = self.textStorage as! NCKTextStorage
-                    let paragraphType = nck_textStorage.currentParagraphTypeWithLocation(range.location)
+                    let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
                     
                     if paragraphType == .BulletedList || paragraphType == .DashedList || paragraphType == .NumberedList {
                         attribute["listType"] = paragraphType.rawValue
@@ -303,11 +300,23 @@ public class NCKTextView: UITextView {
     }
     
     public func currentParagraphType() -> NCKInputParagraphType {
-        guard let nck_textStorage = self.textStorage as? NCKTextStorage else {
-            return .Body
+        return nck_textStorage.currentParagraphTypeWithLocation(selectedRange.location)
+    }
+    
+    public func inputModeWithIndex(index: Int) -> NCKInputFontMode {
+        guard let currentFont = nck_textStorage.attribute(NSFontAttributeName, atIndex: index, effectiveRange: nil) as? UIFont else {
+            return .Normal
         }
         
-        return nck_textStorage.currentParagraphTypeWithLocation(selectedRange.location)
+        if currentFont.pointSize == titleFont.pointSize {
+            return .Title
+        } else if NCKTextUtil.isBoldFont(currentFont, boldFontName: boldFont.fontName) {
+            return .Bold
+        } else if NCKTextUtil.isItalicFont(currentFont, italicFontName: italicFont.fontName) {
+            return .Italic
+        } else {
+            return .Normal
+        }
     }
     
     func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
@@ -383,39 +392,31 @@ public class NCKTextView: UITextView {
         let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
         let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
         
-        if (isCurrentOrderedList || isCurrentUnorderedList) {
+        let isListNow = (isCurrentOrderedList || isCurrentUnorderedList)
+        let isTransformToList = (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList)
+        
+        if isListNow {
             // Already list paragraph.
-            let numberLength = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).length + 1
-            
-            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, numberLength)
-            
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: numberLength), withString: "")
-            
-            self.selectedRange = NSRange(location: selectedRange.location - moveLocation, length: selectedRange.length)
+            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+            let listPrefixLength = listPrefixString.length
+            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, listPrefixLength)
             
             // Handle head indent of paragraph.
             let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
+            nck_textStorage.undoSupportResetIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
             
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.headIndent = 0
-            paragraphStyle.firstLineHeadIndent = 0
-            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
+            nck_textStorage.undoSupportReplaceRange(NSRange(location: objectLineAndIndex.1, length: listPrefixLength), withAttributedString: NSAttributedString(string: String(listPrefixString)), selectedRangeLocationMove: -moveLocation)
         }
 
-        if (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList) {
+        if isTransformToList {
             // Become list paragraph.
-            self.textStorage.replaceCharactersInRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad))
-            
             let listPrefixString = NSString(string: listPrefix)
-            self.selectedRange = NSRange(location: self.selectedRange.location + listPrefixString.length, length: self.selectedRange.length)
+            
+            nck_textStorage.undoSupportAppendRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad), selectedRangeLocationMove: listPrefixString.length)
             
             // Handle head indent of paragraph.
             let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width + normalFont.lineHeight
-            paragraphStyle.firstLineHeadIndent = normalFont.lineHeight
-            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
+            nck_textStorage.undoSupportMadeIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
         }
     }
     
