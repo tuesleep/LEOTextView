@@ -316,7 +316,7 @@ public class NCKTextView: UITextView {
     }
     
     public func inputModeWithIndex(index: Int) -> NCKInputFontMode {
-        guard let currentFont = nck_textStorage.attribute(NSFontAttributeName, atIndex: index, effectiveRange: nil) as? UIFont else {
+        guard let currentFont = nck_textStorage.safeAttribute(NSFontAttributeName, atIndex: index, effectiveRange: nil, defaultValue: nil) as? UIFont else {
             return .Normal
         }
         
@@ -337,7 +337,7 @@ public class NCKTextView: UITextView {
         }
         
         if NCKTextUtil.isSelectedTextWithTextView(self) {
-            let currentFont = self.attributedText.attribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as! UIFont
+            let currentFont = self.attributedText.safeAttribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil, defaultValue: normalFont) as! UIFont
             let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
             
             let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : NCKTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))

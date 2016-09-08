@@ -51,7 +51,7 @@ extension NCKTextView: UITextViewDelegate {
                 return
             }
             
-            guard let currentParagraphStyle = self.textStorage.attribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil) as? NSParagraphStyle else {
+            guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
                 return
             }
             

@@ -109,7 +109,7 @@ class NCKTextStorage: NSTextStorage {
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
             let deleteString = NSString(string: string).substringWithRange(deleteRange)
             
-            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -listPrefixItemLength)
+            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -(deleteLocation > 0 ? listPrefixItemLength + 1 : listPrefixItemLength))
             
             var effectIndex = deleteRange.location + 1
             
@@ -117,7 +117,7 @@ class NCKTextStorage: NSTextStorage {
                 returnKeyDeleteEffectRanges.removeAll()
                 
                 while effectIndex < NSString(string: string).length {
-                    guard let fontAfterDeleteText = self.attribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil) as? UIFont else {
+                    guard let fontAfterDeleteText = self.safeAttribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil, defaultValue: nil) as? UIFont else {
                         continue
                     }
                     
@@ -194,7 +194,7 @@ class NCKTextStorage: NSTextStorage {
         let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: nck_location)
         let titleFirstCharLocation = objectLineAndIndex.1
         
-        let currentFont = self.textView.attributedText.attribute(NSFontAttributeName, atIndex: titleFirstCharLocation, effectiveRange: nil) as! UIFont
+        let currentFont = self.textView.attributedText.safeAttribute(NSFontAttributeName, atIndex: titleFirstCharLocation, effectiveRange: nil, defaultValue: textView.normalFont) as! UIFont
         if currentFont.pointSize == textView.titleFont.pointSize {
             return .Title
         }
@@ -308,33 +308,6 @@ class NCKTextStorage: NSTextStorage {
         }
         
         safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
-    }
-    
-    func safeReplaceCharactersInRange(range: NSRange, withString str: String) {
-        if isSafeRange(range) {
-            replaceCharactersInRange(range, withString: str)
-        }
-    }
-    
-    func safeReplaceCharactersInRange(range: NSRange, withAttributedString attrStr: NSAttributedString) {
-        if isSafeRange(range) {
-            replaceCharactersInRange(range, withAttributedString: attrStr)
-        }
-    }
-
-    func safeAddAttributes(attrs: [String : AnyObject], range: NSRange) {
-        if isSafeRange(range) {
-            addAttributes(attrs, range: range)
-        }
-    }
-    
-    func isSafeRange(range: NSRange) -> Bool {
-        let maxLength = range.location + range.length
-        if maxLength <= NSString(string: string).length {
-            return true
-        } else {
-            return false
-        }
     }
     
 }
