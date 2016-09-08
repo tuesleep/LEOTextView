@@ -33,6 +33,10 @@ public class NCKTextView: UITextView {
     
     var nck_textStorage: NCKTextStorage!
     
+    var currentAttributesDataWithPasteboard: [Dictionary<String, AnyObject>]?
+    
+    let nck_attributesDataWithPasteboardUserDefaultKey = "nck_attributesDataWithPasteboardUserDefaultKey"
+    
     // MARK: - Init methods
     
     required public init?(coder aDecoder: NSCoder) {
@@ -100,13 +104,10 @@ public class NCKTextView: UITextView {
         nck_textStorage.undoSupportChangeWithRange(selectedRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
     
-    /**
-        All of attributes about current text by JSON
-     */
-    public func textAttributesJSON() -> String {
+    public func textAttributesDataWithAttributedString(attributedString: NSAttributedString) -> [Dictionary<String, AnyObject>] {
         var attributesData: [Dictionary<String, AnyObject>] = []
         
-        self.attributedText.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: self.text).length), options: .Reverse) { (attr, range, mutablePointer) in
+        attributedString.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: attributedString.string).length), options: .Reverse) { (attr, range, mutablePointer) in
             attr.keys.forEach {
                 var attribute = [String: AnyObject]()
                 
@@ -134,7 +135,7 @@ public class NCKTextView: UITextView {
                     
                     attributesData.append(attribute)
                 }
-                // Handle checkedList icon saved.
+                    // Handle checkedList icon saved.
                 else if $0 == NSAttachmentAttributeName {
                     let textAttachment = attr[$0] as! NSTextAttachment
                     
@@ -144,7 +145,7 @@ public class NCKTextView: UITextView {
                     
                     attributesData.append(attribute)
                 }
-                // Paragraph indent saved
+                    // Paragraph indent saved
                 else if $0 == NSParagraphStyleAttributeName {
                     let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
                     
@@ -156,19 +157,20 @@ public class NCKTextView: UITextView {
             }
         }
         
-        var jsonDict: [String: AnyObject] = [:]
+        return attributesData
+    }
+    
+    /**
+        All of attributes about current text by JSON
+     */
+    public func textAttributesJSON() -> String {
+        var attributesData: [Dictionary<String, AnyObject>] = textAttributesDataWithAttributedString(attributedText)
         
-        jsonDict["text"] = self.text
-        jsonDict["attributes"] = attributesData
-        
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(jsonDict, options: .PrettyPrinted)
-        return String(data: jsonData, encoding: NSUTF8StringEncoding)!
+        return NCKTextView.jsonStringWithAttributesData(attributesData, text: text)
     }
     
     public func setAttributeTextWithJSONString(jsonString: String) {
         let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
-        
-        print(jsonDict)
         
         let text = jsonDict["text"] as! String
         self.attributedText = NSAttributedString(string: text, attributes: self.defaultAttributesForLoad)
@@ -275,6 +277,16 @@ public class NCKTextView: UITextView {
         let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
         
         return attributes
+    }
+    
+    public class func jsonStringWithAttributesData(attributesData: [Dictionary<String, AnyObject>], text currentText: String) -> String {
+        var jsonDict: [String: AnyObject] = [:]
+        
+        jsonDict["text"] = currentText
+        jsonDict["attributes"] = attributesData
+        
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(jsonDict, options: .PrettyPrinted)
+        return String(data: jsonData, encoding: NSUTF8StringEncoding)!
     }
     
     public class func textWithJSONString(jsonString: String) -> String {
@@ -433,4 +445,83 @@ public class NCKTextView: UITextView {
         
         return bundle!
     }
+    
+    // MARK: - Cut & Copy & Paste support
+    
+    func preHandleWhenCutOrCopy() {
+        let copyText = NSString(string: text).substringWithRange(selectedRange)
+        
+        currentAttributesDataWithPasteboard = textAttributesDataWithAttributedString(attributedText.attributedSubstringFromRange(selectedRange))
+        
+        if currentAttributesDataWithPasteboard != nil {
+            NSUserDefaults.standardUserDefaults().setValue(NCKTextView.jsonStringWithAttributesData(currentAttributesDataWithPasteboard!, text: copyText), forKey: nck_attributesDataWithPasteboardUserDefaultKey)
+        }
+    }
+    
+    public override func cut(sender: AnyObject?) {
+        preHandleWhenCutOrCopy()
+        
+        super.cut(sender)
+    }
+    
+    public override func copy(sender: AnyObject?) {
+        preHandleWhenCutOrCopy()
+        
+        super.copy(sender)
+    }
+    
+    public override func paste(sender: AnyObject?) {
+        guard let pasteText = UIPasteboard.generalPasteboard().string else {
+            return
+        }
+        let pasteLocation = selectedRange.location
+        
+        super.paste(sender)
+        
+        if currentAttributesDataWithPasteboard == nil {
+            if let attributesDataJsonString = NSUserDefaults.standardUserDefaults().valueForKey(nck_attributesDataWithPasteboardUserDefaultKey) as? String {
+                let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(attributesDataJsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+                let propertiesWithText = jsonDict["text"] as! String
+                if propertiesWithText != pasteText {
+                    return
+                }
+                
+                currentAttributesDataWithPasteboard = NCKTextView.attributesWithJSONString(attributesDataJsonString)
+            }
+        }
+        
+        // Drawing properties about text
+        currentAttributesDataWithPasteboard?.forEach {
+            let attribute = $0
+            let attributeName = attribute["name"] as! String
+            let range = NSRange(location: (attribute["location"] as! Int) + pasteLocation, length: attribute["length"] as! Int)
+            
+            if attributeName == NSFontAttributeName {
+                let currentFont = fontOfTypeWithAttribute(attribute)
+                
+                self.nck_textStorage.safeAddAttributes([attributeName: currentFont], range: range)
+            }
+        }
+        
+        // Drawing paragraph by line head judgement
+        var lineLocation = pasteLocation
+        pasteText.enumerateLines { [unowned self] (line, stop) in
+            let lineLength = NSString(string: line).length
+            
+            if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
+                NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+                let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: self.normalFont]).width + self.normalFont.lineHeight
+                paragraphStyle.firstLineHeadIndent = self.normalFont.lineHeight
+                
+                self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))
+            }
+            
+            // Don't lose \n
+            lineLocation += (lineLength + 1)
+        }
+    }
+    
 }
