@@ -164,7 +164,7 @@ public class NCKTextView: UITextView {
         All of attributes about current text by JSON
      */
     public func textAttributesJSON() -> String {
-        var attributesData: [Dictionary<String, AnyObject>] = textAttributesDataWithAttributedString(attributedText)
+        let attributesData: [Dictionary<String, AnyObject>] = textAttributesDataWithAttributedString(attributedText)
         
         return NCKTextView.jsonStringWithAttributesData(attributesData, text: text)
     }
