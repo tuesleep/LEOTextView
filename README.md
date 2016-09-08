@@ -14,7 +14,7 @@ NCKTextView is a **very high-performance** rich editor. Because it's a **subclas
 * Unordered List
 * Ordered List
 * List auto indentation
-* Undo and Redo (Developing)
+* Undo and Redo
 * Rich Text Copy & Paste (Developing)
 
 ## Usage
