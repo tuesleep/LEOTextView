@@ -180,6 +180,7 @@ public class NCKTextView: UITextView {
     
     public func setAttributesWithJSONString(jsonString: String) {
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
+        let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
         
         attributes.forEach {
             let attribute = $0
@@ -204,8 +205,7 @@ public class NCKTextView: UITextView {
                 var listPrefixWidth: CGFloat = 0
                 
                 if listType == .NumberedList {
-                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
-                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
+                    var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
                     listPrefixString.appendContentsOf(" ")
                     listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
                 } else {
@@ -226,6 +226,7 @@ public class NCKTextView: UITextView {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
+        let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
         let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
         
         attributes.forEach {
@@ -251,8 +252,7 @@ public class NCKTextView: UITextView {
                 var listPrefixWidth: CGFloat = 0
                 
                 if listType == .NumberedList {
-                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
-                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
+                    var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
                     listPrefixString.appendContentsOf(" ")
                     listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
                 } else {
