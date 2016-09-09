@@ -168,25 +168,29 @@ public class NCKTextView: UITextView {
             
             if attributeName == NSFontAttributeName {
                 let currentFont = fontOfTypeWithAttribute(attribute)
-                self.textStorage.addAttribute(attributeName, value: currentFont, range: range)
+                textStorage.addAttribute(attributeName, value: currentFont, range: range)
             } else if attributeName == NSParagraphStyleAttributeName {
-                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
-                var listPrefixWidth: CGFloat = 0
+                let listTypeRawValue = attribute["listType"]
                 
-                if listType == .NumberedList {
-                    var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
-                    listPrefixString.appendContentsOf(" ")
-                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
-                } else {
-                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                if listTypeRawValue != nil {
+                    let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
+                    var listPrefixWidth: CGFloat = 0
+                    
+                    if listType == .NumberedList {
+                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
+                        listPrefixString.appendContentsOf(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    } else {
+                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    }
+                    
+                    let lineHeight = normalFont.lineHeight
+                    
+                    let paragraphStyle = NSMutableParagraphStyle()
+                    paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                    paragraphStyle.firstLineHeadIndent = lineHeight
+                    textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
                 }
-                
-                let lineHeight = normalFont.lineHeight
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth + lineHeight
-                paragraphStyle.firstLineHeadIndent = lineHeight
-                self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
     }
@@ -196,7 +200,6 @@ public class NCKTextView: UITextView {
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
         let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
-        let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
         
         attributes.forEach {
             let attribute = $0
@@ -204,27 +207,40 @@ public class NCKTextView: UITextView {
             let range  = NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int)
             
             if attributeName == NSFontAttributeName {
-                let currentFont = tool_nck_textView.fontOfTypeWithAttribute(attribute)
+                let fontType = attribute["fontType"] as? String
+                var currentFont = normalFont
+                
+                if fontType == "title" {
+                    currentFont = titleFont
+                } else if fontType == "bold" {
+                    currentFont = boldFont
+                } else if fontType == "italic" {
+                    currentFont = italicFont
+                }
                 
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: range)
             } else if attributeName == NSParagraphStyleAttributeName {
-                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
-                var listPrefixWidth: CGFloat = 0
-                
-                if listType == .NumberedList {
-                    var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
-                    listPrefixString.appendContentsOf(" ")
-                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
-                } else {
-                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                let listTypeRawValue = attribute["listType"]
+
+                if listTypeRawValue != nil {
+                    let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
+                    var listPrefixWidth: CGFloat = 0
+                    
+                    if listType == .NumberedList {
+                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
+                        listPrefixString.appendContentsOf(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    } else {
+                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    }
+                    
+                    let lineHeight = normalFont.lineHeight
+                    
+                    let paragraphStyle = NSMutableParagraphStyle()
+                    paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                    paragraphStyle.firstLineHeadIndent = lineHeight
+                    mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
                 }
-                
-                let lineHeight = normalFont.lineHeight
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth + lineHeight
-                paragraphStyle.firstLineHeadIndent = lineHeight
-                mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
             }
         }
         
@@ -258,7 +274,7 @@ public class NCKTextView: UITextView {
     
     public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
         let fontType = attribute["fontType"] as? String
-        var currentFont = self.normalFont
+        var currentFont = normalFont
         
         if fontType == "title" {
             currentFont = titleFont

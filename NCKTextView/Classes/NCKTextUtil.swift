@@ -7,7 +7,7 @@
 //
 
 class NCKTextUtil: NSObject {
-    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*•] ", options: .CaseInsensitive)
+    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*••∙●] ", options: .CaseInsensitive)
     static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. ", options: .CaseInsensitive)
     static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .CaseInsensitive)
     
