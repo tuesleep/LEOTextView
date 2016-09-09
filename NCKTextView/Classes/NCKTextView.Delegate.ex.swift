@@ -44,35 +44,48 @@ extension NCKTextView: UITextViewDelegate {
     
     public func textViewDidChange(textView: UITextView) {
         let paragraphType = currentParagraphType()
-        if paragraphType != .BulletedList && paragraphType != .DashedList && paragraphType != .NumberedList {
-            let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
-            
-            if objectIndex >= NSString(string: text).length {
-                return
-            }
-            
-            guard let currentParagraphStyle = self.textStorage.attribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil) as? NSParagraphStyle else {
-                return
-            }
-            
+        
+        let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
+        
+        if objectIndex >= NSString(string: text).length {
+            return
+        }
+        
+        guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
+            return
+        }
+        
+        var paragraphStyle: NSMutableParagraphStyle? = nil
+        
+        if paragraphType == .Body {
             if currentParagraphStyle.firstLineHeadIndent == 0 {
                 return
             }
             
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.headIndent = 0
-            paragraphStyle.firstLineHeadIndent = 0
+            paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle!.headIndent = 0
+            paragraphStyle!.firstLineHeadIndent = 0
             
-            // Set paragraph style
-            let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: paragraphRange)
+        } else if paragraphType == .BulletedList || paragraphType == .DashedList || paragraphType == .NumberedList {
+            if currentParagraphStyle.firstLineHeadIndent != 0 {
+                return
+            }
             
-            // Set typing style
-            typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+            let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
+            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+            
+            paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width
+            paragraphStyle!.firstLineHeadIndent = normalFont.lineHeight
         }
         
-        guard let nck_textStorage = textStorage as? NCKTextStorage else {
-            return
+        if paragraphStyle != nil {
+            // Set paragraph style
+            let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
+            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle!], range: paragraphRange)
+            
+            // Set typing style
+            typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle!]
         }
         
         nck_textStorage.returnKeyDeleteEffectRanges.forEach {
