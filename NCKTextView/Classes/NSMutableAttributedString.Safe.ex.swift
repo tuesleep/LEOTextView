@@ -33,7 +33,7 @@ extension NSMutableAttributedString {
 extension NSAttributedString {
     func safeAttribute(attrName: String, atIndex location: Int, effectiveRange range: NSRangePointer, defaultValue: AnyObject?) -> AnyObject? {
         var attributeValue: AnyObject? = nil
-        if location < NSString(string: string).length {
+        if location >= 0 && location < NSString(string: string).length {
             attributeValue = attribute(attrName, atIndex: location, effectiveRange: range)
         }
         
@@ -41,6 +41,10 @@ extension NSAttributedString {
     }
     
     func isSafeRange(range: NSRange) -> Bool {
+        if range.location < 0 {
+            return false
+        }
+        
         let maxLength = range.location + range.length
         if maxLength <= NSString(string: string).length {
             return true
