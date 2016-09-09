@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NCKTextView'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'NCKTextView is a high-performance rich editor based on UITextView and code with TextKit.'
 
 # This description is used to generate tags and improve search results.

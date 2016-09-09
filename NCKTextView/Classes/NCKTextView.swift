@@ -29,8 +29,6 @@ public class NCKTextView: UITextView {
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(17)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(17)
     
-    public var checkedListIconImage: UIImage?, checkedListCheckedIconImage: UIImage?
-    
     var nck_textStorage: NCKTextStorage!
     
     var currentAttributesDataWithPasteboard: [Dictionary<String, AnyObject>]?
@@ -81,15 +79,6 @@ public class NCKTextView: UITextView {
         customSelectionMenu()
     }
     
-    func initBuiltInCheckedListImageIfNeeded() {
-        if checkedListIconImage == nil || checkedListCheckedIconImage == nil {
-            let bundle = podBundle()
-            
-            checkedListIconImage = UIImage(named: "icon-checkbox-normal", inBundle: bundle, compatibleWithTraitCollection: nil)
-            checkedListCheckedIconImage = UIImage(named: "icon-checkbox-checked", inBundle: bundle, compatibleWithTraitCollection: nil)
-        }
-    }
-    
     // MARK: Public APIs
     
     public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
@@ -135,17 +124,7 @@ public class NCKTextView: UITextView {
                     
                     attributesData.append(attribute)
                 }
-                    // Handle checkedList icon saved.
-                else if $0 == NSAttachmentAttributeName {
-                    let textAttachment = attr[$0] as! NSTextAttachment
-                    
-                    // Now, only checkbox type.
-                    attribute["attachmentType"] = "checkbox"
-                    attribute["checked"] = (textAttachment.image == self.checkedListIconImage) ? 0 : 1
-                    
-                    attributesData.append(attribute)
-                }
-                    // Paragraph indent saved
+                // Paragraph indent saved
                 else if $0 == NSParagraphStyleAttributeName {
                     let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
                     
@@ -189,17 +168,7 @@ public class NCKTextView: UITextView {
             
             if attributeName == NSFontAttributeName {
                 let currentFont = fontOfTypeWithAttribute(attribute)
-                
                 self.textStorage.addAttribute(attributeName, value: currentFont, range: range)
-            } else if attributeName == NSAttachmentAttributeName {
-                let attachmentType = attribute["attachmentType"] as! String
-                
-                if attachmentType == "checkbox" {
-                    let checked = attribute["checked"] as! Int
-                    let checkListAttachment = NSTextAttachment()
-                    checkListAttachment.image = (checked == 0) ? checkedListIconImage! : checkedListCheckedIconImage!
-                    self.textStorage.addAttribute(attributeName, value: checkListAttachment, range: range)
-                }
             } else if attributeName == NSParagraphStyleAttributeName {
                 let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
                 var listPrefixWidth: CGFloat = 0
@@ -238,15 +207,6 @@ public class NCKTextView: UITextView {
                 let currentFont = tool_nck_textView.fontOfTypeWithAttribute(attribute)
                 
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: range)
-            } else if attributeName == NSAttachmentAttributeName {
-                let attachmentType = attribute["attachmentType"] as! String
-                
-                if attachmentType == "checkbox" {
-                    let checked = attribute["checked"] as! Int
-                    let checkListTextAttachment = tool_nck_textView.checkListTextAttachmentWithChecked(checked == 1)
-                    
-                    mutableAttributedString.addAttribute(attributeName, value: checkListTextAttachment, range: range)
-                }
             } else if attributeName == NSParagraphStyleAttributeName {
                 let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
                 var listPrefixWidth: CGFloat = 0
@@ -264,7 +224,7 @@ public class NCKTextView: UITextView {
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.headIndent = listPrefixWidth + lineHeight
                 paragraphStyle.firstLineHeadIndent = lineHeight
-                mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
+                mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
             }
         }
         
@@ -370,29 +330,6 @@ public class NCKTextView: UITextView {
         }
         
         menuController.menuItems = menuItems
-    }
-    
-    /**
-        Create a new checklist string, a attributed string with icon image.
-     */
-    func checkListStringWithChecked(checked: Bool) -> NSAttributedString {
-        let checkListTextAttachment = checkListTextAttachmentWithChecked(checked)
-        let checkListString = NSAttributedString(attachment: checkListTextAttachment)
-        
-        return checkListString
-    }
-    
-    func checkListTextAttachmentWithChecked(checked: Bool) -> NSTextAttachment {
-        initBuiltInCheckedListImageIfNeeded()
-        
-        let checkListTextAttachment = NSTextAttachment()
-        if checked {
-            checkListTextAttachment.image = checkedListCheckedIconImage!
-        } else {
-            checkListTextAttachment.image = checkedListIconImage!
-        }
-        
-        return checkListTextAttachment
     }
     
     func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool, listPrefix: String) {
