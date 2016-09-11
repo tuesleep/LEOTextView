@@ -162,3 +162,88 @@ extension NCKTextView: UITextViewDelegate {
         return true
     }
 }
+
+extension NCKTextView: UIScrollViewDelegate {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidScroll(_:))) {
+            nck_delegate!.scrollViewDidScroll!(scrollView)
+        }
+    }
+    
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginDragging(_:))) {
+            nck_delegate!.scrollViewWillBeginDragging!(scrollView)
+        }
+    }
+    
+    public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillEndDragging(_:withVelocity:targetContentOffset:))) {
+            nck_delegate!.scrollViewWillEndDragging!(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        }
+    }
+    
+    public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndDragging(_:willDecelerate:))) {
+            nck_delegate!.scrollViewDidEndDragging!(scrollView, willDecelerate: decelerate)
+        }
+    }
+    
+    public func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewShouldScrollToTop(_:))) {
+            return nck_delegate!.scrollViewShouldScrollToTop!(scrollView)
+        }
+        
+        return true
+    }
+    
+    public func scrollViewDidScrollToTop(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidScrollToTop(_:))) {
+            nck_delegate!.scrollViewDidScrollToTop!(scrollView)
+        }
+    }
+    
+    public func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginDecelerating(_:))) {
+            nck_delegate!.scrollViewWillBeginDecelerating!(scrollView)
+        }
+    }
+    
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndDecelerating(_:))) {
+            nck_delegate!.scrollViewDidEndDecelerating!(scrollView)
+        }
+    }
+    
+    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.viewForZoomingInScrollView(_:))) {
+            return nck_delegate!.viewForZoomingInScrollView!(scrollView)
+        }
+        
+        return nil
+    }
+    
+    public func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginZooming(_:withView:))) {
+            nck_delegate!.scrollViewWillBeginZooming!(scrollView, withView: view)
+        }
+    }
+    
+    public func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndZooming(_:withView:atScale:))) {
+            nck_delegate!.scrollViewDidEndZooming!(scrollView, withView: view, atScale: scale)
+        }
+    }
+    
+    public func scrollViewDidZoom(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidZoom(_:))) {
+            nck_delegate!.scrollViewDidZoom!(scrollView)
+        }
+    }
+    
+    public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndScrollingAnimation(_:))) {
+            nck_delegate!.scrollViewDidEndScrollingAnimation!(scrollView)
+        }
+    }
+    
+}
