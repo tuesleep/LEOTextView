@@ -190,12 +190,7 @@ class NCKTextStorage: NSTextStorage {
             return self.textView.inputFontMode == .Title ? .Title : .Body
         }
         
-        var nck_location = location
-        if NSString(string: textView.text).length <= location {
-            nck_location = location - 1
-        }
-        
-        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: nck_location)
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: location)
         let titleFirstCharLocation = objectLineAndIndex.1
         
         let currentFont = self.textView.attributedText.safeAttribute(NSFontAttributeName, atIndex: titleFirstCharLocation, effectiveRange: nil, defaultValue: textView.normalFont) as! UIFont

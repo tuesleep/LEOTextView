@@ -47,7 +47,7 @@ extension NCKTextView: UITextViewDelegate {
         
         let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
         
-        if objectIndex >= NSString(string: text).length {
+        if objectIndex >= NSString(string: text).length || objectIndex < 0 {
             return
         }
         
