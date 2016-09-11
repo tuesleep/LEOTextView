@@ -80,12 +80,15 @@ extension NCKTextView: UITextViewDelegate {
         }
         
         if paragraphStyle != nil {
+            var defaultAttributes = defaultAttributesForLoad
+            defaultAttributes[NSParagraphStyleAttributeName] = paragraphStyle
+            
             // Set paragraph style
             let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-            self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle!], range: paragraphRange)
+            self.textStorage.addAttributes(defaultAttributes, range: paragraphRange)
             
             // Set typing style
-            typingAttributes = [NSParagraphStyleAttributeName: paragraphStyle!]
+            typingAttributes = defaultAttributes
         }
         
         nck_textStorage.returnKeyDeleteEffectRanges.forEach {
