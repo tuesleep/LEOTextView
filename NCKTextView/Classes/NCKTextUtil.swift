@@ -101,7 +101,7 @@ class NCKTextUtil: NSObject {
             return true
         }
         
-        let keywords = ["bold", "medium", "PingFangSC-Regular"]
+        let keywords = ["bold", "medium"]
         
         // At chinese language: PingFangSC-Light is normal, PingFangSC-Regular is bold
         

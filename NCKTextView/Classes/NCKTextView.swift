@@ -186,7 +186,7 @@ public class NCKTextView: UITextView {
                     
                     let lineHeight = normalFont.lineHeight
                     
-                    let paragraphStyle = NSMutableParagraphStyle()
+                    let paragraphStyle = mutableParargraphWithDefaultSetting()
                     paragraphStyle.headIndent = listPrefixWidth + lineHeight
                     paragraphStyle.firstLineHeadIndent = lineHeight
                     textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
@@ -195,7 +195,7 @@ public class NCKTextView: UITextView {
         }
     }
     
-    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) -> NSAttributedString {
+    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont, defaultParagraphStyle: NSParagraphStyle?) -> NSAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
@@ -236,7 +236,14 @@ public class NCKTextView: UITextView {
                     
                     let lineHeight = normalFont.lineHeight
                     
-                    let paragraphStyle = NSMutableParagraphStyle()
+                    var paragraphStyle: NSMutableParagraphStyle!
+                    
+                    if defaultParagraphStyle != nil {
+                        paragraphStyle = defaultParagraphStyle!.mutableCopy() as! NSMutableParagraphStyle
+                    } else {
+                        paragraphStyle = NSMutableParagraphStyle()
+                    }
+                    
                     paragraphStyle.headIndent = listPrefixWidth + lineHeight
                     paragraphStyle.firstLineHeadIndent = lineHeight
                     mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
@@ -397,6 +404,18 @@ public class NCKTextView: UITextView {
         let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
         
         return bundle!
+    }
+    
+    func mutableParargraphWithDefaultSetting() -> NSMutableParagraphStyle {
+        var paragraphStyle: NSMutableParagraphStyle!
+        
+        if let defaultParagraphStyle = defaultAttributesForLoad[NSParagraphStyleAttributeName] as? NSParagraphStyle {
+            paragraphStyle = defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle
+        } else {
+            paragraphStyle = NSMutableParagraphStyle()
+        }
+        
+        return paragraphStyle
     }
     
     // MARK: - Cut & Copy & Paste support

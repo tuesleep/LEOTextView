@@ -285,7 +285,7 @@ class NCKTextStorage: NSTextStorage {
     func undoSupportMadeIndenationRange(range: NSRange, headIndent: CGFloat) {
         textView.undoManager?.prepareWithInvocationTarget(self).undoSupportMadeIndenationRange(range, headIndent: headIndent)
         
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = textView.mutableParargraphWithDefaultSetting()
         
         if textView.undoManager!.undoing {
             paragraphStyle.headIndent = 0
@@ -301,7 +301,7 @@ class NCKTextStorage: NSTextStorage {
     func undoSupportResetIndenationRange(range: NSRange, headIndent: CGFloat) {
         textView.undoManager?.prepareWithInvocationTarget(self).undoSupportResetIndenationRange(range, headIndent: headIndent)
         
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = textView.mutableParargraphWithDefaultSetting()
         
         if textView.undoManager!.undoing {
             paragraphStyle.headIndent = headIndent + textView.normalFont.lineHeight

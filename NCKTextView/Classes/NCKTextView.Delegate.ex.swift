@@ -62,7 +62,7 @@ extension NCKTextView: UITextViewDelegate {
                 return
             }
             
-            paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle = mutableParargraphWithDefaultSetting()
             paragraphStyle!.headIndent = 0
             paragraphStyle!.firstLineHeadIndent = 0
             
@@ -74,7 +74,7 @@ extension NCKTextView: UITextViewDelegate {
             let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
             let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
             
-            paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle = mutableParargraphWithDefaultSetting()
             paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width
             paragraphStyle!.firstLineHeadIndent = normalFont.lineHeight
         }
