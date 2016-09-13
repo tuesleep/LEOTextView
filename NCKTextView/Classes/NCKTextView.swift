@@ -179,7 +179,11 @@ public class NCKTextView: UITextView {
             replacedContents.append(currentLine)
         }
         
-        let replacedContent = NSArray(array: replacedContents).componentsJoinedByString("\n")
+        var replacedContent = NSArray(array: replacedContents).componentsJoinedByString("\n")
+        
+        if targetText.length == 0 && replacedContent.length() == 0 {
+            replacedContent = listPrefix
+        }
         
         // Replace paragraph
         nck_textStorage.undoSupportReplaceRange(targetRange, withAttributedString: NSAttributedString(string: replacedContent, attributes: defaultAttributesForLoad), oldAttributedString: NSAttributedString(string: String(targetText), attributes: defaultAttributesForLoad), selectedRangeLocationMove: replacedContent.length() - targetText.length)
@@ -187,8 +191,7 @@ public class NCKTextView: UITextView {
         if isListNow {
             // Already list paragraph.
             let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
-            let listPrefixLength = listPrefixString.length
-            
+
             // Handle head indent of paragraph.
             nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
         }
