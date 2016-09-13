@@ -201,44 +201,6 @@ public class NCKTextView: UITextView {
             nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
         }
         
-        /*
-         
-         let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
-         
-         let objectLineRange = NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)
-         
-         // Check current list type.
-         let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
-         let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
-         
-         let isListNow = (isCurrentOrderedList || isCurrentUnorderedList)
-         let isTransformToList = (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList)
-         
-         if isListNow {
-         // Already list paragraph.
-         let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
-         let listPrefixLength = listPrefixString.length
-         let moveLocation = min(NSString(string: self.text).length - selectedRange.location, listPrefixLength)
-         
-         // Handle head indent of paragraph.
-         let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-         nck_textStorage.undoSupportResetIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
-         
-         nck_textStorage.undoSupportReplaceRange(NSRange(location: objectLineAndIndex.1, length: listPrefixLength), withAttributedString: NSAttributedString(string: String(listPrefixString)), selectedRangeLocationMove: -moveLocation)
-         }
-         
-         if isTransformToList {
-         // Become list paragraph.
-         let listPrefixString = NSString(string: listPrefix)
-         
-         nck_textStorage.undoSupportAppendRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad), selectedRangeLocationMove: listPrefixString.length)
-         
-         // Handle head indent of paragraph.
-         let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-         nck_textStorage.undoSupportMadeIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
-         }
-         
-         */
     }
     
     // MARK: About text attributes and JSON
