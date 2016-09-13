@@ -47,7 +47,7 @@ extension NCKTextView: UITextViewDelegate {
         
         let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
         
-        if objectIndex >= NSString(string: text).length || objectIndex < 0 {
+        if objectIndex >= text.length() || objectIndex < 0 {
             return
         }
         
@@ -95,7 +95,7 @@ extension NCKTextView: UITextViewDelegate {
             let location = $0.first!.0
             let fontType = $0.first!.1
             
-            if location < NSString(string: textView.text).length {
+            if location < textView.text.length() {
                 var font = normalFont
                 
                 switch fontType {

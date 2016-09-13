@@ -98,7 +98,7 @@ extension NCKTextView {
                         self.changeCurrentParagraphTextWithInputFontMode(.Normal)
                     }
                     
-                    self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "• ")
+                    self.changeCurrentParagraphToOrderedList(orderedList: false, listPrefix: "• ")
                     
                     break
                 case .DashedList:
@@ -106,7 +106,7 @@ extension NCKTextView {
                         self.changeCurrentParagraphTextWithInputFontMode(.Normal)
                     }
                     
-                    self.buttonActionWithOrderedOrUnordered(orderedList: false, listPrefix: "- ")
+                    self.changeCurrentParagraphToOrderedList(orderedList: false, listPrefix: "- ")
                     
                     break
                 case .NumberedList:
@@ -114,7 +114,7 @@ extension NCKTextView {
                         self.changeCurrentParagraphTextWithInputFontMode(.Normal)
                     }
                     
-                    self.buttonActionWithOrderedOrUnordered(orderedList: true, listPrefix: "1. ")
+                    self.changeCurrentParagraphToOrderedList(orderedList: true, listPrefix: "1. ")
                     
                     break
                 }
