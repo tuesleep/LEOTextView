@@ -126,7 +126,7 @@ public class NCKTextView: UITextView {
      ```
      
      */
-    func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String) {
+    public func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String) {
         // New method based on selectedRange text, and enumerate each line
         // Find target text
         var targetText: NSString!
