@@ -6,14 +6,6 @@
 //
 //
 
-public enum NCKInputFontMode: Int {
-    case Normal, Bold, Italic, Title
-}
-
-public enum NCKInputParagraphType: Int {
-    case Title, Body, BulletedList, DashedList, NumberedList
-}
-
 public class NCKTextView: UITextView {
     // MARK: - Public properties
     
@@ -29,7 +21,7 @@ public class NCKTextView: UITextView {
     public var boldFont: UIFont = UIFont.boldSystemFontOfSize(17)
     public var italicFont: UIFont = UIFont.italicSystemFontOfSize(17)
     
-    public var checkedListIconImage: UIImage?, checkedListCheckedIconImage: UIImage?
+    // MARK: - instance relations
     
     var nck_textStorage: NCKTextStorage!
     
@@ -77,20 +69,35 @@ public class NCKTextView: UITextView {
         self.removeToolbarNotifications()
     }
     
+    // MARK: - Custom text view
+    
     func customTextView() {
         customSelectionMenu()
     }
     
-    func initBuiltInCheckedListImageIfNeeded() {
-        if checkedListIconImage == nil || checkedListCheckedIconImage == nil {
-            let bundle = podBundle()
-            
-            checkedListIconImage = UIImage(named: "icon-checkbox-normal", inBundle: bundle, compatibleWithTraitCollection: nil)
-            checkedListCheckedIconImage = UIImage(named: "icon-checkbox-checked", inBundle: bundle, compatibleWithTraitCollection: nil)
+    func customSelectionMenu() {
+        let menuController = UIMenuController.sharedMenuController()
+        var menuItems = [UIMenuItem]()
+        
+        selectMenuItems.forEach {
+            switch $0 {
+            case .Bold:
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldButtonAction)))
+                break
+            case .Italic:
+                menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicButtonAction)))
+                break
+            default:
+                break
+            }
         }
+        
+        menuController.menuItems = menuItems
     }
     
-    // MARK: Public APIs
+    // MARK: - Public APIs
+    
+    // MARK: Type transform
     
     public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
         let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
@@ -104,10 +111,107 @@ public class NCKTextView: UITextView {
         nck_textStorage.undoSupportChangeWithRange(selectedRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
     
+    /**
+     Change paragraph to list or body by automatic with current selected range.
+     
+     - Parameter isOrderedList Mark current list operate is ordered or not.
+     - Parameter listPrefix Target for defined unordered list characters.
+     
+     Example: 
+     
+     ```
+     changeCurrentParagraphToOrderedList(true, listPrefix: "1. ")
+     
+     changeCurrentParagraphToOrderedList(false, listPrefix: "- ")
+     ```
+     
+     */
+    public func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String) {
+        // New method based on selectedRange text, and enumerate each line
+        // Find target text
+        var targetText: NSString!
+        var targetRange: NSRange!
+        
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
+        let objectIndex = objectLineAndIndex.1
+        
+        if selectedRange.length == 0 {
+            // current paragraph
+            targetText = NCKTextUtil.currentParagraphStringOfString(text, location: selectedRange.location)
+            targetRange = NSRange(location: objectIndex, length: targetText.length)
+        } else {
+            var lastIndex = selectedRange.location + selectedRange.length
+            lastIndex = NCKTextUtil.lineEndIndexWithString(text, location: lastIndex)
+            targetRange = NSRange(location: objectIndex, length: lastIndex - objectIndex)
+            targetText = NSString(string: text).substringWithRange(targetRange)
+        }
+        
+        // Confirm current is To list or To body by first line
+        let objectLineRange = NSRange(location: 0, length: targetText.length)
+        
+        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(String(targetText), options: [], range: objectLineRange).count > 0
+        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(String(targetText), options: [], range: objectLineRange).count > 0
+        
+        let isListNow = (isCurrentOrderedList || isCurrentUnorderedList)
+        let isTransformToList = (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList)
+        
+        var numberedIndex = 1
+        var replacedContents: [NSString] = []
+        // enumerate each line
+        targetText.enumerateLinesUsingBlock { (line, stop) in
+            var currentLine: NSString = line
+            
+            // Clear old list characters if exist
+            if NCKTextUtil.isListParagraph(line) {
+                currentLine = currentLine.substringFromIndex(currentLine.rangeOfString(" ").location + 1)
+            }
+            
+            // Appending new list characters if needed
+            if isTransformToList {
+                if isOrderedList {
+                    currentLine = NSString(string: "\(numberedIndex). ").stringByAppendingString(String(currentLine))
+                    numberedIndex += 1
+                } else {
+                    currentLine = NSString(string: listPrefix).stringByAppendingString(String(currentLine))
+                }
+            }
+            
+            replacedContents.append(currentLine)
+        }
+        
+        var replacedContent = NSArray(array: replacedContents).componentsJoinedByString("\n")
+        
+        if targetText.length == 0 && replacedContent.length() == 0 {
+            replacedContent = listPrefix
+        }
+        
+        // Replace paragraph
+        nck_textStorage.undoSupportReplaceRange(targetRange, withAttributedString: NSAttributedString(string: replacedContent, attributes: defaultAttributesForLoad), oldAttributedString: NSAttributedString(string: String(targetText), attributes: defaultAttributesForLoad), selectedRangeLocationMove: replacedContent.length() - targetText.length)
+        
+        if isListNow {
+            // Already list paragraph.
+            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+
+            // Handle head indent of paragraph.
+            nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
+        }
+        
+        if isTransformToList {
+            // Become list paragraph.
+            let listPrefixString = NSString(string: listPrefix)
+            
+            // Handle head indent of paragraph.
+            nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
+        }
+        
+    }
+    
+    // MARK: About text attributes and JSON
+    
     public func textAttributesDataWithAttributedString(attributedString: NSAttributedString) -> [Dictionary<String, AnyObject>] {
         var attributesData: [Dictionary<String, AnyObject>] = []
         
-        attributedString.enumerateAttributesInRange(NSRange(location: 0, length: NSString(string: attributedString.string).length), options: .Reverse) { (attr, range, mutablePointer) in
+        attributedString.enumerateAttributesInRange(NSRange(location: 0, length: attributedString.string.length()), options: .Reverse) { (attr, range, mutablePointer) in
             attr.keys.forEach {
                 var attribute = [String: AnyObject]()
                 
@@ -135,17 +239,7 @@ public class NCKTextView: UITextView {
                     
                     attributesData.append(attribute)
                 }
-                    // Handle checkedList icon saved.
-                else if $0 == NSAttachmentAttributeName {
-                    let textAttachment = attr[$0] as! NSTextAttachment
-                    
-                    // Now, only checkbox type.
-                    attribute["attachmentType"] = "checkbox"
-                    attribute["checked"] = (textAttachment.image == self.checkedListIconImage) ? 0 : 1
-                    
-                    attributesData.append(attribute)
-                }
-                    // Paragraph indent saved
+                // Paragraph indent saved
                 else if $0 == NSParagraphStyleAttributeName {
                     let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
                     
@@ -180,6 +274,7 @@ public class NCKTextView: UITextView {
     
     public func setAttributesWithJSONString(jsonString: String) {
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
+        let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
         
         attributes.forEach {
             let attribute = $0
@@ -188,45 +283,38 @@ public class NCKTextView: UITextView {
             
             if attributeName == NSFontAttributeName {
                 let currentFont = fontOfTypeWithAttribute(attribute)
-                
-                self.textStorage.addAttribute(attributeName, value: currentFont, range: range)
-            } else if attributeName == NSAttachmentAttributeName {
-                let attachmentType = attribute["attachmentType"] as! String
-                
-                if attachmentType == "checkbox" {
-                    let checked = attribute["checked"] as! Int
-                    let checkListAttachment = NSTextAttachment()
-                    checkListAttachment.image = (checked == 0) ? checkedListIconImage! : checkedListCheckedIconImage!
-                    self.textStorage.addAttribute(attributeName, value: checkListAttachment, range: range)
-                }
+                textStorage.addAttribute(attributeName, value: currentFont, range: range)
             } else if attributeName == NSParagraphStyleAttributeName {
-                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
-                var listPrefixWidth: CGFloat = 0
+                let listTypeRawValue = attribute["listType"]
                 
-                if listType == .NumberedList {
-                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
-                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
-                    listPrefixString.appendContentsOf(" ")
-                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
-                } else {
-                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                if listTypeRawValue != nil {
+                    let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
+                    var listPrefixWidth: CGFloat = 0
+                    
+                    if listType == .NumberedList {
+                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
+                        listPrefixString.appendContentsOf(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    } else {
+                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    }
+                    
+                    let lineHeight = normalFont.lineHeight
+                    
+                    let paragraphStyle = mutableParargraphWithDefaultSetting()
+                    paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                    paragraphStyle.firstLineHeadIndent = lineHeight
+                    textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
                 }
-                
-                let lineHeight = normalFont.lineHeight
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth + lineHeight
-                paragraphStyle.firstLineHeadIndent = lineHeight
-                self.textStorage.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
     }
     
-    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) -> NSAttributedString {
+    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont, defaultParagraphStyle: NSParagraphStyle?) -> NSAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
-        let tool_nck_textView = NCKTextView(normalFont: normalFont, titleFont: titleFont, boldFont: boldFont, italicFont: italicFont)
+        let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
         
         attributes.forEach {
             let attribute = $0
@@ -234,37 +322,47 @@ public class NCKTextView: UITextView {
             let range  = NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int)
             
             if attributeName == NSFontAttributeName {
-                let currentFont = tool_nck_textView.fontOfTypeWithAttribute(attribute)
+                let fontType = attribute["fontType"] as? String
+                var currentFont = normalFont
+                
+                if fontType == "title" {
+                    currentFont = titleFont
+                } else if fontType == "bold" {
+                    currentFont = boldFont
+                } else if fontType == "italic" {
+                    currentFont = italicFont
+                }
                 
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: currentFont, range: range)
-            } else if attributeName == NSAttachmentAttributeName {
-                let attachmentType = attribute["attachmentType"] as! String
-                
-                if attachmentType == "checkbox" {
-                    let checked = attribute["checked"] as! Int
-                    let checkListTextAttachment = tool_nck_textView.checkListTextAttachmentWithChecked(checked == 1)
-                    
-                    mutableAttributedString.addAttribute(attributeName, value: checkListTextAttachment, range: range)
-                }
             } else if attributeName == NSParagraphStyleAttributeName {
-                let listType = NCKInputParagraphType(rawValue: attribute["listType"] as! Int)
-                var listPrefixWidth: CGFloat = 0
-                
-                if listType == .NumberedList {
-                    let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
-                    var listPrefixString = textString.componentsSeparatedByString(" ")[0]
-                    listPrefixString.appendContentsOf(" ")
-                    listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
-                } else {
-                    listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                let listTypeRawValue = attribute["listType"]
+
+                if listTypeRawValue != nil {
+                    let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
+                    var listPrefixWidth: CGFloat = 0
+                    
+                    if listType == .NumberedList {
+                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
+                        listPrefixString.appendContentsOf(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    } else {
+                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    }
+                    
+                    let lineHeight = normalFont.lineHeight
+                    
+                    var paragraphStyle: NSMutableParagraphStyle!
+                    
+                    if defaultParagraphStyle != nil {
+                        paragraphStyle = defaultParagraphStyle!.mutableCopy() as! NSMutableParagraphStyle
+                    } else {
+                        paragraphStyle = NSMutableParagraphStyle()
+                    }
+                    
+                    paragraphStyle.headIndent = listPrefixWidth + lineHeight
+                    paragraphStyle.firstLineHeadIndent = lineHeight
+                    mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: normalFont], range: range)
                 }
-                
-                let lineHeight = normalFont.lineHeight
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixWidth + lineHeight
-                paragraphStyle.firstLineHeadIndent = lineHeight
-                mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
             }
         }
         
@@ -296,9 +394,11 @@ public class NCKTextView: UITextView {
         return textString
     }
     
+    // MARK: Font and paragraph type estimate
+    
     public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
         let fontType = attribute["fontType"] as? String
-        var currentFont = self.normalFont
+        var currentFont = normalFont
         
         if fontType == "title" {
             currentFont = titleFont
@@ -331,6 +431,16 @@ public class NCKTextView: UITextView {
         }
     }
     
+    // MARK: - Menu controller button actions
+    
+    func boldButtonAction() {
+        buttonActionWithInputFontMode(.Bold)
+    }
+    
+    func italicButtonAction() {
+        buttonActionWithInputFontMode(.Italic)
+    }
+    
     func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
         guard mode != .Normal else {
             return
@@ -341,7 +451,7 @@ public class NCKTextView: UITextView {
             let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
             
             let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : NCKTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))
-
+            
             if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
             } else {
@@ -352,98 +462,24 @@ public class NCKTextView: UITextView {
         }
     }
     
-    func customSelectionMenu() {
-        let menuController = UIMenuController.sharedMenuController()
-        var menuItems = [UIMenuItem]()
-        
-        selectMenuItems.forEach {
-            switch $0 {
-            case .Bold:
-                menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldButtonAction)))
-                break
-            case .Italic:
-                menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicButtonAction)))
-                break
-            default:
-                break
-            }
-        }
-        
-        menuController.menuItems = menuItems
-    }
-    
-    /**
-        Create a new checklist string, a attributed string with icon image.
-     */
-    func checkListStringWithChecked(checked: Bool) -> NSAttributedString {
-        let checkListTextAttachment = checkListTextAttachmentWithChecked(checked)
-        let checkListString = NSAttributedString(attachment: checkListTextAttachment)
-        
-        return checkListString
-    }
-    
-    func checkListTextAttachmentWithChecked(checked: Bool) -> NSTextAttachment {
-        initBuiltInCheckedListImageIfNeeded()
-        
-        let checkListTextAttachment = NSTextAttachment()
-        if checked {
-            checkListTextAttachment.image = checkedListCheckedIconImage!
-        } else {
-            checkListTextAttachment.image = checkedListIconImage!
-        }
-        
-        return checkListTextAttachment
-    }
-    
-    func buttonActionWithOrderedOrUnordered(orderedList isOrderedList: Bool, listPrefix: String) {
-        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
-        
-        let objectLineRange = NSRange(location: 0, length: NSString(string: objectLineAndIndex.0).length)
-        
-        // Check current list type.
-        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
-        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLineAndIndex.0, options: [], range: objectLineRange).count > 0
-        
-        let isListNow = (isCurrentOrderedList || isCurrentUnorderedList)
-        let isTransformToList = (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList)
-        
-        if isListNow {
-            // Already list paragraph.
-            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
-            let listPrefixLength = listPrefixString.length
-            let moveLocation = min(NSString(string: self.text).length - selectedRange.location, listPrefixLength)
-            
-            // Handle head indent of paragraph.
-            let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-            nck_textStorage.undoSupportResetIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
-            
-            nck_textStorage.undoSupportReplaceRange(NSRange(location: objectLineAndIndex.1, length: listPrefixLength), withAttributedString: NSAttributedString(string: String(listPrefixString)), selectedRangeLocationMove: -moveLocation)
-        }
-
-        if isTransformToList {
-            // Become list paragraph.
-            let listPrefixString = NSString(string: listPrefix)
-            
-            nck_textStorage.undoSupportAppendRange(NSRange(location: objectLineAndIndex.1, length: 0), withAttributedString: NSAttributedString(string: listPrefix, attributes: defaultAttributesForLoad), selectedRangeLocationMove: listPrefixString.length)
-            
-            // Handle head indent of paragraph.
-            let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
-            nck_textStorage.undoSupportMadeIndenationRange(paragraphRange, headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
-        }
-    }
-    
-    func boldButtonAction() {
-        buttonActionWithInputFontMode(.Bold)
-    }
-    
-    func italicButtonAction() {
-        buttonActionWithInputFontMode(.Italic)
-    }
+    // MARK: - Utils
     
     func podBundle() -> NSBundle {
         let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
         
         return bundle!
+    }
+    
+    func mutableParargraphWithDefaultSetting() -> NSMutableParagraphStyle {
+        var paragraphStyle: NSMutableParagraphStyle!
+        
+        if let defaultParagraphStyle = defaultAttributesForLoad[NSParagraphStyleAttributeName] as? NSParagraphStyle {
+            paragraphStyle = defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle
+        } else {
+            paragraphStyle = NSMutableParagraphStyle()
+        }
+        
+        return paragraphStyle
     }
     
     // MARK: - Cut & Copy & Paste support
@@ -506,7 +542,7 @@ public class NCKTextView: UITextView {
         // Drawing paragraph by line head judgement
         var lineLocation = pasteLocation
         pasteText.enumerateLines { [unowned self] (line, stop) in
-            let lineLength = NSString(string: line).length
+            let lineLength = line.length()
             
             if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
                 NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {

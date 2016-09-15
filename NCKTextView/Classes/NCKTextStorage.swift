@@ -40,7 +40,9 @@ class NCKTextStorage: NSTextStorage {
                 textView.inputFontMode = .Normal
             }
             
-            let objectLine = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location).0
+            let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.string, location: range.location)
+            let objectLine = objectLineAndIndex.0
+            let objectIndex = objectLineAndIndex.1
             
             switch NCKTextUtil.paragraphTypeWithObjectLine(objectLine) {
             case .NumberedList:
@@ -48,7 +50,7 @@ class NCKTextStorage: NSTextStorage {
                 if number == nil {
                     break
                 }
-                listPrefixItemLength = NSString(string: "\(number!). ").length
+                listPrefixItemLength = "\(number!). ".length()
                 
                 // number changed.
                 number! += 1
@@ -67,12 +69,23 @@ class NCKTextStorage: NSTextStorage {
             
             let separateds = objectLine.componentsSeparatedByString(" ")
             if separateds.count >= 2 {
-                let objectLineRange = NSMakeRange(0, NSString(string: objectLine).length)
+                let objectLineRange = NSMakeRange(0, objectLine.length())
                 if separateds[1] == "" && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: objectLineRange).count > 0) {
-                    // Delete mark
-                    deleteCurrentListPrefixItemByReturn = true
-                    listPrefixItemLength = listItemFillText.length
-                    listItemFillText = ""
+                    
+                    let lastIndex = objectIndex + objectLine.length()
+                    let isEndOfText = lastIndex >= string.length()
+                    var isReturnAtNext = false
+                    
+                    if !isEndOfText {
+                        isReturnAtNext = NCKTextUtil.isReturn(NSString(string: string).substringWithRange(NSMakeRange(lastIndex, 1)))
+                    }
+                    
+                    if isEndOfText || isReturnAtNext {
+                        // Delete mark
+                        deleteCurrentListPrefixItemByReturn = true
+                        listPrefixItemLength = listItemFillText.length
+                        listItemFillText = ""
+                    }
                 }
             }
         } else if NCKTextUtil.isBackspace(str) && range.length == 1 {
@@ -80,7 +93,7 @@ class NCKTextStorage: NSTextStorage {
             firstLine.appendContentsOf(" ")
             
             let separates = firstLine.componentsSeparatedByString(" ").count
-            let firstLineRange = NSMakeRange(0, NSString(string: firstLine).length)
+            let firstLineRange = NSMakeRange(0, firstLine.length())
     
             if separates == 2 && (NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0 || NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(firstLine, options: .ReportProgress, range: firstLineRange).count > 0) {
                 // Delete mark
@@ -113,14 +126,14 @@ class NCKTextStorage: NSTextStorage {
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength + 1)
             let deleteString = NSString(string: string).substringWithRange(deleteRange)
             
-            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -(deleteLocation > 0 ? listPrefixItemLength + 1 : listPrefixItemLength))
+            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(), oldAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -(deleteLocation > 0 ? listPrefixItemLength + 1 : listPrefixItemLength))
             
             var effectIndex = deleteRange.location + 1
             
-            if effectIndex < NSString(string: string).length {
+            if effectIndex < string.length() {
                 returnKeyDeleteEffectRanges.removeAll()
                 
-                while effectIndex < NSString(string: string).length {
+                while effectIndex < string.length() {
                     guard let fontAfterDeleteText = self.safeAttribute(NSFontAttributeName, atIndex: effectIndex, effectiveRange: nil, defaultValue: nil) as? UIFont else {
                         continue
                     }
@@ -147,20 +160,20 @@ class NCKTextStorage: NSTextStorage {
             let deleteRange = NSRange(location: deleteLocation, length: listPrefixItemLength)
             let deleteString = NSString(string: string).substringWithRange(deleteRange)
             
-            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -listPrefixItemLength)
+            undoSupportReplaceRange(deleteRange, withAttributedString: NSAttributedString(), oldAttributedString: NSAttributedString(string: deleteString), selectedRangeLocationMove: -listPrefixItemLength)
         } else {
             // List item increase
-            let listItemTextLength = NSString(string: listItemFillText).length
+            let listItemTextLength = listItemFillText.length
             
             if listItemTextLength > 0 {
                 // Follow text cursor to new list item location.
-                undoSupportAppendRange(NSMakeRange(range.location + NSString(string: str).length, 0), withString: String(listItemFillText), selectedRangeLocationMove: listItemTextLength)
+                undoSupportAppendRange(NSMakeRange(range.location + str.length(), 0), withString: String(listItemFillText), selectedRangeLocationMove: listItemTextLength)
             }
         }
     }
     
     override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
-        guard NSString(string: currentString.string).length > range.location else {
+        guard currentString.string.length() > range.location else {
             return
         }
         
@@ -190,12 +203,7 @@ class NCKTextStorage: NSTextStorage {
             return self.textView.inputFontMode == .Title ? .Title : .Body
         }
         
-        var nck_location = location
-        if NSString(string: textView.text).length <= location {
-            nck_location = location - 1
-        }
-        
-        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: nck_location)
+        let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(string, location: location)
         let titleFirstCharLocation = objectLineAndIndex.1
         
         let currentFont = self.textView.attributedText.safeAttribute(NSFontAttributeName, atIndex: titleFirstCharLocation, effectiveRange: nil, defaultValue: textView.normalFont) as! UIFont
@@ -246,15 +254,17 @@ class NCKTextStorage: NSTextStorage {
         }
     }
     
-    func undoSupportReplaceRange(replaceRange: NSRange, withAttributedString attributedStr: NSAttributedString, selectedRangeLocationMove: Int) {
-        textView.undoManager?.prepareWithInvocationTarget(self).undoSupportReplaceRange(replaceRange, withAttributedString: attributedStr, selectedRangeLocationMove: selectedRangeLocationMove)
+    func undoSupportReplaceRange(replaceRange: NSRange, withAttributedString attributedStr: NSAttributedString, oldAttributedString: NSAttributedString, selectedRangeLocationMove: Int) {
+        textView.undoManager?.prepareWithInvocationTarget(self).undoSupportReplaceRange(replaceRange, withAttributedString: attributedStr, oldAttributedString: oldAttributedString, selectedRangeLocationMove: selectedRangeLocationMove)
         
         if textView.undoManager!.undoing {
-            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, 0), withAttributedString: attributedStr)
-            textView.selectedRange = NSMakeRange(textView.selectedRange.location - selectedRangeLocationMove, 0)
+            let targetSelectedRange = NSMakeRange(textView.selectedRange.location - selectedRangeLocationMove, textView.selectedRange.length)
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, attributedStr.string.length()), withAttributedString: oldAttributedString)
+            textView.selectedRange = targetSelectedRange
         } else {
-            textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
-            safeReplaceCharactersInRange(replaceRange, withAttributedString: NSAttributedString())
+            let targetSelectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, textView.selectedRange.length)
+            safeReplaceCharactersInRange(replaceRange, withAttributedString: attributedStr)
+            textView.selectedRange = targetSelectedRange
         }
     }
     
@@ -263,7 +273,7 @@ class NCKTextStorage: NSTextStorage {
         
         if textView.undoManager!.undoing {
             textView.selectedRange = NSMakeRange(textView.selectedRange.location - selectedRangeLocationMove, 0)
-            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, NSString(string: str).length), withString: "")
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, str.length()), withString: "")
         } else {
             safeReplaceCharactersInRange(replaceRange, withString: str)
             textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
@@ -275,7 +285,7 @@ class NCKTextStorage: NSTextStorage {
         
         if textView.undoManager!.undoing {
             textView.selectedRange = NSMakeRange(textView.selectedRange.location - selectedRangeLocationMove, 0)
-            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, NSString(string: attributedStr.string).length), withAttributedString: NSAttributedString())
+            safeReplaceCharactersInRange(NSMakeRange(replaceRange.location, attributedStr.string.length()), withAttributedString: NSAttributedString())
         } else {
             safeReplaceCharactersInRange(replaceRange, withAttributedString: attributedStr)
             textView.selectedRange = NSMakeRange(textView.selectedRange.location + selectedRangeLocationMove, 0)
@@ -285,7 +295,7 @@ class NCKTextStorage: NSTextStorage {
     func undoSupportMadeIndenationRange(range: NSRange, headIndent: CGFloat) {
         textView.undoManager?.prepareWithInvocationTarget(self).undoSupportMadeIndenationRange(range, headIndent: headIndent)
         
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = textView.mutableParargraphWithDefaultSetting()
         
         if textView.undoManager!.undoing {
             paragraphStyle.headIndent = 0
@@ -301,7 +311,7 @@ class NCKTextStorage: NSTextStorage {
     func undoSupportResetIndenationRange(range: NSRange, headIndent: CGFloat) {
         textView.undoManager?.prepareWithInvocationTarget(self).undoSupportResetIndenationRange(range, headIndent: headIndent)
         
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = textView.mutableParargraphWithDefaultSetting()
         
         if textView.undoManager!.undoing {
             paragraphStyle.headIndent = headIndent + textView.normalFont.lineHeight

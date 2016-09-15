@@ -7,7 +7,7 @@
 //
 
 class NCKTextUtil: NSObject {
-    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*•] ", options: .CaseInsensitive)
+    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*••∙●] ", options: .CaseInsensitive)
     static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. ", options: .CaseInsensitive)
     static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .CaseInsensitive)
     
@@ -42,7 +42,7 @@ class NCKTextUtil: NSObject {
         if textSplits.count > 0 {
             let currentObjectLine = textSplits[textSplits.count - 1]
             
-            objectIndex = NSString(string: objectLine).length - NSString(string: currentObjectLine).length
+            objectIndex = objectLine.length() - currentObjectLine.length()
             objectLine = currentObjectLine
         }
         
@@ -56,7 +56,7 @@ class NCKTextUtil: NSObject {
     class func lineEndIndexWithString(string: String, location: Int) -> Int {
         let remainText: NSString = NSString(string: string).substringFromIndex(location)
         var nextLineBreakLocation = remainText.rangeOfString("\n").location
-        nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? NSString(string: string).length : nextLineBreakLocation + location
+        nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? string.length() : nextLineBreakLocation + location
         
         return nextLineBreakLocation
     }
@@ -76,7 +76,7 @@ class NCKTextUtil: NSObject {
      Just return ListTypes.
      */
     class func paragraphTypeWithObjectLine(objectLine: String) -> NCKInputParagraphType {
-        let objectLineRange = NSMakeRange(0, NSString(string: objectLine).length)
+        let objectLineRange = NSMakeRange(0, objectLine.length())
         
         let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
         if unorderedListMatches.count > 0 {
@@ -96,12 +96,28 @@ class NCKTextUtil: NSObject {
         return .Body
     }
     
+    class func isListParagraph(objectLine: String) -> Bool {
+        let objectLineRange = NSMakeRange(0, objectLine.length())
+        
+        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange).count > 0
+        if isCurrentOrderedList {
+            return true
+        }
+        
+        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange).count > 0
+        if isCurrentUnorderedList {
+            return true
+        }
+        
+        return false
+    }
+    
     class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
         if font.fontName == boldFontName {
             return true
         }
         
-        let keywords = ["bold", "medium", "PingFangSC-Regular"]
+        let keywords = ["bold", "medium"]
         
         // At chinese language: PingFangSC-Light is normal, PingFangSC-Regular is bold
         
