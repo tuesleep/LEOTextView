@@ -43,6 +43,62 @@ Some feature I use delegate method, so NCKTextView is delegate self. And provide
 public var nck_delegate: UITextViewDelegate?
 ```
 
+## Public methods
+#### Type transform
+
+```swift
+public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode)
+public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode)
+
+public func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String)
+```
+
+#### Text attributes persistent
+
+Get JSON by
+```swift
+public func textAttributesJSON() -> String
+```
+
+This method return a JSON string that contains all attributes needs to reload.
+
+A unordered list 
+- A
+- B
+- C
+
+convert to JSON look like:
+
+```json
+{
+  "text" : "- A\n- B\n- C",
+  "attributes" : [
+    {
+      "location" : 0,
+      "length" : 11,
+      "fontType" : "normal",
+      "name" : "NSFont"
+    },
+    {
+      "location" : 0,
+      "length" : 11,
+      "listType" : 3,
+      "name" : "NSParagraphStyle"
+    }
+  ]
+}
+```
+
+Set JSON and display to UITextView by
+```swift
+public func setAttributeTextWithJSONString(jsonString: String)
+```
+
+Or just set attributes only by
+```swift
+public func setAttributesWithJSONString(jsonString: String)
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
