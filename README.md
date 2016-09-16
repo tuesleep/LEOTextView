@@ -1,6 +1,6 @@
 # NCKTextView
 
-[![CI Status](http://img.shields.io/travis/Chanricle King/NCKTextView.svg?style=flat)](https://travis-ci.org/Chanricle King/NCKTextView)
+[![CI Status](https://travis-ci.org/chanricle/NCKTextView.svg?branch=master)](https://travis-ci.org/Chanricle King/NCKTextView)
 [![Version](https://img.shields.io/cocoapods/v/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 [![License](https://img.shields.io/cocoapods/l/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 [![Platform](https://img.shields.io/cocoapods/p/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
@@ -116,7 +116,7 @@ Swift 2.2 +
 ###Stable source code
 
 ```
-git clone -b stable https://github.com/chanricle/NCKTextView.git
+git clone -b master https://github.com/chanricle/NCKTextView.git
 ```
 
 ###Cocoapods
