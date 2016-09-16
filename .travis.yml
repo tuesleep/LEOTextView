@@ -9,6 +9,6 @@ osx_image: xcode7.3
 
 podfile: Example/Podfile
 
-xcode_project: Example/NCKTextView.xcodeproj
+xcode_workspace: Example/NCKTextView.xcworkspace
 xcode_scheme: NCKTextView_Tests
 xcode_sdk: iphonesimulator9.3
