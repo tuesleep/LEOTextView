@@ -1,6 +1,7 @@
 # NCKTextView
 
 [![CI Status](https://travis-ci.org/chanricle/NCKTextView.svg?branch=master)](https://travis-ci.org/Chanricle King/NCKTextView)
+[![codebeat badge](https://codebeat.co/badges/2889cc4f-85ed-4c14-b761-943a5bce2f8e)](https://codebeat.co/projects/github-com-chanricle-ncktextview)
 [![Version](https://img.shields.io/cocoapods/v/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 [![License](https://img.shields.io/cocoapods/l/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
 [![Platform](https://img.shields.io/cocoapods/p/NCKTextView.svg?style=flat)](http://cocoapods.org/pods/NCKTextView)
