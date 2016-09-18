@@ -11,19 +11,19 @@ import Foundation
 extension NSMutableAttributedString {
     // MARK: - Safe methods
     
-    func safeReplaceCharactersInRange(range: NSRange, withString str: String) {
+    func safeReplaceCharactersInRange(_ range: NSRange, withString str: String) {
         if isSafeRange(range) {
-            replaceCharactersInRange(range, withString: str)
+            replaceCharacters(in: range, with: str)
         }
     }
     
-    func safeReplaceCharactersInRange(range: NSRange, withAttributedString attrStr: NSAttributedString) {
+    func safeReplaceCharactersInRange(_ range: NSRange, withAttributedString attrStr: NSAttributedString) {
         if isSafeRange(range) {
-            replaceCharactersInRange(range, withAttributedString: attrStr)
+            replaceCharacters(in: range, with: attrStr)
         }
     }
     
-    func safeAddAttributes(attrs: [String : AnyObject], range: NSRange) {
+    func safeAddAttributes(_ attrs: [String : AnyObject], range: NSRange) {
         if isSafeRange(range) {
             addAttributes(attrs, range: range)
         }
@@ -31,17 +31,17 @@ extension NSMutableAttributedString {
 }
 
 extension NSAttributedString {
-    func safeAttribute(attrName: String, atIndex location: Int, effectiveRange range: NSRangePointer, defaultValue: AnyObject?) -> AnyObject? {
+    func safeAttribute(_ attrName: String, atIndex location: Int, effectiveRange range: NSRangePointer?, defaultValue: AnyObject?) -> AnyObject? {
         var attributeValue: AnyObject? = nil
 
         if location >= 0 && location < string.length() {
-            attributeValue = attribute(attrName, atIndex: location, effectiveRange: range)
+            attributeValue = attribute(attrName, at: location, effectiveRange: range) as AnyObject?
         }
         
         return attributeValue == nil ? defaultValue : attributeValue
     }
     
-    func isSafeRange(range: NSRange) -> Bool {
+    func isSafeRange(_ range: NSRange) -> Bool {
         if range.location < 0 {
             return false
         }

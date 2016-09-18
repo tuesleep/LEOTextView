@@ -7,11 +7,11 @@
 //
 
 class NCKTextUtil: NSObject {
-    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*••∙●] ", options: .CaseInsensitive)
-    static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. ", options: .CaseInsensitive)
-    static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .CaseInsensitive)
+    static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*••∙●] ", options: .caseInsensitive)
+    static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. ", options: .caseInsensitive)
+    static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .caseInsensitive)
     
-    class func isReturn(text: String) -> Bool {
+    class func isReturn(_ text: String) -> Bool {
         if text == "\n" {
             return true
         } else {
@@ -19,7 +19,7 @@ class NCKTextUtil: NSObject {
         }
     }
     
-    class func isBackspace(text: String) -> Bool {
+    class func isBackspace(_ text: String) -> Bool {
         if text == "" {
             return true
         } else {
@@ -27,18 +27,18 @@ class NCKTextUtil: NSObject {
         }
     }
     
-    class func isSelectedTextWithTextView(textView: UITextView) -> Bool {
+    class func isSelectedTextWithTextView(_ textView: UITextView) -> Bool {
         let length = textView.selectedRange.length
         return length > 0
     }
     
-    class func objectLineAndIndexWithString(string: String, location: Int) -> (String, Int) {
+    class func objectLineAndIndexWithString(_ string: String, location: Int) -> (String, Int) {
         let ns_string = NSString(string: string)
         
         var objectIndex: Int = 0
-        var objectLine = ns_string.substringToIndex(location)
+        var objectLine = ns_string.substring(to: location)
 
-        let textSplits = objectLine.componentsSeparatedByString("\n")
+        let textSplits = objectLine.components(separatedBy: "\n")
         if textSplits.count > 0 {
             let currentObjectLine = textSplits[textSplits.count - 1]
             
@@ -49,62 +49,63 @@ class NCKTextUtil: NSObject {
         return (objectLine, objectIndex)
     }
     
-    class func objectLineWithString(string: String, location: Int) -> String {
+    class func objectLineWithString(_ string: String, location: Int) -> String {
         return objectLineAndIndexWithString(string, location: location).0
     }
     
-    class func lineEndIndexWithString(string: String, location: Int) -> Int {
-        let remainText: NSString = NSString(string: string).substringFromIndex(location)
-        var nextLineBreakLocation = remainText.rangeOfString("\n").location
+    class func lineEndIndexWithString(_ string: String, location: Int) -> Int {
+        let remainText: NSString = NSString(string: string).substring(from: location) as! NSString
+        
+        var nextLineBreakLocation = remainText.range(of: "\n").location
         nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? string.length() : nextLineBreakLocation + location
         
         return nextLineBreakLocation
     }
     
-    class func paragraphRangeOfString(string: String, location: Int) -> NSRange {
+    class func paragraphRangeOfString(_ string: String, location: Int) -> NSRange {
         let startLocation = objectLineAndIndexWithString(string, location: location).1
         let endLocation = lineEndIndexWithString(string, location: location)
         
         return NSMakeRange(startLocation, endLocation - startLocation)
     }
     
-    class func currentParagraphStringOfString(string: String, location: Int) -> String {
-        return NSString(string: string).substringWithRange(paragraphRangeOfString(string, location: location))
+    class func currentParagraphStringOfString(_ string: String, location: Int) -> String {
+        return NSString(string: string).substring(with: paragraphRangeOfString(string, location: location))
     }
     
     /**
      Just return ListTypes.
      */
-    class func paragraphTypeWithObjectLine(objectLine: String) -> NCKInputParagraphType {
+    class func paragraphTypeWithObjectLine(_ objectLine: String) -> NCKInputParagraphType {
         let objectLineRange = NSMakeRange(0, objectLine.length())
         
-        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        let unorderedListMatches = NCKTextUtil.markdownUnorderedListRegularExpression.matches(in: objectLine, options: [], range: objectLineRange)
         if unorderedListMatches.count > 0 {
-            let firstChar = NSString(string: objectLine).substringToIndex(1)
+            let firstChar = NSString(string: objectLine).substring(to: 1)
             if firstChar == "-" {
-                return .DashedList
+                return .dashedList
             } else {
-                return .BulletedList
+                return .bulletedList
             }
         }
         
-        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange)
+        let orderedListMatches = NCKTextUtil.markdownOrderedListRegularExpression.matches(in: objectLine, options: [], range: objectLineRange)
         if orderedListMatches.count > 0 {
-            return .NumberedList
+            return .numberedList
         }
         
-        return .Body
+        return .body
     }
     
-    class func isListParagraph(objectLine: String) -> Bool {
+    class func isListParagraph(_ objectLine: String) -> Bool {
         let objectLineRange = NSMakeRange(0, objectLine.length())
         
-        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange).count > 0
+        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matches(in: objectLine, options: [], range: objectLineRange).count > 0
         if isCurrentOrderedList {
             return true
         }
         
-        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(objectLine, options: [], range: objectLineRange).count > 0
+        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matches(in: objectLine, options: [], range: objectLineRange).count > 0
         if isCurrentUnorderedList {
             return true
         }
@@ -112,7 +113,7 @@ class NCKTextUtil: NSObject {
         return false
     }
     
-    class func isBoldFont(font: UIFont, boldFontName: String) -> Bool {
+    class func isBoldFont(_ font: UIFont, boldFontName: String) -> Bool {
         if font.fontName == boldFontName {
             return true
         }
@@ -124,7 +125,7 @@ class NCKTextUtil: NSObject {
         return isSpecialFont(font, keywords: keywords)
     }
     
-    class func isItalicFont(font: UIFont, italicFontName: String) -> Bool {
+    class func isItalicFont(_ font: UIFont, italicFontName: String) -> Bool {
         if font.fontName == italicFontName {
             return true
         }
@@ -134,11 +135,11 @@ class NCKTextUtil: NSObject {
         return isSpecialFont(font, keywords: keywords)
     }
     
-    class func isSpecialFont(font: UIFont, keywords: [String]) -> Bool {
+    class func isSpecialFont(_ font: UIFont, keywords: [String]) -> Bool {
         let fontName = NSString(string: font.fontName)
         
         for keyword in keywords {
-            if fontName.rangeOfString(keyword, options: .CaseInsensitiveSearch).location != NSNotFound {
+            if fontName.range(of: keyword, options: .caseInsensitive).location != NSNotFound {
                 return true
             }
         }
@@ -149,8 +150,8 @@ class NCKTextUtil: NSObject {
     class func keyboardWindow() -> UIWindow? {
         var keyboardWin: UIWindow?
         
-        UIApplication.sharedApplication().windows.forEach {
-            if String($0.dynamicType) == "UITextEffectsWindow" {
+        UIApplication.shared.windows.forEach {
+            if String(describing: type(of: $0)) == "UITextEffectsWindow" {
                 keyboardWin = $0
                 return
             }

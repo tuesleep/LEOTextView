@@ -20,11 +20,12 @@ class NCKFormatTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedCompletion != nil {
             selectedCompletion!(NCKInputParagraphType(rawValue: indexPath.row)!)
+            
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -12,37 +12,37 @@ var nck_changeText = false
 
 extension NCKTextView: UITextViewDelegate {
     
-    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         nck_changeText = true
         
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldChangeTextInRange:replacementText:))) {
-            return nck_delegate!.textView!(textView, shouldChangeTextInRange: range, replacementText: text)
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldChangeTextIn:replacementText:))) {
+            return nck_delegate!.textView!(textView, shouldChangeTextIn: range, replacementText: text)
         }
         
         return true
     }
     
-    public func textViewDidChangeSelection(textView: UITextView) {
+    public func textViewDidChangeSelection(_ textView: UITextView) {
         if nck_changeText {
             nck_changeText = false
         } else {
             // Just judge when text not changed, only section move
             let type = currentParagraphType()
-            if type == .Title {
-                inputFontMode = .Title
-            } else if type == .Body {
-                inputFontMode = .Normal
+            if type == .title {
+                inputFontMode = .title
+            } else if type == .body {
+                inputFontMode = .normal
             } else {
-                inputFontMode = .Normal
+                inputFontMode = .normal
             }
         }
         
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChangeSelection(_:))) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewDidChangeSelection(_:))) {
             nck_delegate!.textViewDidChangeSelection!(textView)
         }
     }
     
-    public func textViewDidChange(textView: UITextView) {
+    public func textViewDidChange(_ textView: UITextView) {
         let paragraphType = currentParagraphType()
         
         let objectIndex = NCKTextUtil.objectLineAndIndexWithString(text, location: selectedRange.location).1
@@ -57,7 +57,7 @@ extension NCKTextView: UITextViewDelegate {
         
         var paragraphStyle: NSMutableParagraphStyle? = nil
         
-        if paragraphType == .Body {
+        if paragraphType == .body {
             if currentParagraphStyle.firstLineHeadIndent == 0 {
                 return
             }
@@ -66,16 +66,16 @@ extension NCKTextView: UITextViewDelegate {
             paragraphStyle!.headIndent = 0
             paragraphStyle!.firstLineHeadIndent = 0
             
-        } else if paragraphType == .BulletedList || paragraphType == .DashedList || paragraphType == .NumberedList {
+        } else if paragraphType == .bulletedList || paragraphType == .dashedList || paragraphType == .numberedList {
             if currentParagraphStyle.firstLineHeadIndent != 0 {
                 return
             }
             
             let objectLineAndIndex = NCKTextUtil.objectLineAndIndexWithString(self.text, location: selectedRange.location)
-            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.components(separatedBy: " ")[0]).appending(" ") as NSString
             
             paragraphStyle = mutableParargraphWithDefaultSetting()
-            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width
+            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.size(attributes: [NSFontAttributeName: normalFont]).width
             paragraphStyle!.firstLineHeadIndent = normalFont.lineHeight
         }
         
@@ -99,16 +99,16 @@ extension NCKTextView: UITextViewDelegate {
                 var font = normalFont
                 
                 switch fontType {
-                case .Normal:
+                case .normal:
                     font = normalFont
                     break
-                case .Title:
+                case .title:
                     font = titleFont
                     break
-                case .Bold:
+                case .bold:
                     font = boldFont
                     break
-                case .Italic:
+                case .italic:
                     font = italicFont
                     break
                 }
@@ -119,132 +119,133 @@ extension NCKTextView: UITextViewDelegate {
         
         nck_textStorage.returnKeyDeleteEffectRanges.removeAll()
         
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChange(_:))) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewDidChange(_:))) {
             nck_delegate!.textViewDidChange!(textView)
         }
     }
     
-    public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewShouldBeginEditing(_:))) {
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewShouldBeginEditing(_:))) {
             return nck_delegate!.textViewShouldBeginEditing!(textView)
         }
         
         return true
     }
     
-    public func textViewDidBeginEditing(textView: UITextView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidBeginEditing(_:))) {
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewDidBeginEditing(_:))) {
             nck_delegate!.textViewDidBeginEditing!(textView)
         }
     }
     
-    public func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewShouldEndEditing(_:))) {
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewShouldEndEditing(_:))) {
             return nck_delegate!.textViewShouldEndEditing!(textView)
         }
         return true
     }
     
-    public func textViewDidEndEditing(textView: UITextView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidEndEditing(_:))) {
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textViewDidEndEditing(_:))) {
             nck_delegate!.textViewDidEndEditing!(textView)
         }
     }
     
-    public func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldInteractWithTextAttachment:inRange:))) {
-            return nck_delegate!.textView!(textView, shouldInteractWithTextAttachment: textAttachment, inRange: characterRange)
-        }
-        return true
-    }
+//    public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
+//        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:))) {
+//            return nck_delegate!.textView!(textView, shouldInteractWith: textAttachment, in: characterRange)
+//        }
+//        return true
+//    }
+//    
+//    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+//        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:))) {
+//            return nck_delegate!.textView!(textView, shouldInteractWith: URL, in: characterRange)
+//        }
+//        return true
+//    }
     
-    public func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textView(_:shouldInteractWithURL:inRange:))) {
-            return nck_delegate!.textView!(textView, shouldInteractWithURL: URL, inRange: characterRange)
-        }
-        return true
-    }
 }
 
 extension NCKTextView: UIScrollViewDelegate {
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidScroll(_:))) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidScroll(_:))) {
             nck_delegate!.scrollViewDidScroll!(scrollView)
         }
     }
     
-    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginDragging(_:))) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewWillBeginDragging(_:))) {
             nck_delegate!.scrollViewWillBeginDragging!(scrollView)
         }
     }
     
-    public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillEndDragging(_:withVelocity:targetContentOffset:))) {
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewWillEndDragging(_:withVelocity:targetContentOffset:))) {
             nck_delegate!.scrollViewWillEndDragging!(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
         }
     }
     
-    public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndDragging(_:willDecelerate:))) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidEndDragging(_:willDecelerate:))) {
             nck_delegate!.scrollViewDidEndDragging!(scrollView, willDecelerate: decelerate)
         }
     }
     
-    public func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewShouldScrollToTop(_:))) {
+    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewShouldScrollToTop(_:))) {
             return nck_delegate!.scrollViewShouldScrollToTop!(scrollView)
         }
         
         return true
     }
     
-    public func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidScrollToTop(_:))) {
+    public func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidScrollToTop(_:))) {
             nck_delegate!.scrollViewDidScrollToTop!(scrollView)
         }
     }
     
-    public func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginDecelerating(_:))) {
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewWillBeginDecelerating(_:))) {
             nck_delegate!.scrollViewWillBeginDecelerating!(scrollView)
         }
     }
     
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndDecelerating(_:))) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidEndDecelerating(_:))) {
             nck_delegate!.scrollViewDidEndDecelerating!(scrollView)
         }
     }
     
-    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.viewForZoomingInScrollView(_:))) {
-            return nck_delegate!.viewForZoomingInScrollView!(scrollView)
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.viewForZooming(in:))) {
+            return nck_delegate!.viewForZooming!(in: scrollView)
         }
         
         return nil
     }
     
-    public func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewWillBeginZooming(_:withView:))) {
-            nck_delegate!.scrollViewWillBeginZooming!(scrollView, withView: view)
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewWillBeginZooming(_:with:))) {
+            nck_delegate!.scrollViewWillBeginZooming!(scrollView, with: view)
         }
     }
     
-    public func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndZooming(_:withView:atScale:))) {
-            nck_delegate!.scrollViewDidEndZooming!(scrollView, withView: view, atScale: scale)
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidEndZooming(_:with:atScale:))) {
+            nck_delegate!.scrollViewDidEndZooming!(scrollView, with: view, atScale: scale)
         }
     }
     
-    public func scrollViewDidZoom(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidZoom(_:))) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidZoom(_:))) {
             nck_delegate!.scrollViewDidZoom!(scrollView)
         }
     }
     
-    public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.scrollViewDidEndScrollingAnimation(_:))) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.scrollViewDidEndScrollingAnimation(_:))) {
             nck_delegate!.scrollViewDidEndScrollingAnimation!(scrollView)
         }
     }

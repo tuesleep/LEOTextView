@@ -6,20 +6,20 @@
 //
 //
 
-public class NCKTextView: UITextView {
+open class NCKTextView: UITextView {
     // MARK: - Public properties
     
-    public var nck_delegate: UITextViewDelegate?
+    open var nck_delegate: UITextViewDelegate?
     
-    public var inputFontMode: NCKInputFontMode = .Normal
-    public var defaultAttributesForLoad: [String : AnyObject] = [:]
-    public var selectMenuItems: [NCKInputFontMode] = [.Bold, .Italic]
+    open var inputFontMode: NCKInputFontMode = .normal
+    open var defaultAttributesForLoad: [String : AnyObject] = [:]
+    open var selectMenuItems: [NCKInputFontMode] = [.bold, .italic]
     
     // Custom fonts
-    public var normalFont: UIFont = UIFont.systemFontOfSize(17)
-    public var titleFont: UIFont = UIFont.boldSystemFontOfSize(18)
-    public var boldFont: UIFont = UIFont.boldSystemFontOfSize(17)
-    public var italicFont: UIFont = UIFont.italicSystemFontOfSize(17)
+    open var normalFont: UIFont = UIFont.systemFont(ofSize: 17)
+    open var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 18)
+    open var boldFont: UIFont = UIFont.boldSystemFont(ofSize: 17)
+    open var italicFont: UIFont = UIFont.italicSystemFont(ofSize: 17)
     
     // MARK: - instance relations
     
@@ -56,7 +56,7 @@ public class NCKTextView: UITextView {
     }
     
     public init(normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont) {
-        super.init(frame: CGRectZero, textContainer: NSTextContainer())
+        super.init(frame: CGRect.zero, textContainer: NSTextContainer())
         
         self.font = normalFont
         self.normalFont = normalFont
@@ -76,15 +76,15 @@ public class NCKTextView: UITextView {
     }
     
     func customSelectionMenu() {
-        let menuController = UIMenuController.sharedMenuController()
+        let menuController = UIMenuController.shared
         var menuItems = [UIMenuItem]()
         
         selectMenuItems.forEach {
             switch $0 {
-            case .Bold:
+            case .bold:
                 menuItems.append(UIMenuItem(title: NSLocalizedString("Bold", comment: "Bold"), action: #selector(self.boldButtonAction)))
                 break
-            case .Italic:
+            case .italic:
                 menuItems.append(UIMenuItem(title: NSLocalizedString("Italic", comment: "Italic"), action: #selector(self.italicButtonAction)))
                 break
             default:
@@ -99,14 +99,14 @@ public class NCKTextView: UITextView {
     
     // MARK: Type transform
     
-    public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
+    open func changeCurrentParagraphTextWithInputFontMode(_ mode: NCKInputFontMode) {
         let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
         let currentMode = inputModeWithIndex(paragraphRange.location)
         
         nck_textStorage.undoSupportChangeWithRange(paragraphRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
     
-    public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
+    open func changeSelectedTextWithInputFontMode(_ mode: NCKInputFontMode) {
         let currentMode = inputModeWithIndex(selectedRange.location)
         nck_textStorage.undoSupportChangeWithRange(selectedRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
     }
@@ -126,7 +126,7 @@ public class NCKTextView: UITextView {
      ```
      
      */
-    public func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String) {
+    open func changeCurrentParagraphToOrderedList(orderedList isOrderedList: Bool, listPrefix: String) {
         // New method based on selectedRange text, and enumerate each line
         // Find target text
         var targetText: NSString!
@@ -137,20 +137,20 @@ public class NCKTextView: UITextView {
         
         if selectedRange.length == 0 {
             // current paragraph
-            targetText = NCKTextUtil.currentParagraphStringOfString(text, location: selectedRange.location)
+            targetText = NCKTextUtil.currentParagraphStringOfString(text, location: selectedRange.location) as NSString!
             targetRange = NSRange(location: objectIndex, length: targetText.length)
         } else {
             var lastIndex = selectedRange.location + selectedRange.length
             lastIndex = NCKTextUtil.lineEndIndexWithString(text, location: lastIndex)
             targetRange = NSRange(location: objectIndex, length: lastIndex - objectIndex)
-            targetText = NSString(string: text).substringWithRange(targetRange)
+            targetText = (text as NSString).substring(with: targetRange) as NSString!
         }
         
         // Confirm current is To list or To body by first line
         let objectLineRange = NSRange(location: 0, length: targetText.length)
         
-        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(String(targetText), options: [], range: objectLineRange).count > 0
-        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(String(targetText), options: [], range: objectLineRange).count > 0
+        let isCurrentOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matches(in: String(targetText), options: [], range: objectLineRange).count > 0
+        let isCurrentUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matches(in: String(targetText), options: [], range: objectLineRange).count > 0
         
         let isListNow = (isCurrentOrderedList || isCurrentUnorderedList)
         let isTransformToList = (isOrderedList && !isCurrentOrderedList) || (!isOrderedList && !isCurrentUnorderedList)
@@ -158,28 +158,28 @@ public class NCKTextView: UITextView {
         var numberedIndex = 1
         var replacedContents: [NSString] = []
         // enumerate each line
-        targetText.enumerateLinesUsingBlock { (line, stop) in
-            var currentLine: NSString = line
+        targetText.enumerateLines { (line, stop) in
+            var currentLine: NSString = line as NSString
             
             // Clear old list characters if exist
             if NCKTextUtil.isListParagraph(line) {
-                currentLine = currentLine.substringFromIndex(currentLine.rangeOfString(" ").location + 1)
+                currentLine = currentLine.substring(from: currentLine.range(of: " ").location + 1) as NSString
             }
             
             // Appending new list characters if needed
             if isTransformToList {
                 if isOrderedList {
-                    currentLine = NSString(string: "\(numberedIndex). ").stringByAppendingString(String(currentLine))
+                    currentLine = NSString(string: "\(numberedIndex). ").appending(String(currentLine)) as NSString
                     numberedIndex += 1
                 } else {
-                    currentLine = NSString(string: listPrefix).stringByAppendingString(String(currentLine))
+                    currentLine = NSString(string: listPrefix).appending(String(currentLine)) as NSString
                 }
             }
             
             replacedContents.append(currentLine)
         }
         
-        var replacedContent = NSArray(array: replacedContents).componentsJoinedByString("\n")
+        var replacedContent = NSArray(array: replacedContents).componentsJoined(by: "\n")
         
         if targetText.length == 0 && replacedContent.length() == 0 {
             replacedContent = listPrefix
@@ -190,10 +190,10 @@ public class NCKTextView: UITextView {
         
         if isListNow {
             // Already list paragraph.
-            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+            let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.components(separatedBy: " ")[0]).appending(" ") as NSString
 
             // Handle head indent of paragraph.
-            nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
+            nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(attributes: [NSFontAttributeName: normalFont]).width)
         }
         
         if isTransformToList {
@@ -201,25 +201,25 @@ public class NCKTextView: UITextView {
             let listPrefixString = NSString(string: listPrefix)
             
             // Handle head indent of paragraph.
-            nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
+            nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(attributes: [NSFontAttributeName: normalFont]).width)
         }
         
     }
     
     // MARK: About text attributes and JSON
     
-    public func textAttributesDataWithAttributedString(attributedString: NSAttributedString) -> [Dictionary<String, AnyObject>] {
+    open func textAttributesDataWithAttributedString(_ attributedString: NSAttributedString) -> [Dictionary<String, AnyObject>] {
         var attributesData: [Dictionary<String, AnyObject>] = []
         
-        attributedString.enumerateAttributesInRange(NSRange(location: 0, length: attributedString.string.length()), options: .Reverse) { (attr, range, mutablePointer) in
+        attributedString.enumerateAttributes(in: NSRange(location: 0, length: attributedString.string.length()), options: .reverse) { (attr, range, mutablePointer) in
             attr.keys.forEach {
                 var attribute = [String: AnyObject]()
                 
                 // Common name property
-                attribute["name"] = $0
+                attribute["name"] = $0 as AnyObject?
                 // Common range property
-                attribute["location"] = range.location
-                attribute["length"] = range.length
+                attribute["location"] = range.location as AnyObject?
+                attribute["length"] = range.length as AnyObject?
                 
                 if $0 == NSFontAttributeName {
                     let currentFont = attr[$0] as! UIFont
@@ -235,7 +235,7 @@ public class NCKTextView: UITextView {
                     }
                     
                     // Normal font properties saved.
-                    attribute["fontType"] = fontType
+                    attribute["fontType"] = fontType as AnyObject?
                     
                     attributesData.append(attribute)
                 }
@@ -243,8 +243,8 @@ public class NCKTextView: UITextView {
                 else if $0 == NSParagraphStyleAttributeName {
                     let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
                     
-                    if paragraphType == .BulletedList || paragraphType == .DashedList || paragraphType == .NumberedList {
-                        attribute["listType"] = paragraphType.rawValue
+                    if paragraphType == .bulletedList || paragraphType == .dashedList || paragraphType == .numberedList {
+                        attribute["listType"] = paragraphType.rawValue as AnyObject?
                         attributesData.append(attribute)
                     }
                 }
@@ -257,14 +257,14 @@ public class NCKTextView: UITextView {
     /**
         All of attributes about current text by JSON
      */
-    public func textAttributesJSON() -> String {
+    open func textAttributesJSON() -> String {
         let attributesData: [Dictionary<String, AnyObject>] = textAttributesDataWithAttributedString(attributedText)
         
         return NCKTextView.jsonStringWithAttributesData(attributesData, text: text)
     }
     
-    public func setAttributeTextWithJSONString(jsonString: String) {
-        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+    open func setAttributeTextWithJSONString(_ jsonString: String) {
+        let jsonDict: [String: AnyObject] = try! JSONSerialization.jsonObject(with: jsonString.data(using: String.Encoding.utf8)!, options: .allowFragments) as! [String : AnyObject]
         
         let text = jsonDict["text"] as! String
         self.attributedText = NSAttributedString(string: text, attributes: self.defaultAttributesForLoad)
@@ -272,7 +272,7 @@ public class NCKTextView: UITextView {
         setAttributesWithJSONString(jsonString)
     }
     
-    public func setAttributesWithJSONString(jsonString: String) {
+    open func setAttributesWithJSONString(_ jsonString: String) {
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
         let textString = NSString(string: NCKTextView.textWithJSONString(jsonString))
         
@@ -291,12 +291,12 @@ public class NCKTextView: UITextView {
                     let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
                     var listPrefixWidth: CGFloat = 0
                     
-                    if listType == .NumberedList {
-                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
-                        listPrefixString.appendContentsOf(" ")
-                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    if listType == .numberedList {
+                        var listPrefixString = textString.substring(with: range).components(separatedBy: " ")[0]
+                        listPrefixString.append(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).size(attributes: [NSFontAttributeName: normalFont]).width
                     } else {
-                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                        listPrefixWidth = NSString(string: "• ").size(attributes: [NSFontAttributeName: normalFont]).width
                     }
                     
                     let lineHeight = normalFont.lineHeight
@@ -310,7 +310,7 @@ public class NCKTextView: UITextView {
         }
     }
     
-    public class func addAttributesWithAttributedString(attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont, defaultParagraphStyle: NSParagraphStyle?) -> NSAttributedString {
+    open class func addAttributesWithAttributedString(_ attributedString: NSAttributedString, jsonString: String, normalFont: UIFont, titleFont: UIFont, boldFont: UIFont, italicFont: UIFont, defaultParagraphStyle: NSParagraphStyle?) -> NSAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let attributes = NCKTextView.attributesWithJSONString(jsonString)
@@ -341,12 +341,12 @@ public class NCKTextView: UITextView {
                     let listType = NCKInputParagraphType(rawValue: listTypeRawValue as! Int)
                     var listPrefixWidth: CGFloat = 0
                     
-                    if listType == .NumberedList {
-                        var listPrefixString = textString.substringWithRange(range).componentsSeparatedByString(" ")[0]
-                        listPrefixString.appendContentsOf(" ")
-                        listPrefixWidth = NSString(string: listPrefixString).sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                    if listType == .numberedList {
+                        var listPrefixString = textString.substring(with: range).components(separatedBy: " ")[0]
+                        listPrefixString.append(" ")
+                        listPrefixWidth = NSString(string: listPrefixString).size(attributes: [NSFontAttributeName: normalFont]).width
                     } else {
-                        listPrefixWidth = NSString(string: "• ").sizeWithAttributes([NSFontAttributeName: normalFont]).width
+                        listPrefixWidth = NSString(string: "• ").size(attributes: [NSFontAttributeName: normalFont]).width
                     }
                     
                     let lineHeight = normalFont.lineHeight
@@ -369,26 +369,26 @@ public class NCKTextView: UITextView {
         return mutableAttributedString
     }
     
-    public class func attributesWithJSONString(jsonString: String) -> [[String: AnyObject]] {
-        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+    open class func attributesWithJSONString(_ jsonString: String) -> [[String: AnyObject]] {
+        let jsonDict: [String: AnyObject] = try! JSONSerialization.jsonObject(with: jsonString.data(using: String.Encoding.utf8)!, options: .allowFragments) as! [String : AnyObject]
         
         let attributes = jsonDict["attributes"] as! [[String: AnyObject]]
         
         return attributes
     }
     
-    public class func jsonStringWithAttributesData(attributesData: [Dictionary<String, AnyObject>], text currentText: String) -> String {
+    open class func jsonStringWithAttributesData(_ attributesData: [Dictionary<String, AnyObject>], text currentText: String) -> String {
         var jsonDict: [String: AnyObject] = [:]
         
-        jsonDict["text"] = currentText
-        jsonDict["attributes"] = attributesData
+        jsonDict["text"] = currentText as AnyObject?
+        jsonDict["attributes"] = attributesData as AnyObject?
         
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(jsonDict, options: .PrettyPrinted)
-        return String(data: jsonData, encoding: NSUTF8StringEncoding)!
+        let jsonData = try! JSONSerialization.data(withJSONObject: jsonDict, options: .prettyPrinted)
+        return String(data: jsonData, encoding: String.Encoding.utf8)!
     }
     
-    public class func textWithJSONString(jsonString: String) -> String {
-        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+    open class func textWithJSONString(_ jsonString: String) -> String {
+        let jsonDict: [String: AnyObject] = try! JSONSerialization.jsonObject(with: jsonString.data(using: String.Encoding.utf8)!, options: .allowFragments) as! [String : AnyObject]
         
         let textString = jsonDict["text"] as! String
         return textString
@@ -396,7 +396,7 @@ public class NCKTextView: UITextView {
     
     // MARK: Font and paragraph type estimate
     
-    public func fontOfTypeWithAttribute(attribute: [String: AnyObject]) -> UIFont {
+    open func fontOfTypeWithAttribute(_ attribute: [String: AnyObject]) -> UIFont {
         let fontType = attribute["fontType"] as? String
         var currentFont = normalFont
         
@@ -411,61 +411,61 @@ public class NCKTextView: UITextView {
         return currentFont
     }
     
-    public func currentParagraphType() -> NCKInputParagraphType {
+    open func currentParagraphType() -> NCKInputParagraphType {
         return nck_textStorage.currentParagraphTypeWithLocation(selectedRange.location)
     }
     
-    public func inputModeWithIndex(index: Int) -> NCKInputFontMode {
+    open func inputModeWithIndex(_ index: Int) -> NCKInputFontMode {
         guard let currentFont = nck_textStorage.safeAttribute(NSFontAttributeName, atIndex: index, effectiveRange: nil, defaultValue: nil) as? UIFont else {
-            return .Normal
+            return .normal
         }
         
         if currentFont.pointSize == titleFont.pointSize {
-            return .Title
+            return .title
         } else if NCKTextUtil.isBoldFont(currentFont, boldFontName: boldFont.fontName) {
-            return .Bold
+            return .bold
         } else if NCKTextUtil.isItalicFont(currentFont, italicFontName: italicFont.fontName) {
-            return .Italic
+            return .italic
         } else {
-            return .Normal
+            return .normal
         }
     }
     
     // MARK: - Menu controller button actions
     
     func boldButtonAction() {
-        buttonActionWithInputFontMode(.Bold)
+        buttonActionWithInputFontMode(.bold)
     }
     
     func italicButtonAction() {
-        buttonActionWithInputFontMode(.Italic)
+        buttonActionWithInputFontMode(.italic)
     }
     
-    func buttonActionWithInputFontMode(mode: NCKInputFontMode) {
-        guard mode != .Normal else {
+    func buttonActionWithInputFontMode(_ mode: NCKInputFontMode) {
+        guard mode != .normal else {
             return
         }
         
         if NCKTextUtil.isSelectedTextWithTextView(self) {
             let currentFont = self.attributedText.safeAttribute(NSFontAttributeName, atIndex: selectedRange.location, effectiveRange: nil, defaultValue: normalFont) as! UIFont
-            let compareFontName = (mode == .Bold) ? boldFont.fontName : italicFont.fontName
+            let compareFontName = (mode == .bold) ? boldFont.fontName : italicFont.fontName
             
-            let isSpecialFont = (mode == .Bold ? NCKTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : NCKTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))
+            let isSpecialFont = (mode == .bold ? NCKTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : NCKTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))
             
             if !isSpecialFont {
                 changeSelectedTextWithInputFontMode(mode)
             } else {
-                changeSelectedTextWithInputFontMode(.Normal)
+                changeSelectedTextWithInputFontMode(.normal)
             }
         } else {
-            inputFontMode = (inputFontMode != mode) ? mode : .Normal
+            inputFontMode = (inputFontMode != mode) ? mode : .normal
         }
     }
     
     // MARK: - Utils
     
-    func podBundle() -> NSBundle {
-        let bundle = NSBundle(path: NSBundle(forClass: NCKTextView.self).pathForResource("NCKTextView", ofType: "bundle")!)
+    func podBundle() -> Bundle {
+        let bundle = Bundle(path: Bundle(for: NCKTextView.self).path(forResource: "NCKTextView", ofType: "bundle")!)
         
         return bundle!
     }
@@ -485,29 +485,29 @@ public class NCKTextView: UITextView {
     // MARK: - Cut & Copy & Paste support
     
     func preHandleWhenCutOrCopy() {
-        let copyText = NSString(string: text).substringWithRange(selectedRange)
+        let copyText = NSString(string: text).substring(with: selectedRange)
         
-        currentAttributesDataWithPasteboard = textAttributesDataWithAttributedString(attributedText.attributedSubstringFromRange(selectedRange))
+        currentAttributesDataWithPasteboard = textAttributesDataWithAttributedString(attributedText.attributedSubstring(from: selectedRange))
         
         if currentAttributesDataWithPasteboard != nil {
-            NSUserDefaults.standardUserDefaults().setValue(NCKTextView.jsonStringWithAttributesData(currentAttributesDataWithPasteboard!, text: copyText), forKey: nck_attributesDataWithPasteboardUserDefaultKey)
+            UserDefaults.standard.setValue(NCKTextView.jsonStringWithAttributesData(currentAttributesDataWithPasteboard!, text: copyText), forKey: nck_attributesDataWithPasteboardUserDefaultKey)
         }
     }
     
-    public override func cut(sender: AnyObject?) {
+    open override func cut(_ sender: Any?) {
         preHandleWhenCutOrCopy()
         
         super.cut(sender)
     }
     
-    public override func copy(sender: AnyObject?) {
+    open override func copy(_ sender: Any?) {
         preHandleWhenCutOrCopy()
         
         super.copy(sender)
     }
     
-    public override func paste(sender: AnyObject?) {
-        guard let pasteText = UIPasteboard.generalPasteboard().string else {
+    open override func paste(_ sender: Any?) {
+        guard let pasteText = UIPasteboard.general.string else {
             return
         }
         let pasteLocation = selectedRange.location
@@ -515,8 +515,8 @@ public class NCKTextView: UITextView {
         super.paste(sender)
         
         if currentAttributesDataWithPasteboard == nil {
-            if let attributesDataJsonString = NSUserDefaults.standardUserDefaults().valueForKey(nck_attributesDataWithPasteboardUserDefaultKey) as? String {
-                let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(attributesDataJsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+            if let attributesDataJsonString = UserDefaults.standard.value(forKey: nck_attributesDataWithPasteboardUserDefaultKey) as? String {
+                let jsonDict: [String: AnyObject] = try! JSONSerialization.jsonObject(with: attributesDataJsonString.data(using: String.Encoding.utf8)!, options: .allowFragments) as! [String : AnyObject]
                 let propertiesWithText = jsonDict["text"] as! String
                 if propertiesWithText != pasteText {
                     return
@@ -544,12 +544,12 @@ public class NCKTextView: UITextView {
         pasteText.enumerateLines { [unowned self] (line, stop) in
             let lineLength = line.length()
             
-            if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
-                NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
-                let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+            if NCKTextUtil.markdownOrderedListRegularExpression.matches(in: line, options: .reportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
+                NCKTextUtil.markdownUnorderedListRegularExpression.matches(in: line, options: .reportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+                let listPrefixString: NSString = NSString(string: line.components(separatedBy: " ")[0]).appending(" ") as NSString
                 
                 let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: self.normalFont]).width + self.normalFont.lineHeight
+                paragraphStyle.headIndent = listPrefixString.size(attributes: [NSFontAttributeName: self.normalFont]).width + self.normalFont.lineHeight
                 paragraphStyle.firstLineHeadIndent = self.normalFont.lineHeight
                 
                 self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))

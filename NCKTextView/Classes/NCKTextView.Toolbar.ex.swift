@@ -10,10 +10,10 @@ import Foundation
 
 public var toolbar: UIToolbar?
 public var toolbarHeight: CGFloat = 40
-public var currentFrame: CGRect = CGRectZero
+public var currentFrame: CGRect = CGRect.zero
 
-public var toolbarButtonTintColor: UIColor = UIColor.blackColor()
-public var toolbarButtonHighlightColor: UIColor = UIColor.orangeColor()
+public var toolbarButtonTintColor: UIColor = UIColor.black
+public var toolbarButtonHighlightColor: UIColor = UIColor.orange
 
 var formatButton: UIBarButtonItem?
 
@@ -27,7 +27,7 @@ extension NCKTextView {
      */
     
     public func removeToolbarNotifications() {
-         NSNotificationCenter.defaultCenter().removeObserver(self)
+         NotificationCenter.default.removeObserver(self)
     }
     
     /**
@@ -35,14 +35,14 @@ extension NCKTextView {
      
      */
     public func enableToolbar() -> UIToolbar {
-        toolbar = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: CGRectGetHeight(UIScreen.mainScreen().bounds)), size: CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: toolbarHeight)))
-        toolbar?.autoresizingMask = .FlexibleWidth
-        toolbar?.backgroundColor = UIColor.clearColor()
+        toolbar = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height), size: CGSize(width: UIScreen.main.bounds.width, height: toolbarHeight)))
+        toolbar?.autoresizingMask = .flexibleWidth
+        toolbar?.backgroundColor = UIColor.clear
         
         toolbar?.items = enableBarButtonItems()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         currentFrame = self.frame
         
@@ -54,11 +54,11 @@ extension NCKTextView {
     func enableBarButtonItems() -> [UIBarButtonItem] {
         let bundle = podBundle()
         
-        let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let flexibleSpaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let hideKeyboardButton = UIBarButtonItem(image: UIImage(named: "icon-keyboard", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.hideKeyboardButtonAction))
+        let hideKeyboardButton = UIBarButtonItem(image: UIImage(named: "icon-keyboard", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(self.hideKeyboardButtonAction))
         
-        formatButton = UIBarButtonItem(image: UIImage(named: "icon-format", inBundle: bundle, compatibleWithTraitCollection: nil), style: .Plain, target: self, action: #selector(self.formatButtonAction))
+        formatButton = UIBarButtonItem(image: UIImage(named: "icon-format", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(self.formatButtonAction))
         
         let buttonItems = [formatButton!, flexibleSpaceButton, hideKeyboardButton]
         
@@ -74,44 +74,44 @@ extension NCKTextView {
         if formatMenuView == nil {
             let bundle = podBundle()
             
-            let nck_formatNavigationController = UIStoryboard(name: "NCKTextView", bundle: bundle).instantiateViewControllerWithIdentifier("NCKFormatNavigationController") as! UINavigationController
+            let nck_formatNavigationController = UIStoryboard(name: "NCKTextView", bundle: bundle).instantiateViewController(withIdentifier: "NCKFormatNavigationController") as! UINavigationController
             
             nck_formatTableViewController = nck_formatNavigationController.viewControllers[0] as? NCKFormatTableViewController
             nck_formatTableViewController?.selectedCompletion = { [unowned self] (type) in
                 
                 switch type {
-                case .Title:
-                    self.inputFontMode = .Title
-                    self.changeCurrentParagraphTextWithInputFontMode(.Title)
+                case .title:
+                    self.inputFontMode = .title
+                    self.changeCurrentParagraphTextWithInputFontMode(.title)
                     
                     break
-                case .Body:
-                    self.inputFontMode = .Normal
+                case .body:
+                    self.inputFontMode = .normal
 
-                    if self.currentParagraphType() == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                    if self.currentParagraphType() == .title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.normal)
                     }
                     
                     break
-                case .BulletedList:
-                    if self.currentParagraphType() == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                case .bulletedList:
+                    if self.currentParagraphType() == .title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.normal)
                     }
                     
                     self.changeCurrentParagraphToOrderedList(orderedList: false, listPrefix: "• ")
                     
                     break
-                case .DashedList:
-                    if self.currentParagraphType() == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                case .dashedList:
+                    if self.currentParagraphType() == .title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.normal)
                     }
                     
                     self.changeCurrentParagraphToOrderedList(orderedList: false, listPrefix: "- ")
                     
                     break
-                case .NumberedList:
-                    if self.currentParagraphType() == .Title {
-                        self.changeCurrentParagraphTextWithInputFontMode(.Normal)
+                case .numberedList:
+                    if self.currentParagraphType() == .title {
+                        self.changeCurrentParagraphTextWithInputFontMode(.normal)
                     }
                     
                     self.changeCurrentParagraphToOrderedList(orderedList: true, listPrefix: "1. ")
@@ -124,13 +124,13 @@ extension NCKTextView {
             let toolbarOriginY = toolbar!.frame.origin.y
             let menuViewHeight: CGFloat = toolbarOriginY - 200 >= 44 ? 180 : 120
             
-            nck_formatNavigationController.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: superViewSize.width, height: menuViewHeight))
+            nck_formatNavigationController.view.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: superViewSize.width, height: menuViewHeight))
             
             formatMenuView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: toolbarOriginY + 44 - menuViewHeight), size: CGSize(width: superViewSize.width, height: menuViewHeight)))
             formatMenuView?.addSubview(nck_formatNavigationController.view)
             
             nck_formatTableViewController?.navigationItem.title = NSLocalizedString("Formatting", comment: "")
-            nck_formatTableViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.formatMenuViewDoneButtonAction))
+            nck_formatTableViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.formatMenuViewDoneButtonAction))
         }
         
         self.superview?.addSubview(formatMenuView!)
@@ -144,8 +144,8 @@ extension NCKTextView {
         self.resignFirstResponder()
     }
     
-    func keyboardWillShowOrHide(notification: NSNotification) {
-        guard let info = notification.userInfo else {
+    func keyboardWillShowOrHide(_ notification: Notification) {
+        guard let info = (notification as NSNotification).userInfo else {
             return
         }
   
@@ -154,11 +154,11 @@ extension NCKTextView {
         }
         
         let duration = info[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         let toolbarHeight = toolbar!.frame.size.height
         
-        if notification.name == UIKeyboardWillShowNotification {
+        if notification.name == NSNotification.Name.UIKeyboardWillShow {
             formatMenuView?.removeFromSuperview()
             
             self.superview?.addSubview(toolbar!)
@@ -167,7 +167,7 @@ extension NCKTextView {
             textViewFrame.size.height = self.superview!.frame.height - keyboardEnd.height - toolbarHeight
             self.frame = textViewFrame
             
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 var frame = toolbar!.frame
                 frame.origin.y = self.superview!.frame.height - (keyboardEnd.height + toolbarHeight)
                 toolbar!.frame = frame
@@ -175,7 +175,7 @@ extension NCKTextView {
         } else {
             self.frame = currentFrame
             
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 var frame = toolbar!.frame
                 frame.origin.y = self.superview!.frame.size.height
                 toolbar!.frame = frame

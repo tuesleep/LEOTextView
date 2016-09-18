@@ -9,11 +9,11 @@
 import Foundation
 
 public enum NCKInputFontMode: Int {
-    case Normal, Bold, Italic, Title
+    case normal, bold, italic, title
 }
 
 public enum NCKInputParagraphType: Int {
-    case Title, Body, BulletedList, DashedList, NumberedList
+    case title, body, bulletedList, dashedList, numberedList
 }
 
 struct NCKParagraph {

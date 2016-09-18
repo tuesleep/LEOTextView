@@ -30,36 +30,36 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.becomeFirstResponder()
     }
     
-    @IBAction func saveButtonAction(sender: AnyObject) {
+    @IBAction func saveButtonAction(_ sender: AnyObject) {
         textView.resignFirstResponder()
         
         let textAttributesJSON = textView.textAttributesJSON()
         
-        NSUserDefaults.standardUserDefaults().setValue(textAttributesJSON, forKey: textAttributesJSONKey)
+        UserDefaults.standard.setValue(textAttributesJSON, forKey: textAttributesJSONKey)
         
         print("textAttributesJSON: \(textAttributesJSON)")
         
         alert("Current attributed text export to JSON string successed and saved.")
     }
     
-    @IBAction func loadButtonAction(sender: AnyObject) {
+    @IBAction func loadButtonAction(_ sender: AnyObject) {
         textView.resignFirstResponder()
         
-        let textAttributesJSON = NSUserDefaults.standardUserDefaults().valueForKey(textAttributesJSONKey)
+        let textAttributesJSON = UserDefaults.standard.value(forKey: textAttributesJSONKey)
         if textAttributesJSON != nil {
             textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
         }
     }
     
-    func alert(message: String) {
-        let alertController = UIAlertController(title: "Saved", message: message, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+    func alert(_ message: String) {
+        let alertController = UIAlertController(title: "Saved", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - UITextViewDelegate
     
-    func textViewDidChangeSelection(textView: UITextView) {
+    func textViewDidChangeSelection(_ textView: UITextView) {
         print("text view font: \(textView.font)")
     }
 
