@@ -18,6 +18,15 @@ NCKTextView is a **very high-performance** rich editor. Because it's a **subclas
 * Undo and Redo
 * Rich Text Copy & Paste
 
+## Requirements
+
+Xcode 7.3 or newer
+
+Tag       | Swift
+--------  | -----
+<= 0.4.1  | 2.2
+>= 0.5.0  | 3.0
+
 ## Usage
 Not extends any class, not EditorController and so on...
 
@@ -105,12 +114,6 @@ public func setAttributesWithJSONString(jsonString: String)
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ![demo](https://github.com/chanricle/CKTextView/blob/develop/demo.gif?raw=true)
-
-## Requirements
-
-Xcode 7.3 +
-
-Swift 2.2 +
 
 ## Installation
 
