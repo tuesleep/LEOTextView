@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         // Init and config TextView
         textView = NCKTextView(frame: self.view.bounds, textContainer: NSTextContainer())
-        textView.enableToolbar()
+        _ = textView.enableToolbar()
         textView.nck_delegate = self
         
         // add to View

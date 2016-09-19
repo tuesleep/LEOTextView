@@ -422,6 +422,12 @@
 					9C4E9A44A88FC8E3081D400928A1C7E7 = {
 						LastSwiftMigration = 0800;
 					};
+					D8C2C2341388C7B0B69C4707DBD6DC94 = {
+						LastSwiftMigration = 0800;
+					};
+					E1B232711D50838B3D84B93802012527 = {
+						LastSwiftMigration = 0800;
+					};
 				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -612,6 +618,7 @@
 				PRODUCT_NAME = NCKTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -644,6 +651,7 @@
 				PRODUCT_NAME = Pods_NCKTextView_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -662,6 +670,7 @@
 				PRODUCT_NAME = NCKTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -694,6 +703,7 @@
 				PRODUCT_NAME = Pods_NCKTextView_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
