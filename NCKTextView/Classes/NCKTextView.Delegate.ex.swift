@@ -122,8 +122,6 @@ extension NCKTextView: UITextViewDelegate {
         
         let objectLine = NCKTextUtil.objectLineAndIndexWithString(textView.text, location: textView.selectedRange.location)
         
-        print("objectLine: \(objectLine)")
-        
         if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChange(_:))) {
             nck_delegate!.textViewDidChange!(textView)
         }

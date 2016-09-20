@@ -28,6 +28,14 @@ class NCKTextUtil: NSObject {
         }
     }
     
+    class func isSpace(text: String) -> Bool {
+        if text == " " {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     class func isSelectedTextWithTextView(textView: UITextView) -> Bool {
         let length = textView.selectedRange.length
         return length > 0

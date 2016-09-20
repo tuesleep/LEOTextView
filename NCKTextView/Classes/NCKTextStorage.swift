@@ -120,6 +120,21 @@ class NCKTextStorage: NSTextStorage {
             return
         }
         
+        // Title auto scanning
+        let paragraphString = NCKTextUtil.currentParagraphStringOfString(string, location: range.location)
+
+        if NCKTextUtil.markdownTitleRegularExpression.matchesInString(paragraphString, options: .ReportProgress, range: NSMakeRange(0, paragraphString.length())).count == 0 {
+            textView.inputFontMode = .Normal
+           
+            let paragraphRange = NCKTextUtil.paragraphRangeOfString(string, location: range.location)
+            undoSupportChangeWithRange(paragraphRange, toMode: NCKInputFontMode.Normal.rawValue, currentMode: NCKInputFontMode.Title.rawValue)
+        } else {
+            textView.inputFontMode = .Title
+            
+            let paragraphRange = NCKTextUtil.paragraphRangeOfString(string, location: range.location)
+            undoSupportChangeWithRange(paragraphRange, toMode: NCKInputFontMode.Title.rawValue, currentMode: NCKInputFontMode.Normal.rawValue)
+        }
+        
         if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
             let deleteLocation = range.location - listPrefixItemLength
