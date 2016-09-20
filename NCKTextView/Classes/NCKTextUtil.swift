@@ -54,7 +54,7 @@ class NCKTextUtil: NSObject {
     }
     
     class func lineEndIndexWithString(_ string: String, location: Int) -> Int {
-        let remainText: NSString = NSString(string: string).substring(from: location) as! NSString
+        let remainText: NSString = NSString(string: string).substring(from: location) as NSString
         
         var nextLineBreakLocation = remainText.range(of: "\n").location
         nextLineBreakLocation = (nextLineBreakLocation == NSNotFound) ? string.length() : nextLineBreakLocation + location

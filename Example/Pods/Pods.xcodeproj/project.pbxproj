@@ -1,2085 +1,890 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>02CB090C473959369D73CD8F68B792FE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CEC22C73C1608DFA5D5D78BDCB218219</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>034014829C1E4434983CF3A690C12017</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_ANALYZER_NONNULL</key>
-				<string>YES</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>ENABLE_TESTABILITY</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>POD_CONFIGURATION_DEBUG=1</string>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>STRIP_INSTALLED_PRODUCT</key>
-				<string>NO</string>
-				<key>SYMROOT</key>
-				<string>${SRCROOT}/../build</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>042B9582CA6DC8A6B16ED2F203181C91</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>79AA52CC3AD296C1B33B4AC19152BD34</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Example/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.cocoapods.${PRODUCT_NAME:rfc1034identifier}</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_NCKTextView_Example</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>0776F8973D1BEB284D96BA2059D5C642</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>C71F18D6549885FCB1AF91C14AE44F0A</string>
-				<string>0ECF0EF2429D5E9313DC7D92FA416F6F</string>
-				<string>24F4EEC4149A346A6EEF004DDD59DBF2</string>
-				<string>166D0908BEC73CE3A751270841C7E467</string>
-				<string>8781261FB776DA75BD54F61A3DB49D05</string>
-				<string>B3240CBDB3E759664A2B2547EF88811A</string>
-				<string>F0B89E25CA8DEDAA38BBA9D7C9EE48D9</string>
-				<string>0968B766F391D29B39B6015FB70A0494</string>
-				<string>C8B29D2042332B577A895A6C3A5E79F3</string>
-				<string>A8A281A8F1D5353087BB3936D68B0C5F</string>
-				<string>D0DB2AA7BEC09531534E56015275DD27</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>080D83D064C4D3369C0393E3961AAB5D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>21BE8BEDCD332E65F8367FE80FDADF63</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/NCKTextView/NCKTextView-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/NCKTextView/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/NCKTextView/NCKTextView.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>NCKTextView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>0968B766F391D29B39B6015FB70A0494</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DD18B516E92DC084A28DC2C2B297E9B7</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>0D04D409C1F5B64A6803E98A9F5FF17E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0ECF0EF2429D5E9313DC7D92FA416F6F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CD82CA798E54766E46847F7171DE5B2C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>14350E071EA0648E74151D8433602B58</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CEC22C73C1608DFA5D5D78BDCB218219</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>166D0908BEC73CE3A751270841C7E467</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CE2F58B098B4FCADE8A6B3240C32C42</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>16F40566733DBB8853453CC4CA6FBD82</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>ResourceBundle-NCKTextView-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>18475274F1D9D1599754408D2C6EC164</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKFormatTableViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1DFB032D4EBF4E91C23CCFAF591C1D02</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>2D68EBC04669F193BAB9C2DD550B746B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Development Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1FE3BE416F2160491F44C82C183511DC</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>26168C0D683F9B6148DBBDC486054AAD</string>
-			<key>remoteInfo</key>
-			<string>NCKTextView</string>
-		</dict>
-		<key>21BE8BEDCD332E65F8367FE80FDADF63</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>NCKTextView.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>24F4EEC4149A346A6EEF004DDD59DBF2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CABEAB4A4F2A812693D3426FE6097EFA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>26168C0D683F9B6148DBBDC486054AAD</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>D21CC274518254B1CC191C589A8CDB12</string>
-			<key>buildPhases</key>
-			<array>
-				<string>0776F8973D1BEB284D96BA2059D5C642</string>
-				<string>49BE67180DFF380B7DF77B79FE6699AA</string>
-				<string>B3CF77909AFA585A74DE01F9DD3B2662</string>
-				<string>EE2B53568F0818415DC97820A1B6332D</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>FD61BF9BD805B1B2740D83E08F77A74B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>NCKTextView</string>
-			<key>productName</key>
-			<string>NCKTextView</string>
-			<key>productReference</key>
-			<string>AC1C05CBD4499392A4A5A6456929960D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>2A98588EA33D9868BAF42462037B8C0F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>NCKTextView-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2D68EBC04669F193BAB9C2DD550B746B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>45A4B61308FB01AED5E94F9F8EE406BA</string>
-				<string>B0BF4BC0D752A6AA3D9CCAC5DAFC799C</string>
-				<string>31EF51CB36148FC6997ED60F1CC115E0</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>NCKTextView</string>
-			<key>path</key>
-			<string>../..</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>034014829C1E4434983CF3A690C12017</string>
-				<string>C7E474A03CAE21F1CB6046E7344C59BD</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>2FA2C7AA567DADB6EC84B6AF5AC3762B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>NCKTextView-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2FB44525895368DEAA39E4695993052F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>31EF51CB36148FC6997ED60F1CC115E0</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>9850E70F890C4A56943BEC1D237A8F03</string>
-				<string>70ABAD1D2AD901D79D3F84AEAF22D05E</string>
-				<string>21BE8BEDCD332E65F8367FE80FDADF63</string>
-				<string>8CE2F58B098B4FCADE8A6B3240C32C42</string>
-				<string>2A98588EA33D9868BAF42462037B8C0F</string>
-				<string>2FA2C7AA567DADB6EC84B6AF5AC3762B</string>
-				<string>16F40566733DBB8853453CC4CA6FBD82</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>Example/Pods/Target Support Files/NCKTextView</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>364EC4A7307101D1159C5633D792E14E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>NCKTextView</string>
-			<key>target</key>
-			<string>26168C0D683F9B6148DBBDC486054AAD</string>
-			<key>targetProxy</key>
-			<string>1FE3BE416F2160491F44C82C183511DC</string>
-		</dict>
-		<key>3AB2AF2A90A4AEF5E6945544EFEADE3F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3DCAB2B7CDE207B3958B6CB957FCC758</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CEC22C73C1608DFA5D5D78BDCB218219</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3E29F125D9F06C826E3171605395EF05</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextViewStructs.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3EAD5507FC285EC606EC5BC0CBEADCB9</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>14350E071EA0648E74151D8433602B58</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>41FCE1CB18DEC8F3B117C69FE19E3037</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextView.Delegate.ex.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>455FFB04B3EE2EAEDBAD12CB5FA10155</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4851B4B14C416BCC85727532F9A03D49</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>45A4B61308FB01AED5E94F9F8EE406BA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>D26D0C30BDDBA1D84BD0015E4A15330B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>NCKTextView</string>
-			<key>path</key>
-			<string>NCKTextView</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>45E7869CCCFBF5609932E7D5BC298A7B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3AB2AF2A90A4AEF5E6945544EFEADE3F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>477E7111112FA99697F30950970E60D6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>EEA31B43297F869F73B56B17ABA9AD43</string>
-				<string>BC9D3B454404736207CC5E3AA70A4BE3</string>
-				<string>AC2B34C065E516CF428EBC95A3A3468C</string>
-				<string>CDBF84AB0BE384F56228B0E6640BDCC5</string>
-				<string>2FB44525895368DEAA39E4695993052F</string>
-				<string>9AFBEE812BBC26BEEB227C4E2BD38A21</string>
-				<string>B7DC255C77FC8EE74835D95CC35C59DA</string>
-				<string>5CCFC6A076F4BA552F90718872314006</string>
-				<string>BB11F45828F313F6E199F05EFE38134C</string>
-				<string>FE5021B7C3D4F66F9E2AD477BA76E453</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-NCKTextView_Tests</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-NCKTextView_Tests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>480004CA9C35E0FD4C91E8E14AC44C17</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>BB11F45828F313F6E199F05EFE38134C</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Tests/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.cocoapods.${PRODUCT_NAME:rfc1034identifier}</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_NCKTextView_Tests</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>4851B4B14C416BCC85727532F9A03D49</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49BE67180DFF380B7DF77B79FE6699AA</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AF38B5537A5A38B4025DE5B961EE4AF3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5C9871CB456C1BC57DAB6ED30E665D94</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5CB505F3620C61983A1083D9F351ADAB</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>62569D9498F9FD98247E2449FAE6B902</string>
-				<string>A7B1FFD53A78CD1F2C945CFD3E850149</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>5CCFC6A076F4BA552F90718872314006</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5D61AFA39A34473BAA88F1412224C707</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>FE5021B7C3D4F66F9E2AD477BA76E453</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Tests/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.cocoapods.${PRODUCT_NAME:rfc1034identifier}</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_NCKTextView_Tests</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>615D6C0DB7E69056349A1EB254DF353A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NSMutableAttributedString.Safe.ex.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>62569D9498F9FD98247E2449FAE6B902</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>21BE8BEDCD332E65F8367FE80FDADF63</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CONFIGURATION_BUILD_DIR</key>
-				<string>$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>PRODUCT_NAME</key>
-				<string>NCKTextView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>6752E42DB66DA6182455BC9799E60368</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>69494C3398C92EB3CD3195D0CB8391B6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3AB2AF2A90A4AEF5E6945544EFEADE3F</string>
-				<string>E66ACB35CB4E88A9628049CE28AB3050</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Assets</string>
-			<key>path</key>
-			<string>Assets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6D22A9E58E6E23F0138884DC41BF2E23</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>21BE8BEDCD332E65F8367FE80FDADF63</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/NCKTextView/NCKTextView-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/NCKTextView/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/NCKTextView/NCKTextView.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>NCKTextView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>6E07F5DC0E2782D53BE503B1A1025A0F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>455FFB04B3EE2EAEDBAD12CB5FA10155</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>70ABAD1D2AD901D79D3F84AEAF22D05E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>NCKTextView.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>744C0E606FD59525CAEC2CFBA2A0DE91</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>DCC23F9B53A7562B94383CFC75721E09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>79AA52CC3AD296C1B33B4AC19152BD34</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7DB346D0F39D3F0E887471402A8071AB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
-				<string>1DFB032D4EBF4E91C23CCFAF591C1D02</string>
-				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>BD26E1E0B0EB94C082C1DE6BEE04C288</string>
-				<string>E4D039BCC4B7FD67CE14EE66E311750A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>81CCA9A3BC9B0009CD2D61074FE3E1A6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2FA2C7AA567DADB6EC84B6AF5AC3762B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>8726B78B0B80C2ECAF621735C7A96EB6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8781261FB776DA75BD54F61A3DB49D05</key>
-		<dict>
-			<key>fileRef</key>
-			<string>41FCE1CB18DEC8F3B117C69FE19E3037</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8BC2ECDE7603CFD9470BD646ECADB089</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>989B03990D560622F77D540764FD9430</string>
-			<key>buildPhases</key>
-			<array>
-				<string>F8F16ECC35D4B7F836B63ECB22BC8696</string>
-				<string>BB555C3FA9E0A77ABD1F3BE996679B47</string>
-				<string>6E07F5DC0E2782D53BE503B1A1025A0F</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>364EC4A7307101D1159C5633D792E14E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-NCKTextView_Example</string>
-			<key>productName</key>
-			<string>Pods-NCKTextView_Example</string>
-			<key>productReference</key>
-			<string>D1D7FE241F37208E81F7F3D2B71EC657</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>8BDD167AF4F07867398824116EDE03D6</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>A8CC7719F10FE9B302DA15D236F67CAC</string>
-			<key>remoteInfo</key>
-			<string>NCKTextView-NCKTextView</string>
-		</dict>
-		<key>8CE2F58B098B4FCADE8A6B3240C32C42</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>NCKTextView-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D466493B001B47C3A0B463B92A352FE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9053412DACEF7BE19019F33CBF6535EF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93A4A3777CF96A4AAC1D13BA6DCCEA73</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>text.script.ruby</string>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>name</key>
-			<string>Podfile</string>
-			<key>path</key>
-			<string>../Podfile</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-			<key>xcLanguageSpecificationIdentifier</key>
-			<string>xcode.lang.ruby</string>
-		</dict>
-		<key>965CFEEA524B21351BD18C3F2CED7136</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9850E70F890C4A56943BEC1D237A8F03</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>989B03990D560622F77D540764FD9430</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>F1293C459C90F1D5B39C1790AE4DE64D</string>
-				<string>042B9582CA6DC8A6B16ED2F203181C91</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>9A5F4C4E824BBAC9A78F1536E87822CA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>0D04D409C1F5B64A6803E98A9F5FF17E</string>
-				<string>9053412DACEF7BE19019F33CBF6535EF</string>
-				<string>5C9871CB456C1BC57DAB6ED30E665D94</string>
-				<string>8726B78B0B80C2ECAF621735C7A96EB6</string>
-				<string>B93072D2EE62CDE94FD64B5A4BA8C6E6</string>
-				<string>B9CA44E655C70CF0EF11D7FAEF640F6A</string>
-				<string>8D466493B001B47C3A0B463B92A352FE</string>
-				<string>4851B4B14C416BCC85727532F9A03D49</string>
-				<string>6752E42DB66DA6182455BC9799E60368</string>
-				<string>79AA52CC3AD296C1B33B4AC19152BD34</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-NCKTextView_Example</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-NCKTextView_Example</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9AFBEE812BBC26BEEB227C4E2BD38A21</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A4CEDF246647E19F8210E454DE61C5D1</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>69494C3398C92EB3CD3195D0CB8391B6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>NCKTextView</string>
-			<key>path</key>
-			<string>NCKTextView</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A7B1FFD53A78CD1F2C945CFD3E850149</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>21BE8BEDCD332E65F8367FE80FDADF63</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CONFIGURATION_BUILD_DIR</key>
-				<string>$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>PRODUCT_NAME</key>
-				<string>NCKTextView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>A8A281A8F1D5353087BB3936D68B0C5F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>615D6C0DB7E69056349A1EB254DF353A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>A8CC7719F10FE9B302DA15D236F67CAC</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>5CB505F3620C61983A1083D9F351ADAB</string>
-			<key>buildPhases</key>
-			<array>
-				<string>BC7537ECFFC18E7FE1943AC1450C79F7</string>
-				<string>E038DB61F0C2FCCEB976CDCA636E13FA</string>
-				<string>AC0BBAA071AF338EBBE75ABA801C6D61</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>NCKTextView-NCKTextView</string>
-			<key>productName</key>
-			<string>NCKTextView-NCKTextView</string>
-			<key>productReference</key>
-			<string>CD34650B02E23C16655050D987E498B2</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle</string>
-		</dict>
-		<key>AC0BBAA071AF338EBBE75ABA801C6D61</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>45E7869CCCFBF5609932E7D5BC298A7B</string>
-				<string>F650E09F22C6C6BAD39741D21AAD3B92</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AC1C05CBD4499392A4A5A6456929960D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>NCKTextView.framework</string>
-			<key>path</key>
-			<string>NCKTextView.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>AC2B34C065E516CF428EBC95A3A3468C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>ADCF37BCBBC3CE391B3214FE90C06E70</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextView.Toolbar.ex.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AF38B5537A5A38B4025DE5B961EE4AF3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CEC22C73C1608DFA5D5D78BDCB218219</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B0BF4BC0D752A6AA3D9CCAC5DAFC799C</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>A4CEDF246647E19F8210E454DE61C5D1</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Resources</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B3240CBDB3E759664A2B2547EF88811A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>965CFEEA524B21351BD18C3F2CED7136</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B3CF77909AFA585A74DE01F9DD3B2662</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>F8FE47390FA26BDD4E42C316ADC801A4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>B688E6B95DFD051306808A1738E494FE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>String.ex.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B71AFDF73D70D9F840AE67EEF9958D4D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5CCFC6A076F4BA552F90718872314006</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>B7DC255C77FC8EE74835D95CC35C59DA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B93072D2EE62CDE94FD64B5A4BA8C6E6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B9CA44E655C70CF0EF11D7FAEF640F6A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BB11F45828F313F6E199F05EFE38134C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BB555C3FA9E0A77ABD1F3BE996679B47</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>02CB090C473959369D73CD8F68B792FE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3DCAB2B7CDE207B3958B6CB957FCC758</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BC7537ECFFC18E7FE1943AC1450C79F7</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>BC9D3B454404736207CC5E3AA70A4BE3</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BD26E1E0B0EB94C082C1DE6BEE04C288</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CD34650B02E23C16655050D987E498B2</string>
-				<string>AC1C05CBD4499392A4A5A6456929960D</string>
-				<string>D1D7FE241F37208E81F7F3D2B71EC657</string>
-				<string>FF828CF60B549CA5D2613696A05840E4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C71F18D6549885FCB1AF91C14AE44F0A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>18475274F1D9D1599754408D2C6EC164</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>C7E474A03CAE21F1CB6046E7344C59BD</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_ANALYZER_NONNULL</key>
-				<string>YES</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>POD_CONFIGURATION_RELEASE=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>STRIP_INSTALLED_PRODUCT</key>
-				<string>NO</string>
-				<key>SYMROOT</key>
-				<string>${SRCROOT}/../build</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>C8B29D2042332B577A895A6C3A5E79F3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E29F125D9F06C826E3171605395EF05</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CABEAB4A4F2A812693D3426FE6097EFA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextUtil.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CD34650B02E23C16655050D987E498B2</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>NCKTextView.bundle</string>
-			<key>path</key>
-			<string>NCKTextView.bundle</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>CD82CA798E54766E46847F7171DE5B2C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextStorage.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CDBF84AB0BE384F56228B0E6640BDCC5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CEC22C73C1608DFA5D5D78BDCB218219</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>D0DB2AA7BEC09531534E56015275DD27</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B688E6B95DFD051306808A1738E494FE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>D1D7FE241F37208E81F7F3D2B71EC657</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_NCKTextView_Example.framework</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Example.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>D21CC274518254B1CC191C589A8CDB12</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>080D83D064C4D3369C0393E3961AAB5D</string>
-				<string>6D22A9E58E6E23F0138884DC41BF2E23</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>D26D0C30BDDBA1D84BD0015E4A15330B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>18475274F1D9D1599754408D2C6EC164</string>
-				<string>CD82CA798E54766E46847F7171DE5B2C</string>
-				<string>CABEAB4A4F2A812693D3426FE6097EFA</string>
-				<string>965CFEEA524B21351BD18C3F2CED7136</string>
-				<string>41FCE1CB18DEC8F3B117C69FE19E3037</string>
-				<string>ADCF37BCBBC3CE391B3214FE90C06E70</string>
-				<string>DD18B516E92DC084A28DC2C2B297E9B7</string>
-				<string>3E29F125D9F06C826E3171605395EF05</string>
-				<string>615D6C0DB7E69056349A1EB254DF353A</string>
-				<string>B688E6B95DFD051306808A1738E494FE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Classes</string>
-			<key>path</key>
-			<string>Classes</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D41D8CD98F00B204E9800998ECF8427E</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0730</string>
-				<key>LastUpgradeCheck</key>
-				<string>0700</string>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>7DB346D0F39D3F0E887471402A8071AB</string>
-			<key>productRefGroup</key>
-			<string>BD26E1E0B0EB94C082C1DE6BEE04C288</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>26168C0D683F9B6148DBBDC486054AAD</string>
-				<string>A8CC7719F10FE9B302DA15D236F67CAC</string>
-				<string>8BC2ECDE7603CFD9470BD646ECADB089</string>
-				<string>E1B232711D50838B3D84B93802012527</string>
-			</array>
-		</dict>
-		<key>D87081538D24BD18D6A0F8C9E618E8B1</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>B71AFDF73D70D9F840AE67EEF9958D4D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>DCC23F9B53A7562B94383CFC75721E09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2FB44525895368DEAA39E4695993052F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>DD18B516E92DC084A28DC2C2B297E9B7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>NCKTextViewPersistent.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DDED72621CD83550ADD6FC6EEB487979</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>480004CA9C35E0FD4C91E8E14AC44C17</string>
-				<string>5D61AFA39A34473BAA88F1412224C707</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>E038DB61F0C2FCCEB976CDCA636E13FA</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>E1B232711D50838B3D84B93802012527</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>DDED72621CD83550ADD6FC6EEB487979</string>
-			<key>buildPhases</key>
-			<array>
-				<string>744C0E606FD59525CAEC2CFBA2A0DE91</string>
-				<string>3EAD5507FC285EC606EC5BC0CBEADCB9</string>
-				<string>D87081538D24BD18D6A0F8C9E618E8B1</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-NCKTextView_Tests</string>
-			<key>productName</key>
-			<string>Pods-NCKTextView_Tests</string>
-			<key>productReference</key>
-			<string>FF828CF60B549CA5D2613696A05840E4</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>E4D039BCC4B7FD67CE14EE66E311750A</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>9A5F4C4E824BBAC9A78F1536E87822CA</string>
-				<string>477E7111112FA99697F30950970E60D6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Targets Support Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E66ACB35CB4E88A9628049CE28AB3050</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>NCKTextView.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>EE2B53568F0818415DC97820A1B6332D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>81CCA9A3BC9B0009CD2D61074FE3E1A6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>EEA31B43297F869F73B56B17ABA9AD43</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F0B89E25CA8DEDAA38BBA9D7C9EE48D9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>ADCF37BCBBC3CE391B3214FE90C06E70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>F1293C459C90F1D5B39C1790AE4DE64D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>6752E42DB66DA6182455BC9799E60368</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Example/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>org.cocoapods.${PRODUCT_NAME:rfc1034identifier}</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_NCKTextView_Example</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>F650E09F22C6C6BAD39741D21AAD3B92</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E66ACB35CB4E88A9628049CE28AB3050</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>F8F16ECC35D4B7F836B63ECB22BC8696</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>FE91922CFAB3B8EF3A462849B1665E89</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>F8FE47390FA26BDD4E42C316ADC801A4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CD34650B02E23C16655050D987E498B2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FD61BF9BD805B1B2740D83E08F77A74B</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>NCKTextView-NCKTextView</string>
-			<key>target</key>
-			<string>A8CC7719F10FE9B302DA15D236F67CAC</string>
-			<key>targetProxy</key>
-			<string>8BDD167AF4F07867398824116EDE03D6</string>
-		</dict>
-		<key>FE5021B7C3D4F66F9E2AD477BA76E453</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FE91922CFAB3B8EF3A462849B1665E89</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B93072D2EE62CDE94FD64B5A4BA8C6E6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FF828CF60B549CA5D2613696A05840E4</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_NCKTextView_Tests.framework</string>
-			<key>path</key>
-			<string>Pods-NCKTextView_Tests.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>D41D8CD98F00B204E9800998ECF8427E</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */; };
+		0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */; };
+		14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */; };
+		24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */; };
+		455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */; };
+		81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */; };
+		A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */; };
+		AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */; };
+		B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */; };
+		C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */; };
+		D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688E6B95DFD051306808A1738E494FE /* String.ex.swift */; };
+		DCC23F9B53A7562B94383CFC75721E09 /* Pods-NCKTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */; };
+		F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */; };
+		F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */; };
+		F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */; };
+		FE91922CFAB3B8EF3A462849B1665E89 /* Pods-NCKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1FE3BE416F2160491F44C82C183511DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26168C0D683F9B6148DBBDC486054AAD;
+			remoteInfo = NCKTextView;
+		};
+		8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8CC7719F10FE9B302DA15D236F67CAC;
+			remoteInfo = "NCKTextView-NCKTextView";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D04D409C1F5B64A6803E98A9F5FF17E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16F40566733DBB8853453CC4CA6FBD82 /* ResourceBundle-NCKTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NCKTextView-Info.plist"; sourceTree = "<group>"; };
+		18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKFormatTableViewController.swift; sourceTree = "<group>"; };
+		21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NCKTextView.xcconfig; sourceTree = "<group>"; };
+		2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-prefix.pch"; sourceTree = "<group>"; };
+		2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-umbrella.h"; sourceTree = "<group>"; };
+		2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
+		3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewStructs.swift; sourceTree = "<group>"; };
+		41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Delegate.ex.swift; sourceTree = "<group>"; };
+		4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
+		5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
+		615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.Safe.ex.swift; sourceTree = "<group>"; };
+		6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		70ABAD1D2AD901D79D3F84AEAF22D05E /* NCKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = NCKTextView.modulemap; sourceTree = "<group>"; };
+		79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		8726B78B0B80C2ECAF621735C7A96EB6 /* Pods-NCKTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NCKTextView-dummy.m"; sourceTree = "<group>"; };
+		8D466493B001B47C3A0B463B92A352FE /* Pods-NCKTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-resources.sh"; sourceTree = "<group>"; };
+		9053412DACEF7BE19019F33CBF6535EF /* Pods-NCKTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Example.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.swift; sourceTree = "<group>"; };
+		9850E70F890C4A56943BEC1D237A8F03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AFBEE812BBC26BEEB227C4E2BD38A21 /* Pods-NCKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NCKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
+		B688E6B95DFD051306808A1738E494FE /* String.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.ex.swift; sourceTree = "<group>"; };
+		B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
+		B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Example-dummy.m"; sourceTree = "<group>"; };
+		B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
+		BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC9D3B454404736207CC5E3AA70A4BE3 /* Pods-NCKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Tests.modulemap"; sourceTree = "<group>"; };
+		CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextUtil.swift; sourceTree = "<group>"; };
+		CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NCKTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextStorage.swift; sourceTree = "<group>"; };
+		CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewPersistent.swift; sourceTree = "<group>"; };
+		E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NCKTextView.storyboard; sourceTree = "<group>"; };
+		EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EAD5507FC285EC606EC5BC0CBEADCB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB555C3FA9E0A77ABD1F3BE996679B47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1DFB032D4EBF4E91C23CCFAF591C1D02 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */,
+				B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */,
+				31EF51CB36148FC6997ED60F1CC115E0 /* Support Files */,
+			);
+			name = NCKTextView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		31EF51CB36148FC6997ED60F1CC115E0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9850E70F890C4A56943BEC1D237A8F03 /* Info.plist */,
+				70ABAD1D2AD901D79D3F84AEAF22D05E /* NCKTextView.modulemap */,
+				21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */,
+				8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */,
+				2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */,
+				2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */,
+				16F40566733DBB8853453CC4CA6FBD82 /* ResourceBundle-NCKTextView-Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/NCKTextView";
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */,
+			);
+			path = NCKTextView;
+			sourceTree = "<group>";
+		};
+		477E7111112FA99697F30950970E60D6 /* Pods-NCKTextView_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */,
+				BC9D3B454404736207CC5E3AA70A4BE3 /* Pods-NCKTextView_Tests.modulemap */,
+				AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */,
+				CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */,
+				2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */,
+				9AFBEE812BBC26BEEB227C4E2BD38A21 /* Pods-NCKTextView_Tests-frameworks.sh */,
+				B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */,
+				5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */,
+				BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */,
+				FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */,
+			);
+			name = "Pods-NCKTextView_Tests";
+			path = "Target Support Files/Pods-NCKTextView_Tests";
+			sourceTree = "<group>";
+		};
+		69494C3398C92EB3CD3195D0CB8391B6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */,
+				E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				1DFB032D4EBF4E91C23CCFAF591C1D02 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */,
+				E4D039BCC4B7FD67CE14EE66E311750A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9A5F4C4E824BBAC9A78F1536E87822CA /* Pods-NCKTextView_Example */ = {
+			isa = PBXGroup;
+			children = (
+				0D04D409C1F5B64A6803E98A9F5FF17E /* Info.plist */,
+				9053412DACEF7BE19019F33CBF6535EF /* Pods-NCKTextView_Example.modulemap */,
+				5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */,
+				8726B78B0B80C2ECAF621735C7A96EB6 /* Pods-NCKTextView_Example-acknowledgements.plist */,
+				B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */,
+				B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */,
+				8D466493B001B47C3A0B463B92A352FE /* Pods-NCKTextView_Example-resources.sh */,
+				4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */,
+				6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */,
+				79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */,
+			);
+			name = "Pods-NCKTextView_Example";
+			path = "Target Support Files/Pods-NCKTextView_Example";
+			sourceTree = "<group>";
+		};
+		A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				69494C3398C92EB3CD3195D0CB8391B6 /* Assets */,
+			);
+			path = NCKTextView;
+			sourceTree = "<group>";
+		};
+		B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */,
+				AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */,
+				D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */,
+				FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */,
+				CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */,
+				CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */,
+				965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */,
+				41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */,
+				ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */,
+				DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */,
+				3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */,
+				615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */,
+				B688E6B95DFD051306808A1738E494FE /* String.ex.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E4D039BCC4B7FD67CE14EE66E311750A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A5F4C4E824BBAC9A78F1536E87822CA /* Pods-NCKTextView_Example */,
+				477E7111112FA99697F30950970E60D6 /* Pods-NCKTextView_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6E07F5DC0E2782D53BE503B1A1025A0F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D87081538D24BD18D6A0F8C9E618E8B1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE2B53568F0818415DC97820A1B6332D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */;
+			buildPhases = (
+				0776F8973D1BEB284D96BA2059D5C642 /* Sources */,
+				49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */,
+				B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */,
+				EE2B53568F0818415DC97820A1B6332D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */,
+			);
+			name = NCKTextView;
+			productName = NCKTextView;
+			productReference = AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989B03990D560622F77D540764FD9430 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Example" */;
+			buildPhases = (
+				F8F16ECC35D4B7F836B63ECB22BC8696 /* Sources */,
+				BB555C3FA9E0A77ABD1F3BE996679B47 /* Frameworks */,
+				6E07F5DC0E2782D53BE503B1A1025A0F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				364EC4A7307101D1159C5633D792E14E /* PBXTargetDependency */,
+			);
+			name = "Pods-NCKTextView_Example";
+			productName = "Pods-NCKTextView_Example";
+			productReference = D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */;
+			buildPhases = (
+				BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */,
+				E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */,
+				AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NCKTextView-NCKTextView";
+			productName = "NCKTextView-NCKTextView";
+			productReference = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		E1B232711D50838B3D84B93802012527 /* Pods-NCKTextView_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDED72621CD83550ADD6FC6EEB487979 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Tests" */;
+			buildPhases = (
+				744C0E606FD59525CAEC2CFBA2A0DE91 /* Sources */,
+				3EAD5507FC285EC606EC5BC0CBEADCB9 /* Frameworks */,
+				D87081538D24BD18D6A0F8C9E618E8B1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-NCKTextView_Tests";
+			productName = "Pods-NCKTextView_Tests";
+			productReference = FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					26168C0D683F9B6148DBBDC486054AAD = {
+						LastSwiftMigration = 0800;
+					};
+					8BC2ECDE7603CFD9470BD646ECADB089 = {
+						LastSwiftMigration = 0800;
+					};
+					A8CC7719F10FE9B302DA15D236F67CAC = {
+						LastSwiftMigration = 0800;
+					};
+					E1B232711D50838B3D84B93802012527 = {
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */,
+				A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */,
+				8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */,
+				E1B232711D50838B3D84B93802012527 /* Pods-NCKTextView_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */,
+				F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0776F8973D1BEB284D96BA2059D5C642 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */,
+				0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */,
+				24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */,
+				166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */,
+				8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */,
+				B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */,
+				F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */,
+				0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */,
+				C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */,
+				A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */,
+				D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		744C0E606FD59525CAEC2CFBA2A0DE91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCC23F9B53A7562B94383CFC75721E09 /* Pods-NCKTextView_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F16ECC35D4B7F836B63ECB22BC8696 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE91922CFAB3B8EF3A462849B1665E89 /* Pods-NCKTextView_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		364EC4A7307101D1159C5633D792E14E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NCKTextView;
+			target = 26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */;
+			targetProxy = 1FE3BE416F2160491F44C82C183511DC /* PBXContainerItemProxy */;
+		};
+		FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "NCKTextView-NCKTextView";
+			target = A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */;
+			targetProxy = 8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		034014829C1E4434983CF3A690C12017 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		042B9582CA6DC8A6B16ED2F203181C91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NCKTextView_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		080D83D064C4D3369C0393E3961AAB5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = NCKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		480004CA9C35E0FD4C91E8E14AC44C17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NCKTextView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5D61AFA39A34473BAA88F1412224C707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NCKTextView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		62569D9498F9FD98247E2449FAE6B902 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = NCKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		6D22A9E58E6E23F0138884DC41BF2E23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = NCKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = NCKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F1293C459C90F1D5B39C1790AE4DE64D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NCKTextView_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				034014829C1E4434983CF3A690C12017 /* Debug */,
+				C7E474A03CAE21F1CB6046E7344C59BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62569D9498F9FD98247E2449FAE6B902 /* Debug */,
+				A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989B03990D560622F77D540764FD9430 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1293C459C90F1D5B39C1790AE4DE64D /* Debug */,
+				042B9582CA6DC8A6B16ED2F203181C91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				080D83D064C4D3369C0393E3961AAB5D /* Debug */,
+				6D22A9E58E6E23F0138884DC41BF2E23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDED72621CD83550ADD6FC6EEB487979 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480004CA9C35E0FD4C91E8E14AC44C17 /* Debug */,
+				5D61AFA39A34473BAA88F1412224C707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
