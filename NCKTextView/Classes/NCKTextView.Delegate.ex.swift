@@ -25,6 +25,7 @@ extension NCKTextView: UITextViewDelegate {
     public func textViewDidChangeSelection(textView: UITextView) {
         if nck_changeText {
             nck_changeText = false
+            
         } else {
             // Just judge when text not changed, only section move
             let type = currentParagraphType()
@@ -118,6 +119,10 @@ extension NCKTextView: UITextViewDelegate {
         }
         
         nck_textStorage.returnKeyDeleteEffectRanges.removeAll()
+        
+        let objectLine = NCKTextUtil.objectLineAndIndexWithString(textView.text, location: textView.selectedRange.location)
+        
+        print("objectLine: \(objectLine)")
         
         if nck_delegate != nil && nck_delegate!.respondsToSelector(#selector(self.textViewDidChange(_:))) {
             nck_delegate!.textViewDidChange!(textView)

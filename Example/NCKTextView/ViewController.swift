@@ -46,9 +46,19 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.resignFirstResponder()
         
         let textAttributesJSON = NSUserDefaults.standardUserDefaults().valueForKey(textAttributesJSONKey)
-        if textAttributesJSON != nil {
-            textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
-        }
+        
+        let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(textAttributesJSON!.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
+        let text = jsonDict["text"] as! String
+        
+        let attributedString = NCKTextView.generateAttributedTextWithString(text, font: UIFont.systemFontOfSize(17), titleFont: UIFont.boldSystemFontOfSize(18), keepTitlePunctuation: true)
+        
+        textView.beginSetAttributedText()
+        textView.attributedText = attributedString
+        textView.endSetAttributedText()
+        
+//        if textAttributesJSON != nil {
+//            textView.setAttributeTextWithJSONString(textAttributesJSON as! String)
+//        }
     }
     
     func alert(message: String) {
@@ -60,7 +70,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     // MARK: - UITextViewDelegate
     
     func textViewDidChangeSelection(textView: UITextView) {
-        print("text view font: \(textView.font)")
+        
     }
 
 }

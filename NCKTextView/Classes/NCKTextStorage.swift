@@ -219,6 +219,10 @@ class NCKTextStorage: NSTextStorage {
     }
     
     func performReplacementsForRange(range: NSRange, mode: NCKInputFontMode) {
+        if textView.settingAttribtuedString {
+            return
+        }
+        
         if range.length > 0 {
             // Add addition attributes.
             var attrValue: UIFont!

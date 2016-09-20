@@ -23,6 +23,8 @@ public class NCKTextView: UITextView {
     
     // MARK: - instance relations
     
+    var settingAttribtuedString = false
+    
     var nck_textStorage: NCKTextStorage!
     
     var currentAttributesDataWithPasteboard: [Dictionary<String, AnyObject>]?
@@ -97,13 +99,35 @@ public class NCKTextView: UITextView {
     
     // MARK: - Public APIs
     
+    public func beginSetAttributedText() {
+        settingAttribtuedString = true
+    }
+    
+    public func endSetAttributedText() {
+        settingAttribtuedString = false
+    }
+    
     // MARK: Type transform
     
     public func changeCurrentParagraphTextWithInputFontMode(mode: NCKInputFontMode) {
-        let paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
+        var paragraphRange = NCKTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
         let currentMode = inputModeWithIndex(paragraphRange.location)
         
+        var objectLine = NSString(string: self.text).substringWithRange(paragraphRange)
+        
+        let isTitleTextInHead = NCKTextUtil.markdownTitleRegularExpression.matchesInString(objectLine, options: .ReportProgress, range: NSMakeRange(0, objectLine.length())).count > 0
+        
         nck_textStorage.undoSupportChangeWithRange(paragraphRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
+        
+        // Handle text change when mode is Title
+        if mode == .Title && !isTitleTextInHead {
+            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 0), withAttributedString: NSAttributedString(string: "# ", attributes: [NSFontAttributeName: titleFont]), oldAttributedString: NSAttributedString(), selectedRangeLocationMove: 2)
+            
+        } else if mode != .Title && isTitleTextInHead {
+            // Delete # text if not Title type.
+            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 2), withAttributedString: NSAttributedString(), oldAttributedString: NSAttributedString(string: "# ", attributes: [NSFontAttributeName: titleFont]), selectedRangeLocationMove: -2)
+            
+        }
     }
     
     public func changeSelectedTextWithInputFontMode(mode: NCKInputFontMode) {
@@ -204,6 +228,50 @@ public class NCKTextView: UITextView {
             nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.sizeWithAttributes([NSFontAttributeName: normalFont]).width)
         }
         
+    }
+    
+    // MARK: Text attributes display with regular expression
+    
+    public class func generateAttributedTextWithString(string: String, font: UIFont, titleFont: UIFont, keepTitlePunctuation: Bool) -> NSAttributedString {
+        var attributedString = NSMutableAttributedString(string: string, attributes: [NSFontAttributeName: font])
+        
+        // Drawing paragraph by line head judgement
+        var lineLocation = 0
+        string.enumerateLines { (line, stop) in
+            let lineLength = line.length()
+            
+            if NCKTextUtil.markdownTitleRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+                var currentLineLength = lineLength
+                
+                if !keepTitlePunctuation {
+                    attributedString.replaceCharactersInRange(NSMakeRange(lineLocation, 2), withString: "")
+                    currentLineLength -= 2
+                }
+                
+                // Handle title
+                attributedString.safeAddAttributes([NSFontAttributeName: titleFont], range: NSMakeRange(lineLocation, currentLineLength + 1))
+                
+                if !keepTitlePunctuation {
+                    lineLocation -= 2
+                }
+                
+            } else if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
+                // Handle list indent
+                NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+                let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: font]).width + font.lineHeight
+                paragraphStyle.firstLineHeadIndent = font.lineHeight
+                
+                attributedString.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))
+            }
+            
+            // Don't lose \n
+            lineLocation += (lineLength + 1)
+        }
+        
+        return attributedString
     }
     
     // MARK: About text attributes and JSON
