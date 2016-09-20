@@ -8,26 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		11EE34B898D2E64876AA1A4B578B3248 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */; };
+		0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */; };
+		0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */; };
 		14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		27CBA65E7E207B7F583BA99DF7A861E2 /* NCKTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */; };
+		166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */; };
+		24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */; };
 		455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E28EEF7EDFB69EBF2949B2964F5D06C /* NCKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */; };
-		7383FFD9516B57F000D0F16DD86676B5 /* NCKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7ED6CC1988A67C5D25DA3E234352B /* NCKTextUtil.swift */; };
-		97366B7ADCC58DC8091C3802B14E2B09 /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F886E7749EAB30144FACD8129827253 /* NCKTextView.swift */; };
+		45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */; };
+		81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */; };
+		A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */; };
+		AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */; };
 		B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B904D57A1D7438FE00F360DE /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */; };
-		B910F25D1D75546000195F02 /* NCKTextView.Toolbar.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */; };
-		B91ED6531D7E49870078985A /* NCKTextView.Delegate.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */; };
-		B99BF8721D81AE54006700C0 /* NSMutableAttributedString.Safe.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BF8711D81AE54006700C0 /* NSMutableAttributedString.Safe.ex.swift */; };
-		B9A13A3926DF4BAB522AEB58A2EF540B /* NCKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */; };
-		B9B6C3991D87AFE3003398DA /* NCKTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B6C3981D87AFE3003398DA /* NCKTextViewStructs.swift */; };
-		B9B6C39B1D87B3C1003398DA /* String.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B6C39A1D87B3C1003398DA /* String.ex.swift */; };
-		B9B6C39D1D87B447003398DA /* NCKTextViewPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B6C39C1D87B447003398DA /* NCKTextViewPersistent.swift */; };
-		C4DDCB61BEA75B84FAC3B09FC75F6D4C /* NCKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D6643A1A5F8A7236370AA346AE81E0E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */; };
+		C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */; };
+		D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688E6B95DFD051306808A1738E494FE /* String.ex.swift */; };
 		DCC23F9B53A7562B94383CFC75721E09 /* Pods-NCKTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */; };
-		F2047F13C28BF43BEAC1B25DA10A6664 /* NCKTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C1AE809013570858D8EDCA46DFFA /* NCKTextStorage.swift */; };
+		F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */; };
+		F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */; };
+		F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */; };
 		FE91922CFAB3B8EF3A462849B1665E89 /* Pods-NCKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -36,14 +36,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9C4E9A44A88FC8E3081D400928A1C7E7;
+			remoteGlobalIDString = 26168C0D683F9B6148DBBDC486054AAD;
 			remoteInfo = NCKTextView;
 		};
-		D7A9F2D9F012D44210E043090B18372E /* PBXContainerItemProxy */ = {
+		8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D8C2C2341388C7B0B69C4707DBD6DC94;
+			remoteGlobalIDString = A8CC7719F10FE9B302DA15D236F67CAC;
 			remoteInfo = "NCKTextView-NCKTextView";
 		};
 /* End PBXContainerItemProxy section */
@@ -51,45 +51,45 @@
 /* Begin PBXFileReference section */
 		0D04D409C1F5B64A6803E98A9F5FF17E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16F40566733DBB8853453CC4CA6FBD82 /* ResourceBundle-NCKTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NCKTextView-Info.plist"; sourceTree = "<group>"; };
+		18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKFormatTableViewController.swift; sourceTree = "<group>"; };
 		21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NCKTextView.xcconfig; sourceTree = "<group>"; };
 		2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-prefix.pch"; sourceTree = "<group>"; };
 		2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-umbrella.h"; sourceTree = "<group>"; };
 		2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
 		3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewStructs.swift; sourceTree = "<group>"; };
+		41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Delegate.ex.swift; sourceTree = "<group>"; };
 		4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
 		5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
-		5EB7ED6CC1988A67C5D25DA3E234352B /* NCKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextUtil.swift; sourceTree = "<group>"; };
+		615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.Safe.ex.swift; sourceTree = "<group>"; };
 		6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		70ABAD1D2AD901D79D3F84AEAF22D05E /* NCKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = NCKTextView.modulemap; sourceTree = "<group>"; };
 		79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7F886E7749EAB30144FACD8129827253 /* NCKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.swift; sourceTree = "<group>"; };
 		8726B78B0B80C2ECAF621735C7A96EB6 /* Pods-NCKTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NCKTextView-dummy.m"; sourceTree = "<group>"; };
 		8D466493B001B47C3A0B463B92A352FE /* Pods-NCKTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-resources.sh"; sourceTree = "<group>"; };
 		9053412DACEF7BE19019F33CBF6535EF /* Pods-NCKTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Example.modulemap"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.swift; sourceTree = "<group>"; };
 		9850E70F890C4A56943BEC1D237A8F03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AFBEE812BBC26BEEB227C4E2BD38A21 /* Pods-NCKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NCKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
+		B688E6B95DFD051306808A1738E494FE /* String.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.ex.swift; sourceTree = "<group>"; };
 		B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
-		B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKFormatTableViewController.swift; sourceTree = "<group>"; };
-		B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
-		B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextView.Delegate.ex.swift; sourceTree = "<group>"; };
 		B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Example-dummy.m"; sourceTree = "<group>"; };
-		B99BF8711D81AE54006700C0 /* NSMutableAttributedString.Safe.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.Safe.ex.swift; sourceTree = "<group>"; };
-		B9B6C3981D87AFE3003398DA /* NCKTextViewStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextViewStructs.swift; sourceTree = "<group>"; };
-		B9B6C39A1D87B3C1003398DA /* String.ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.ex.swift; sourceTree = "<group>"; };
-		B9B6C39C1D87B447003398DA /* NCKTextViewPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCKTextViewPersistent.swift; sourceTree = "<group>"; };
 		B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
 		BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9D3B454404736207CC5E3AA70A4BE3 /* Pods-NCKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Tests.modulemap"; sourceTree = "<group>"; };
-		C8F9C1AE809013570858D8EDCA46DFFA /* NCKTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextStorage.swift; sourceTree = "<group>"; };
+		CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextUtil.swift; sourceTree = "<group>"; };
 		CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NCKTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextStorage.swift; sourceTree = "<group>"; };
 		CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewPersistent.swift; sourceTree = "<group>"; };
 		E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NCKTextView.storyboard; sourceTree = "<group>"; };
 		EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +105,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB555C3FA9E0A77ABD1F3BE996679B47 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,18 +121,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C4BB032EE72C7B58727096513A4134C0 /* Frameworks */ = {
+		E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2011CD32BF4D5A320991698E7062414 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6643A1A5F8A7236370AA346AE81E0E2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +142,7 @@
 		2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */ = {
 			isa = PBXGroup;
 			children = (
-				924B786C17DDFC97E0C5CA0ED19C4BF9 /* NCKTextView */,
+				45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */,
 				B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */,
 				31EF51CB36148FC6997ED60F1CC115E0 /* Support Files */,
 			);
@@ -165,28 +165,20 @@
 			path = "Example/Pods/Target Support Files/NCKTextView";
 			sourceTree = "<group>";
 		};
-		3A3A382B2828ACBE04656EA2039FF946 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B9B6C39E1D87B46A003398DA /* Extensions */,
-				C8F9C1AE809013570858D8EDCA46DFFA /* NCKTextStorage.swift */,
-				5EB7ED6CC1988A67C5D25DA3E234352B /* NCKTextUtil.swift */,
-				7F886E7749EAB30144FACD8129827253 /* NCKTextView.swift */,
-				B91ED6521D7E49870078985A /* NCKTextView.Delegate.ex.swift */,
-				B910F25C1D75546000195F02 /* NCKTextView.Toolbar.ex.swift */,
-				B9B6C39C1D87B447003398DA /* NCKTextViewPersistent.swift */,
-				B9B6C3981D87AFE3003398DA /* NCKTextViewStructs.swift */,
-				B904D5791D7438FE00F360DE /* NCKFormatTableViewController.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */ = {
+			isa = PBXGroup;
+			children = (
+				D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */,
+			);
+			path = NCKTextView;
 			sourceTree = "<group>";
 		};
 		477E7111112FA99697F30950970E60D6 /* Pods-NCKTextView_Tests */ = {
@@ -227,14 +219,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		924B786C17DDFC97E0C5CA0ED19C4BF9 /* NCKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				3A3A382B2828ACBE04656EA2039FF946 /* Classes */,
-			);
-			path = NCKTextView;
-			sourceTree = "<group>";
-		};
 		9A5F4C4E824BBAC9A78F1536E87822CA /* Pods-NCKTextView_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,15 +253,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		B9B6C39E1D87B46A003398DA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B99BF8711D81AE54006700C0 /* NSMutableAttributedString.Safe.ex.swift */,
-				B9B6C39A1D87B3C1003398DA /* String.ex.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +270,23 @@
 				FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */,
+				CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */,
+				CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */,
+				965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */,
+				41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */,
+				ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */,
+				DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */,
+				3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */,
+				615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */,
+				B688E6B95DFD051306808A1738E494FE /* String.ex.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		E4D039BCC4B7FD67CE14EE66E311750A /* Targets Support Files */ = {
@@ -325,17 +317,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8465180D660C546FB79648B459ACD50 /* Headers */ = {
+		EE2B53568F0818415DC97820A1B6332D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4DDCB61BEA75B84FAC3B09FC75F6D4C /* NCKTextView-umbrella.h in Headers */,
+				81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */;
+			buildPhases = (
+				0776F8973D1BEB284D96BA2059D5C642 /* Sources */,
+				49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */,
+				B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */,
+				EE2B53568F0818415DC97820A1B6332D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */,
+			);
+			name = NCKTextView;
+			productName = NCKTextView;
+			productReference = AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 989B03990D560622F77D540764FD9430 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Example" */;
@@ -354,32 +365,13 @@
 			productReference = D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9C4E9A44A88FC8E3081D400928A1C7E7 /* NCKTextView */ = {
+		A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FCA37AE72135E17F4B119DFEB3B20CD /* Build configuration list for PBXNativeTarget "NCKTextView" */;
+			buildConfigurationList = 5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */;
 			buildPhases = (
-				DAC74C5F18E8054C915AA3FBED30F275 /* Sources */,
-				D2011CD32BF4D5A320991698E7062414 /* Frameworks */,
-				3D62133F366B73F50B99EA5240748F84 /* Resources */,
-				F8465180D660C546FB79648B459ACD50 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2CCBA0503BF73FAA2FDA3179407E0701 /* PBXTargetDependency */,
-			);
-			name = NCKTextView;
-			productName = NCKTextView;
-			productReference = AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D8C2C2341388C7B0B69C4707DBD6DC94 /* NCKTextView-NCKTextView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DB9287997FBD79E619C821E66539F465 /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */;
-			buildPhases = (
-				3E36371FDF71B77EEEEDA1C20964AC8F /* Sources */,
-				C4BB032EE72C7B58727096513A4134C0 /* Frameworks */,
-				B5A4BEDA9F369EA311F2D502CA89F0EB /* Resources */,
+				BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */,
+				E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */,
+				AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -416,13 +408,13 @@
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
+					26168C0D683F9B6148DBBDC486054AAD = {
+						LastSwiftMigration = 0800;
+					};
 					8BC2ECDE7603CFD9470BD646ECADB089 = {
 						LastSwiftMigration = 0800;
 					};
-					9C4E9A44A88FC8E3081D400928A1C7E7 = {
-						LastSwiftMigration = 0800;
-					};
-					D8C2C2341388C7B0B69C4707DBD6DC94 = {
+					A8CC7719F10FE9B302DA15D236F67CAC = {
 						LastSwiftMigration = 0800;
 					};
 					E1B232711D50838B3D84B93802012527 = {
@@ -442,8 +434,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C4E9A44A88FC8E3081D400928A1C7E7 /* NCKTextView */,
-				D8C2C2341388C7B0B69C4707DBD6DC94 /* NCKTextView-NCKTextView */,
+				26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */,
+				A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */,
 				8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */,
 				E1B232711D50838B3D84B93802012527 /* Pods-NCKTextView_Tests */,
 			);
@@ -451,30 +443,41 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3D62133F366B73F50B99EA5240748F84 /* Resources */ = {
+		AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A13A3926DF4BAB522AEB58A2EF540B /* NCKTextView.bundle in Resources */,
+				45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */,
+				F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5A4BEDA9F369EA311F2D502CA89F0EB /* Resources */ = {
+		B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11EE34B898D2E64876AA1A4B578B3248 /* Images.xcassets in Resources */,
-				27CBA65E7E207B7F583BA99DF7A861E2 /* NCKTextView.storyboard in Resources */,
+				F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3E36371FDF71B77EEEEDA1C20964AC8F /* Sources */ = {
+		0776F8973D1BEB284D96BA2059D5C642 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */,
+				0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */,
+				24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */,
+				166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */,
+				8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */,
+				B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */,
+				F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */,
+				0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */,
+				C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */,
+				A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */,
+				D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,21 +489,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAC74C5F18E8054C915AA3FBED30F275 /* Sources */ = {
+		BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2047F13C28BF43BEAC1B25DA10A6664 /* NCKTextStorage.swift in Sources */,
-				7383FFD9516B57F000D0F16DD86676B5 /* NCKTextUtil.swift in Sources */,
-				B9B6C39B1D87B3C1003398DA /* String.ex.swift in Sources */,
-				B9B6C3991D87AFE3003398DA /* NCKTextViewStructs.swift in Sources */,
-				6E28EEF7EDFB69EBF2949B2964F5D06C /* NCKTextView-dummy.m in Sources */,
-				B910F25D1D75546000195F02 /* NCKTextView.Toolbar.ex.swift in Sources */,
-				B99BF8721D81AE54006700C0 /* NSMutableAttributedString.Safe.ex.swift in Sources */,
-				B91ED6531D7E49870078985A /* NCKTextView.Delegate.ex.swift in Sources */,
-				97366B7ADCC58DC8091C3802B14E2B09 /* NCKTextView.swift in Sources */,
-				B9B6C39D1D87B447003398DA /* NCKTextViewPersistent.swift in Sources */,
-				B904D57A1D7438FE00F360DE /* NCKFormatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,17 +507,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2CCBA0503BF73FAA2FDA3179407E0701 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "NCKTextView-NCKTextView";
-			target = D8C2C2341388C7B0B69C4707DBD6DC94 /* NCKTextView-NCKTextView */;
-			targetProxy = D7A9F2D9F012D44210E043090B18372E /* PBXContainerItemProxy */;
-		};
 		364EC4A7307101D1159C5633D792E14E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NCKTextView;
-			target = 9C4E9A44A88FC8E3081D400928A1C7E7 /* NCKTextView */;
+			target = 26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */;
 			targetProxy = 1FE3BE416F2160491F44C82C183511DC /* PBXContainerItemProxy */;
+		};
+		FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "NCKTextView-NCKTextView";
+			target = A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */;
+			targetProxy = 8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,21 +598,34 @@
 			};
 			name = Release;
 		};
-		2E47C7C07C1309203A7625324BDEEC0A /* Debug */ = {
+		080D83D064C4D3369C0393E3961AAB5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
 			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = NCKTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -658,24 +663,6 @@
 			};
 			name = Debug;
 		};
-		5C387818C20E0806C306AA1644A5CE94 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = NCKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		5D61AFA39A34473BAA88F1412224C707 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */;
@@ -710,7 +697,25 @@
 			};
 			name = Release;
 		};
-		6AEACBA3EAD97801BBDA77C2778F22C3 /* Release */ = {
+		62569D9498F9FD98247E2449FAE6B902 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = NCKTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		6D22A9E58E6E23F0138884DC41BF2E23 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
 			buildSettings = {
@@ -740,36 +745,23 @@
 			};
 			name = Release;
 		};
-		8EC5021AC8D03CAD01651426098291E8 /* Debug */ = {
+		A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = NCKTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Debug;
+			name = Release;
 		};
 		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -856,11 +848,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FCA37AE72135E17F4B119DFEB3B20CD /* Build configuration list for PBXNativeTarget "NCKTextView" */ = {
+		5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8EC5021AC8D03CAD01651426098291E8 /* Debug */,
-				6AEACBA3EAD97801BBDA77C2778F22C3 /* Release */,
+				62569D9498F9FD98247E2449FAE6B902 /* Debug */,
+				A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -874,11 +866,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DB9287997FBD79E619C821E66539F465 /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */ = {
+		D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E47C7C07C1309203A7625324BDEEC0A /* Debug */,
-				5C387818C20E0806C306AA1644A5CE94 /* Release */,
+				080D83D064C4D3369C0393E3961AAB5D /* Debug */,
+				6D22A9E58E6E23F0138884DC41BF2E23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
