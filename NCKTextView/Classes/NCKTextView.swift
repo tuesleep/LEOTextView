@@ -249,22 +249,23 @@ public class NCKTextView: UITextView {
                 }
                 
                 // Handle title
-                attributedString.safeAddAttributes([NSFontAttributeName: titleFont], range: NSMakeRange(lineLocation, currentLineLength + 1))
+                attributedString.safeAddAttributes([NSFontAttributeName: titleFont], range: NSMakeRange(lineLocation, currentLineLength))
                 
                 if !keepTitlePunctuation {
                     lineLocation -= 2
                 }
                 
             } else if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
-                // Handle list indent
                 NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+                
+                // Handle list indent
                 let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
                 
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: font]).width + font.lineHeight
                 paragraphStyle.firstLineHeadIndent = font.lineHeight
                 
-                attributedString.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))
+                attributedString.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
             }
             
             // Don't lose \n
@@ -620,7 +621,7 @@ public class NCKTextView: UITextView {
                 paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: self.normalFont]).width + self.normalFont.lineHeight
                 paragraphStyle.firstLineHeadIndent = self.normalFont.lineHeight
                 
-                self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))
+                self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
             }
             
             // Don't lose \n
