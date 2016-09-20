@@ -11,4 +11,5 @@ podfile: Example/Podfile
 
 xcode_workspace: Example/NCKTextView.xcworkspace
 xcode_scheme: NCKTextView-Example
-xcode_sdk: iphonesimulator9.3
+xcode_sdk: iphonesimulator10.0
+
