@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         let jsonDict: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(textAttributesJSON!.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as! [String : AnyObject]
         let text = jsonDict["text"] as! String
         
-        let attributedString = NCKTextView.generateAttributedTextWithString(text, font: UIFont.systemFontOfSize(17), titleFont: UIFont.boldSystemFontOfSize(18), keepTitlePunctuation: true)
+        let attributedString = NCKTextView.generateAttributedTextWithString(text, font: UIFont.systemFontOfSize(17), titleFont: UIFont.boldSystemFontOfSize(18), keepTitlePunctuation: true, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(17)])
         
         textView.beginSetAttributedText()
         textView.attributedText = attributedString

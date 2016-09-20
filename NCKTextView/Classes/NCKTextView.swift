@@ -232,8 +232,8 @@ public class NCKTextView: UITextView {
     
     // MARK: Text attributes display with regular expression
     
-    public class func generateAttributedTextWithString(string: String, font: UIFont, titleFont: UIFont, keepTitlePunctuation: Bool) -> NSAttributedString {
-        var attributedString = NSMutableAttributedString(string: string, attributes: [NSFontAttributeName: font])
+    public class func generateAttributedTextWithString(string: String, font: UIFont, titleFont: UIFont, keepTitlePunctuation: Bool, attributes: [String: AnyObject]) -> NSAttributedString {
+        var attributedString = NSMutableAttributedString(string: string, attributes: attributes)
         
         // Drawing paragraph by line head judgement
         var lineLocation = 0
