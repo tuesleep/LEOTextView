@@ -552,7 +552,7 @@ open class NCKTextView: UITextView {
                 paragraphStyle.headIndent = listPrefixString.size(attributes: [NSFontAttributeName: self.normalFont]).width + self.normalFont.lineHeight
                 paragraphStyle.firstLineHeadIndent = self.normalFont.lineHeight
                 
-                self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength + 1))
+                self.nck_textStorage.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
             }
             
             // Don't lose \n
