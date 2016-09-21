@@ -119,13 +119,18 @@ public class NCKTextView: UITextView {
         
         nck_textStorage.undoSupportChangeWithRange(paragraphRange, toMode: mode.rawValue, currentMode: currentMode.rawValue)
         
+        var titleAttributes = defaultAttributesForLoad
+        titleAttributes[NSFontAttributeName] = titleFont
+        
         // Handle text change when mode is Title
         if mode == .Title && !isTitleTextInHead {
-            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 0), withAttributedString: NSAttributedString(string: "# ", attributes: [NSFontAttributeName: titleFont]), oldAttributedString: NSAttributedString(), selectedRangeLocationMove: 2)
+            
+            
+            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 0), withAttributedString: NSAttributedString(string: "# ", attributes: titleAttributes), oldAttributedString: NSAttributedString(), selectedRangeLocationMove: 2)
             
         } else if mode != .Title && isTitleTextInHead {
             // Delete # text if not Title type.
-            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 2), withAttributedString: NSAttributedString(), oldAttributedString: NSAttributedString(string: "# ", attributes: [NSFontAttributeName: titleFont]), selectedRangeLocationMove: -2)
+            nck_textStorage.undoSupportReplaceRange(NSMakeRange(paragraphRange.location, 2), withAttributedString: NSAttributedString(string: "", attributes: defaultAttributesForLoad), oldAttributedString: NSAttributedString(string: "# ", attributes: titleAttributes), selectedRangeLocationMove: -2)
             
         }
     }
