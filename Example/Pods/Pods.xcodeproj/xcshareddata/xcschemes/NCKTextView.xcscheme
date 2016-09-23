@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C4E9A44A88FC8E3081D400928A1C7E7"
+               BlueprintIdentifier = "26168C0D683F9B6148DBBDC486054AAD"
                BuildableName = "NCKTextView.framework"
                BlueprintName = "NCKTextView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9C4E9A44A88FC8E3081D400928A1C7E7"
+            BlueprintIdentifier = "26168C0D683F9B6148DBBDC486054AAD"
             BuildableName = "NCKTextView.framework"
             BlueprintName = "NCKTextView"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -7,9 +7,11 @@ branches:
 
 osx_image: xcode8
 
-podfile: Example/Podfile
+#podfile: Example/Podfile
 
-xcode_workspace: Example/NCKTextView.xcworkspace
-xcode_scheme: NCKTextView-Example
+#xcode_workspace: Example/NCKTextView.xcworkspace
+xcode_project: _Pods.xcodeproj
+
+xcode_scheme: NCKTextView
 xcode_sdk: iphonesimulator10.0
 
