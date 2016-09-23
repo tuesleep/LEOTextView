@@ -237,7 +237,7 @@ public class NCKTextView: UITextView {
     
     // MARK: Text attributes display with regular expression
     
-    public class func generateAttributedTextWithString(string: String, font: UIFont, titleFont: UIFont, keepTitlePunctuation: Bool, attributes: [String: AnyObject]) -> NSAttributedString {
+    public class func generateAttributedTextWithString(string: String, font: UIFont, titleFont: UIFont, attributes: [String: AnyObject], editTextOutput isEditTextOutput: Bool) -> NSAttributedString {
         var attributedString = NSMutableAttributedString(string: string, attributes: attributes)
         
         // Drawing paragraph by line head judgement
@@ -248,7 +248,8 @@ public class NCKTextView: UITextView {
             if NCKTextUtil.markdownTitleRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
                 var currentLineLength = lineLength
                 
-                if !keepTitlePunctuation {
+                // Delete '# ' chars
+                if !isEditTextOutput {
                     attributedString.replaceCharactersInRange(NSMakeRange(lineLocation, 2), withString: "")
                     currentLineLength -= 2
                 }
@@ -256,21 +257,35 @@ public class NCKTextView: UITextView {
                 // Handle title
                 attributedString.safeAddAttributes([NSFontAttributeName: titleFont], range: NSMakeRange(lineLocation, currentLineLength))
                 
-                if !keepTitlePunctuation {
+                if !isEditTextOutput {
                     lineLocation -= 2
                 }
                 
-            } else if NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 ||
-                NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0 {
+            } else {
+                let isOrderedList = NCKTextUtil.markdownOrderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0
+                let isUnorderedList = NCKTextUtil.markdownUnorderedListRegularExpression.matchesInString(line, options: .ReportProgress, range: NSMakeRange(0, lineLength)).count > 0
                 
-                // Handle list indent
-                let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: font]).width + font.lineHeight
-                paragraphStyle.firstLineHeadIndent = font.lineHeight
-                
-                attributedString.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
+                if isOrderedList || isUnorderedList {
+                    if !isEditTextOutput && isUnorderedList {
+                        attributedString.replaceCharactersInRange(NSMakeRange(lineLocation, 2), withString: "• ")
+                    }
+                    
+                    // Handle list indent
+                    let listPrefixString: NSString = NSString(string: line.componentsSeparatedByString(" ")[0]).stringByAppendingString(" ")
+                    
+                    let paragraphStyle: NSMutableParagraphStyle!
+                    
+                    if let defaultParagraphStyle = attributes[NSParagraphStyleAttributeName] as? NSParagraphStyle {
+                        paragraphStyle = defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle
+                    } else {
+                        paragraphStyle = NSMutableParagraphStyle()
+                    }
+                    
+                    paragraphStyle.headIndent = listPrefixString.sizeWithAttributes([NSFontAttributeName: font]).width + font.lineHeight
+                    paragraphStyle.firstLineHeadIndent = font.lineHeight
+                    
+                    attributedString.safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
+                }
             }
             
             // Don't lose \n
