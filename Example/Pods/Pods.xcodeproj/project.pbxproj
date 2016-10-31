@@ -21,6 +21,7 @@
 		AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */; };
 		B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B901FD2F1DC6D20A0059E417 /* VKCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B901FD2E1DC6D20A0059E417 /* VKCheckbox.swift */; };
 		C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */; };
 		C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */; };
 		D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688E6B95DFD051306808A1738E494FE /* String.ex.swift */; };
@@ -79,6 +80,7 @@
 		ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
 		B688E6B95DFD051306808A1738E494FE /* String.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.ex.swift; sourceTree = "<group>"; };
 		B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
+		B901FD2E1DC6D20A0059E417 /* VKCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKCheckbox.swift; sourceTree = "<group>"; };
 		B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Example-dummy.m"; sourceTree = "<group>"; };
 		B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
 		BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B901FD2E1DC6D20A0059E417 /* VKCheckbox.swift */,
 				18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */,
 				CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */,
 				CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */,
@@ -409,7 +412,7 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					26168C0D683F9B6148DBBDC486054AAD = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					8BC2ECDE7603CFD9470BD646ECADB089 = {
 						LastSwiftMigration = 0800;
@@ -474,6 +477,7 @@
 				8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */,
 				B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */,
 				F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */,
+				B901FD2F1DC6D20A0059E417 /* VKCheckbox.swift in Sources */,
 				0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */,
 				C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */,
 				A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */,
