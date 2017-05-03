@@ -1,16 +1,16 @@
 PODS:
-  - NCKTextView (0.5.0)
+  - LEOTextView (0.6.0)
 
 DEPENDENCIES:
-  - NCKTextView (from `../`)
+  - LEOTextView (from `../`)
 
 EXTERNAL SOURCES:
-  NCKTextView:
+  LEOTextView:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NCKTextView: 90ef5868ba0287c314e9a1f7b935494a4a3a39e2
+  LEOTextView: 7610f32cc7d4808db4df832f67f2ee28939e577b
 
-PODFILE CHECKSUM: 35bdfe5378121371363358eb7e31cf160ee659a1
+PODFILE CHECKSUM: 6f27120726e45baabb9585691f7ee1c6e73614a5
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

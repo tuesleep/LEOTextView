@@ -1,0 +1,6 @@
+framework module LEOTextView {
+  umbrella header "LEOTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

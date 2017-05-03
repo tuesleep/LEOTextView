@@ -1,9 +1,11 @@
 use_frameworks!
 
-target 'NCKTextView_Example' do
-  pod 'NCKTextView', :path => '../'
+target 'LEOTextView_Example' do
+  pod 'LEOTextView', :path => '../'
 
-  target 'NCKTextView_Tests' do
+  target 'LEOTextView_Tests' do
     inherit! :search_paths
+
+    
   end
 end
