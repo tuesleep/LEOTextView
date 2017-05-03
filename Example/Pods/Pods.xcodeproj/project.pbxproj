@@ -7,121 +7,119 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */; };
-		0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */; };
-		14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */; };
-		24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */; };
-		455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */; };
-		81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */; };
-		A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */; };
-		AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */; };
-		B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */; };
-		C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */; };
-		D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688E6B95DFD051306808A1738E494FE /* String.ex.swift */; };
-		DCC23F9B53A7562B94383CFC75721E09 /* Pods-NCKTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */; };
-		F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */; };
-		F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */; };
-		F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */; };
-		FE91922CFAB3B8EF3A462849B1665E89 /* Pods-NCKTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */; };
+		0D5E1AD07F15CF9E5F4915C2DDBF6A05 /* LEOTextView+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */; };
+		15D1B3D65D27B8603E7C714F596C2EF5 /* LEOTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */; };
+		1B5FC6FE7C8F72EC99B127BBC55DB405 /* LEOTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2982A5D93D3C48389C311BCFFB0F6505 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */; };
+		29BCDEE572DFEA83169CD0529C7BB4B4 /* LEOTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */; };
+		336AC4E112558CCF1BADB9F69F73AA7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		349A9597808439C2289D7CE3935EA337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		4001B9961053A4072AE1E5349B6DBA93 /* Pods-LEOTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6112D8E03CEFFBF6ECEA74B27D43ECFC /* LEOTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */; };
+		6742F6AF0D4823359CF434D21CBB26DA /* Pods-LEOTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */; };
+		6DC951702B5CFB2BD01053E021BFA5AE /* NSAttributedString+SafeReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */; };
+		70EFFA02CB9A4E57C8C24F3DFA6498BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		72B002EC7FC60D0C163B8E5DEC311453 /* Pods-LEOTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D0E8F00E2AFC77DC79211E15CB7252C /* Pods-LEOTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */; };
+		A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */; };
+		BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */; };
+		C15C7CC252BD4BE8E61A25EB8B314EDE /* LEOTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */; };
+		C8679ACA0FE2EC25849286EF1884AE59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */; };
+		D7F3F9A8AD9568519968300011E7DA36 /* LEOTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */; };
+		DD5803534BDA53DF1F0CDEE791ED057F /* LEOTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */; };
+		EE23D08377689258A3F32C1571C7302D /* LEOTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1FE3BE416F2160491F44C82C183511DC /* PBXContainerItemProxy */ = {
+		79B080DE9870CBAA59F7B1B66429CD7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 26168C0D683F9B6148DBBDC486054AAD;
-			remoteInfo = NCKTextView;
+			remoteGlobalIDString = 6EF2F5D80A7355AB4B87B7DFD00AA492;
+			remoteInfo = LEOTextView;
 		};
-		8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */ = {
+		CBE89201604132C72A86A466099D0815 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A8CC7719F10FE9B302DA15D236F67CAC;
-			remoteInfo = "NCKTextView-NCKTextView";
+			remoteGlobalIDString = 484C48A0487AE189243E3A4023435CD4;
+			remoteInfo = "LEOTextView-LEOTextView";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D04D409C1F5B64A6803E98A9F5FF17E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16F40566733DBB8853453CC4CA6FBD82 /* ResourceBundle-NCKTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NCKTextView-Info.plist"; sourceTree = "<group>"; };
-		18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKFormatTableViewController.swift; sourceTree = "<group>"; };
-		21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NCKTextView.xcconfig; sourceTree = "<group>"; };
-		2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-prefix.pch"; sourceTree = "<group>"; };
-		2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NCKTextView-umbrella.h"; sourceTree = "<group>"; };
-		2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Tests-dummy.m"; sourceTree = "<group>"; };
-		3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewStructs.swift; sourceTree = "<group>"; };
-		41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Delegate.ex.swift; sourceTree = "<group>"; };
-		4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Example-umbrella.h"; sourceTree = "<group>"; };
-		5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NCKTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
-		615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.Safe.ex.swift; sourceTree = "<group>"; };
-		6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		70ABAD1D2AD901D79D3F84AEAF22D05E /* NCKTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = NCKTextView.modulemap; sourceTree = "<group>"; };
-		79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		8726B78B0B80C2ECAF621735C7A96EB6 /* Pods-NCKTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NCKTextView-dummy.m"; sourceTree = "<group>"; };
-		8D466493B001B47C3A0B463B92A352FE /* Pods-NCKTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-resources.sh"; sourceTree = "<group>"; };
-		9053412DACEF7BE19019F33CBF6535EF /* Pods-NCKTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Example.modulemap"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.swift; sourceTree = "<group>"; };
-		9850E70F890C4A56943BEC1D237A8F03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AFBEE812BBC26BEEB227C4E2BD38A21 /* Pods-NCKTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NCKTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NCKTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextView.Toolbar.ex.swift; sourceTree = "<group>"; };
-		B688E6B95DFD051306808A1738E494FE /* String.ex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.ex.swift; sourceTree = "<group>"; };
-		B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Tests-resources.sh"; sourceTree = "<group>"; };
-		B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NCKTextView_Example-dummy.m"; sourceTree = "<group>"; };
-		B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NCKTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
-		BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		BC9D3B454404736207CC5E3AA70A4BE3 /* Pods-NCKTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NCKTextView_Tests.modulemap"; sourceTree = "<group>"; };
-		CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextUtil.swift; sourceTree = "<group>"; };
-		CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NCKTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextStorage.swift; sourceTree = "<group>"; };
-		CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NCKTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NCKTextViewPersistent.swift; sourceTree = "<group>"; };
-		E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NCKTextView.storyboard; sourceTree = "<group>"; };
-		EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NCKTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCKTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = LEOTextView.storyboard; sourceTree = "<group>"; };
+		0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		123B96D1993F59414A21D956F7FD30D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19CEDE0BA125D41AE623E4F832DDA6FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Example-umbrella.h"; sourceTree = "<group>"; };
+		281CEAB657264081931655E13742E764 /* Pods-LEOTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LEOTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3243F461F581059015E77442D04C9023 /* ResourceBundle-LEOTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LEOTextView-Info.plist"; sourceTree = "<group>"; };
+		34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LEOTextView_Example.modulemap"; sourceTree = "<group>"; };
+		3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Tests-dummy.m"; sourceTree = "<group>"; };
+		40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-umbrella.h"; sourceTree = "<group>"; };
+		42D7849B37CDBCD7BB0CC0A07A5A7F80 /* Pods-LEOTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextStorage.swift; sourceTree = "<group>"; };
+		494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Example-dummy.m"; sourceTree = "<group>"; };
+		4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LEOTextView_Example.framework; path = "Pods-LEOTextView_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LEOTextView_Tests.modulemap"; sourceTree = "<group>"; };
+		5C34DB9D49F6270230BC366C27D3584C /* LEOTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-prefix.pch"; sourceTree = "<group>"; };
+		5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextUtil.swift; sourceTree = "<group>"; };
+		5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LEOTextView_Tests.framework; path = "Pods-LEOTextView_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LEOTextView+Toolbar.swift"; sourceTree = "<group>"; };
+		8B0AC27A8D5151F7D0D499A051534360 /* Pods-LEOTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LEOTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = LEOTextView.modulemap; sourceTree = "<group>"; };
+		A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
+		AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LEOTextView.xcconfig; sourceTree = "<group>"; };
+		B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-resources.sh"; sourceTree = "<group>"; };
+		B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LEOTextView.bundle; path = LEOTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LEOTextView+UITextViewDelegate.swift"; sourceTree = "<group>"; };
+		B5811070165D68A2B67C944302B08823 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
+		C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextViewStructs.swift; sourceTree = "<group>"; };
+		C737BB4DE7914DEB6AFEF8D2D66D3D86 /* Pods-LEOTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LEOTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		CBAF7C875C62CFA161596578836F7D2A /* Pods-LEOTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Example-resources.sh"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOFormatTableViewController.swift; sourceTree = "<group>"; };
+		D28AC192A668F55F8D5D1974127D9630 /* Pods-LEOTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
+		D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LEOTextView.framework; path = LEOTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextView.swift; sourceTree = "<group>"; };
+		F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+SafeReplace.swift"; sourceTree = "<group>"; };
+		F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F9D1A445137F526818FBEC408F9DE46C /* Pods-LEOTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LEOTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LEOTextView-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3EAD5507FC285EC606EC5BC0CBEADCB9 /* Frameworks */ = {
+		200D81AA932DC4FDFFA90FF254482E55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14350E071EA0648E74151D8433602B58 /* Foundation.framework in Frameworks */,
+				349A9597808439C2289D7CE3935EA337 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */ = {
+		6BBD26C83ACE67A68B74A202F103BCCA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF38B5537A5A38B4025DE5B961EE4AF3 /* Foundation.framework in Frameworks */,
+				336AC4E112558CCF1BADB9F69F73AA7C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BB555C3FA9E0A77ABD1F3BE996679B47 /* Frameworks */ = {
+		7C5D7D22B9CC9197F891E17A3B131B52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02CB090C473959369D73CD8F68B792FE /* Foundation.framework in Frameworks */,
+				70EFFA02CB9A4E57C8C24F3DFA6498BA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */ = {
+		C5A62D395B83386B6BAFB1474DE97B95 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,272 +129,275 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1DFB032D4EBF4E91C23CCFAF591C1D02 /* Development Pods */ = {
+		1A2783865B596D29412AD45478587125 /* LEOTextView */ = {
 			isa = PBXGroup;
 			children = (
-				2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */,
+				6BCA4D0319AC80EE281F2CCC574ABB5E /* LEOTextView */,
+				8DB86EDAC243E532660FABF99D0F309E /* Resources */,
+				9090CBFDB90C3C71E8B253223CC14CB6 /* Support Files */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		2D68EBC04669F193BAB9C2DD550B746B /* NCKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */,
-				B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */,
-				31EF51CB36148FC6997ED60F1CC115E0 /* Support Files */,
-			);
-			name = NCKTextView;
+			name = LEOTextView;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		31EF51CB36148FC6997ED60F1CC115E0 /* Support Files */ = {
+		59C4703325226162F4440655F83503DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9850E70F890C4A56943BEC1D237A8F03 /* Info.plist */,
-				70ABAD1D2AD901D79D3F84AEAF22D05E /* NCKTextView.modulemap */,
-				21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */,
-				8CE2F58B098B4FCADE8A6B3240C32C42 /* NCKTextView-dummy.m */,
-				2A98588EA33D9868BAF42462037B8C0F /* NCKTextView-prefix.pch */,
-				2FA2C7AA567DADB6EC84B6AF5AC3762B /* NCKTextView-umbrella.h */,
-				16F40566733DBB8853453CC4CA6FBD82 /* ResourceBundle-NCKTextView-Info.plist */,
+				CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */,
+				493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */,
+				5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */,
+				E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */,
+				60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */,
+				B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */,
+				C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */,
+				F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */,
+				A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/NCKTextView";
+			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+		5D4B65854823706C20B19C3E24884EB6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+				494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */,
+				0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */,
+			);
+			name = Assets;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6BCA4D0319AC80EE281F2CCC574ABB5E /* LEOTextView */ = {
+			isa = PBXGroup;
+			children = (
+				59C4703325226162F4440655F83503DA /* Classes */,
+			);
+			name = LEOTextView;
+			path = LEOTextView;
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		45A4B61308FB01AED5E94F9F8EE406BA /* NCKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */,
-			);
-			path = NCKTextView;
-			sourceTree = "<group>";
-		};
-		477E7111112FA99697F30950970E60D6 /* Pods-NCKTextView_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				EEA31B43297F869F73B56B17ABA9AD43 /* Info.plist */,
-				BC9D3B454404736207CC5E3AA70A4BE3 /* Pods-NCKTextView_Tests.modulemap */,
-				AC2B34C065E516CF428EBC95A3A3468C /* Pods-NCKTextView_Tests-acknowledgements.markdown */,
-				CDBF84AB0BE384F56228B0E6640BDCC5 /* Pods-NCKTextView_Tests-acknowledgements.plist */,
-				2FB44525895368DEAA39E4695993052F /* Pods-NCKTextView_Tests-dummy.m */,
-				9AFBEE812BBC26BEEB227C4E2BD38A21 /* Pods-NCKTextView_Tests-frameworks.sh */,
-				B7DC255C77FC8EE74835D95CC35C59DA /* Pods-NCKTextView_Tests-resources.sh */,
-				5CCFC6A076F4BA552F90718872314006 /* Pods-NCKTextView_Tests-umbrella.h */,
-				BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */,
-				FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */,
-			);
-			name = "Pods-NCKTextView_Tests";
-			path = "Target Support Files/Pods-NCKTextView_Tests";
-			sourceTree = "<group>";
-		};
-		69494C3398C92EB3CD3195D0CB8391B6 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				3AB2AF2A90A4AEF5E6945544EFEADE3F /* Images.xcassets */,
-				E66ACB35CB4E88A9628049CE28AB3050 /* NCKTextView.storyboard */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				1DFB032D4EBF4E91C23CCFAF591C1D02 /* Development Pods */,
+				AF7060AB65EAA707764A43A26EA1BE07 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */,
-				E4D039BCC4B7FD67CE14EE66E311750A /* Targets Support Files */,
+				F9B4210D5E640C4FFE2873525CA271F8 /* Products */,
+				BFBC30A36FF19006BAB53F1CE41C9721 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9A5F4C4E824BBAC9A78F1536E87822CA /* Pods-NCKTextView_Example */ = {
+		8DB86EDAC243E532660FABF99D0F309E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0D04D409C1F5B64A6803E98A9F5FF17E /* Info.plist */,
-				9053412DACEF7BE19019F33CBF6535EF /* Pods-NCKTextView_Example.modulemap */,
-				5C9871CB456C1BC57DAB6ED30E665D94 /* Pods-NCKTextView_Example-acknowledgements.markdown */,
-				8726B78B0B80C2ECAF621735C7A96EB6 /* Pods-NCKTextView_Example-acknowledgements.plist */,
-				B93072D2EE62CDE94FD64B5A4BA8C6E6 /* Pods-NCKTextView_Example-dummy.m */,
-				B9CA44E655C70CF0EF11D7FAEF640F6A /* Pods-NCKTextView_Example-frameworks.sh */,
-				8D466493B001B47C3A0B463B92A352FE /* Pods-NCKTextView_Example-resources.sh */,
-				4851B4B14C416BCC85727532F9A03D49 /* Pods-NCKTextView_Example-umbrella.h */,
-				6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */,
-				79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */,
-			);
-			name = "Pods-NCKTextView_Example";
-			path = "Target Support Files/Pods-NCKTextView_Example";
-			sourceTree = "<group>";
-		};
-		A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */ = {
-			isa = PBXGroup;
-			children = (
-				69494C3398C92EB3CD3195D0CB8391B6 /* Assets */,
-			);
-			path = NCKTextView;
-			sourceTree = "<group>";
-		};
-		B0BF4BC0D752A6AA3D9CCAC5DAFC799C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A4CEDF246647E19F8210E454DE61C5D1 /* NCKTextView */,
+				9D488F24326CE7BF6C8866264AE5AD9E /* LEOTextView */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		9090CBFDB90C3C71E8B253223CC14CB6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				123B96D1993F59414A21D956F7FD30D6 /* Info.plist */,
+				9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */,
+				AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */,
+				FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */,
+				5C34DB9D49F6270230BC366C27D3584C /* LEOTextView-prefix.pch */,
+				40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */,
+				3243F461F581059015E77442D04C9023 /* ResourceBundle-LEOTextView-Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LEOTextView";
+			sourceTree = "<group>";
+		};
+		9D488F24326CE7BF6C8866264AE5AD9E /* LEOTextView */ = {
+			isa = PBXGroup;
+			children = (
+				5D4B65854823706C20B19C3E24884EB6 /* Assets */,
+			);
+			name = LEOTextView;
+			path = LEOTextView;
+			sourceTree = "<group>";
+		};
+		AF7060AB65EAA707764A43A26EA1BE07 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A2783865B596D29412AD45478587125 /* LEOTextView */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		B5E5626A5ED7F4EF2E887D6DE0A50A52 /* Pods-LEOTextView_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				19CEDE0BA125D41AE623E4F832DDA6FE /* Info.plist */,
+				54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */,
+				281CEAB657264081931655E13742E764 /* Pods-LEOTextView_Tests-acknowledgements.markdown */,
+				8B0AC27A8D5151F7D0D499A051534360 /* Pods-LEOTextView_Tests-acknowledgements.plist */,
+				4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */,
+				42D7849B37CDBCD7BB0CC0A07A5A7F80 /* Pods-LEOTextView_Tests-frameworks.sh */,
+				B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */,
+				C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */,
+				3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */,
+				0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */,
+			);
+			name = "Pods-LEOTextView_Tests";
+			path = "Target Support Files/Pods-LEOTextView_Tests";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */ = {
+		BFBC30A36FF19006BAB53F1CE41C9721 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */,
-				AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */,
-				D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */,
-				FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D26D0C30BDDBA1D84BD0015E4A15330B /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				18475274F1D9D1599754408D2C6EC164 /* NCKFormatTableViewController.swift */,
-				CD82CA798E54766E46847F7171DE5B2C /* NCKTextStorage.swift */,
-				CABEAB4A4F2A812693D3426FE6097EFA /* NCKTextUtil.swift */,
-				965CFEEA524B21351BD18C3F2CED7136 /* NCKTextView.swift */,
-				41FCE1CB18DEC8F3B117C69FE19E3037 /* NCKTextView.Delegate.ex.swift */,
-				ADCF37BCBBC3CE391B3214FE90C06E70 /* NCKTextView.Toolbar.ex.swift */,
-				DD18B516E92DC084A28DC2C2B297E9B7 /* NCKTextViewPersistent.swift */,
-				3E29F125D9F06C826E3171605395EF05 /* NCKTextViewStructs.swift */,
-				615D6C0DB7E69056349A1EB254DF353A /* NSMutableAttributedString.Safe.ex.swift */,
-				B688E6B95DFD051306808A1738E494FE /* String.ex.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		E4D039BCC4B7FD67CE14EE66E311750A /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9A5F4C4E824BBAC9A78F1536E87822CA /* Pods-NCKTextView_Example */,
-				477E7111112FA99697F30950970E60D6 /* Pods-NCKTextView_Tests */,
+				F1F78E67844FFA5BF8E10B86B8C6F092 /* Pods-LEOTextView_Example */,
+				B5E5626A5ED7F4EF2E887D6DE0A50A52 /* Pods-LEOTextView_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F1F78E67844FFA5BF8E10B86B8C6F092 /* Pods-LEOTextView_Example */ = {
+			isa = PBXGroup;
+			children = (
+				B5811070165D68A2B67C944302B08823 /* Info.plist */,
+				34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */,
+				F9D1A445137F526818FBEC408F9DE46C /* Pods-LEOTextView_Example-acknowledgements.markdown */,
+				C737BB4DE7914DEB6AFEF8D2D66D3D86 /* Pods-LEOTextView_Example-acknowledgements.plist */,
+				4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */,
+				D28AC192A668F55F8D5D1974127D9630 /* Pods-LEOTextView_Example-frameworks.sh */,
+				CBAF7C875C62CFA161596578836F7D2A /* Pods-LEOTextView_Example-resources.sh */,
+				219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */,
+				D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */,
+				F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */,
+			);
+			name = "Pods-LEOTextView_Example";
+			path = "Target Support Files/Pods-LEOTextView_Example";
+			sourceTree = "<group>";
+		};
+		F9B4210D5E640C4FFE2873525CA271F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */,
+				D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */,
+				4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */,
+				5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6E07F5DC0E2782D53BE503B1A1025A0F /* Headers */ = {
+		34B6F48D3979EFC7C66831099790332C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455FFB04B3EE2EAEDBAD12CB5FA10155 /* Pods-NCKTextView_Example-umbrella.h in Headers */,
+				1B5FC6FE7C8F72EC99B127BBC55DB405 /* LEOTextView-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D87081538D24BD18D6A0F8C9E618E8B1 /* Headers */ = {
+		AA1716E1D0501D1A6570E1DA381BCCC1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71AFDF73D70D9F840AE67EEF9958D4D /* Pods-NCKTextView_Tests-umbrella.h in Headers */,
+				4001B9961053A4072AE1E5349B6DBA93 /* Pods-LEOTextView_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EE2B53568F0818415DC97820A1B6332D /* Headers */ = {
+		ABD738968E986B480D2EE55922FE472F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81CCA9A3BC9B0009CD2D61074FE3E1A6 /* NCKTextView-umbrella.h in Headers */,
+				72B002EC7FC60D0C163B8E5DEC311453 /* Pods-LEOTextView_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */ = {
+		484C48A0487AE189243E3A4023435CD4 /* LEOTextView-LEOTextView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */;
+			buildConfigurationList = 7EACF977EE67E3AB34DE51B631327C06 /* Build configuration list for PBXNativeTarget "LEOTextView-LEOTextView" */;
 			buildPhases = (
-				0776F8973D1BEB284D96BA2059D5C642 /* Sources */,
-				49BE67180DFF380B7DF77B79FE6699AA /* Frameworks */,
-				B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */,
-				EE2B53568F0818415DC97820A1B6332D /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */,
-			);
-			name = NCKTextView;
-			productName = NCKTextView;
-			productReference = AC1C05CBD4499392A4A5A6456929960D /* NCKTextView.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 989B03990D560622F77D540764FD9430 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Example" */;
-			buildPhases = (
-				F8F16ECC35D4B7F836B63ECB22BC8696 /* Sources */,
-				BB555C3FA9E0A77ABD1F3BE996679B47 /* Frameworks */,
-				6E07F5DC0E2782D53BE503B1A1025A0F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				364EC4A7307101D1159C5633D792E14E /* PBXTargetDependency */,
-			);
-			name = "Pods-NCKTextView_Example";
-			productName = "Pods-NCKTextView_Example";
-			productReference = D1D7FE241F37208E81F7F3D2B71EC657 /* Pods_NCKTextView_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */;
-			buildPhases = (
-				BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */,
-				E038DB61F0C2FCCEB976CDCA636E13FA /* Frameworks */,
-				AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */,
+				33D1FADC85A0C062F905F530D09FC2A7 /* Sources */,
+				C5A62D395B83386B6BAFB1474DE97B95 /* Frameworks */,
+				778A3D87A14EB1EED9EEE08A21EDFFD4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "NCKTextView-NCKTextView";
-			productName = "NCKTextView-NCKTextView";
-			productReference = CD34650B02E23C16655050D987E498B2 /* NCKTextView.bundle */;
+			name = "LEOTextView-LEOTextView";
+			productName = "LEOTextView-LEOTextView";
+			productReference = B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		E1B232711D50838B3D84B93802012527 /* Pods-NCKTextView_Tests */ = {
+		494ED3A53E1F56D35042962E12C92A78 /* Pods-LEOTextView_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDED72621CD83550ADD6FC6EEB487979 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Tests" */;
+			buildConfigurationList = 6F37D9F539F8A0B84B2461034B6DF24E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Tests" */;
 			buildPhases = (
-				744C0E606FD59525CAEC2CFBA2A0DE91 /* Sources */,
-				3EAD5507FC285EC606EC5BC0CBEADCB9 /* Frameworks */,
-				D87081538D24BD18D6A0F8C9E618E8B1 /* Headers */,
+				BCF972B43D04EDD9988966994EDB9505 /* Sources */,
+				6BBD26C83ACE67A68B74A202F103BCCA /* Frameworks */,
+				ABD738968E986B480D2EE55922FE472F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-NCKTextView_Tests";
-			productName = "Pods-NCKTextView_Tests";
-			productReference = FF828CF60B549CA5D2613696A05840E4 /* Pods_NCKTextView_Tests.framework */;
+			name = "Pods-LEOTextView_Tests";
+			productName = "Pods-LEOTextView_Tests";
+			productReference = 5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7457A07E2365F889995ADEC014B48A3 /* Build configuration list for PBXNativeTarget "LEOTextView" */;
+			buildPhases = (
+				5E321FC656B6A12F6FD51C6CCADC075B /* Sources */,
+				200D81AA932DC4FDFFA90FF254482E55 /* Frameworks */,
+				AB56E8224054347E7F8C13BC57BD7BBF /* Resources */,
+				34B6F48D3979EFC7C66831099790332C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				497630448BAC84A2FDA19656C2481173 /* PBXTargetDependency */,
+			);
+			name = LEOTextView;
+			productName = LEOTextView;
+			productReference = D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EF5A2DE6FB0CD62FA2DF14658E53A8EB /* Pods-LEOTextView_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B99AC6C6F0E9EF9A0EA8D851BFB8A1E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Example" */;
+			buildPhases = (
+				1DE527A529223B4CCD627ADF8CE2BF7D /* Sources */,
+				7C5D7D22B9CC9197F891E17A3B131B52 /* Frameworks */,
+				AA1716E1D0501D1A6570E1DA381BCCC1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79AC235150548FCFC17398548457BF00 /* PBXTargetDependency */,
+			);
+			name = "Pods-LEOTextView_Example";
+			productName = "Pods-LEOTextView_Example";
+			productReference = 4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -407,20 +408,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					26168C0D683F9B6148DBBDC486054AAD = {
-						LastSwiftMigration = 0800;
-					};
-					8BC2ECDE7603CFD9470BD646ECADB089 = {
-						LastSwiftMigration = 0800;
-					};
-					A8CC7719F10FE9B302DA15D236F67CAC = {
-						LastSwiftMigration = 0800;
-					};
-					E1B232711D50838B3D84B93802012527 = {
-						LastSwiftMigration = 0800;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -430,99 +417,198 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = BD26E1E0B0EB94C082C1DE6BEE04C288 /* Products */;
+			productRefGroup = F9B4210D5E640C4FFE2873525CA271F8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */,
-				A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */,
-				8BC2ECDE7603CFD9470BD646ECADB089 /* Pods-NCKTextView_Example */,
-				E1B232711D50838B3D84B93802012527 /* Pods-NCKTextView_Tests */,
+				6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */,
+				484C48A0487AE189243E3A4023435CD4 /* LEOTextView-LEOTextView */,
+				EF5A2DE6FB0CD62FA2DF14658E53A8EB /* Pods-LEOTextView_Example */,
+				494ED3A53E1F56D35042962E12C92A78 /* Pods-LEOTextView_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AC0BBAA071AF338EBBE75ABA801C6D61 /* Resources */ = {
+		778A3D87A14EB1EED9EEE08A21EDFFD4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45E7869CCCFBF5609932E7D5BC298A7B /* Images.xcassets in Resources */,
-				F650E09F22C6C6BAD39741D21AAD3B92 /* NCKTextView.storyboard in Resources */,
+				C8679ACA0FE2EC25849286EF1884AE59 /* Images.xcassets in Resources */,
+				DD5803534BDA53DF1F0CDEE791ED057F /* LEOTextView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B3CF77909AFA585A74DE01F9DD3B2662 /* Resources */ = {
+		AB56E8224054347E7F8C13BC57BD7BBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FE47390FA26BDD4E42C316ADC801A4 /* NCKTextView.bundle in Resources */,
+				C15C7CC252BD4BE8E61A25EB8B314EDE /* LEOTextView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0776F8973D1BEB284D96BA2059D5C642 /* Sources */ = {
+		1DE527A529223B4CCD627ADF8CE2BF7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71F18D6549885FCB1AF91C14AE44F0A /* NCKFormatTableViewController.swift in Sources */,
-				0ECF0EF2429D5E9313DC7D92FA416F6F /* NCKTextStorage.swift in Sources */,
-				24F4EEC4149A346A6EEF004DDD59DBF2 /* NCKTextUtil.swift in Sources */,
-				166D0908BEC73CE3A751270841C7E467 /* NCKTextView-dummy.m in Sources */,
-				8781261FB776DA75BD54F61A3DB49D05 /* NCKTextView.Delegate.ex.swift in Sources */,
-				B3240CBDB3E759664A2B2547EF88811A /* NCKTextView.swift in Sources */,
-				F0B89E25CA8DEDAA38BBA9D7C9EE48D9 /* NCKTextView.Toolbar.ex.swift in Sources */,
-				0968B766F391D29B39B6015FB70A0494 /* NCKTextViewPersistent.swift in Sources */,
-				C8B29D2042332B577A895A6C3A5E79F3 /* NCKTextViewStructs.swift in Sources */,
-				A8A281A8F1D5353087BB3936D68B0C5F /* NSMutableAttributedString.Safe.ex.swift in Sources */,
-				D0DB2AA7BEC09531534E56015275DD27 /* String.ex.swift in Sources */,
+				6742F6AF0D4823359CF434D21CBB26DA /* Pods-LEOTextView_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		744C0E606FD59525CAEC2CFBA2A0DE91 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCC23F9B53A7562B94383CFC75721E09 /* Pods-NCKTextView_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC7537ECFFC18E7FE1943AC1450C79F7 /* Sources */ = {
+		33D1FADC85A0C062F905F530D09FC2A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8F16ECC35D4B7F836B63ECB22BC8696 /* Sources */ = {
+		5E321FC656B6A12F6FD51C6CCADC075B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE91922CFAB3B8EF3A462849B1665E89 /* Pods-NCKTextView_Example-dummy.m in Sources */,
+				BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */,
+				EE23D08377689258A3F32C1571C7302D /* LEOTextStorage.swift in Sources */,
+				6112D8E03CEFFBF6ECEA74B27D43ECFC /* LEOTextUtil.swift in Sources */,
+				A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */,
+				0D5E1AD07F15CF9E5F4915C2DDBF6A05 /* LEOTextView+UITextViewDelegate.swift in Sources */,
+				15D1B3D65D27B8603E7C714F596C2EF5 /* LEOTextView-dummy.m in Sources */,
+				29BCDEE572DFEA83169CD0529C7BB4B4 /* LEOTextView.swift in Sources */,
+				D7F3F9A8AD9568519968300011E7DA36 /* LEOTextViewStructs.swift in Sources */,
+				6DC951702B5CFB2BD01053E021BFA5AE /* NSAttributedString+SafeReplace.swift in Sources */,
+				2982A5D93D3C48389C311BCFFB0F6505 /* String+Length.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCF972B43D04EDD9988966994EDB9505 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D0E8F00E2AFC77DC79211E15CB7252C /* Pods-LEOTextView_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		364EC4A7307101D1159C5633D792E14E /* PBXTargetDependency */ = {
+		497630448BAC84A2FDA19656C2481173 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = NCKTextView;
-			target = 26168C0D683F9B6148DBBDC486054AAD /* NCKTextView */;
-			targetProxy = 1FE3BE416F2160491F44C82C183511DC /* PBXContainerItemProxy */;
+			name = "LEOTextView-LEOTextView";
+			target = 484C48A0487AE189243E3A4023435CD4 /* LEOTextView-LEOTextView */;
+			targetProxy = CBE89201604132C72A86A466099D0815 /* PBXContainerItemProxy */;
 		};
-		FD61BF9BD805B1B2740D83E08F77A74B /* PBXTargetDependency */ = {
+		79AC235150548FCFC17398548457BF00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "NCKTextView-NCKTextView";
-			target = A8CC7719F10FE9B302DA15D236F67CAC /* NCKTextView-NCKTextView */;
-			targetProxy = 8BDD167AF4F07867398824116EDE03D6 /* PBXContainerItemProxy */;
+			name = LEOTextView;
+			target = 6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */;
+			targetProxy = 79B080DE9870CBAA59F7B1B66429CD7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		034014829C1E4434983CF3A690C12017 /* Debug */ = {
+		195C456A60F56596C8C6497DDF042017 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		33BF82B2A1DC907163B38F79EAFB3A2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Tests/Pods-LEOTextView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LEOTextView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		41EF52367B6F2D9A2D99DA7CE2DDF974 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -540,6 +626,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -559,16 +646,36 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		042B9582CA6DC8A6B16ED2F203181C91 /* Release */ = {
+		8161B4548EDF1D1A09A9B6DA67802D4A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79AA52CC3AD296C1B33B4AC19152BD34 /* Pods-NCKTextView_Example.release.xcconfig */;
+			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LEOTextView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/ResourceBundle-LEOTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8F051DA482CEF466950D02CF49EDB2C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -577,32 +684,33 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Example/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Tests/Pods-LEOTextView_Tests.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NCKTextView_Example;
+				PRODUCT_NAME = Pods_LEOTextView_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		080D83D064C4D3369C0393E3961AAB5D /* Debug */ = {
+		B3BC95CC778A8D1A6DE455FF87F8F262 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
+			baseConfigurationReference = D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -611,159 +719,28 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Example/Pods-LEOTextView_Example.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = NCKTextView;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LEOTextView_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		480004CA9C35E0FD4C91E8E14AC44C17 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB11F45828F313F6E199F05EFE38134C /* Pods-NCKTextView_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NCKTextView_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5D61AFA39A34473BAA88F1412224C707 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE5021B7C3D4F66F9E2AD477BA76E453 /* Pods-NCKTextView_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NCKTextView_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		62569D9498F9FD98247E2449FAE6B902 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = NCKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		6D22A9E58E6E23F0138884DC41BF2E23 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/NCKTextView/NCKTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/NCKTextView/NCKTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = NCKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BE8BEDCD332E65F8367FE80FDADF63 /* NCKTextView.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NCKTextView";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = NCKTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
+		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -781,6 +758,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -795,91 +773,109 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		F1293C459C90F1D5B39C1790AE4DE64D /* Debug */ = {
+		BEA5C4C6B1B5C3E9D06915CFBE2971D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6752E42DB66DA6182455BC9799E60368 /* Pods-NCKTextView_Example.debug.xcconfig */;
+			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LEOTextView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/ResourceBundle-LEOTextView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		FCF19BFCCCAA897FC9F368F408DE3EE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NCKTextView_Example/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Example/Pods-LEOTextView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NCKTextView_Example;
+				PRODUCT_NAME = Pods_LEOTextView_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B99AC6C6F0E9EF9A0EA8D851BFB8A1E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3BC95CC778A8D1A6DE455FF87F8F262 /* Debug */,
+				FCF19BFCCCAA897FC9F368F408DE3EE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				034014829C1E4434983CF3A690C12017 /* Debug */,
-				C7E474A03CAE21F1CB6046E7344C59BD /* Release */,
+				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
+				B7324857C38B065FEB1EEE3105C2367A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5CB505F3620C61983A1083D9F351ADAB /* Build configuration list for PBXNativeTarget "NCKTextView-NCKTextView" */ = {
+		6F37D9F539F8A0B84B2461034B6DF24E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				62569D9498F9FD98247E2449FAE6B902 /* Debug */,
-				A7B1FFD53A78CD1F2C945CFD3E850149 /* Release */,
+				33BF82B2A1DC907163B38F79EAFB3A2F /* Debug */,
+				8F051DA482CEF466950D02CF49EDB2C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		989B03990D560622F77D540764FD9430 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Example" */ = {
+		7EACF977EE67E3AB34DE51B631327C06 /* Build configuration list for PBXNativeTarget "LEOTextView-LEOTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F1293C459C90F1D5B39C1790AE4DE64D /* Debug */,
-				042B9582CA6DC8A6B16ED2F203181C91 /* Release */,
+				8161B4548EDF1D1A09A9B6DA67802D4A /* Debug */,
+				BEA5C4C6B1B5C3E9D06915CFBE2971D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D21CC274518254B1CC191C589A8CDB12 /* Build configuration list for PBXNativeTarget "NCKTextView" */ = {
+		D7457A07E2365F889995ADEC014B48A3 /* Build configuration list for PBXNativeTarget "LEOTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				080D83D064C4D3369C0393E3961AAB5D /* Debug */,
-				6D22A9E58E6E23F0138884DC41BF2E23 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DDED72621CD83550ADD6FC6EEB487979 /* Build configuration list for PBXNativeTarget "Pods-NCKTextView_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				480004CA9C35E0FD4C91E8E14AC44C17 /* Debug */,
-				5D61AFA39A34473BAA88F1412224C707 /* Release */,
+				41EF52367B6F2D9A2D99DA7CE2DDF974 /* Debug */,
+				195C456A60F56596C8C6497DDF042017 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
