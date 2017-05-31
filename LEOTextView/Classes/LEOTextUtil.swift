@@ -9,6 +9,7 @@
 import UIKit
 
 class LEOTextUtil: NSObject {
+	static let markdownTitleRegularExpression = try! NSRegularExpression(pattern: "^# ", options: .caseInsensitive)
     static let markdownUnorderedListRegularExpression = try! NSRegularExpression(pattern: "^[-*••∙●] ", options: .caseInsensitive)
     static let markdownOrderedListRegularExpression = try! NSRegularExpression(pattern: "^\\d*\\. ", options: .caseInsensitive)
     static let markdownOrderedListAfterItemsRegularExpression = try! NSRegularExpression(pattern: "\\n\\d*\\. ", options: .caseInsensitive)

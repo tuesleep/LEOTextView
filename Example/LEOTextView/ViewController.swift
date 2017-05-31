@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextViewDelegate {
 
         // Init and config TextView
         textView = LEOTextView(frame: self.view.bounds, textContainer: NSTextContainer())
-        _ = textView.enableToolbar()
+		textView.enableToolbar(view)
         textView.nck_delegate = self
 
         // add to View

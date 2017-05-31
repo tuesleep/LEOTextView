@@ -121,6 +121,22 @@ class LEOTextStorage: NSTextStorage {
         if textView.undoManager!.isRedoing {
             return
         }
+		
+		/*
+		// Title auto scanning
+		let paragraphString = LEOTextUtil.currentParagraphStringOfString(string, location: range.location)
+		
+		if LEOTextUtil.markdownTitleRegularExpression.matches(in: paragraphString, options: .reportProgress, range: NSMakeRange(0, NSString(string: paragraphString).length)).count == 0 {
+			textView.inputFontMode = .normal
+			
+			let paragraphRange = LEOTextUtil.paragraphRangeOfString(string, location: range.location)
+			undoSupportChangeWithRange(paragraphRange, toMode: LEOInputFontMode.normal.rawValue, currentMode: LEOInputFontMode.title.rawValue)
+		} else {
+			textView.inputFontMode = .title
+			
+			let paragraphRange = LEOTextUtil.paragraphRangeOfString(string, location: range.location)
+			undoSupportChangeWithRange(paragraphRange, toMode: LEOInputFontMode.title.rawValue, currentMode: LEOInputFontMode.normal.rawValue)
+		}*/
 
         if deleteCurrentListPrefixItemByReturn {
             // Delete list item characters.
