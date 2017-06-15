@@ -11,8 +11,7 @@ import UIKit
 var nck_changeText = false
 
 extension LEOTextView: UITextViewDelegate {
-
-    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+	public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         nck_changeText = true
 
         if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldChangeTextIn:replacementText:))) {

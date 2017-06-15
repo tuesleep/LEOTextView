@@ -26,9 +26,19 @@ extension LEOTextView {
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
 		doneButton.width = 50
 		
-		let fontButton = UIBarButtonItem(image: UIImage(named: "icon-font", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(fontAction))
-		
-		contentToolbar.items = [fontButton, flexibleSpace, doneButton]
+		let fontButton = UIBarButtonItem(image: UIImage.podImage(named: "icon-font"),
+				style: .plain, target: self, action: #selector(fontAction))
+		let refButton = UIBarButtonItem(image: UIImage.podImage(named: "icon-ref"),
+				style: .plain, target: self, action: #selector(refAction))
+		let listButton = UIBarButtonItem(image: UIImage.podImage(named: "icon-list"),
+				style: .plain, target: self, action: #selector(listAction))
+		let checkBoxButton = UIBarButtonItem(image: UIImage.podImage(named: "icon-checkbox"),
+				style: .plain, target: self, action: #selector(checkBoxAction))
+		let imageButton = UIBarButtonItem(image: UIImage.podImage(named: "icon-image"),
+				style: .plain, target: self, action: #selector(imageAction))
+
+		contentToolbar.items = [fontButton, fixedSpace, refButton, fixedSpace, listButton, fixedSpace, checkBoxButton,
+								fixedSpace, imageButton, flexibleSpace, doneButton]
 		contentToolbar.items?.forEach({ (barButtonItem) in
 			barButtonItem.tintColor = UIColor.darkGray
 		})
@@ -41,6 +51,26 @@ extension LEOTextView {
 	
 	func fontAction() {
 		
+	}
+
+	func refAction() {
+
+	}
+
+	func listAction() {
+
+	}
+
+	func checkBoxAction() {
+		let checkboxAttachment = NSTextAttachment()
+		checkboxAttachment.image = UIImage.podImage(named: "checkbox-unchecked")
+		let checkboxAttributedString = NSAttributedString(attachment: checkboxAttachment)
+		
+		nck_textStorage.safeReplaceCharactersInRange(selectedRange, withAttributedString: checkboxAttributedString)
+	}
+
+	func imageAction() {
+
 	}
 	
 	func doneAction() {

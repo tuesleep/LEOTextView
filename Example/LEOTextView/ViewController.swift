@@ -23,6 +23,10 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView = LEOTextView(frame: self.view.bounds, textContainer: NSTextContainer())
 		textView.enableToolbar(view)
         textView.nck_delegate = self
+		
+		textView.tintColor = UIColor(red: 0x9B/255.0, green: 0x9B/255.0, blue: 0x9B/255.0, alpha: 1)
+		textView.textColor = textView.tintColor
+		textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
 
         // add to View
         self.view.addSubview(textView)
@@ -60,7 +64,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     // MARK: - UITextViewDelegate
 
     func textViewDidChangeSelection(_ textView: UITextView) {
-        print("text view font: \(textView.font!.fontName)")
+        
     }
 }
 

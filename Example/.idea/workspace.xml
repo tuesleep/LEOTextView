@@ -2,97 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30f31327-00a6-4feb-b8fe-99892a075a90" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-format.imageset/icon-format.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-format.imageset/icon-format@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-format.imageset/icon-format@3x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-keyboard.imageset/icon-keyboard.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-keyboard.imageset/icon-keyboard@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Example.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/LEOTextView_Example.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/xcode.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-format.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/Images.xcassets/icon-keyboard.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../LEOTextView/Assets/LEOTextView.storyboard" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NCKTextView.xcodeproj/xcshareddata/xcschemes/NCKTextViewTests.xcscheme" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Local Podspecs/NCKTextView.podspec.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcshareddata/xcschemes/NCKTextView.xcscheme" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcshareddata/xcschemes/Pods-NCKTextView_Tests.xcscheme" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/NCKTextView-dummy.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/NCKTextView-prefix.pch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/NCKTextView-umbrella.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/NCKTextView.modulemap" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/NCKTextView.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/NCKTextView/ResourceBundle-NCKTextView-Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-acknowledgements.markdown" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-acknowledgements.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-dummy.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-frameworks.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-resources.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example-umbrella.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.debug.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.modulemap" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Example/Pods-NCKTextView_Example.release.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Info.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-acknowledgements.markdown" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-acknowledgements.plist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-dummy.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-frameworks.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-resources.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests-umbrella.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.debug.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.modulemap" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-NCKTextView_Tests/Pods-NCKTextView_Tests.release.xcconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView.podspec" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/Contents.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-format.imageset/Contents.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-format.imageset/icon-format.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-format.imageset/icon-format@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-format.imageset/icon-format@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-keyboard.imageset/Contents.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-keyboard.imageset/icon-keyboard.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/Images.xcassets/icon-keyboard.imageset/icon-keyboard@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Assets/NCKTextView.storyboard" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKFormatTableViewController.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextStorage.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextUtil.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextView.Delegate.ex.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextView.Toolbar.ex.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextView.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextViewPersistent.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NCKTextViewStructs.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/NSMutableAttributedString.Safe.ex.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/String.ex.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../NCKTextView/Classes/VKCheckbox.swift" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../demo.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../logo.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/LEOTextView.xcodeproj/project.pbxproj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterPath="$PROJECT_DIR$/LEOTextView.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView.xcodeproj/xcshareddata/xcschemes/NCKTextView-Example.xcscheme" afterPath="$PROJECT_DIR$/LEOTextView.xcodeproj/xcshareddata/xcschemes/LEOTextView-Example.xcscheme" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView.xcworkspace/contents.xcworkspacedata" afterPath="$PROJECT_DIR$/LEOTextView.xcworkspace/contents.xcworkspacedata" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/AppDelegate.swift" afterPath="$PROJECT_DIR$/LEOTextView/AppDelegate.swift" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/Base.lproj/LaunchScreen.xib" afterPath="$PROJECT_DIR$/LEOTextView/Base.lproj/LaunchScreen.xib" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/LEOTextView/Base.lproj/Main.storyboard" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/LEOTextView/Images.xcassets/AppIcon.appiconset/Contents.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/Info.plist" afterPath="$PROJECT_DIR$/LEOTextView/Info.plist" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NCKTextView/ViewController.swift" afterPath="$PROJECT_DIR$/LEOTextView/ViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.travis.yml" afterPath="$PROJECT_DIR$/../.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/Tests.swift" afterPath="$PROJECT_DIR$/Tests/Tests.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LICENSE" afterPath="$PROJECT_DIR$/../LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift" afterPath="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift" afterPath="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -101,13 +13,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulatoriPhone_SE_10.3_x86_64_1" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_4f577bfadca7a421f084759b9d283738b1e72984" />
+  <component name="FavoritesManager">
+    <favorites_list name="LEOTextView" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="LEOTextStorage.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5676">
+            <state relative-caret-position="20">
               <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
               <folding />
             </state>
@@ -117,7 +32,7 @@
       <file leaf-file-name="ViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LEOTextView/ViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1430">
+            <state relative-caret-position="328">
               <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <element signature="e#158#170#0" expanded="true" />
@@ -126,11 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LEOTextView.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LEOTextView.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="471" column="22" lean-forward="false" selection-start-line="471" selection-start-column="22" selection-end-line="471" selection-end-column="22" />
+            <state relative-caret-position="435">
+              <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LEOTextView+Toolbar.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -157,14 +82,14 @@
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/NSAttributedString+SafeReplace.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/String+Length.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+UITextViewDelegate.swift" />
-        <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextViewStructs.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextUtil.swift" />
-        <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOFormatTableViewController.swift" />
         <option value="$PROJECT_DIR$/../LEOTextView.podspec" />
         <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift" />
         <option value="$PROJECT_DIR$/LEOTextView/ViewController.swift" />
+        <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift" />
+        <option value="$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift" />
       </list>
     </option>
   </component>
@@ -175,10 +100,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="203" />
-    <option name="y" value="120" />
-    <option name="width" value="924" />
-    <option name="height" value="583" />
+    <option name="x" value="50" />
+    <option name="y" value="22" />
+    <option name="width" value="1230" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -219,6 +144,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -246,6 +172,96 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Images.xcassets" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LEOTextView" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -289,13 +305,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Termi&#9;ACTION&#9;ActivateTerminalToolWindow&#10;Termin&#9;ACTION&#9;ActivateTerminalToolWindow&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="LEOTextView" />
   </component>
   <component name="RunDashboard">
@@ -358,8 +373,9 @@
       <envs />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.LEOTextView-Example" />
+      <item index="1" class="java.lang.String" itemvalue="Application.LEOTextView" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -382,34 +398,45 @@
       <workItem from="1492767119114" duration="40000" />
       <workItem from="1492767408874" duration="395000" />
       <workItem from="1492928264799" duration="19000" />
+      <workItem from="1496234359870" duration="52000" />
+      <workItem from="1496280297982" duration="1917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2467000" />
+    <option name="totallyTimeSpent" value="4436000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="203" y="120" width="924" height="583" extended-state="0" />
+    <frame x="50" y="22" width="1230" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32863188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32357723" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3998195" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -424,6 +451,66 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5418">
+          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LEOTextView/ViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="e#158#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9849">
+          <caret line="469" column="16" lean-forward="false" selection-start-line="469" selection-start-column="16" selection-end-line="469" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+UITextViewDelegate.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5418">
+          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LEOTextView/ViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="e#158#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9891">
+          <caret line="471" column="9" lean-forward="true" selection-start-line="471" selection-start-column="9" selection-end-line="471" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5676">
@@ -551,20 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="78" column="101" lean-forward="false" selection-start-line="78" selection-start-column="101" selection-end-line="78" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+UITextViewDelegate.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Podfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -579,17 +652,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+UITextViewDelegate.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5676">
-          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+        <state relative-caret-position="-340">
+          <caret line="59" column="35" lean-forward="true" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LEOTextView/ViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1430">
+        <state relative-caret-position="328">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="e#158#170#0" expanded="true" />
@@ -597,10 +678,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView.swift">
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextStorage.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="471" column="22" lean-forward="false" selection-start-line="471" selection-start-column="22" selection-end-line="471" selection-end-column="22" />
+        <state relative-caret-position="20">
+          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LEOTextView/Classes/LEOTextView+Toolbar.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
         </state>
       </provider>

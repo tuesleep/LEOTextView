@@ -22,6 +22,8 @@
 		72B002EC7FC60D0C163B8E5DEC311453 /* Pods-LEOTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D0E8F00E2AFC77DC79211E15CB7252C /* Pods-LEOTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */; };
 		A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */; };
+		A78666971EE154DA0074CB82 /* UIImage+PodBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78666961EE154DA0074CB82 /* UIImage+PodBundle.swift */; };
+		A78666991EE15BAF0074CB82 /* LEOTextView+Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78666981EE15BAF0074CB82 /* LEOTextView+Touch.swift */; };
 		A7B4A2171EDEC3E1001F65DA /* NSTextStorage+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4A2161EDEC3E1001F65DA /* NSTextStorage+Undo.swift */; };
 		BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */; };
 		C15C7CC252BD4BE8E61A25EB8B314EDE /* LEOTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */; };
@@ -74,6 +76,8 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LEOTextView.modulemap; sourceTree = "<group>"; };
 		A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
+		A78666961EE154DA0074CB82 /* UIImage+PodBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+PodBundle.swift"; sourceTree = "<group>"; };
+		A78666981EE15BAF0074CB82 /* LEOTextView+Touch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LEOTextView+Touch.swift"; sourceTree = "<group>"; };
 		A7B4A2161EDEC3E1001F65DA /* NSTextStorage+Undo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+Undo.swift"; sourceTree = "<group>"; };
 		AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LEOTextView.xcconfig; sourceTree = "<group>"; };
 		B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -150,11 +154,13 @@
 				5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */,
 				E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */,
 				60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */,
+				A78666981EE15BAF0074CB82 /* LEOTextView+Touch.swift */,
 				B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */,
 				C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */,
 				F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */,
 				A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */,
 				A7B4A2161EDEC3E1001F65DA /* NSTextStorage+Undo.swift */,
+				A78666961EE154DA0074CB82 /* UIImage+PodBundle.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -471,11 +477,13 @@
 				BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */,
 				EE23D08377689258A3F32C1571C7302D /* LEOTextStorage.swift in Sources */,
 				6112D8E03CEFFBF6ECEA74B27D43ECFC /* LEOTextUtil.swift in Sources */,
+				A78666971EE154DA0074CB82 /* UIImage+PodBundle.swift in Sources */,
 				A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */,
 				A7B4A2171EDEC3E1001F65DA /* NSTextStorage+Undo.swift in Sources */,
 				0D5E1AD07F15CF9E5F4915C2DDBF6A05 /* LEOTextView+UITextViewDelegate.swift in Sources */,
 				15D1B3D65D27B8603E7C714F596C2EF5 /* LEOTextView-dummy.m in Sources */,
 				29BCDEE572DFEA83169CD0529C7BB4B4 /* LEOTextView.swift in Sources */,
+				A78666991EE15BAF0074CB82 /* LEOTextView+Touch.swift in Sources */,
 				D7F3F9A8AD9568519968300011E7DA36 /* LEOTextViewStructs.swift in Sources */,
 				6DC951702B5CFB2BD01053E021BFA5AE /* NSAttributedString+SafeReplace.swift in Sources */,
 				2982A5D93D3C48389C311BCFFB0F6505 /* String+Length.swift in Sources */,
