@@ -48,14 +48,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = LEOTextView.storyboard; sourceTree = "<group>"; };
+		0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = LEOTextView.storyboard; sourceTree = "<group>"; };
 		0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		123B96D1993F59414A21D956F7FD30D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19CEDE0BA125D41AE623E4F832DDA6FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Example-umbrella.h"; sourceTree = "<group>"; };
 		281CEAB657264081931655E13742E764 /* Pods-LEOTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LEOTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3243F461F581059015E77442D04C9023 /* ResourceBundle-LEOTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LEOTextView-Info.plist"; sourceTree = "<group>"; };
-		34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LEOTextView_Example.modulemap"; sourceTree = "<group>"; };
+		34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LEOTextView_Example.modulemap"; sourceTree = "<group>"; };
 		3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Tests-dummy.m"; sourceTree = "<group>"; };
 		40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-umbrella.h"; sourceTree = "<group>"; };
@@ -63,20 +63,20 @@
 		493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextStorage.swift; sourceTree = "<group>"; };
 		494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Example-dummy.m"; sourceTree = "<group>"; };
-		4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LEOTextView_Example.framework; path = "Pods-LEOTextView_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LEOTextView_Tests.modulemap"; sourceTree = "<group>"; };
+		4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LEOTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LEOTextView_Tests.modulemap"; sourceTree = "<group>"; };
 		5C34DB9D49F6270230BC366C27D3584C /* LEOTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-prefix.pch"; sourceTree = "<group>"; };
 		5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextUtil.swift; sourceTree = "<group>"; };
-		5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LEOTextView_Tests.framework; path = "Pods-LEOTextView_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LEOTextView+Toolbar.swift"; sourceTree = "<group>"; };
+		5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LEOTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "LEOTextView+Toolbar.swift"; sourceTree = "<group>"; tabWidth = 4; };
 		8B0AC27A8D5151F7D0D499A051534360 /* Pods-LEOTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LEOTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = LEOTextView.modulemap; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LEOTextView.modulemap; sourceTree = "<group>"; };
 		A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
 		AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LEOTextView.xcconfig; sourceTree = "<group>"; };
 		B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-resources.sh"; sourceTree = "<group>"; };
-		B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LEOTextView.bundle; path = LEOTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LEOTextView+UITextViewDelegate.swift"; sourceTree = "<group>"; };
+		B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LEOTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "LEOTextView+UITextViewDelegate.swift"; sourceTree = "<group>"; tabWidth = 4; };
 		B5811070165D68A2B67C944302B08823 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
 		C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextViewStructs.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOFormatTableViewController.swift; sourceTree = "<group>"; };
 		D28AC192A668F55F8D5D1974127D9630 /* Pods-LEOTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
-		D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LEOTextView.framework; path = LEOTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LEOTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextView.swift; sourceTree = "<group>"; };
 		F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+SafeReplace.swift"; sourceTree = "<group>"; };
@@ -153,7 +153,6 @@
 				F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */,
 				A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -163,7 +162,6 @@
 				494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */,
 				0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */,
 			);
-			name = Assets;
 			path = Assets;
 			sourceTree = "<group>";
 		};
@@ -172,7 +170,6 @@
 			children = (
 				59C4703325226162F4440655F83503DA /* Classes */,
 			);
-			name = LEOTextView;
 			path = LEOTextView;
 			sourceTree = "<group>";
 		};
@@ -223,7 +220,6 @@
 			children = (
 				5D4B65854823706C20B19C3E24884EB6 /* Assets */,
 			);
-			name = LEOTextView;
 			path = LEOTextView;
 			sourceTree = "<group>";
 		};
@@ -407,7 +403,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0900;
+				TargetAttributes = {
+					6EF2F5D80A7355AB4B87B7DFD00AA492 = {
+						LastSwiftMigration = 0900;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -533,7 +534,8 @@
 				PRODUCT_NAME = LEOTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -601,7 +603,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -617,20 +620,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -749,19 +762,29 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -775,6 +798,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};

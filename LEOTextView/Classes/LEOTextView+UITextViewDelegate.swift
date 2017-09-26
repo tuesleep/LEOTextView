@@ -51,7 +51,7 @@ extension LEOTextView: UITextViewDelegate {
             return
         }
 
-        guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSParagraphStyleAttributeName, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
+        guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSAttributedStringKey.paragraphStyle.rawValue, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
             return
         }
 
@@ -75,20 +75,24 @@ extension LEOTextView: UITextViewDelegate {
             let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.components(separatedBy: " ")[0]).appending(" ") as NSString
 
             paragraphStyle = mutableParargraphWithDefaultSetting()
-            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.size(attributes: [NSFontAttributeName: normalFont]).width
+            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
             paragraphStyle!.firstLineHeadIndent = normalFont.lineHeight
         }
 
         if paragraphStyle != nil {
             var defaultAttributes = defaultAttributesForLoad
-            defaultAttributes[NSParagraphStyleAttributeName] = paragraphStyle
+            defaultAttributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
 
             // Set paragraph style
             let paragraphRange = LEOTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
             self.textStorage.addAttributes(defaultAttributes, range: paragraphRange)
 
             // Set typing style
-            typingAttributes = defaultAttributes
+            var attributes = [String: AnyObject]()
+            for key in defaultAttributes.keys {
+                attributes[key.rawValue] = defaultAttributes[key]
+            }
+            typingAttributes = attributes
         }
 
         nck_textStorage.returnKeyDeleteEffectRanges.forEach {
@@ -113,7 +117,7 @@ extension LEOTextView: UITextViewDelegate {
                     break
                 }
 
-                textStorage.addAttributes([NSFontAttributeName: font], range: NSMakeRange(location, 1))
+                textStorage.addAttributes([NSAttributedStringKey.font: font], range: NSMakeRange(location, 1))
             }
         }
 

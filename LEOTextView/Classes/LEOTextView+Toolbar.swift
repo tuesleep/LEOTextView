@@ -70,7 +70,7 @@ extension LEOTextView {
         return buttonItems
     }
 
-    func formatButtonAction() {
+    @objc func formatButtonAction() {
         if formatMenuView == nil {
             let bundle = podBundle()
 
@@ -136,15 +136,15 @@ extension LEOTextView {
         self.superview?.addSubview(formatMenuView!)
     }
 
-    func formatMenuViewDoneButtonAction() {
+    @objc func formatMenuViewDoneButtonAction() {
         formatMenuView?.removeFromSuperview()
     }
 
-    func hideKeyboardButtonAction() {
+    @objc func hideKeyboardButtonAction() {
         self.resignFirstResponder()
     }
 
-    func keyboardWillShowOrHide(_ notification: Notification) {
+    @objc func keyboardWillShowOrHide(_ notification: Notification) {
         guard let info = (notification as NSNotification).userInfo else {
             return
         }
