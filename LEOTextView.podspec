@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LEOTextView'
-  s.version          = '0.6.1'
+  s.version          = '0.7.0'
   s.summary          = 'LEOTextView is a high-performance rich editor based on UITextView and code with TextKit.'
 
 # This description is used to generate tags and improve search results.

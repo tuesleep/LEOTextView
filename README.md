@@ -25,6 +25,7 @@ Tag       | Swift
 --------  | -----
 <= 0.4.x  | 2.2
 \>= 0.5.0  | 3.0
+\>= 0.7.0  | 4.0
 
 ## Usage
 
@@ -82,21 +83,21 @@ convert to JSON look like:
 
 ```json
 {
-"text" : "- A\n- B\n- C",
-"attributes" : [
-{
-"location" : 0,
-"length" : 11,
-"fontType" : "normal",
-"name" : "NSFont"
-},
-{
-"location" : 0,
-"length" : 11,
-"listType" : 3,
-"name" : "NSParagraphStyle"
-}
-]
+  "text": "- A\n- B\n- C",
+  "attributes": [
+  {
+    "location": 0,
+    "length": 11,
+    "fontType": "normal",
+    "name": "NSFont"
+  },
+  {
+    "location": 0,
+    "length": 11,
+    "listType": 3,
+    "name": "NSParagraphStyle"
+  }
+  ]
 }
 ```
 
@@ -116,7 +117,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-###Cocoapods
+### Cocoapods
 
 LEOTextView is available through CocoaPods. To install it, simply add the following line to your Podfile:
 
