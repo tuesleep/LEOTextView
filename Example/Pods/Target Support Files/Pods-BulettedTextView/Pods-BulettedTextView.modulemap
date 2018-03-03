@@ -1,0 +1,6 @@
+framework module Pods_BulettedTextView {
+  umbrella header "Pods-BulettedTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

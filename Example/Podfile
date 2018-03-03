@@ -1,11 +1,10 @@
-use_frameworks!
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 
-target 'LEOTextView_Example' do
-  pod 'LEOTextView', :path => '../'
+target 'BulettedTextView' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
 
-  target 'LEOTextView_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  # Pods for BulettedTextView
+pod 'LEOTextView'
 end

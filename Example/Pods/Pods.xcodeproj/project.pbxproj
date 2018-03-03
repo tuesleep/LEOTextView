@@ -7,37 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D5E1AD07F15CF9E5F4915C2DDBF6A05 /* LEOTextView+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */; };
-		15D1B3D65D27B8603E7C714F596C2EF5 /* LEOTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */; };
-		1B5FC6FE7C8F72EC99B127BBC55DB405 /* LEOTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2982A5D93D3C48389C311BCFFB0F6505 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */; };
-		29BCDEE572DFEA83169CD0529C7BB4B4 /* LEOTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */; };
-		336AC4E112558CCF1BADB9F69F73AA7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		00D5A0D493C6FC4586FD0EE12BF4B864 /* LEOTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF683D01A1DE69533625C45A125A35 /* LEOTextUtil.swift */; };
+		1B5FC6FE7C8F72EC99B127BBC55DB405 /* LEOTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB669CC111800C5B1DA5CEB8D24955D0 /* LEOTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2113B3EECF4440C49514019F2856629F /* LEOFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF2DD1115591342A1B60C8934E98F0A /* LEOFormatTableViewController.swift */; };
 		349A9597808439C2289D7CE3935EA337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		4001B9961053A4072AE1E5349B6DBA93 /* Pods-LEOTextView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6112D8E03CEFFBF6ECEA74B27D43ECFC /* LEOTextUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */; };
-		6742F6AF0D4823359CF434D21CBB26DA /* Pods-LEOTextView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */; };
-		6DC951702B5CFB2BD01053E021BFA5AE /* NSAttributedString+SafeReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */; };
-		70EFFA02CB9A4E57C8C24F3DFA6498BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		72B002EC7FC60D0C163B8E5DEC311453 /* Pods-LEOTextView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8D0E8F00E2AFC77DC79211E15CB7252C /* Pods-LEOTextView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */; };
-		A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */; };
-		BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */; };
-		C15C7CC252BD4BE8E61A25EB8B314EDE /* LEOTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */; };
-		C8679ACA0FE2EC25849286EF1884AE59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */; };
-		D7F3F9A8AD9568519968300011E7DA36 /* LEOTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */; };
-		DD5803534BDA53DF1F0CDEE791ED057F /* LEOTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */; };
-		EE23D08377689258A3F32C1571C7302D /* LEOTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */; };
+		37A05BCA78677F4631BAAC6F48CBA687 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426501A6EBB83006B0C23D7BF3CC0251 /* String+Length.swift */; };
+		4B1D635579192DDABDCB53EF4F9D0A22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		64FDC1B89735A4798CD24BB2DDEA0E32 /* Pods-BulettedTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73E0CFA0192CA40210627CC69685E2 /* Pods-BulettedTextView-dummy.m */; };
+		84710936F9F330074AC2AFF8ED037306 /* LEOTextView+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224E4C3B737B3C6B723775DBBE801B3 /* LEOTextView+UITextViewDelegate.swift */; };
+		8B0B4A93D051015D4CB5C44ED68DF872 /* LEOTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3209E4491D0ADC9C4B72F49C76235A2B /* LEOTextView-dummy.m */; };
+		96E28F4F59E865CF6DE4CEA091B910E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3B7D7B3AA72F5C926BB7A318DF17FF /* Images.xcassets */; };
+		9CB2E269F2DB21176EB94223BC46E10D /* LEOTextViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C83D1C829FC8787C300F3A6FDAFFC5 /* LEOTextViewStructs.swift */; };
+		BADDD3754E433B97485BB882383851A3 /* Pods-BulettedTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E82FAD0F93FEA87A4736866C0B25E0 /* Pods-BulettedTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BAFE74B389BAEB9E888AC53332F15848 /* LEOTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4475611F3A40D995BA46AEB587B852B /* LEOTextView.storyboard */; };
+		C15C7CC252BD4BE8E61A25EB8B314EDE /* LEOTextView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCBE03F0EBC519F7D9F2BC2402F400CD /* LEOTextView.bundle */; };
+		CD024234774A713E9A44F36BB7719AB2 /* LEOTextView+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022569012464D541F0607273208502F4 /* LEOTextView+Toolbar.swift */; };
+		D05A85C9D8EF6FA66A57D49CF892B615 /* LEOTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14427CB87FFE284A56AE2B854E0243C9 /* LEOTextStorage.swift */; };
+		D535CE71B08026F04FCA024567141EF5 /* NSAttributedString+SafeReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB37D35869DFACBBE872AB81AAFB7D3A /* NSAttributedString+SafeReplace.swift */; };
+		F8E8F09040B1D96C75CFAD0E7E21752A /* LEOTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90890A06A6100BF06D191837DC0AD /* LEOTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		79B080DE9870CBAA59F7B1B66429CD7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6EF2F5D80A7355AB4B87B7DFD00AA492;
-			remoteInfo = LEOTextView;
-		};
 		CBE89201604132C72A86A466099D0815 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -45,53 +35,48 @@
 			remoteGlobalIDString = 484C48A0487AE189243E3A4023435CD4;
 			remoteInfo = "LEOTextView-LEOTextView";
 		};
+		E80EB3835D98BB75696EA3E1AF6563FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EF2F5D80A7355AB4B87B7DFD00AA492;
+			remoteInfo = LEOTextView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = LEOTextView.storyboard; sourceTree = "<group>"; };
-		0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		123B96D1993F59414A21D956F7FD30D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19CEDE0BA125D41AE623E4F832DDA6FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Example-umbrella.h"; sourceTree = "<group>"; };
-		281CEAB657264081931655E13742E764 /* Pods-LEOTextView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LEOTextView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3243F461F581059015E77442D04C9023 /* ResourceBundle-LEOTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LEOTextView-Info.plist"; sourceTree = "<group>"; };
-		34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LEOTextView_Example.modulemap"; sourceTree = "<group>"; };
-		3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Tests-dummy.m"; sourceTree = "<group>"; };
-		40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-umbrella.h"; sourceTree = "<group>"; };
-		42D7849B37CDBCD7BB0CC0A07A5A7F80 /* Pods-LEOTextView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextStorage.swift; sourceTree = "<group>"; };
-		494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LEOTextView_Example-dummy.m"; sourceTree = "<group>"; };
-		4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LEOTextView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LEOTextView_Tests.modulemap"; sourceTree = "<group>"; };
-		5C34DB9D49F6270230BC366C27D3584C /* LEOTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-prefix.pch"; sourceTree = "<group>"; };
-		5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextUtil.swift; sourceTree = "<group>"; };
-		5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LEOTextView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "LEOTextView+Toolbar.swift"; sourceTree = "<group>"; tabWidth = 4; };
-		8B0AC27A8D5151F7D0D499A051534360 /* Pods-LEOTextView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LEOTextView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		022569012464D541F0607273208502F4 /* LEOTextView+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LEOTextView+Toolbar.swift"; path = "LEOTextView/Classes/LEOTextView+Toolbar.swift"; sourceTree = "<group>"; };
+		05C467A14125CF7BE6247B8FD95A27A6 /* Pods-BulettedTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BulettedTextView.modulemap"; sourceTree = "<group>"; };
+		0B2F4E0BABD2BB82FAF12F232A789D73 /* Pods-BulettedTextView-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BulettedTextView-acknowledgements.plist"; sourceTree = "<group>"; };
+		14427CB87FFE284A56AE2B854E0243C9 /* LEOTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LEOTextStorage.swift; path = LEOTextView/Classes/LEOTextStorage.swift; sourceTree = "<group>"; };
+		1E411BC3131333DF48C1F78915D69087 /* LEOTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-prefix.pch"; sourceTree = "<group>"; };
+		1EB2DDE5C13B9133B2A28C1888CEBE99 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23C925B6CA1A7BA06AC59D17AED17F67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3209E4491D0ADC9C4B72F49C76235A2B /* LEOTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LEOTextView-dummy.m"; sourceTree = "<group>"; };
+		38170365BCB218C7AB995081714A749F /* LEOTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LEOTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41DF683D01A1DE69533625C45A125A35 /* LEOTextUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LEOTextUtil.swift; path = LEOTextView/Classes/LEOTextUtil.swift; sourceTree = "<group>"; };
+		426501A6EBB83006B0C23D7BF3CC0251 /* String+Length.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Length.swift"; path = "LEOTextView/Classes/String+Length.swift"; sourceTree = "<group>"; };
+		619BAB4B522DE8EA45B5A4FC5EF2EE94 /* Pods_BulettedTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulettedTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C83D1C829FC8787C300F3A6FDAFFC5 /* LEOTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LEOTextViewStructs.swift; path = LEOTextView/Classes/LEOTextViewStructs.swift; sourceTree = "<group>"; };
+		77E9CF563B61E375D4B4450571411A30 /* Pods-BulettedTextView-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BulettedTextView-resources.sh"; sourceTree = "<group>"; };
+		7E73E0CFA0192CA40210627CC69685E2 /* Pods-BulettedTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BulettedTextView-dummy.m"; sourceTree = "<group>"; };
+		8224E4C3B737B3C6B723775DBBE801B3 /* LEOTextView+UITextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LEOTextView+UITextViewDelegate.swift"; path = "LEOTextView/Classes/LEOTextView+UITextViewDelegate.swift"; sourceTree = "<group>"; };
+		865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LEOTextView.xcconfig; sourceTree = "<group>"; };
+		8C3B7D7B3AA72F5C926BB7A318DF17FF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LEOTextView/Assets/Images.xcassets; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LEOTextView.modulemap; sourceTree = "<group>"; };
-		A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
-		AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LEOTextView.xcconfig; sourceTree = "<group>"; };
-		B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Tests-resources.sh"; sourceTree = "<group>"; };
-		B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LEOTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "LEOTextView+UITextViewDelegate.swift"; sourceTree = "<group>"; tabWidth = 4; };
-		B5811070165D68A2B67C944302B08823 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LEOTextView_Tests-umbrella.h"; sourceTree = "<group>"; };
-		C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextViewStructs.swift; sourceTree = "<group>"; };
-		C737BB4DE7914DEB6AFEF8D2D66D3D86 /* Pods-LEOTextView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LEOTextView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		CBAF7C875C62CFA161596578836F7D2A /* Pods-LEOTextView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Example-resources.sh"; sourceTree = "<group>"; };
+		A4475611F3A40D995BA46AEB587B852B /* LEOTextView.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = LEOTextView.storyboard; path = LEOTextView/Assets/LEOTextView.storyboard; sourceTree = "<group>"; };
+		B5D58ED5BE6C256F512710BD3AE43980 /* Pods-BulettedTextView-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BulettedTextView-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B8E2A08DA7FF3C53AEE4E3B2C13C5ED0 /* LEOTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LEOTextView.modulemap; sourceTree = "<group>"; };
+		BB669CC111800C5B1DA5CEB8D24955D0 /* LEOTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LEOTextView-umbrella.h"; sourceTree = "<group>"; };
+		BBF2DD1115591342A1B60C8934E98F0A /* LEOFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LEOFormatTableViewController.swift; path = LEOTextView/Classes/LEOFormatTableViewController.swift; sourceTree = "<group>"; };
+		C0F90890A06A6100BF06D191837DC0AD /* LEOTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LEOTextView.swift; path = LEOTextView/Classes/LEOTextView.swift; sourceTree = "<group>"; };
+		C7E82FAD0F93FEA87A4736866C0B25E0 /* Pods-BulettedTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BulettedTextView-umbrella.h"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOFormatTableViewController.swift; sourceTree = "<group>"; };
-		D28AC192A668F55F8D5D1974127D9630 /* Pods-LEOTextView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LEOTextView_Example-frameworks.sh"; sourceTree = "<group>"; };
-		D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LEOTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LEOTextView.swift; sourceTree = "<group>"; };
-		F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+SafeReplace.swift"; sourceTree = "<group>"; };
-		F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LEOTextView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F9D1A445137F526818FBEC408F9DE46C /* Pods-LEOTextView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LEOTextView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LEOTextView-dummy.m"; sourceTree = "<group>"; };
+		E74B64FD59AC4DDF872A67E837B28446 /* Pods-BulettedTextView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BulettedTextView.release.xcconfig"; sourceTree = "<group>"; };
+		E9985CB1D6E2A31A22A48D6FCD3E7F0A /* Pods-BulettedTextView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BulettedTextView.debug.xcconfig"; sourceTree = "<group>"; };
+		F738ABCF2F3C68AC7DBDAC14F4D41FA8 /* ResourceBundle-LEOTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LEOTextView-Info.plist"; sourceTree = "<group>"; };
+		FB37D35869DFACBBE872AB81AAFB7D3A /* NSAttributedString+SafeReplace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+SafeReplace.swift"; path = "LEOTextView/Classes/NSAttributedString+SafeReplace.swift"; sourceTree = "<group>"; };
+		FCBE03F0EBC519F7D9F2BC2402F400CD /* LEOTextView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LEOTextView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,19 +88,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6BBD26C83ACE67A68B74A202F103BCCA /* Frameworks */ = {
+		BA1FF329CAA9D8B41543F672BB0A0D3E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				336AC4E112558CCF1BADB9F69F73AA7C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7C5D7D22B9CC9197F891E17A3B131B52 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70EFFA02CB9A4E57C8C24F3DFA6498BA /* Foundation.framework in Frameworks */,
+				4B1D635579192DDABDCB53EF4F9D0A22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,46 +106,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A2783865B596D29412AD45478587125 /* LEOTextView */ = {
+		272FC8AFBB1B68F5EE89D02E9D9F4ECD /* LEOTextView */ = {
 			isa = PBXGroup;
 			children = (
-				6BCA4D0319AC80EE281F2CCC574ABB5E /* LEOTextView */,
-				8DB86EDAC243E532660FABF99D0F309E /* Resources */,
-				9090CBFDB90C3C71E8B253223CC14CB6 /* Support Files */,
-			);
-			name = LEOTextView;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		59C4703325226162F4440655F83503DA /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CF4B5F464A6272E7F2B62FC0B8AB2EAB /* LEOFormatTableViewController.swift */,
-				493A1A51AFAD82E84D4384B274DCE9E3 /* LEOTextStorage.swift */,
-				5C7AE38D54A0D5195257E1D8D7BCCC39 /* LEOTextUtil.swift */,
-				E787EBDEAC77878789F03F320B5B1EA0 /* LEOTextView.swift */,
-				60A1DF2D48642CF125F9441317B9D379 /* LEOTextView+Toolbar.swift */,
-				B44C72A403A3443A31FF803763449391 /* LEOTextView+UITextViewDelegate.swift */,
-				C68F2CA6658493B909A55CE796106E87 /* LEOTextViewStructs.swift */,
-				F4C0AD9BEBDF21E3F054C2BE3FF3E0D5 /* NSAttributedString+SafeReplace.swift */,
-				A2CFE8D3D99DE0D7E86FF90F32261381 /* String+Length.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		5D4B65854823706C20B19C3E24884EB6 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				494F48A16DC9F6B8E13AB57A938ECC6F /* Images.xcassets */,
-				0BC60034448B60BDAB983BA7AA8B2503 /* LEOTextView.storyboard */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		6BCA4D0319AC80EE281F2CCC574ABB5E /* LEOTextView */ = {
-			isa = PBXGroup;
-			children = (
-				59C4703325226162F4440655F83503DA /* Classes */,
+				BBF2DD1115591342A1B60C8934E98F0A /* LEOFormatTableViewController.swift */,
+				14427CB87FFE284A56AE2B854E0243C9 /* LEOTextStorage.swift */,
+				41DF683D01A1DE69533625C45A125A35 /* LEOTextUtil.swift */,
+				C0F90890A06A6100BF06D191837DC0AD /* LEOTextView.swift */,
+				022569012464D541F0607273208502F4 /* LEOTextView+Toolbar.swift */,
+				8224E4C3B737B3C6B723775DBBE801B3 /* LEOTextView+UITextViewDelegate.swift */,
+				62C83D1C829FC8787C300F3A6FDAFFC5 /* LEOTextViewStructs.swift */,
+				FB37D35869DFACBBE872AB81AAFB7D3A /* NSAttributedString+SafeReplace.swift */,
+				426501A6EBB83006B0C23D7BF3CC0251 /* String+Length.swift */,
+				C10DC59D61AC19B45355825CC3476692 /* Resources */,
+				814DC6F862477FE65BF39D67426F2488 /* Support Files */,
 			);
 			path = LEOTextView;
 			sourceTree = "<group>";
@@ -185,68 +136,51 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				AF7060AB65EAA707764A43A26EA1BE07 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				F9B4210D5E640C4FFE2873525CA271F8 /* Products */,
-				BFBC30A36FF19006BAB53F1CE41C9721 /* Targets Support Files */,
+				9DEA01A71A072EBEC0C87E48A0FC5F40 /* Pods */,
+				D217A26FEEE02797344A4CF16A5B68AF /* Products */,
+				CF6717C657DBB821E759B03A7B8715A4 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8DB86EDAC243E532660FABF99D0F309E /* Resources */ = {
+		814DC6F862477FE65BF39D67426F2488 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9D488F24326CE7BF6C8866264AE5AD9E /* LEOTextView */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		9090CBFDB90C3C71E8B253223CC14CB6 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				123B96D1993F59414A21D956F7FD30D6 /* Info.plist */,
-				9A23E35D7CE2356D142837C4D908C9B3 /* LEOTextView.modulemap */,
-				AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */,
-				FC9914B08F57ADD234AEBC9B9CD6615C /* LEOTextView-dummy.m */,
-				5C34DB9D49F6270230BC366C27D3584C /* LEOTextView-prefix.pch */,
-				40C5F025268E85ED0A391F4FFABF4992 /* LEOTextView-umbrella.h */,
-				3243F461F581059015E77442D04C9023 /* ResourceBundle-LEOTextView-Info.plist */,
+				1EB2DDE5C13B9133B2A28C1888CEBE99 /* Info.plist */,
+				B8E2A08DA7FF3C53AEE4E3B2C13C5ED0 /* LEOTextView.modulemap */,
+				865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */,
+				3209E4491D0ADC9C4B72F49C76235A2B /* LEOTextView-dummy.m */,
+				1E411BC3131333DF48C1F78915D69087 /* LEOTextView-prefix.pch */,
+				BB669CC111800C5B1DA5CEB8D24955D0 /* LEOTextView-umbrella.h */,
+				F738ABCF2F3C68AC7DBDAC14F4D41FA8 /* ResourceBundle-LEOTextView-Info.plist */,
 			);
 			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LEOTextView";
+			path = "../Target Support Files/LEOTextView";
 			sourceTree = "<group>";
 		};
-		9D488F24326CE7BF6C8866264AE5AD9E /* LEOTextView */ = {
+		9DEA01A71A072EBEC0C87E48A0FC5F40 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5D4B65854823706C20B19C3E24884EB6 /* Assets */,
+				272FC8AFBB1B68F5EE89D02E9D9F4ECD /* LEOTextView */,
 			);
-			path = LEOTextView;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		AF7060AB65EAA707764A43A26EA1BE07 /* Development Pods */ = {
+		A4E40EDDFDF68732695A81B5229FCAB2 /* Pods-BulettedTextView */ = {
 			isa = PBXGroup;
 			children = (
-				1A2783865B596D29412AD45478587125 /* LEOTextView */,
+				23C925B6CA1A7BA06AC59D17AED17F67 /* Info.plist */,
+				05C467A14125CF7BE6247B8FD95A27A6 /* Pods-BulettedTextView.modulemap */,
+				B5D58ED5BE6C256F512710BD3AE43980 /* Pods-BulettedTextView-acknowledgements.markdown */,
+				0B2F4E0BABD2BB82FAF12F232A789D73 /* Pods-BulettedTextView-acknowledgements.plist */,
+				7E73E0CFA0192CA40210627CC69685E2 /* Pods-BulettedTextView-dummy.m */,
+				77E9CF563B61E375D4B4450571411A30 /* Pods-BulettedTextView-resources.sh */,
+				C7E82FAD0F93FEA87A4736866C0B25E0 /* Pods-BulettedTextView-umbrella.h */,
+				E9985CB1D6E2A31A22A48D6FCD3E7F0A /* Pods-BulettedTextView.debug.xcconfig */,
+				E74B64FD59AC4DDF872A67E837B28446 /* Pods-BulettedTextView.release.xcconfig */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		B5E5626A5ED7F4EF2E887D6DE0A50A52 /* Pods-LEOTextView_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				19CEDE0BA125D41AE623E4F832DDA6FE /* Info.plist */,
-				54BFFE5F3153E781B910FB1068C8C012 /* Pods-LEOTextView_Tests.modulemap */,
-				281CEAB657264081931655E13742E764 /* Pods-LEOTextView_Tests-acknowledgements.markdown */,
-				8B0AC27A8D5151F7D0D499A051534360 /* Pods-LEOTextView_Tests-acknowledgements.plist */,
-				4028A9A213E2F155377FCE78618EBD87 /* Pods-LEOTextView_Tests-dummy.m */,
-				42D7849B37CDBCD7BB0CC0A07A5A7F80 /* Pods-LEOTextView_Tests-frameworks.sh */,
-				B217B422386340EFE29839E0E7AA3DFC /* Pods-LEOTextView_Tests-resources.sh */,
-				C140ACA318BB53431D58ECDEC742D2A0 /* Pods-LEOTextView_Tests-umbrella.h */,
-				3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */,
-				0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */,
-			);
-			name = "Pods-LEOTextView_Tests";
-			path = "Target Support Files/Pods-LEOTextView_Tests";
+			name = "Pods-BulettedTextView";
+			path = "Target Support Files/Pods-BulettedTextView";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -257,40 +191,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BFBC30A36FF19006BAB53F1CE41C9721 /* Targets Support Files */ = {
+		C10DC59D61AC19B45355825CC3476692 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F1F78E67844FFA5BF8E10B86B8C6F092 /* Pods-LEOTextView_Example */,
-				B5E5626A5ED7F4EF2E887D6DE0A50A52 /* Pods-LEOTextView_Tests */,
+				8C3B7D7B3AA72F5C926BB7A318DF17FF /* Images.xcassets */,
+				A4475611F3A40D995BA46AEB587B852B /* LEOTextView.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CF6717C657DBB821E759B03A7B8715A4 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A4E40EDDFDF68732695A81B5229FCAB2 /* Pods-BulettedTextView */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		F1F78E67844FFA5BF8E10B86B8C6F092 /* Pods-LEOTextView_Example */ = {
+		D217A26FEEE02797344A4CF16A5B68AF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5811070165D68A2B67C944302B08823 /* Info.plist */,
-				34C3F3CB355E0D1B3E554B2C3D62E86C /* Pods-LEOTextView_Example.modulemap */,
-				F9D1A445137F526818FBEC408F9DE46C /* Pods-LEOTextView_Example-acknowledgements.markdown */,
-				C737BB4DE7914DEB6AFEF8D2D66D3D86 /* Pods-LEOTextView_Example-acknowledgements.plist */,
-				4ECB18604BDC49ECE9A29814D41D319D /* Pods-LEOTextView_Example-dummy.m */,
-				D28AC192A668F55F8D5D1974127D9630 /* Pods-LEOTextView_Example-frameworks.sh */,
-				CBAF7C875C62CFA161596578836F7D2A /* Pods-LEOTextView_Example-resources.sh */,
-				219CEF285829EC9B536B5786D18038A6 /* Pods-LEOTextView_Example-umbrella.h */,
-				D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */,
-				F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */,
-			);
-			name = "Pods-LEOTextView_Example";
-			path = "Target Support Files/Pods-LEOTextView_Example";
-			sourceTree = "<group>";
-		};
-		F9B4210D5E640C4FFE2873525CA271F8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */,
-				D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */,
-				4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */,
-				5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */,
+				FCBE03F0EBC519F7D9F2BC2402F400CD /* LEOTextView.bundle */,
+				38170365BCB218C7AB995081714A749F /* LEOTextView.framework */,
+				619BAB4B522DE8EA45B5A4FC5EF2EE94 /* Pods_BulettedTextView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,27 +221,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		04E93CFBC61825F6B911F23EF62EF00C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BADDD3754E433B97485BB882383851A3 /* Pods-BulettedTextView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34B6F48D3979EFC7C66831099790332C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1B5FC6FE7C8F72EC99B127BBC55DB405 /* LEOTextView-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA1716E1D0501D1A6570E1DA381BCCC1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4001B9961053A4072AE1E5349B6DBA93 /* Pods-LEOTextView_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABD738968E986B480D2EE55922FE472F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				72B002EC7FC60D0C163B8E5DEC311453 /* Pods-LEOTextView_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,7 +246,7 @@
 			buildPhases = (
 				33D1FADC85A0C062F905F530D09FC2A7 /* Sources */,
 				C5A62D395B83386B6BAFB1474DE97B95 /* Frameworks */,
-				778A3D87A14EB1EED9EEE08A21EDFFD4 /* Resources */,
+				E807BE9C86D6CA370AF203511F89147B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -339,31 +254,14 @@
 			);
 			name = "LEOTextView-LEOTextView";
 			productName = "LEOTextView-LEOTextView";
-			productReference = B3FC9C5C236E433AEE2DBBE583D45794 /* LEOTextView.bundle */;
+			productReference = FCBE03F0EBC519F7D9F2BC2402F400CD /* LEOTextView.bundle */;
 			productType = "com.apple.product-type.bundle";
-		};
-		494ED3A53E1F56D35042962E12C92A78 /* Pods-LEOTextView_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6F37D9F539F8A0B84B2461034B6DF24E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Tests" */;
-			buildPhases = (
-				BCF972B43D04EDD9988966994EDB9505 /* Sources */,
-				6BBD26C83ACE67A68B74A202F103BCCA /* Frameworks */,
-				ABD738968E986B480D2EE55922FE472F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-LEOTextView_Tests";
-			productName = "Pods-LEOTextView_Tests";
-			productReference = 5DF83B1B4E18E972E70427A1C23F4D6B /* Pods_LEOTextView_Tests.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7457A07E2365F889995ADEC014B48A3 /* Build configuration list for PBXNativeTarget "LEOTextView" */;
 			buildPhases = (
-				5E321FC656B6A12F6FD51C6CCADC075B /* Sources */,
+				58C932C57976828EDE4407AEE8305F0B /* Sources */,
 				200D81AA932DC4FDFFA90FF254482E55 /* Frameworks */,
 				AB56E8224054347E7F8C13BC57BD7BBF /* Resources */,
 				34B6F48D3979EFC7C66831099790332C /* Headers */,
@@ -375,25 +273,25 @@
 			);
 			name = LEOTextView;
 			productName = LEOTextView;
-			productReference = D3ECB8ADEC4D000D755041ADEF91A723 /* LEOTextView.framework */;
+			productReference = 38170365BCB218C7AB995081714A749F /* LEOTextView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EF5A2DE6FB0CD62FA2DF14658E53A8EB /* Pods-LEOTextView_Example */ = {
+		77791F9CEF3DC9D5F880F1B66A5E095A /* Pods-BulettedTextView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B99AC6C6F0E9EF9A0EA8D851BFB8A1E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Example" */;
+			buildConfigurationList = 8DD695B67479888702DF934C4698BC6A /* Build configuration list for PBXNativeTarget "Pods-BulettedTextView" */;
 			buildPhases = (
-				1DE527A529223B4CCD627ADF8CE2BF7D /* Sources */,
-				7C5D7D22B9CC9197F891E17A3B131B52 /* Frameworks */,
-				AA1716E1D0501D1A6570E1DA381BCCC1 /* Headers */,
+				61D5E46D0B8E2C3930B531B7DABADED0 /* Sources */,
+				BA1FF329CAA9D8B41543F672BB0A0D3E /* Frameworks */,
+				04E93CFBC61825F6B911F23EF62EF00C /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				79AC235150548FCFC17398548457BF00 /* PBXTargetDependency */,
+				302B3F67D414CB716539BAE05DBCF548 /* PBXTargetDependency */,
 			);
-			name = "Pods-LEOTextView_Example";
-			productName = "Pods-LEOTextView_Example";
-			productReference = 4FB5D4E37E2E79E56A42349A679F42B1 /* Pods_LEOTextView_Example.framework */;
+			name = "Pods-BulettedTextView";
+			productName = "Pods-BulettedTextView";
+			productReference = 619BAB4B522DE8EA45B5A4FC5EF2EE94 /* Pods_BulettedTextView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -403,12 +301,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
-				TargetAttributes = {
-					6EF2F5D80A7355AB4B87B7DFD00AA492 = {
-						LastSwiftMigration = 0900;
-					};
-				};
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -418,28 +311,18 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = F9B4210D5E640C4FFE2873525CA271F8 /* Products */;
+			productRefGroup = D217A26FEEE02797344A4CF16A5B68AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */,
 				484C48A0487AE189243E3A4023435CD4 /* LEOTextView-LEOTextView */,
-				EF5A2DE6FB0CD62FA2DF14658E53A8EB /* Pods-LEOTextView_Example */,
-				494ED3A53E1F56D35042962E12C92A78 /* Pods-LEOTextView_Tests */,
+				77791F9CEF3DC9D5F880F1B66A5E095A /* Pods-BulettedTextView */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		778A3D87A14EB1EED9EEE08A21EDFFD4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C8679ACA0FE2EC25849286EF1884AE59 /* Images.xcassets in Resources */,
-				DD5803534BDA53DF1F0CDEE791ED057F /* LEOTextView.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AB56E8224054347E7F8C13BC57BD7BBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,17 +331,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		1DE527A529223B4CCD627ADF8CE2BF7D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		E807BE9C86D6CA370AF203511F89147B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6742F6AF0D4823359CF434D21CBB26DA /* Pods-LEOTextView_Example-dummy.m in Sources */,
+				96E28F4F59E865CF6DE4CEA091B910E9 /* Images.xcassets in Resources */,
+				BAFE74B389BAEB9E888AC53332F15848 /* LEOTextView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		33D1FADC85A0C062F905F530D09FC2A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,52 +350,88 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5E321FC656B6A12F6FD51C6CCADC075B /* Sources */ = {
+		58C932C57976828EDE4407AEE8305F0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC35E81558EB4B2A2F4BB1806C93D6DF /* LEOFormatTableViewController.swift in Sources */,
-				EE23D08377689258A3F32C1571C7302D /* LEOTextStorage.swift in Sources */,
-				6112D8E03CEFFBF6ECEA74B27D43ECFC /* LEOTextUtil.swift in Sources */,
-				A55EC486602FE4254EA55A4D391C3C4C /* LEOTextView+Toolbar.swift in Sources */,
-				0D5E1AD07F15CF9E5F4915C2DDBF6A05 /* LEOTextView+UITextViewDelegate.swift in Sources */,
-				15D1B3D65D27B8603E7C714F596C2EF5 /* LEOTextView-dummy.m in Sources */,
-				29BCDEE572DFEA83169CD0529C7BB4B4 /* LEOTextView.swift in Sources */,
-				D7F3F9A8AD9568519968300011E7DA36 /* LEOTextViewStructs.swift in Sources */,
-				6DC951702B5CFB2BD01053E021BFA5AE /* NSAttributedString+SafeReplace.swift in Sources */,
-				2982A5D93D3C48389C311BCFFB0F6505 /* String+Length.swift in Sources */,
+				2113B3EECF4440C49514019F2856629F /* LEOFormatTableViewController.swift in Sources */,
+				D05A85C9D8EF6FA66A57D49CF892B615 /* LEOTextStorage.swift in Sources */,
+				00D5A0D493C6FC4586FD0EE12BF4B864 /* LEOTextUtil.swift in Sources */,
+				CD024234774A713E9A44F36BB7719AB2 /* LEOTextView+Toolbar.swift in Sources */,
+				84710936F9F330074AC2AFF8ED037306 /* LEOTextView+UITextViewDelegate.swift in Sources */,
+				8B0B4A93D051015D4CB5C44ED68DF872 /* LEOTextView-dummy.m in Sources */,
+				F8E8F09040B1D96C75CFAD0E7E21752A /* LEOTextView.swift in Sources */,
+				9CB2E269F2DB21176EB94223BC46E10D /* LEOTextViewStructs.swift in Sources */,
+				D535CE71B08026F04FCA024567141EF5 /* NSAttributedString+SafeReplace.swift in Sources */,
+				37A05BCA78677F4631BAAC6F48CBA687 /* String+Length.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BCF972B43D04EDD9988966994EDB9505 /* Sources */ = {
+		61D5E46D0B8E2C3930B531B7DABADED0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0E8F00E2AFC77DC79211E15CB7252C /* Pods-LEOTextView_Tests-dummy.m in Sources */,
+				64FDC1B89735A4798CD24BB2DDEA0E32 /* Pods-BulettedTextView-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		302B3F67D414CB716539BAE05DBCF548 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LEOTextView;
+			target = 6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */;
+			targetProxy = E80EB3835D98BB75696EA3E1AF6563FD /* PBXContainerItemProxy */;
+		};
 		497630448BAC84A2FDA19656C2481173 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "LEOTextView-LEOTextView";
 			target = 484C48A0487AE189243E3A4023435CD4 /* LEOTextView-LEOTextView */;
 			targetProxy = CBE89201604132C72A86A466099D0815 /* PBXContainerItemProxy */;
 		};
-		79AC235150548FCFC17398548457BF00 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LEOTextView;
-			target = 6EF2F5D80A7355AB4B87B7DFD00AA492 /* LEOTextView */;
-			targetProxy = 79B080DE9870CBAA59F7B1B66429CD7E /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		195C456A60F56596C8C6497DDF042017 /* Release */ = {
+		0749F48C07205ECBD529C901B506C6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
+			baseConfigurationReference = E9985CB1D6E2A31A22A48D6FCD3E7F0A /* Pods-BulettedTextView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BulettedTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BulettedTextView/Pods-BulettedTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_BulettedTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0DECC44364B4818979603F2AB418D552 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E74B64FD59AC4DDF872A67E837B28446 /* Pods-BulettedTextView.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -524,94 +444,27 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-BulettedTextView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BulettedTextView/Pods-BulettedTextView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = LEOTextView;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_BulettedTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		33BF82B2A1DC907163B38F79EAFB3A2F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DBFA10E1F3E62B074E37992CD6805DC /* Pods-LEOTextView_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Tests/Pods-LEOTextView_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_LEOTextView_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		41EF52367B6F2D9A2D99DA7CE2DDF974 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = LEOTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
+		432AE583FE3CD8E1271410C7651CDD4C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -620,30 +473,60 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		75CC402179505BA337B07F61D1C8DDCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -657,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -665,61 +548,9 @@
 			};
 			name = Debug;
 		};
-		8161B4548EDF1D1A09A9B6DA67802D4A /* Debug */ = {
+		7EEA83228B65B2BABF27243A48CE7686 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LEOTextView";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/LEOTextView/ResourceBundle-LEOTextView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = LEOTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		8F051DA482CEF466950D02CF49EDB2C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E1DF107F5513FE13E59AE0FF1F41D7F /* Pods-LEOTextView_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Tests/Pods-LEOTextView_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_LEOTextView_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B3BC95CC778A8D1A6DE455FF87F8F262 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8273E9BB96789C46C4B23EC8C052D66 /* Pods-LEOTextView_Example.debug.xcconfig */;
+			baseConfigurationReference = 865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -732,81 +563,76 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Example/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Example/Pods-LEOTextView_Example.modulemap";
+				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_LEOTextView_Example;
+				PRODUCT_NAME = LEOTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
+		8161B4548EDF1D1A09A9B6DA67802D4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LEOTextView";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/ResourceBundle-LEOTextView-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		B666E7DC1E978DC5C8FFBD8ED869A265 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LEOTextView/LEOTextView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LEOTextView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LEOTextView/LEOTextView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = LEOTextView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 		BEA5C4C6B1B5C3E9D06915CFBE2971D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC737BC9165E0A2276399D5512C9084C /* LEOTextView.xcconfig */;
+			baseConfigurationReference = 865702B29C9BA5B5A6452447C39A4563 /* LEOTextView.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LEOTextView";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -821,67 +647,14 @@
 			};
 			name = Release;
 		};
-		FCF19BFCCCAA897FC9F368F408DE3EE6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6A022989BFF87459F972F1E4FC632B0 /* Pods-LEOTextView_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LEOTextView_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LEOTextView_Example/Pods-LEOTextView_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_LEOTextView_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B99AC6C6F0E9EF9A0EA8D851BFB8A1E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B3BC95CC778A8D1A6DE455FF87F8F262 /* Debug */,
-				FCF19BFCCCAA897FC9F368F408DE3EE6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
-				B7324857C38B065FEB1EEE3105C2367A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6F37D9F539F8A0B84B2461034B6DF24E /* Build configuration list for PBXNativeTarget "Pods-LEOTextView_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				33BF82B2A1DC907163B38F79EAFB3A2F /* Debug */,
-				8F051DA482CEF466950D02CF49EDB2C8 /* Release */,
+				75CC402179505BA337B07F61D1C8DDCD /* Debug */,
+				432AE583FE3CD8E1271410C7651CDD4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -895,11 +668,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8DD695B67479888702DF934C4698BC6A /* Build configuration list for PBXNativeTarget "Pods-BulettedTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0749F48C07205ECBD529C901B506C6D9 /* Debug */,
+				0DECC44364B4818979603F2AB418D552 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D7457A07E2365F889995ADEC014B48A3 /* Build configuration list for PBXNativeTarget "LEOTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41EF52367B6F2D9A2D99DA7CE2DDF974 /* Debug */,
-				195C456A60F56596C8C6497DDF042017 /* Release */,
+				7EEA83228B65B2BABF27243A48CE7686 /* Debug */,
+				B666E7DC1E978DC5C8FFBD8ED869A265 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
