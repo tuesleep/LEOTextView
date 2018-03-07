@@ -14,3 +14,4 @@ extension String {
         return NSString(string: self).length
     }
 }
+

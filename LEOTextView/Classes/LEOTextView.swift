@@ -571,4 +571,3 @@ open class LEOTextView: UITextView {
     }
 }
 
-

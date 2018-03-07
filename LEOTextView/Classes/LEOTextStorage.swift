@@ -338,4 +338,3 @@ class LEOTextStorage: NSTextStorage {
         safeAddAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: range)
     }
 }
-
