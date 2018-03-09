@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LEOTextView'
-  s.version          = '0.7.0'
+  s.version          = '0.7.1'
   s.summary          = 'LEOTextView is a high-performance rich editor based on UITextView and code with TextKit.'
 
 # This description is used to generate tags and improve search results.
@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
 
   s.description      = "LEOTextView is a very high-performance rich editor. Because it's a subclass of UITextView, not UIWebView. All of code by TextKit framework."
 
-  s.homepage         = 'https://github.com/leonardo-hammer/LEOTextView'
+  s.homepage         = 'https://github.com/BestOnTop/LEOTextView.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'leonardo-hammer' => 'leonardo_hammer@zoho.com' }
-  s.source           = { :git => 'https://github.com/leonardo-hammer/LEOTextView.git', :tag => s.version.to_s }
+  s.author           = { 'Wojciech Kulas' => 'wojtek.bestontop@gmail.com' }
+  s.source           = { :git => 'https://github.com/BestOnTop/LEOTextView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
