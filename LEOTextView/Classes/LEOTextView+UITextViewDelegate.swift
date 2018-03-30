@@ -156,14 +156,14 @@ extension LEOTextView: UITextViewDelegate {
     }
 
     public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
-        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:) as (UITextView, NSTextAttachment, NSRange) -> Bool) as Selector!) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:) as (UITextView, NSTextAttachment, NSRange) -> Bool) as Selector?) {
             return nck_delegate!.textView!(textView, shouldInteractWith: textAttachment, in: characterRange)
         }
         return true
     }
 
     public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:) as (UITextView, URL, NSRange) -> Bool) as Selector!) {
+        if nck_delegate != nil && nck_delegate!.responds(to: #selector(self.textView(_:shouldInteractWith:in:) as (UITextView, URL, NSRange) -> Bool) as Selector?) {
             return nck_delegate!.textView!(textView, shouldInteractWith: URL, in: characterRange)
         }
         return true
