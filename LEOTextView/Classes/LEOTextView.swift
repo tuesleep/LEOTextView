@@ -147,13 +147,13 @@ open class LEOTextView: UITextView {
 
         if selectedRange.length == 0 {
             // current paragraph
-            targetText = LEOTextUtil.currentParagraphStringOfString(text, location: selectedRange.location) as NSString!
+            targetText = LEOTextUtil.currentParagraphStringOfString(text, location: selectedRange.location) as NSString?
             targetRange = NSRange(location: objectIndex, length: targetText.length)
         } else {
             var lastIndex = selectedRange.location + selectedRange.length
             lastIndex = LEOTextUtil.lineEndIndexWithString(text, location: lastIndex)
             targetRange = NSRange(location: objectIndex, length: lastIndex - objectIndex)
-            targetText = (text as NSString).substring(with: targetRange) as NSString!
+            targetText = (text as NSString).substring(with: targetRange) as NSString?
         }
 
         // Confirm current is To list or To body by first line
