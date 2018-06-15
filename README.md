@@ -127,7 +127,7 @@ pod "LEOTextView"
 
 ## Author
 
-leonardo-hammer, leonardo_hammer@zoho.com
+Tuesleep, tuesleep@gmail.com
 
 ## License
 
