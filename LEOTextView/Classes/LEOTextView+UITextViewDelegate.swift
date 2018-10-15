@@ -51,7 +51,7 @@ extension LEOTextView: UITextViewDelegate {
             return
         }
 
-        guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSAttributedStringKey.paragraphStyle.rawValue, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
+        guard let currentParagraphStyle = nck_textStorage.safeAttribute(NSAttributedString.Key.paragraphStyle.rawValue, atIndex: objectIndex, effectiveRange: nil, defaultValue: nil) as? NSParagraphStyle else {
             return
         }
 
@@ -75,13 +75,13 @@ extension LEOTextView: UITextViewDelegate {
             let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.components(separatedBy: " ")[0]).appending(" ") as NSString
 
             paragraphStyle = mutableParargraphWithDefaultSetting()
-            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
+            paragraphStyle!.headIndent = normalFont.lineHeight + listPrefixString.size(withAttributes: [NSAttributedString.Key.font: normalFont]).width
             paragraphStyle!.firstLineHeadIndent = normalFont.lineHeight
         }
 
         if paragraphStyle != nil {
             var defaultAttributes = defaultAttributesForLoad
-            defaultAttributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
+            defaultAttributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
 
             // Set paragraph style
             let paragraphRange = LEOTextUtil.paragraphRangeOfString(self.text, location: selectedRange.location)
@@ -92,7 +92,7 @@ extension LEOTextView: UITextViewDelegate {
             for key in defaultAttributes.keys {
                 attributes[key.rawValue] = defaultAttributes[key]
             }
-            typingAttributes = attributes
+            typingAttributes = convertToNSAttributedStringKeyDictionary(attributes)
         }
 
         nck_textStorage.returnKeyDeleteEffectRanges.forEach {
@@ -117,7 +117,7 @@ extension LEOTextView: UITextViewDelegate {
                     break
                 }
 
-                textStorage.addAttributes([NSAttributedStringKey.font: font], range: NSMakeRange(location, 1))
+                textStorage.addAttributes([NSAttributedString.Key.font: font], range: NSMakeRange(location, 1))
             }
         }
 
@@ -254,4 +254,9 @@ extension LEOTextView: UIScrollViewDelegate {
         }
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

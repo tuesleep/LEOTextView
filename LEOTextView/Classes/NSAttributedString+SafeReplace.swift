@@ -23,7 +23,7 @@ extension NSMutableAttributedString {
         }
     }
 
-    func safeAddAttributes(_ attrs: [NSAttributedStringKey : AnyObject], range: NSRange) {
+    func safeAddAttributes(_ attrs: [NSAttributedString.Key : AnyObject], range: NSRange) {
         if isSafeRange(range) {
             addAttributes(attrs, range: range)
         }
@@ -35,7 +35,7 @@ extension NSAttributedString {
         var attributeValue: AnyObject? = nil
 
         if location >= 0 && location < string.length() {
-            attributeValue = attribute(NSAttributedStringKey(rawValue: attrName), at: location, effectiveRange: range) as AnyObject?
+            attributeValue = attribute(NSAttributedString.Key(rawValue: attrName), at: location, effectiveRange: range) as AnyObject?
         }
 
         return attributeValue == nil ? defaultValue : attributeValue
