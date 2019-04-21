@@ -371,7 +371,7 @@ open class LEOTextView: UITextView {
 
                     paragraphStyle.headIndent = listPrefixWidth + lineHeight
                     paragraphStyle.firstLineHeadIndent = lineHeight
-                    mutableAttributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: normalFont], range: range)
+                    mutableAttributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle!, NSAttributedString.Key.font: normalFont], range: range)
                 }
             }
         }
