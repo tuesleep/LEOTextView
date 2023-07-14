@@ -41,8 +41,8 @@ extension LEOTextView {
 
         toolbar?.items = enableBarButtonItems()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowOrHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         currentFrame = self.frame
 
@@ -153,12 +153,12 @@ extension LEOTextView {
             return
         }
 
-        let duration = info[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let keyboardEnd = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let keyboardEnd = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
         let toolbarHeight = toolbar!.frame.size.height
 
-        if notification.name == NSNotification.Name.UIKeyboardWillShow {
+        if notification.name == UIResponder.keyboardWillShowNotification {
             formatMenuView?.removeFromSuperview()
 
             self.superview?.addSubview(toolbar!)

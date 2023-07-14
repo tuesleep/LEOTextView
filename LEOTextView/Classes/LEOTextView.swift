@@ -14,7 +14,7 @@ open class LEOTextView: UITextView {
     open var nck_delegate: UITextViewDelegate?
 
     open var inputFontMode: LEOInputFontMode = .normal
-    open var defaultAttributesForLoad: [NSAttributedStringKey : AnyObject] = [:]
+    open var defaultAttributesForLoad: [NSAttributedString.Key : AnyObject] = [:]
     open var selectMenuItems: [LEOInputFontMode] = [.bold, .italic]
 
     // Custom fonts
@@ -203,7 +203,7 @@ open class LEOTextView: UITextView {
             let listPrefixString: NSString = NSString(string: objectLineAndIndex.0.components(separatedBy: " ")[0]).appending(" ") as NSString
 
             // Handle head indent of paragraph.
-            nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(withAttributes: [NSAttributedStringKey.font: normalFont]).width)
+            nck_textStorage.undoSupportResetIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(withAttributes: [NSAttributedString.Key.font: normalFont]).width)
         }
 
         if isTransformToList {
@@ -211,7 +211,7 @@ open class LEOTextView: UITextView {
             let listPrefixString = NSString(string: listPrefix)
 
             // Handle head indent of paragraph.
-            nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(withAttributes: [NSAttributedStringKey.font: normalFont]).width)
+            nck_textStorage.undoSupportMadeIndenationRange(NSMakeRange(targetRange.location, replacedContent.length()), headIndent: listPrefixString.size(withAttributes: [NSAttributedString.Key.font: normalFont]).width)
         }
 
     }
@@ -231,7 +231,7 @@ open class LEOTextView: UITextView {
                 attribute["location"] = range.location as AnyObject?
                 attribute["length"] = range.length as AnyObject?
 
-                if $0 == NSAttributedStringKey.font {
+                if $0 == NSAttributedString.Key.font {
                     let currentFont = attr[$0] as! UIFont
 
                     var fontType = "normal";
@@ -250,7 +250,7 @@ open class LEOTextView: UITextView {
                     attributesData.append(attribute)
                 }
                 // Paragraph indent saved
-                else if $0 == NSAttributedStringKey.paragraphStyle {
+                else if $0 == NSAttributedString.Key.paragraphStyle {
                     let paragraphType = self.nck_textStorage.currentParagraphTypeWithLocation(range.location)
 
                     if paragraphType == .bulletedList || paragraphType == .dashedList || paragraphType == .numberedList {
@@ -291,10 +291,10 @@ open class LEOTextView: UITextView {
             let attributeName = attribute["name"] as! String
             let range = NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int)
 
-            if attributeName == NSAttributedStringKey.font.rawValue {
+            if attributeName == NSAttributedString.Key.font.rawValue {
                 let currentFont = fontOfTypeWithAttribute(attribute)
-                textStorage.addAttribute(NSAttributedStringKey(rawValue: attributeName), value: currentFont, range: range)
-            } else if attributeName == NSAttributedStringKey.paragraphStyle.rawValue {
+                textStorage.addAttribute(NSAttributedString.Key(rawValue: attributeName), value: currentFont, range: range)
+            } else if attributeName == NSAttributedString.Key.paragraphStyle.rawValue {
                 let listTypeRawValue = attribute["listType"]
 
                 if listTypeRawValue != nil {
@@ -304,9 +304,9 @@ open class LEOTextView: UITextView {
                     if listType == .numberedList {
                         var listPrefixString = textString.substring(with: range).components(separatedBy: " ")[0]
                         listPrefixString.append(" ")
-                        listPrefixWidth = NSString(string: listPrefixString).size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
+                        listPrefixWidth = NSString(string: listPrefixString).size(withAttributes: [NSAttributedString.Key.font: normalFont]).width
                     } else {
-                        listPrefixWidth = NSString(string: "• ").size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
+                        listPrefixWidth = NSString(string: "• ").size(withAttributes: [NSAttributedString.Key.font: normalFont]).width
                     }
 
                     let lineHeight = normalFont.lineHeight
@@ -314,7 +314,7 @@ open class LEOTextView: UITextView {
                     let paragraphStyle = mutableParargraphWithDefaultSetting()
                     paragraphStyle.headIndent = listPrefixWidth + lineHeight
                     paragraphStyle.firstLineHeadIndent = lineHeight
-                    textStorage.addAttributes([NSAttributedStringKey.paragraphStyle: paragraphStyle, NSAttributedStringKey.font: normalFont], range: range)
+                    textStorage.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: normalFont], range: range)
                 }
             }
         }
@@ -331,7 +331,7 @@ open class LEOTextView: UITextView {
             let attributeName = attribute["name"] as! String
             let range  = NSRange(location: attribute["location"] as! Int, length: attribute["length"] as! Int)
 
-            if attributeName == NSAttributedStringKey.font.rawValue {
+            if attributeName == NSAttributedString.Key.font.rawValue {
                 let fontType = attribute["fontType"] as? String
                 var currentFont = normalFont
 
@@ -343,8 +343,8 @@ open class LEOTextView: UITextView {
                     currentFont = italicFont
                 }
 
-                mutableAttributedString.addAttribute(NSAttributedStringKey.font, value: currentFont, range: range)
-            } else if attributeName == NSAttributedStringKey.paragraphStyle.rawValue {
+                mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: currentFont, range: range)
+            } else if attributeName == NSAttributedString.Key.paragraphStyle.rawValue {
                 let listTypeRawValue = attribute["listType"]
 
                 if listTypeRawValue != nil {
@@ -354,9 +354,9 @@ open class LEOTextView: UITextView {
                     if listType == .numberedList {
                         var listPrefixString = textString.substring(with: range).components(separatedBy: " ")[0]
                         listPrefixString.append(" ")
-                        listPrefixWidth = NSString(string: listPrefixString).size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
+                        listPrefixWidth = NSString(string: listPrefixString).size(withAttributes: [NSAttributedString.Key.font: normalFont]).width
                     } else {
-                        listPrefixWidth = NSString(string: "• ").size(withAttributes: [NSAttributedStringKey.font: normalFont]).width
+                        listPrefixWidth = NSString(string: "• ").size(withAttributes: [NSAttributedString.Key.font: normalFont]).width
                     }
 
                     let lineHeight = normalFont.lineHeight
@@ -364,14 +364,14 @@ open class LEOTextView: UITextView {
                     var paragraphStyle: NSMutableParagraphStyle!
 
                     if defaultParagraphStyle != nil {
-                        paragraphStyle = defaultParagraphStyle!.mutableCopy() as! NSMutableParagraphStyle
+                        paragraphStyle = (defaultParagraphStyle!.mutableCopy() as! NSMutableParagraphStyle)
                     } else {
                         paragraphStyle = NSMutableParagraphStyle()
                     }
 
                     paragraphStyle.headIndent = listPrefixWidth + lineHeight
                     paragraphStyle.firstLineHeadIndent = lineHeight
-                    mutableAttributedString.addAttributes([NSAttributedStringKey.paragraphStyle: paragraphStyle, NSAttributedStringKey.font: normalFont], range: range)
+                    mutableAttributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle!, NSAttributedString.Key.font: normalFont], range: range)
                 }
             }
         }
@@ -426,7 +426,7 @@ open class LEOTextView: UITextView {
     }
 
     open func inputModeWithIndex(_ index: Int) -> LEOInputFontMode {
-        guard let currentFont = nck_textStorage.safeAttribute(NSAttributedStringKey.font.rawValue, atIndex: index, effectiveRange: nil, defaultValue: nil) as? UIFont else {
+        guard let currentFont = nck_textStorage.safeAttribute(NSAttributedString.Key.font.rawValue, atIndex: index, effectiveRange: nil, defaultValue: nil) as? UIFont else {
             return .normal
         }
 
@@ -457,7 +457,7 @@ open class LEOTextView: UITextView {
         }
 
         if LEOTextUtil.isSelectedTextWithTextView(self) {
-            let currentFont = self.attributedText.safeAttribute(NSAttributedStringKey.font.rawValue, atIndex: selectedRange.location, effectiveRange: nil, defaultValue: normalFont) as! UIFont
+            let currentFont = self.attributedText.safeAttribute(NSAttributedString.Key.font.rawValue, atIndex: selectedRange.location, effectiveRange: nil, defaultValue: normalFont) as! UIFont
             let compareFontName = (mode == .bold) ? boldFont.fontName : italicFont.fontName
 
             let isSpecialFont = (mode == .bold ? LEOTextUtil.isBoldFont(currentFont, boldFontName: compareFontName) : LEOTextUtil.isItalicFont(currentFont, italicFontName: compareFontName))
@@ -483,8 +483,8 @@ open class LEOTextView: UITextView {
     func mutableParargraphWithDefaultSetting() -> NSMutableParagraphStyle {
         var paragraphStyle: NSMutableParagraphStyle!
 
-        if let defaultParagraphStyle = defaultAttributesForLoad[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle {
-            paragraphStyle = defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle
+        if let defaultParagraphStyle = defaultAttributesForLoad[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle {
+            paragraphStyle = (defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle)
         } else {
             paragraphStyle = NSMutableParagraphStyle()
         }
@@ -542,10 +542,10 @@ open class LEOTextView: UITextView {
             let attributeName = attribute["name"] as! String
             let range = NSRange(location: (attribute["location"] as! Int) + pasteLocation, length: attribute["length"] as! Int)
 
-            if attributeName == NSAttributedStringKey.font.rawValue {
+            if attributeName == NSAttributedString.Key.font.rawValue {
                 let currentFont = fontOfTypeWithAttribute(attribute)
 
-              self.nck_textStorage.safeAddAttributes([NSAttributedStringKey(rawValue: attributeName): currentFont], range: range)
+              self.nck_textStorage.safeAddAttributes([NSAttributedString.Key(rawValue: attributeName): currentFont], range: range)
             }
         }
 
@@ -559,10 +559,10 @@ open class LEOTextView: UITextView {
                 let listPrefixString: NSString = NSString(string: line.components(separatedBy: " ")[0]).appending(" ") as NSString
 
                 let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.headIndent = listPrefixString.size(withAttributes: [NSAttributedStringKey.font: self.normalFont]).width + self.normalFont.lineHeight
+                paragraphStyle.headIndent = listPrefixString.size(withAttributes: [NSAttributedString.Key.font: self.normalFont]).width + self.normalFont.lineHeight
                 paragraphStyle.firstLineHeadIndent = self.normalFont.lineHeight
 
-                self.nck_textStorage.safeAddAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
+                self.nck_textStorage.safeAddAttributes([NSAttributedString.Key.paragraphStyle : paragraphStyle], range: NSMakeRange(lineLocation, lineLength))
             }
 
             // Don't lose \n

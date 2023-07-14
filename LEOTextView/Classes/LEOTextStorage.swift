@@ -23,7 +23,7 @@ class LEOTextStorage: NSTextStorage {
         return currentString.string
     }
 
-    override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedStringKey : Any] {
+    override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key : Any] {
         return currentString.attributes(at: location, effectiveRange: range)
     }
 
@@ -136,7 +136,7 @@ class LEOTextStorage: NSTextStorage {
                 returnKeyDeleteEffectRanges.removeAll()
 
                 while effectIndex < string.length() {
-                    guard let fontAfterDeleteText = self.safeAttribute(NSAttributedStringKey.font.rawValue, atIndex: effectIndex, effectiveRange: nil, defaultValue: nil) as? UIFont else {
+                    guard let fontAfterDeleteText = self.safeAttribute(NSAttributedString.Key.font.rawValue, atIndex: effectIndex, effectiveRange: nil, defaultValue: nil) as? UIFont else {
                         continue
                     }
 
@@ -174,7 +174,7 @@ class LEOTextStorage: NSTextStorage {
         }
     }
 
-    override func setAttributes(_ attrs: [NSAttributedStringKey : Any]?, range: NSRange) {
+    override func setAttributes(_ attrs: [NSAttributedString.Key : Any]?, range: NSRange) {
         guard currentString.string.length() > range.location else {
             return
         }
@@ -208,7 +208,7 @@ class LEOTextStorage: NSTextStorage {
         let objectLineAndIndex = LEOTextUtil.objectLineAndIndexWithString(string, location: location)
         let titleFirstCharLocation = objectLineAndIndex.1
 
-        let currentFont = self.textView.attributedText.safeAttribute(NSAttributedStringKey.font.rawValue, atIndex: titleFirstCharLocation, effectiveRange: nil, defaultValue: textView.normalFont) as! UIFont
+        let currentFont = self.textView.attributedText.safeAttribute(NSAttributedString.Key.font.rawValue, atIndex: titleFirstCharLocation, effectiveRange: nil, defaultValue: textView.normalFont) as! UIFont
         if currentFont.pointSize == textView.titleFont.pointSize {
             return .title
         }
@@ -240,7 +240,7 @@ class LEOTextStorage: NSTextStorage {
                 break
             }
 
-            safeAddAttributes([NSAttributedStringKey.font : attrValue], range: range)
+            safeAddAttributes([NSAttributedString.Key.font : attrValue], range: range)
         }
     }
 
@@ -317,7 +317,7 @@ class LEOTextStorage: NSTextStorage {
             paragraphStyle.firstLineHeadIndent = textView.normalFont.lineHeight
         }
 
-      safeAddAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: range)
+      safeAddAttributes([NSAttributedString.Key.paragraphStyle : paragraphStyle], range: range)
     }
 
     func undoSupportResetIndenationRange(_ range: NSRange, headIndent: CGFloat) {
@@ -335,6 +335,6 @@ class LEOTextStorage: NSTextStorage {
             paragraphStyle.firstLineHeadIndent = 0
         }
 
-      safeAddAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: range)
+      safeAddAttributes([NSAttributedString.Key.paragraphStyle : paragraphStyle], range: range)
     }
 }
